@@ -180,10 +180,10 @@ var Systems = function() {
     }
 
     self.debug = function() {
-        if (Game.debugMode) {
+        //if (Game.debugMode) {
             Canvas.write('Collisions: ' + Physics.world.GetContactCount(), 100, 100);
             Canvas.write('Game delta: ' + Game.delta, 100, 120);
-        }
+        //}
         
     }
 

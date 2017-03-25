@@ -5,7 +5,7 @@ var Game = function(fps) {
 
     self.delta;
     self.isPaused = false;
-    self.debugMode = true;
+    self.debugMode = false;
     self.clock;
     self.entities = [];
 
@@ -27,6 +27,7 @@ var Game = function(fps) {
         var lastTime = 0;
         var requiredElapsed = 1000 / 60;
         function tick(now) {
+            requestAnimationFrame(tick);
 
             if (!self.isPaused) {
                 if (!lastTime) {
@@ -41,7 +42,7 @@ var Game = function(fps) {
                     lastTime = Math.floor(now);
                 }
             }
-            requestAnimationFrame(tick);
+            
         }
         requestAnimationFrame(tick);
 
