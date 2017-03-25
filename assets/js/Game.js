@@ -25,7 +25,7 @@ var Game = function(fps) {
 
     self.run = function(fn) {
         var lastTime = 0;
-        var requiredElapsed = 1000 / 60;
+        var requiredElapsed = 1000 / 30;
         function tick(now) {
             requestAnimationFrame(tick);
 
