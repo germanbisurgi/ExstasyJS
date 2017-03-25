@@ -79,7 +79,7 @@ var Systems = function() {
     }
 
     self.physics = function() {
-        Physics.world.Step(1/20, 4, 3);
+        Physics.world.Step(1/60, 4, 3);
         Physics.world.ClearForces();
     }
 
