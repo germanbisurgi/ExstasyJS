@@ -29,8 +29,8 @@ body {
 .touch-controller-btn {
     border: 1px solid yellow;
     border-radius: 50%;
-    height: 40px;
-    width: 40px;
+    height: 50px;
+    width: 50px;
     z-index: 10;
 }
 
@@ -46,24 +46,24 @@ body {
 
 .touch-controller-left {
     position: absolute;
-        left: 20px;
-        bottom: 20%;
+        left: 40px;
+        bottom: 40%;
 }
 
 .touch-controller-right {
     position: absolute;
-        left: 80px;
-        bottom: 20%;
+        left: 100px;
+        bottom: 40%;
 }
 
 .touch-controller-a {
     position: absolute;
-        right: 20px;
-        bottom: 20%;
+        right: 40px;
+        bottom: 40%;
 }
 
 .touch-controller-b {
     position: absolute;
-        right: 80px;
-        bottom: 20%;
+        right: 100px;
+        bottom: 40%;
 }
