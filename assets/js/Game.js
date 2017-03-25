@@ -27,11 +27,13 @@ var Game = function(fps) {
         var lastTime = 0;
         var requiredElapsed = 1000 / 60;
         function tick(now) {
+
             if (!self.isPaused) {
                 if (!lastTime) {
                     lastTime = Math.floor(now);
                 }
-                self.delta = now - lastTime;              
+                self.delta = now - lastTime;   
+
                 if (self.delta > requiredElapsed) {
                     //var time = new Date();
                     //self.clock = time.getTime();
