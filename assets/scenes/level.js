@@ -145,7 +145,7 @@ var heroDefinition = {
     'name': 'hero',
     'sprite': {
         'src': Assets.images.rocket,
-        'speed': 15,
+        'speed': 18,
         'row': 0,
         'sequence': [0],
         'sx': 0,
