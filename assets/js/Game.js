@@ -24,7 +24,7 @@ var Game = function(fps) {
     }
 
     self.run = function(fn) {
-        var lastTime = null;
+        var lastTime = 0;
         var requiredElapsed = 1000 / 60;
         function tick(now) {
             if (!self.isPaused) {
@@ -32,12 +32,12 @@ var Game = function(fps) {
                     lastTime = Math.floor(now);
                 }
                 self.delta = now - lastTime;              
-                //if (self.delta >= requiredElapsed) {
-                    var time = new Date();
-                    self.clock = time.getTime();
+                if (self.delta > requiredElapsed) {
+                    //var time = new Date();
+                    //self.clock = time.getTime();
                     fn();
                     lastTime = Math.floor(now);
-                //}
+                }
             }
             requestAnimationFrame(tick);
         }
