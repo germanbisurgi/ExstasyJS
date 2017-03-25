@@ -35,11 +35,11 @@ var Systems = function() {
         var angle = Math.atan2(currentVelocity.x, currentVelocity.y);
         entity.SetAngle(angle);*/
 
-        if (Input.pressingRight) entity.ApplyTorque(6);
+        if (Input.pressingRight || tactileTouchControllerRight.touched) entity.ApplyTorque(6);
 
-        if (Input.pressingLeft)  entity.ApplyTorque(-6);
+        if (Input.pressingLeft || tactileTouchControllerLeft.touched)  entity.ApplyTorque(-6);
 
-        if (Input.pressingUp) {
+        if (Input.pressingUp || tactileTouchControllerA.touched) {
             entity.GetUserData().sprite.row = 1;
             var currentAngle = entity.GetAngle() - 90 * DEGTORAD;
             var cos = Math.cos(currentAngle);
@@ -47,7 +47,7 @@ var Systems = function() {
             entity.ApplyImpulse({'x': cos * speedX, 'y': sin * speedY}, entity.GetWorldCenter()); 
         }
 
-        if (Input.pressingDown) {
+        if (Input.pressingDown || tactileTouchControllerB.touched) {
             entity.GetUserData().sprite.row = 1;
             var currentAngle = entity.GetAngle() - 90 * DEGTORAD;
             var cos = Math.cos(currentAngle);
@@ -73,8 +73,7 @@ var Systems = function() {
         
         if (!Input.pressingA && !Input.pressingW && !Input.pressingD && !Input.pressingS && !Input.pressingUp && !Input.pressingDown) {
             entity.GetUserData().sprite.row = 0;
-        }
-        
+        } 
         
 
     }

@@ -1,11 +1,19 @@
 Assets.loadImages([
-    {'name': 'player', 'path': 'assets/images/player.png'},
     {'name': 'mine', 'path': 'assets/images/mine.png'},
     {'name': 'rocket', 'path': 'assets/images/rocket.png'},
-    {'name': 'spaceship', 'path': 'assets/images/spaceship.png'},
     {'name': 'stone', 'path': 'assets/images/stone.png'},
-    {'name': 'space', 'path': 'assets/images/space.jpg'},
 ]);
+
+// Touch controller.
+var touchControllerA = document.querySelector('.touch-controller-a');
+var touchControllerB = document.querySelector('.touch-controller-b');
+var touchControllerLeft = document.querySelector('.touch-controller-left');
+var touchControllerRight = document.querySelector('.touch-controller-right');
+var tactileTouchControllerA = new Tactile(touchControllerA);
+var tactileTouchControllerB = new Tactile(touchControllerB);
+var tactileTouchControllerLeft = new Tactile(touchControllerLeft);
+var tactileTouchControllerRight = new Tactile(touchControllerRight);
+
 
 var map = [
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],

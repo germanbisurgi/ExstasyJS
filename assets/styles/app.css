@@ -16,3 +16,54 @@ body {
         top: 0;
     display: none;
 }
+
+.touch-controller {
+    border: 1px solid yellow;
+    position: absolute;
+        bottom: 0;
+        left: 0;
+    height: 200px;
+    width: 100vw;
+    z-index: 10;
+}
+.touch-controller-btn {
+    border: 1px solid yellow;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    z-index: 10;
+}
+
+.touch-controller-label {
+    color: white;
+    display: inline-block;
+    position: relative;
+        top: 50%;
+        left: 50%;
+    -webkit-transform: translate3d(-50%, -50%, 0px);
+            transform: translate3d(-50%, -50%, 0px);
+}
+
+.touch-controller-left {
+    position: absolute;
+        left: 20px;
+        bottom: 20%;
+}
+
+.touch-controller-right {
+    position: absolute;
+        left: 80px;
+        bottom: 20%;
+}
+
+.touch-controller-a {
+    position: absolute;
+        right: 20px;
+        bottom: 20%;
+}
+
+.touch-controller-b {
+    position: absolute;
+        right: 80px;
+        bottom: 20%;
+}
