@@ -25,7 +25,7 @@ var Game = function(fps) {
 
     self.run = function(fn) {
         var lastTime = 0;
-        var requiredElapsed = 1000 / 30;
+        var requiredElapsed = 1000 / 60;
         function tick(now) {
 
             if (!self.isPaused) {
