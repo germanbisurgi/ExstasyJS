@@ -29,14 +29,14 @@ var Game = function(fps) {
         function tick(now) {
             if (!self.isPaused) {
                 if (!lastTime) {
-                    lastTime = now;
+                    lastTime = Math.floor(now);
                 }
                 self.delta = now - lastTime;              
                 //if (self.delta >= requiredElapsed) {
                     var time = new Date();
                     self.clock = time.getTime();
                     fn();
-                    lastTime = now;
+                    lastTime = Math.floor(now);
                 //}
             }
             requestAnimationFrame(tick);
