@@ -181,10 +181,10 @@ var heroDefinition = {
 var hero = Game.createEntity(heroDefinition);
 
 Game.run(function() {
-    Systems.render(Game.entities);
     Clock.sync();
     Camera.centerOn(hero);
     Systems.userInput(hero);
     Systems.physics();
+    Systems.render(Game.entities);
     Systems.debug();
 });
