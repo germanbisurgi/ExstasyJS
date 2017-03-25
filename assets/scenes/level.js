@@ -185,7 +185,6 @@ Game.run(function() {
     Camera.centerOn(hero);
     Systems.userInput(hero);
     Systems.physics();
-    requestAnimationFrame(Systems.render(Game.entities))
-    //Systems.render(Game.entities);
+    Systems.render(Game.entities);
     Systems.debug();
 });

@@ -25,8 +25,8 @@ var Game = function(fps) {
 
     self.run = function(fn) {
         var lastTime = 0;
-        var requiredElapsed = 1000 / 50;
-        /*function tick(now) {
+        var requiredElapsed = 1000 / 60;
+        function tick(now) {
 
             if (!self.isPaused) {
                 if (!lastTime) {
@@ -43,11 +43,9 @@ var Game = function(fps) {
             }
             requestAnimationFrame(tick);
         }
-        requestAnimationFrame(tick);*/
+        requestAnimationFrame(tick);
 
-        setInterval(function() {
-            fn();
-        }, requiredElapsed);
+        
     }
 
     self.inGameEntities = function(entityId) {
