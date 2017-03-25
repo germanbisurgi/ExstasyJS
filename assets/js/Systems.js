@@ -71,7 +71,7 @@ var Systems = function() {
             }
         }
         
-        if (!Input.pressingA && !Input.pressingW && !Input.pressingD && !Input.pressingS && !Input.pressingUp && !Input.pressingDown) {
+        if (!Input.pressingA && !Input.pressingW && !Input.pressingD && !Input.pressingS && !Input.pressingUp && !Input.pressingDown && !tactileTouchControllerB.touched && !tactileTouchControllerA.touched) {
             entity.GetUserData().sprite.row = 0;
         } 
         
@@ -79,7 +79,7 @@ var Systems = function() {
     }
 
     self.physics = function() {
-        Physics.world.Step(1/60, 8, 3);
+        Physics.world.Step(1/30, 8, 3);
         Physics.world.ClearForces();
     }
 
