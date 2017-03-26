@@ -1,0 +1,22 @@
+
+Game(name) {
+
+    fps = 60;
+    isPaused = false;
+    states = [];
+    currentState;
+
+    getState()
+    addState(stateObject)
+    switchState(stateName)
+    start()
+    pause()
+    resume()
+
+}
+
+State(name) {
+    name
+    isInitialized
+    loadProgress
+} 

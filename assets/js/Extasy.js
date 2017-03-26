@@ -60,7 +60,7 @@ var Extasy =  {
             self.isPaused = true;
         }
 
-        self.continue = function() {
+        self.resume = function() {
             self.isPaused = false;
         }
 
@@ -72,6 +72,8 @@ var Extasy =  {
         var self = this;
 
         self.name = name;
-        
+        self.isInitialized = false;
+        self.loadProgress = 0;
+
     }
 }
