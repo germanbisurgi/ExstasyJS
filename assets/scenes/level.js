@@ -1,8 +1,11 @@
+// Preload.
 Assets.loadImages([
     {'name': 'mine', 'path': 'assets/images/mine.png'},
     {'name': 'rocket', 'path': 'assets/images/rocket.png'},
     {'name': 'stone', 'path': 'assets/images/stone.png'},
 ]);
+
+// Create.
 
 // Touch controller.
 var touchControllerA = document.querySelector('.touch-controller-a');
@@ -179,6 +182,8 @@ var heroDefinition = {
     }
 }
 var hero = Game.createEntity(heroDefinition);
+
+// Update.
 
 Game.run(function() {
     Clock.sync();

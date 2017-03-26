@@ -7,38 +7,17 @@ var Systems = function() {
     var RADTODEG = 57.295779513082320876;
 
     self.userInput = function(entity) {
+
         var speedX = entity.GetUserData().velocity.x;
         var speedY = entity.GetUserData().velocity.y;
-     
-        if (Input.pressingD) {
-            entity.ApplyImpulse({'x': speedY, 'y': 0}, entity.GetWorldCenter());
-            entity.GetUserData().sprite.row = 1;
-        }
 
-        if (Input.pressingA) {
-            entity.ApplyImpulse({'x': -speedY, 'y': 0}, entity.GetWorldCenter());
-            entity.GetUserData().sprite.row = 1;
-        }
-
-        if (Input.pressingW) {
-            entity.ApplyImpulse({'x': 0, 'y': -speedY}, entity.GetWorldCenter());
-            entity.GetUserData().sprite.row = 1;
-        }
-        
-        if (Input.pressingS) {
-            entity.ApplyImpulse({'x': 0, 'y': speedY}, entity.GetWorldCenter());
-            entity.GetUserData().sprite.row = 1;
-        }
-
-        // Change the angle in relationship with the velocity
-        /*var currentVelocity = entity.GetLinearVelocity();
-        var angle = Math.atan2(currentVelocity.x, currentVelocity.y);
-        entity.SetAngle(angle);*/
-
+        // Turn right.
         if (Input.pressingRight || tactileTouchControllerRight.touched) entity.ApplyTorque(6);
 
+        // Turn left.
         if (Input.pressingLeft || tactileTouchControllerLeft.touched)  entity.ApplyTorque(-6);
 
+        // Go ahead.
         if (Input.pressingUp || tactileTouchControllerA.touched) {
             entity.GetUserData().sprite.row = 1;
             var currentAngle = entity.GetAngle() - 90 * DEGTORAD;
@@ -47,6 +26,7 @@ var Systems = function() {
             entity.ApplyImpulse({'x': cos * speedX, 'y': sin * speedY}, entity.GetWorldCenter()); 
         }
 
+        // Go back.
         if (Input.pressingDown || tactileTouchControllerB.touched) {
             entity.GetUserData().sprite.row = 1;
             var currentAngle = entity.GetAngle() - 90 * DEGTORAD;
@@ -54,27 +34,10 @@ var Systems = function() {
             var sin = Math.sin(currentAngle);
             entity.ApplyImpulse({'x': -cos  * speedX, 'y': -sin * speedY}, entity.GetWorldCenter()); 
         }
-
-        if (Input.pressingSpacebar) {
-            var currentVelocity = entity.GetLinearVelocity();
-            if (currentVelocity.x > 0) {
-                entity.ApplyImpulse({'x': -0.1, 'y': 0}, entity.GetWorldCenter());
-            }
-            if (currentVelocity.y > 0) {
-                entity.ApplyImpulse({'x': 0, 'y': -0.1}, entity.GetWorldCenter());
-            }
-            if (currentVelocity.x < 0) {
-                entity.ApplyImpulse({'x': 0.1, 'y': 0}, entity.GetWorldCenter());
-            }
-            if (currentVelocity.y < 0) {
-                entity.ApplyImpulse({'x': 0, 'y': 0.1}, entity.GetWorldCenter());
-            }
-        }
         
         if (!Input.pressingA && !Input.pressingW && !Input.pressingD && !Input.pressingS && !Input.pressingUp && !Input.pressingDown && !tactileTouchControllerB.touched && !tactileTouchControllerA.touched) {
             entity.GetUserData().sprite.row = 0;
         } 
-        
 
     }
 
@@ -85,20 +48,16 @@ var Systems = function() {
 
     self.render = function(entities) {
 
-        if (Game.debugMode) Physics.clear();
-        Canvas.clear();
-
-        
-
         // Camera settings.
+        Canvas.clear();
         Canvas.context.translate(Camera.x, Camera.y);
+
+        // Render the box2d world and config camera.
+        if (Game.debugMode) Physics.clear();
+        if (Game.debugMode) Physics.world.DrawDebugData();
         if (Game.debugMode) Physics.context.translate(Camera.x, Camera.y);
 
-        // Render the visible world.
-        if (Game.debugMode) Physics.world.DrawDebugData();
-
         entities.forEach(function(entity, i) {
-
         
             if (entity.GetUserData().fixture.shape === 'rectangle') {
 
@@ -180,10 +139,11 @@ var Systems = function() {
     }
 
     self.debug = function() {
-        //if (Game.debugMode) {
+
+        if (Game.debugMode) {
             Canvas.write('Collisions: ' + Physics.world.GetContactCount(), 100, 100);
             Canvas.write('Game delta: ' + Game.delta, 100, 120);
-        //}
+        }
         
     }
 
