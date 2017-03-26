@@ -85,5 +85,3 @@ var Input = function() {
     }
 
 }
-
-var Input = new Input();

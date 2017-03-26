@@ -56,9 +56,11 @@ var Canvas = function(width, height) {
 
 }
 
+/*
 var Canvas = new Canvas();
 
 Canvas.fullScreen();
 _on(window, 'resize', function() {
     Canvas.fullScreen();
 });
+*/

@@ -12,5 +12,3 @@ var Clock = function() {
     }
 
 }
-
-var Clock = new Clock();

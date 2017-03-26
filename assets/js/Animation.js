@@ -32,5 +32,3 @@ var Animation = function() {
     }
 
 }
-
-var Animation = new Animation();

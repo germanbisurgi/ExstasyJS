@@ -131,7 +131,7 @@ var Physics = function() {
     }
 
 }
-
+/*
 var Physics = new Physics();
 
 Physics.fullScreen();
@@ -140,3 +140,4 @@ _on(window, 'resize', function() {
 });
 
 Physics.setupDebugDraw();
+*/

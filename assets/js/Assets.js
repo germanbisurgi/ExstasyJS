@@ -24,6 +24,3 @@ var Assets = function() {
 
 }
 
-var Assets = new Assets();
-
-

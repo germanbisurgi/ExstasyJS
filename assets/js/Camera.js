@@ -24,9 +24,10 @@ var Camera = function() {
 
 }
 
-var Camera = new Camera();
+/*var Camera = new Camera();
 
 Camera.fullScreen();
 _on(window, 'resize', function() {
     Camera.fullScreen();
 });
+*/

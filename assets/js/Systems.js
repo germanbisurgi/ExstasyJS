@@ -148,5 +148,3 @@ var Systems = function() {
     }
 
 }
-
-var Systems = new Systems();

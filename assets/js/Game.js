@@ -62,4 +62,3 @@ var Game = function(fps) {
 
 }
 
-var Game = new Game();
