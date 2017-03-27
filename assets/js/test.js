@@ -1,11 +1,7 @@
 var game = new Extasy.Game();
 
-var state1 = new Extasy.State("state1");
+game.addState(loadState);
+game.switchState("loadState");
 
-game.addState(state1);
+console.log(game);
 
-game.switchState("state1");
-
-console.log("current state: ", game.currentState);
-
-//game.start();
