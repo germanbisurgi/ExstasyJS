@@ -18,8 +18,9 @@ Game(name) {
 State(name) {
     name
     isInitialized
-    loadProgress
-    self.images
+    assetsAreLoaded
+    assets
 
-    loadImages()
+    getAsset()
+    loadAssets()
 } 

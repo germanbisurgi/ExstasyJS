@@ -78,7 +78,7 @@ var Extasy =  {
         self.isInitialized = false;
         self.assetsAreLoaded = false;
         self.assets = [
-            //{'name': 'mine'}
+            {'name': 'mine'}
         ];
 
         // Checks if an asset already exist.
@@ -92,6 +92,7 @@ var Extasy =  {
             return output;
         }
 
+
         self.loadAssets = function(assetsDefinition) {
             self.assetsAreLoaded = false;
             var assetsToLoad = assetsDefinition.length;
@@ -102,24 +103,30 @@ var Extasy =  {
                         if (!self.getAsset(asset.name)) {
                             self.assets.push(asset);
                             console.log(asset);
-                            console.log(loadedAssets);
                             loadedAssets++;
+                            console.log("loaded assets: ", loadedAssets);
                             if (loadedAssets === assetsToLoad) {
                                 self.assetsAreLoaded = true;
                                 console.log("assets are loaded");
+                                self.isInitialized = true;
                             }
+                        } else {
+                            assetsToLoad--;
                         }
                     } else if (asset.type == 'audio') {
                         if (!self.getAsset(asset.name)) {
                             self.assets.push(asset);
                             console.log(asset);
-                            console.log(loadedAssets);
                             loadedAssets++;
+                            console.log("loaded assets: ", loadedAssets);
                             if (loadedAssets === assetsToLoad) {
                                 self.assetsAreLoaded = true;
                                 console.log("assets are loaded");
+                                self.isInitialized = true;
                             }
                         }
+                    } else {
+                        assetsToLoad--;
                     }
                 });
             }
