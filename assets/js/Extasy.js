@@ -8,13 +8,13 @@ var Extasy =  {
 
         self.fps = 60;
         self.isPaused = false;
-        self.states = [];
-        self.currentState;
+        self.stateList = [];
+        self.state;
         
         // Checks if a state already exist.
         self.getState = function(stateName) {
             var output = false;
-            self.states.forEach(function(state, i) {
+            self.stateList.forEach(function(state, i) {
                 if (state.name == stateName) {
                     output = state;
                 }
@@ -25,7 +25,7 @@ var Extasy =  {
         // Add a the state object if not exists.
         self.addState = function(stateObject) {
             if (!self.getState(stateObject.name)) {
-                self.states.push(stateObject);
+                self.stateList.push(stateObject);
             }
         }
 
@@ -33,10 +33,11 @@ var Extasy =  {
         self.switchState = function(stateName) {
             var requestedState = self.getState(stateName);
             if (requestedState) {
-                self.currentState = requestedState;
+                self.state = requestedState;
             }
         }
 
+        // Start the main loop.
         self.start = function() {
             var lastTime = 0;
             var requiredElapsed = 1000 / self.fps;
@@ -56,10 +57,12 @@ var Extasy =  {
             requestAnimationFrame(tick); 
         }
 
+        // Pause the main loop.
         self.pause = function() {
             self.isPaused = true;
         }
 
+        // Resume the main loop.
         self.resume = function() {
             self.isPaused = false;
         }
@@ -73,7 +76,55 @@ var Extasy =  {
 
         self.name = name;
         self.isInitialized = false;
-        self.loadProgress = 0;
+        self.assetsAreLoaded = false;
+        self.assets = [
+            //{'name': 'mine'}
+        ];
+
+        // Checks if an asset already exist.
+        self.getAsset = function(assetName) {
+            var output = false;
+            self.assets.forEach(function(asset, i) {
+                if (asset.name == assetName) {
+                    output = asset;
+                }
+            });
+            return output;
+        }
+
+        self.loadAssets = function(assetsDefinition) {
+            self.assetsAreLoaded = false;
+            var assetsToLoad = assetsDefinition.length;
+            var loadedAssets = 0;
+            if (self.assets.length != self.assetsToLoad) {
+                assetsDefinition.forEach(function(asset, i) {
+                    if (asset.type == 'image') {
+                        if (!self.getAsset(asset.name)) {
+                            self.assets.push(asset);
+                            console.log(asset);
+                            console.log(loadedAssets);
+                            loadedAssets++;
+                            if (loadedAssets === assetsToLoad) {
+                                self.assetsAreLoaded = true;
+                                console.log("assets are loaded");
+                            }
+                        }
+                    } else if (asset.type == 'audio') {
+                        if (!self.getAsset(asset.name)) {
+                            self.assets.push(asset);
+                            console.log(asset);
+                            console.log(loadedAssets);
+                            loadedAssets++;
+                            if (loadedAssets === assetsToLoad) {
+                                self.assetsAreLoaded = true;
+                                console.log("assets are loaded");
+                            }
+                        }
+                    }
+                });
+            }
+        }
 
     }
+
 }

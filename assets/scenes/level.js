@@ -1,8 +1,8 @@
 // Preload.
 Assets.loadImages([
-    {'name': 'mine', 'path': 'assets/images/mine.png'},
+    {'name': 'mine',   'path': 'assets/images/mine.png'},
     {'name': 'rocket', 'path': 'assets/images/rocket.png'},
-    {'name': 'stone', 'path': 'assets/images/stone.png'},
+    {'name': 'stone',  'path': 'assets/images/stone.png'},
 ]);
 
 // Create.
