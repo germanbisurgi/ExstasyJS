@@ -21,6 +21,8 @@ StateManager = function (game) {
         } else {
             // Exception.
             console.log('EXCEPTION: This state is already in the list ->', stateObject);
+            console.log('the game will be stoped');
+            self.game.stop();
         }
     }
 
@@ -30,6 +32,11 @@ StateManager = function (game) {
         if (requestedState) {
             requestedState.game = self.game;
             self.game.state = requestedState;
+        } else {
+            // Exception.
+            console.log('EXCEPTION: ', stateName, 'not present.');
+            console.log('the game will be stoped');
+            self.game.stop();
         }
     }
 

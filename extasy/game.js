@@ -26,17 +26,18 @@ var Game = function (name) {
 
                 if (self.delta > requiredElapsed) {
 
-                    if (!self.assetManager.finished) {
-                        self.state.preload();
-                    } else {
-                        self.state.preloaded = true;
-                        self.stop();
-                    }
+                    console.log('current state is: ', self.state.name)
 
-                    // console.log("state preloaded", self.state.preloaded);
+                    if (!self.state.preloaded) {
+                        self.state.preload();
+                    }
                     
-                    self.state.create();
-                    self.state.update();
+                    
+                    if (self.assetManager.isDone()) {
+                        self.state.create();
+                        self.state.update();
+                    }                  
+
                     lastTime = Math.floor(now);
                 }
             }
