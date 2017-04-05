@@ -27,16 +27,25 @@ var Game = function (name) {
                 if (self.delta > requiredElapsed) {
 
                     console.log('current state is: ', self.state.name)
+                    console.log('preloaded? : ', self.state.preloaded)
 
                     if (!self.state.preloaded) {
+                        console.log('preloaddddddddddddddddddddddddddddddddddd')
                         self.state.preload();
                     }
+
+                    console.log('created?: ', self.state.created)
                     
-                    
-                    if (self.assetManager.isDone()) {
+                    if (!self.state.created && self.state.preloaded) {
+                        console.log('createeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
                         self.state.create();
+                        self.state.created = true;
+                    }
+                    
+                    if (self.state.created) {
+                        console.log('updateeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
                         self.state.update();
-                    }                  
+                    }
 
                     lastTime = Math.floor(now);
                 }

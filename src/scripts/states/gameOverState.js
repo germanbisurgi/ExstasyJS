@@ -1,8 +1,8 @@
-var gameState = new Extasy.state('gameState');
+var gameOverState = new Extasy.state('gameOverState');
 
-gameState.preload = function () {
+gameOverState.preload = function () {
 
-    console.log('GAME PRELOAD');
+    console.log('GAMEOVER PRELOAD');
 
     this.game.assetManager.loadAssets([
         {'type': 'audio', 'name': 'mine', 'path': 'src/assets/images/mine.png'},
@@ -14,11 +14,11 @@ gameState.preload = function () {
 
 }
 
-gameState.create = function () {
-    console.log('GAME UPDATE');
+gameOverState.create = function () {
+    console.log('GAMEOVER UPDATE');
 }
 
-gameState.update = function () {
-    console.log('GAME CREATE');
-    this.game.stateManager.switch('gameOverState');
+gameOverState.update = function () {
+    console.log('GAMEOVER CREATE');
+    this.game.stop();
 }
