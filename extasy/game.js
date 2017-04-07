@@ -1,4 +1,4 @@
-var Game = function (name) {
+var Game = function (name, progress) {
 
     "use strict";
     var self = this;
@@ -26,26 +26,40 @@ var Game = function (name) {
 
                 if (self.delta > requiredElapsed) {
 
+                    console.log('START');
                     console.log('current state is: ', self.state.name)
-                    console.log('preloaded? : ', self.state.preloaded)
+                    console.log('is ', self.state.name, 'preload?: ', self.state.preloaded)
+                    console.log('is ', self.state.name, 'created?: ', self.state.created)
+                    console.log('successCount: ', self.assetManager.successCount, 'errorCount: ', self.assetManager.errorCount, 'downloadQueue: ', self.assetManager.downloadQueue.length)
+                    console.log(self.assetManager.loadProgress());
+                    console.log(self.assets);
 
                     if (!self.state.preloaded) {
-                        console.log('preloaddddddddddddddddddddddddddddddddddd')
+                        console.log(self.state.name, 'preload')
                         self.state.preload();
+                        self.state.preloaded = true;
                     }
 
-                    console.log('created?: ', self.state.created)
-                    
-                    if (!self.state.created && self.state.preloaded) {
-                        console.log('createeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
+                    if (!self.state.created && self.state.preloaded && self.assetManager.loadProgress() === 100) {
+                        console.log(self.state.name, 'create')
                         self.state.create();
                         self.state.created = true;
                     }
                     
                     if (self.state.created) {
-                        console.log('updateeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
+                        console.log(self.state.name, 'update')
                         self.state.update();
                     }
+
+                    progress.textContent += self.assetManager.loadProgress() + ', ';
+
+                    console.log('END');
+                    console.log('current state is: ', self.state.name)
+                    console.log('is ', self.state.name, 'preload?: ', self.state.preloaded)
+                    console.log('is ', self.state.name, 'created?: ', self.state.created)
+                    console.log('successCount: ', self.assetManager.successCount, 'errorCount: ', self.assetManager.errorCount, 'downloadQueue: ', self.assetManager.downloadQueue.length)
+                    console.log(self.assetManager.loadProgress());
+                    console.log(self.assets);
 
                     lastTime = Math.floor(now);
                 }

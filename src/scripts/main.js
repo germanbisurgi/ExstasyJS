@@ -1,4 +1,6 @@
-var mygame = new Extasy.game('my game');
+var progress = document.querySelector('.progress');
+
+var mygame = new Extasy.game('my game', progress);
 
 mygame.stateManager.add(loadState);
 mygame.stateManager.add(menuState);
