@@ -6,12 +6,13 @@ var Game = function (name, progress) {
     self.frame = 1;
     self.fps = 60;
     self.isPaused = false;
-    self.state = null;
     self.assets = [];
+    self.state = null;
+    self.inputs = null;    
 
-    self.stateManager = new StateManager(self);
-    self.assetManager = new AssetManager(self);
-    self.inputManager = new InputManager(self);
+    self.stateManager = new Extasy.stateManager(self);
+    self.assetManager = new Extasy.assetManager(self);
+    self.inputManager = new Extasy.inputManager(self);
 
     self.run = function() {
         var lastTime = 0;
@@ -43,8 +44,9 @@ var Game = function (name, progress) {
                         self.state.update();
                     }
 
-                    progress.textContent += self.assetManager.loadProgress() + ', ';
-                    console.log('frame: ', self.frame, ' loaing: ', self.assetManager.loadProgress(), '%');
+                    // progress.textContent += self.assetManager.loadProgress() + ', ';
+                    // console.log('frame: ', self.frame, ' loaing: ', self.assetManager.loadProgress(), '%');
+                    
                     self.frame++;
 
                     lastTime = Math.floor(now);

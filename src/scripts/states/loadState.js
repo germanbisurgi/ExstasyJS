@@ -21,8 +21,40 @@ loadState.preload = function () {
 
 loadState.create = function () {
 
+    var controller = {
+        up:    new Extasy.input('up'),
+        right: new Extasy.input('right'),
+        down:  new Extasy.input('down'),
+        left:  new Extasy.input('left')
+    }
+    this.controller = controller;
+     
+
 }
 
 loadState.update = function () {
-    this.game.stateManager.switch('menuState');
+    var up = this.controller.up;
+    var right = this.controller.right;
+    var down = this.controller.down;
+    var left = this.controller.left;
+
+
+    if (up.isPressed) {
+        console.log('pressing up');
+    }
+
+    if (right.isPressed) {
+        console.log('pressing right');
+    }
+
+    if (down.isPressed) {
+        console.log('pressing down');
+    }
+
+    if (left.isPressed) {
+        console.log('pressing left');
+    }
+
+
+    // this.game.stop();
 }
