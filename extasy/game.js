@@ -11,6 +11,7 @@ var Game = function (name, progress) {
 
     self.stateManager = new StateManager(self);
     self.assetManager = new AssetManager(self);
+    self.inputManager = new InputManager(self);
 
     self.run = function() {
         var lastTime = 0;
@@ -43,7 +44,7 @@ var Game = function (name, progress) {
                     }
 
                     progress.textContent += self.assetManager.loadProgress() + ', ';
-                    console.log('frame: ', self.frame, ' load progress: ', self.assetManager.loadProgress());
+                    console.log('frame: ', self.frame, ' loaing: ', self.assetManager.loadProgress(), '%');
                     self.frame++;
 
                     lastTime = Math.floor(now);

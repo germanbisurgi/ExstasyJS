@@ -38,14 +38,14 @@ AssetManager = function (game) {
                 img.onload = function() {
                     self.successCount++;
                     if (self.isDone) {
-                        console.log(asset.name, 'was loaded');
+                        // console.log(asset.name, 'was loaded');
                         self.loading = false;
                     }
                 }
                 img.onerror = function() {
                     self.errorCount++;
                     if (self.isDone) {
-                        console.log(asset.name, 'error');
+                        // console.log(asset.name, 'error');
                         self.loading = false;
                     }
                 }

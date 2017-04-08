@@ -1,7 +1,6 @@
 var loadState = new Extasy.state('loadState');
 
 loadState.preload = function () {
-
     this.game.assetManager.loadAssets([
         {'type': 'image', 'name': 'rainbow', 'path': 'src/assets/images/rainbow.jpg'},
         {'type': 'image', 'name': 'colorito', 'path': 'src/assets/images/colorito.jpg'},
@@ -18,10 +17,11 @@ loadState.preload = function () {
         {'type': 'image', 'name': 'stone', 'path': 'src/assets/images/stone.png'},
         {'type': 'image', 'name': 'rocket', 'path': 'src/assets/images/rocket.png'}
     ]);
-
 }
 
-loadState.create = function () {}
+loadState.create = function () {
+
+}
 
 loadState.update = function () {
     this.game.stateManager.switch('menuState');
