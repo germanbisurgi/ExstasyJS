@@ -43,6 +43,7 @@ var Game = function (name, progress) {
                         self.state.update();
                     }
 
+
                     // progress.textContent += self.assetManager.loadProgress() + ', ';
                     // console.log('frame: ', self.frame, ' loaing: ', self.assetManager.loadProgress(), '%');
                     

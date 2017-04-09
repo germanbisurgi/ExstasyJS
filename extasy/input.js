@@ -64,10 +64,20 @@ var Input = function(keyName) {
         {code: 105, name: "numpad9"}
     ];
 
+    var mouseButtons = [
+        {code: 1, name: "mouseLeft"},
+        {code: 2, name: "mouseMiddle"},
+        {code: 3, name: "mouseRight"}
+    ];
+
 
 
     keys.forEach(function (key) {
         self[key.name] = {isPressed: false};
+    });
+
+    mouseButtons.forEach(function (button) {
+        self[button.name] = {isPressed: false};
     });
 
 
@@ -90,9 +100,27 @@ var Input = function(keyName) {
                 self[key.name].isPressed = false;
             }
         })
-        
     }
 
+    document.onmousedown = function(event) {
+        event.preventDefault();
+        var keyCode = event.which;
+        mouseButtons.forEach(function (button, i) {
+            if (keyCode === button.code) {
+                self[button.name].isPressed = true;
+            }
+        })
+    }
+
+    document.onmouseup = function(event) {
+        event.preventDefault();
+        var keyCode = event.which;
+        mouseButtons.forEach(function (button, i) {
+            if (keyCode === button.code) {
+                self[button.name].isPressed = false;
+            }
+        })
+    }
 
 }
 

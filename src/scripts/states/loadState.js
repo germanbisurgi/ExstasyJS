@@ -23,6 +23,8 @@ loadState.create = function () {}
 
 loadState.update = function () {
 
+    // console.log(this.game.input)
+
     input.textContent = '';
 
     if (this.game.input.left.isPressed) {
@@ -37,8 +39,18 @@ loadState.update = function () {
         input.textContent += 'right, ';
     }
 
-    if (this.game.input.down.isPressed) {
-        input.textContent += 'down, ';
+    if (this.game.input.mouseLeft.isPressed) {
+        input.textContent += 'mouseLeft, ';
     }
-    
+
+    if (this.game.input.mouseMiddle.isPressed) {
+        input.textContent += 'mouseMiddle, ';
+    }
+
+    if (this.game.input.mouseRight.isPressed) {
+        input.textContent += 'mouseRight, ';
+    }
+
+    // this.game.stop();
+
 }
