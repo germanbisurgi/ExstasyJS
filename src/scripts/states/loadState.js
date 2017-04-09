@@ -51,6 +51,11 @@ loadState.update = function () {
         input.textContent += 'mouseRight, ';
     }
 
+    mouseX.textContent = '';
+    mouseY.textContent = '';
+    mouseX.textContent += this.game.input.mouseX;
+    mouseY.textContent += this.game.input.mouseY;
+
     // this.game.stop();
 
 }

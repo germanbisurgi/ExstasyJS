@@ -1,5 +1,8 @@
 var progress = document.querySelector('.progress');
 var input = document.querySelector('.input');
+var mouseX = document.querySelector('.mouse-x');
+var mouseY = document.querySelector('.mouse-y');
+
 
 var mygame = new Extasy.game('my game', progress);
 

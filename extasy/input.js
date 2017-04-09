@@ -3,6 +3,9 @@ var Input = function(keyName) {
     "use strict";
     var self = this;
 
+    self.mouseX = null;
+    self.mouseY = null;
+
     var keys = [
         {code:   8, name: "backspace"},
         {code:   9, name: "tab"      },
@@ -122,6 +125,10 @@ var Input = function(keyName) {
         })
     }
 
+    document.onmousemove = function(event) {
+        self.mouseX = event.clientX;
+        self.mouseY = event.clientY;
+    }
 }
 
 
