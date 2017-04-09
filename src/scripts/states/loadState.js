@@ -23,38 +23,33 @@ loadState.create = function () {}
 
 loadState.update = function () {
 
-    // console.log(this.game.input)
+    // console.log(this.game.input);
+    // this.game.stop();
 
     input.textContent = '';
 
-    if (this.game.input.left.isPressed) {
-        input.textContent += 'left, ';
+    for (key in this.game.input.keyboard) {
+        if (key.isPressed) {
+            input.textContent += key + ', ';
+        }
     }
 
-    if (this.game.input.up.isPressed) {
-        input.textContent += 'up, ';
+    if (this.game.input.mouse.left.isPressed) {
+        input.textContent += 'mouse left, ';
     }
 
-    if (this.game.input.right.isPressed) {
-        input.textContent += 'right, ';
+    if (this.game.input.mouse.middle.isPressed) {
+        input.textContent += 'mouse middle, ';
     }
 
-    if (this.game.input.mouseLeft.isPressed) {
-        input.textContent += 'mouseLeft, ';
-    }
-
-    if (this.game.input.mouseMiddle.isPressed) {
-        input.textContent += 'mouseMiddle, ';
-    }
-
-    if (this.game.input.mouseRight.isPressed) {
-        input.textContent += 'mouseRight, ';
+    if (this.game.input.mouse.right.isPressed) {
+        input.textContent += 'mouse right, ';
     }
 
     mouseX.textContent = '';
     mouseY.textContent = '';
-    mouseX.textContent += this.game.input.mouseX;
-    mouseY.textContent += this.game.input.mouseY;
+    mouseX.textContent += this.game.input.mouse.x;
+    mouseY.textContent += this.game.input.mouse.y;
 
     // this.game.stop();
 

@@ -3,8 +3,15 @@ var Input = function(keyName) {
     "use strict";
     var self = this;
 
-    self.mouseX = null;
-    self.mouseY = null;
+    self.mouse = {
+        x: null,
+        y: null,
+        left: {isPressed: false},
+        right: {isPressed: false},
+        middle: {isPressed: false}
+    }
+
+    self.keyboard = {}
 
     var keys = [
         {code:   8, name: "backspace"},
@@ -67,20 +74,9 @@ var Input = function(keyName) {
         {code: 105, name: "numpad9"}
     ];
 
-    var mouseButtons = [
-        {code: 1, name: "mouseLeft"},
-        {code: 2, name: "mouseMiddle"},
-        {code: 3, name: "mouseRight"}
-    ];
-
-
 
     keys.forEach(function (key) {
-        self[key.name] = {isPressed: false};
-    });
-
-    mouseButtons.forEach(function (button) {
-        self[button.name] = {isPressed: false};
+        self.keyboard[key.name] = {name: key.name, isPressed: false};
     });
 
 
@@ -89,7 +85,7 @@ var Input = function(keyName) {
         var keyCode = event.keyCode;
         keys.forEach(function (key, i) {
             if (keyCode === key.code) {
-                self[key.name].isPressed = true;
+                self.keyboard[key.name].isPressed = true;
             }
         })
         
@@ -100,7 +96,7 @@ var Input = function(keyName) {
         var keyCode = event.keyCode;
         keys.forEach(function (key, i) {
             if (keyCode === key.code) {
-                self[key.name].isPressed = false;
+                self.keyboard[key.name].isPressed = false;
             }
         })
     }
@@ -108,26 +104,34 @@ var Input = function(keyName) {
     document.onmousedown = function(event) {
         event.preventDefault();
         var keyCode = event.which;
-        mouseButtons.forEach(function (button, i) {
-            if (keyCode === button.code) {
-                self[button.name].isPressed = true;
-            }
-        })
+        if (keyCode === 1) {
+            self.mouse.left.isPressed = true;
+        }
+        if (keyCode === 2) {
+            self.mouse.middle.isPressed = true;
+        }
+        if (keyCode === 3) {
+            self.mouse.right.isPressed = true;
+        }
     }
 
     document.onmouseup = function(event) {
         event.preventDefault();
         var keyCode = event.which;
-        mouseButtons.forEach(function (button, i) {
-            if (keyCode === button.code) {
-                self[button.name].isPressed = false;
-            }
-        })
+        if (keyCode === 1) {
+            self.mouse.left.isPressed = false;
+        }
+        if (keyCode === 2) {
+            self.mouse.middle.isPressed = false;
+        }
+        if (keyCode === 3) {
+            self.mouse.right.isPressed = false;
+        }
     }
 
     document.onmousemove = function(event) {
-        self.mouseX = event.clientX;
-        self.mouseY = event.clientY;
+        self.mouse.x = event.clientX;
+        self.mouse.y = event.clientY;
     }
 }
 
