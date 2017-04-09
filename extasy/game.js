@@ -8,11 +8,10 @@ var Game = function (name, progress) {
     self.isPaused = false;
     self.assets = [];
     self.state = null;
-    self.inputs = null;    
+    self.input = new Extasy.input();    
 
     self.stateManager = new Extasy.stateManager(self);
     self.assetManager = new Extasy.assetManager(self);
-    self.inputManager = new Extasy.inputManager(self);
 
     self.run = function() {
         var lastTime = 0;

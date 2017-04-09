@@ -19,42 +19,26 @@ loadState.preload = function () {
     ]);
 }
 
-loadState.create = function () {
-
-    var controller = {
-        up:    new Extasy.input('up'),
-        right: new Extasy.input('right'),
-        down:  new Extasy.input('down'),
-        left:  new Extasy.input('left')
-    }
-    this.controller = controller;
-     
-
-}
+loadState.create = function () {}
 
 loadState.update = function () {
-    var up = this.controller.up;
-    var right = this.controller.right;
-    var down = this.controller.down;
-    var left = this.controller.left;
 
+    input.textContent = '';
 
-    if (up.isPressed) {
-        console.log('pressing up');
+    if (this.game.input.left.isPressed) {
+        input.textContent += 'left, ';
     }
 
-    if (right.isPressed) {
-        console.log('pressing right');
+    if (this.game.input.up.isPressed) {
+        input.textContent += 'up, ';
     }
 
-    if (down.isPressed) {
-        console.log('pressing down');
+    if (this.game.input.right.isPressed) {
+        input.textContent += 'right, ';
     }
 
-    if (left.isPressed) {
-        console.log('pressing left');
+    if (this.game.input.down.isPressed) {
+        input.textContent += 'down, ';
     }
-
-
-    // this.game.stop();
+    
 }

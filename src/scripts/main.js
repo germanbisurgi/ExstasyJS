@@ -1,4 +1,5 @@
 var progress = document.querySelector('.progress');
+var input = document.querySelector('.input');
 
 var mygame = new Extasy.game('my game', progress);
 
