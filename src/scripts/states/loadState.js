@@ -28,11 +28,23 @@ loadState.update = function () {
 
     input.textContent = '';
 
-    for (key in this.game.input.keyboard) {
-        if (key.isPressed) {
-            input.textContent += key + ', ';
-        }
+    if (this.game.input.keyboard.ArrowUp.isPressed) {
+        input.textContent += 'ArrowUp, ';
     }
+
+    if (this.game.input.keyboard.ArrowLeft.isPressed) {
+        input.textContent += 'ArrowLeft, ';
+    }
+
+    if (this.game.input.keyboard.ArrowDown.isPressed) {
+        input.textContent += 'ArrowDown, ';
+    }
+
+    if (this.game.input.keyboard.ArrowRight.isPressed) {
+        input.textContent += 'ArrowRight, ';
+    }
+
+
 
     if (this.game.input.mouse.left.isPressed) {
         input.textContent += 'mouse left, ';
