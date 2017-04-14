@@ -1,17 +1,20 @@
-var Game = function (name, progress) {
+var Game = function (name, canvas) {
 
     "use strict";
     var self = this;
     self.name = name;
+    self.canvas = document.querySelector(canvas);
     self.frame = 1;
     self.fps = 60;
     self.isPaused = false;
-    self.assets = [];
+    self.assets = {};
     self.state = null;
-    self.input = new Extasy.input();    
+    self.input = new Extasy.input();
+    self.entities = [];    
 
     self.stateManager = new Extasy.stateManager(self);
     self.assetManager = new Extasy.assetManager(self);
+    self.renderer = new Extasy.renderer(self);
 
     self.run = function() {
         var lastTime = 0;
@@ -19,7 +22,7 @@ var Game = function (name, progress) {
         function tick(now) {
 
             requestAnimationFrame(tick);
-
+            
             if (!self.isPaused) {
                 if (!lastTime) {
                     lastTime = Math.floor(now);
@@ -28,25 +31,23 @@ var Game = function (name, progress) {
 
                 if (self.delta > requiredElapsed) {
 
-
                     if (!self.state.preloaded) {
-                        self.state.preload();
                         self.state.preloaded = true;
+                        self.state.preload();
                     }
 
                     if (!self.state.created && self.state.preloaded && self.assetManager.loadProgress() === 100) {
-                        self.state.create();
                         self.state.created = true;
+                        self.state.create();
                     }
                     
                     if (self.state.created) {
                         self.state.update();
                     }
 
-
                     // progress.textContent += self.assetManager.loadProgress() + ', ';
                     // console.log('frame: ', self.frame, ' loaing: ', self.assetManager.loadProgress(), '%');
-                    
+
                     self.frame++;
 
                     lastTime = Math.floor(now);

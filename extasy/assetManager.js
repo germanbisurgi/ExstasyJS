@@ -21,11 +21,9 @@ AssetManager = function (game) {
 
     self.getAsset = function(assetName) {
         var output = false;
-        self.game.assets.forEach(function (asset, i) {
-            if (asset.name == assetName) {
-                output = asset;
-            }
-        });
+        if (self.game.assets[assetName]) {
+                output = self.game.assets[assetName];
+        }
         return output;
     }
 
@@ -38,14 +36,14 @@ AssetManager = function (game) {
                 img.onload = function() {
                     self.successCount++;
                     if (self.isDone) {
-                        // console.log(asset.name, 'was loaded');
+                        // console.log('loaded', asset.name);
                         self.loading = false;
                     }
                 }
                 img.onerror = function() {
                     self.errorCount++;
                     if (self.isDone) {
-                        // console.log(asset.name, 'error');
+                        // console.log('error', asset.name);
                         self.loading = false;
                     }
                 }
@@ -54,11 +52,11 @@ AssetManager = function (game) {
                     'name': asset.name,
                     'image': img
                 }
-                self.game.assets.push(imgObj);
+                self.game.assets[imgObj.name] = imgObj.image;
 
             } else {
                 // Exception.
-                console.log('this asset already exist');
+                console.log('this asset already exist ->', asset.name);
                 self.successCount++;
                 if (self.isDone) {
                     self.loading = false;

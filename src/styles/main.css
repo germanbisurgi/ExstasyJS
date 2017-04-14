@@ -1,11 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  font-family: sans-serif;
+  list-style-position: inside;
+  text-decoration: none;
+  list-style-type: none;
+  box-sizing: border-box;
+}
+
 body {
-    /* overflow: hidden; */
     margin: 0;
+    min-height: 100vh;
     padding: 0;
+    position: relative;
 }
 
 #canvas {
-    background: #000;
+    background: #ccc;
+    border: 1px solid pink;
+    position: absolute;
+        top: 50%;
+        left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #debug {
