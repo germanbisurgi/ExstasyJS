@@ -29,18 +29,10 @@ entityState.update = function () {
     var renderer = this.game.renderer;
     var myEntity = this.game.entities[0];
 
-    if (this.UP.isPressed) {
-        myEntity.y -= myEntity.speedY;
-    }
-    if (this.DOWN.isPressed) {
-        myEntity.y += myEntity.speedY;
-    }
-    if (this.LEFT.isPressed) {
-        myEntity.x -= myEntity.speedX;
-    }
-    if (this.RIGHT.isPressed) {
-        myEntity.x += myEntity.speedX;
-    }
+    if (this.UP.isPressed) {myEntity.y -= myEntity.speedY;}
+    if (this.DOWN.isPressed) {myEntity.y += myEntity.speedY;}
+    if (this.LEFT.isPressed) {myEntity.x -= myEntity.speedX;}
+    if (this.RIGHT.isPressed) {myEntity.x += myEntity.speedX;}
 
     this.game.entities.forEach(function (entity) {
         renderer.clear();
