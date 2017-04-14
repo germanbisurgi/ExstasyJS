@@ -4,19 +4,26 @@ entityState.preload = function () {}
 
 entityState.create = function () {
 
-    var entity = {
-        name: 'german',
-        image: this.game.assets.rainbow,
+    var H = {
+        name: 'hero',
         x: 50,
         y: 50,
         z: 0,
-        width: 50,
-        height: 50,
-        speedX: 5,
-        speedY: 5
+        w: 50,
+        h: 50,
+        vx: 2,
+        vy: 2,
+        spriteSheet: this.game.assets.player,
+        sx: 0,
+        sy: 0,
+        sw: 32,
+        sh: 32,
+        vel: 10,
+        sequence: [1, 2, 1, 0],
+        counter: 0
     }
 
-    this.game.entities.push(entity);
+    this.game.entities.push(H);
 
     this.UP = this.game.input.keyboard.ArrowUp;
     this.DOWN = this.game.input.keyboard.ArrowDown;
@@ -26,18 +33,41 @@ entityState.create = function () {
 }
 
 entityState.update = function () {
+
     var renderer = this.game.renderer;
-    var myEntity = this.game.entities[0];
+    var H = this.game.entities[0];
+    var BG = this.game.entities[1];
 
-    if (this.UP.isPressed) {myEntity.y -= myEntity.speedY;}
-    if (this.DOWN.isPressed) {myEntity.y += myEntity.speedY;}
-    if (this.LEFT.isPressed) {myEntity.x -= myEntity.speedX;}
-    if (this.RIGHT.isPressed) {myEntity.x += myEntity.speedX;}
+    if (this.UP.isPressed)    {
+        H.sy = 96;
+        if (this.game.frame % H.vel === 0) {
+            H.counter = (H.counter + 1) % H.sequence.length;
+        }
+        H.sx = H.sw * H.sequence[H.counter];
+    }
+    if (this.DOWN.isPressed)  {
+        H.sy = 0;
+        if (this.game.frame % H.vel === 0) {
+            H.counter = (H.counter + 1) % H.sequence.length;
+        }
+        H.sx = H.sw * H.sequence[H.counter];
+    }
+    if (this.LEFT.isPressed)  {
+        H.sy = 32;
+        if (this.game.frame % H.vel === 0) {
+            H.counter = (H.counter + 1) % H.sequence.length;
+        }
+        H.sx = H.sw * H.sequence[H.counter];
+    }
+    if (this.RIGHT.isPressed) {
+        H.sy = 64;
+        if (this.game.frame % H.vel === 0) {
+            H.counter = (H.counter + 1) % H.sequence.length;
+        }
+        H.sx = H.sw * H.sequence[H.counter];
+    }
 
-    this.game.entities.forEach(function (entity) {
-        renderer.clear();
-        renderer.drawRectangle(entity.x, entity.y, entity.width, entity.height);
-    })
+    renderer.clear();
+    renderer.drawImage(H.spriteSheet, H.sx, H.sy, H.sw, H.sh, H.x, H.y, H.w, H.h);
     
-    // this.game.stop();
 }
