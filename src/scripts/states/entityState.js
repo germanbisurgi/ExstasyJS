@@ -28,10 +28,10 @@ entityState.update = function () {
     var renderer = this.game.renderer;
     var H = this.game.entities[0];
 
-    if (this.DOWN.isPressed)   {H.sprite.animate(0, [1, 2, 1, 0], 5);}
-    if (this.LEFT.isPressed)   {H.sprite.animate(1, [1, 2, 1, 0], 5);}
-    if (this.RIGHT.isPressed)  {H.sprite.animate(2, [1, 2, 1, 0], 5);}
-    if (this.UP.isPressed)     {H.sprite.animate(3, [1, 2, 1, 0], 5);}
+    if (this.LEFT.isPressed)   {H.sprite.animate(1, [1, 2, 1, 0], 5); H.position.x -= H.velocity.x}
+    if (this.RIGHT.isPressed)  {H.sprite.animate(2, [1, 2, 1, 0], 5); H.position.x += H.velocity.x}
+    if (this.DOWN.isPressed)   {H.sprite.animate(0, [1, 2, 1, 0], 5); H.position.y += H.velocity.y}
+    if (this.UP.isPressed)     {H.sprite.animate(3, [1, 2, 1, 0], 5); H.position.y -= H.velocity.y}
 
     renderer.clear();
     renderer.drawImage(H.sprite.sheet, H.sprite.x, H.sprite.y, H.sprite.w, H.sprite.h, H.position.x, H.position.y, H.size.w, H.size.h);
