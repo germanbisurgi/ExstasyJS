@@ -1,4 +1,4 @@
-var Renderer = function(game) {
+var Renderer = function(game, camera) {
     
     "use strict";
     var self = this;

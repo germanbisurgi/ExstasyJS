@@ -14,6 +14,8 @@ var Game = function (name, canvas) {
 
     self.stateManager = new Extasy.stateManager(self);
     self.assetManager = new Extasy.assetManager(self);
+    self.entitiesManager = new Extasy.entitiesManager(self);
+    self.camera = new Extasy.camera(self);
     self.renderer = new Extasy.renderer(self);
 
     self.run = function() {
@@ -44,9 +46,6 @@ var Game = function (name, canvas) {
                     if (self.state.created) {
                         self.state.update();
                     }
-
-                    // progress.textContent += self.assetManager.loadProgress() + ', ';
-                    // console.log('frame: ', self.frame, ' loaing: ', self.assetManager.loadProgress(), '%');
 
                     self.frame++;
 

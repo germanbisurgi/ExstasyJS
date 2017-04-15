@@ -1,4 +1,4 @@
-Sprite = function (spriteSheet, width, height) {
+var Sprite = function (spriteSheet, width, height) {
 
     "use strict";
     var self = this;

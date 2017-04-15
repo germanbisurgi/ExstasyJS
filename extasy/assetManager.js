@@ -22,7 +22,7 @@ AssetManager = function (game) {
     self.getAsset = function(assetName) {
         var output = false;
         if (self.game.assets[assetName]) {
-                output = self.game.assets[assetName];
+            output = self.game.assets[assetName];
         }
         return output;
     }
