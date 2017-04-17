@@ -7,5 +7,5 @@ var Extasy = {
     state: State,
     input: Input,
     sprite: Sprite,
-    camera: Camera
+    cameraManager: CameraManager
 }

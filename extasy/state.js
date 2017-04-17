@@ -20,19 +20,19 @@ var State = function (name) {
     }
 
     self.moveCamera = function(x, y) {
-        self.game.camera.move(x, y);
+        self.game.cameraManager.move(x, y);
     }
 
     self.cameraZoomIn = function() {
-        self.game.camera.zoomIn();
+        self.game.cameraManager.zoomIn();
     }
 
     self.cameraZoomOut = function() {
-        self.game.camera.zoomOut();
+        self.game.cameraManager.zoomOut();
     }
 
     self.cameraZoomReset = function() {
-        self.game.camera.zoomReset();
+        self.game.cameraManager.zoomReset();
     }
 
 }

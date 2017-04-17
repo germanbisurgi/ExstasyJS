@@ -4,6 +4,16 @@ entityState.create = function () {
     var space = this.createEntity(definitions.space);
     var hero = this.createEntity(definitions.hero);
 
+    /*var controller = this.createController('controller'); // new Extasy.controller();
+    controller.add('UP', 'keyboard', 'ArrowUp');
+    controller.add('DOWN', 'keyboard', 'ArrowDown');
+    controller.add('LEFT', 'keyboard', 'ArrowLeft');
+    controller.add('RIGHT', 'keyboard', 'ArrowRight');
+    controller.add('G', 'keyboard', 'g');
+    controller.add('H', 'keyboard', 'h');
+    controller.add('F', 'keyboard', 'f');*/
+
+
     this.UP = this.game.input.keyboard.ArrowUp;
     this.DOWN = this.game.input.keyboard.ArrowDown;
     this.LEFT = this.game.input.keyboard.ArrowLeft;
@@ -33,8 +43,8 @@ entityState.update = function () {
     // camera system.
     // this.cameraFollow(hero);
     this.moveCamera(
-        (this.game.renderer.width / 2 / this.game.camera.zoom - H.position.x - H.size.w / 2),
-        (this.game.renderer.height / 2 / this.game.camera.zoom - H.position.y - H.size.h / 2) 
+        (this.game.renderer.width / 2 / this.game.cameraManager.zoom - H.position.x - H.size.w / 2),
+        (this.game.renderer.height / 2 / this.game.cameraManager.zoom - H.position.y - H.size.h / 2) 
     );
 
     // render system.
@@ -44,8 +54,8 @@ entityState.update = function () {
     });  
     renderer.clear();
     renderer.context.save();
-    renderer.context.scale(this.game.camera.zoom, this.game.camera.zoom);
-    renderer.context.translate(this.game.camera.x, this.game.camera.y);
+    renderer.context.scale(this.game.cameraManager.zoom, this.game.cameraManager.zoom);
+    renderer.context.translate(this.game.cameraManager.x, this.game.cameraManager.y);
     this.game.entities.forEach(function (e) {
         renderer.drawImage(e.sprite.sheet, e.sprite.x, e.sprite.y, e.sprite.w, e.sprite.h, e.position.x, e.position.y, e.size.w, e.size.h);
     });
