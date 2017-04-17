@@ -1,25 +1,8 @@
 var entityState = new Extasy.state('entityState');
-
 entityState.create = function () {
 
-    var B = {
-        name: 'background',
-        position: {x: 0, y: 0, z: 10},
-        size: {w: 402, h: 402},
-        sprite: new Extasy.sprite(this.game.assets.space, 402, 402)
-    }
-
-    this.add(B);
-
-    var H = {
-        name: 'hero',
-        position: {x: 50, y: 50, z: 20},
-        size: {w: 50, h: 50},
-        velocity: {x: 3, y: 3},
-        sprite: new Extasy.sprite(this.game.assets.player, 32, 32)
-    }
-
-    this.add(H);
+    var space = this.createEntity(definitions.space);
+    var hero = this.createEntity(definitions.hero);
 
     this.UP = this.game.input.keyboard.ArrowUp;
     this.DOWN = this.game.input.keyboard.ArrowDown;
@@ -43,12 +26,13 @@ entityState.update = function () {
     if (this.LEFT.isPressed)   {H.sprite.animate(1, [1, 2, 1, 0], 5); H.position.x -= H.velocity.x;} else
     if (this.RIGHT.isPressed)  {H.sprite.animate(2, [1, 2, 1, 0], 5); H.position.x += H.velocity.x;} else
     if (this.UP.isPressed)     {H.sprite.animate(3, [1, 2, 1, 0], 5); H.position.y -= H.velocity.y;}
-    if (this.H.isPressed) {this.game.camera.zoomIn();}
-    if (this.G.isPressed) {this.game.camera.zoomOut();}
-    if (this.F.isPressed) {this.game.camera.zoomReset();}
+    if (this.H.isPressed) {this.cameraZoomIn();}
+    if (this.G.isPressed) {this.cameraZoomOut();}
+    if (this.F.isPressed) {this.cameraZoomReset();}
 
     // camera system.
-    this.game.camera.move(
+    // this.cameraFollow(hero);
+    this.moveCamera(
         (this.game.renderer.width / 2 / this.game.camera.zoom - H.position.x - H.size.w / 2),
         (this.game.renderer.height / 2 / this.game.camera.zoom - H.position.y - H.size.h / 2) 
     );

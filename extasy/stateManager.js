@@ -30,7 +30,7 @@ StateManager = function (game) {
     self.switch = function(stateName) {
         var requestedState = self.getState(stateName);
         if (requestedState) {
-            requestedState.game = self.game;
+            requestedState.game = self.game; // MAGIC! :)
             self.game.state = requestedState;
             console.log('switched to ->', stateName);
         } else {

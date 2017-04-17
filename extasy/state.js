@@ -1,8 +1,9 @@
-State = function (name) {
+var State = function (name) {
 
     "use strict";
     var self = this;
     self.name = name;
+    self.game = null;
     self.preloaded = false;
     self.created = false;
 
@@ -11,23 +12,27 @@ State = function (name) {
     self.update = function () {}
 
     self.getEntity = function(entityName) {
-        var output = false;
-        self.game.entities.forEach(function(entity, i) {
-            if (entity.name == entityName) {
-                output = entity;
-            }
-        });
-        return output;
+        return self.game.entityManager.getEntity(entityName);
     }
 
-    self.add = function(entity) {
-        if (!self.getEntity(entity.name)) {
-            self.game.entities.push(entity);
-        } else {
-            // Exception.
-            console.log('EXCEPTION: This entity is already in the list ->', entity.name);
-            self.game.stop();
-        }
+    self.createEntity = function(entDef) {
+        return self.game.entityManager.createEntity(entDef);
+    }
+
+    self.moveCamera = function(x, y) {
+        self.game.camera.move(x, y);
+    }
+
+    self.cameraZoomIn = function() {
+        self.game.camera.zoomIn();
+    }
+
+    self.cameraZoomOut = function() {
+        self.game.camera.zoomOut();
+    }
+
+    self.cameraZoomReset = function() {
+        self.game.camera.zoomReset();
     }
 
 }

@@ -13,6 +13,7 @@ var Game = function (name, canvas) {
     self.entities = [];    
 
     self.stateManager = new Extasy.stateManager(self);
+    self.entityManager = new Extasy.entityManager(self);
     self.assetManager = new Extasy.assetManager(self);
     self.camera = new Extasy.camera(self);
     self.renderer = new Extasy.renderer(self);
