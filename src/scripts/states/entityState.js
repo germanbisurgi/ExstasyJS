@@ -9,7 +9,7 @@ entityState.create = function () {
         sprite: new Extasy.sprite(this.game.assets.space, 402, 402)
     }
 
-    this.game.entitiesManager.add(B);
+    this.add(B);
 
     var H = {
         name: 'hero',
@@ -19,17 +19,7 @@ entityState.create = function () {
         sprite: new Extasy.sprite(this.game.assets.player, 32, 32)
     }
 
-    this.game.entitiesManager.add(H);
-
-    var E = {
-        name: 'enemy',
-        position: {x: 150, y: 150, z: 20},
-        size: {w: 50, h: 50},
-        velocity: {x: 3, y: 3},
-        sprite: new Extasy.sprite(this.game.assets.player, 32, 32)
-    }
-
-    this.game.entitiesManager.add(E);
+    this.add(H);
 
     this.UP = this.game.input.keyboard.ArrowUp;
     this.DOWN = this.game.input.keyboard.ArrowDown;
@@ -44,7 +34,7 @@ entityState.create = function () {
 entityState.update = function () {
 
     // input system.
-    var H = this.game.entitiesManager.getEntity('hero');
+    var H = this.getEntity('hero');
     if (this.UP.isPressed && this.LEFT.isPressed)    {H.sprite.animate(3, [1, 2, 1, 0], 5); H.position.x -= H.velocity.x; H.position.y -= H.velocity.y;} else
     if (this.UP.isPressed && this.RIGHT.isPressed)   {H.sprite.animate(3, [1, 2, 1, 0], 5); H.position.x += H.velocity.x; H.position.y -= H.velocity.y;} else
     if (this.DOWN.isPressed && this.LEFT.isPressed)  {H.sprite.animate(0, [1, 2, 1, 0], 5); H.position.x -= H.velocity.x; H.position.y += H.velocity.y;} else
