@@ -4,22 +4,32 @@ entityState.create = function () {
 
     var B = {
         name: 'background',
-        position: {x: 10, y: 10, z: 0},
-        size: {w: 380, h: 180},
-        sprite: new Extasy.sprite(this.game.assets.space, 200, 200)
+        position: {x: 0, y: 0, z: 10},
+        size: {w: 402, h: 402},
+        sprite: new Extasy.sprite(this.game.assets.space, 402, 402)
     }
 
     this.game.entitiesManager.add(B);
 
     var H = {
         name: 'hero',
-        position: {x: 50, y: 50, z: 0},
+        position: {x: 50, y: 50, z: 20},
         size: {w: 50, h: 50},
         velocity: {x: 3, y: 3},
         sprite: new Extasy.sprite(this.game.assets.player, 32, 32)
     }
 
     this.game.entitiesManager.add(H);
+
+    var E = {
+        name: 'enemy',
+        position: {x: 150, y: 150, z: 20},
+        size: {w: 50, h: 50},
+        velocity: {x: 3, y: 3},
+        sprite: new Extasy.sprite(this.game.assets.player, 32, 32)
+    }
+
+    this.game.entitiesManager.add(E);
 
     this.UP = this.game.input.keyboard.ArrowUp;
     this.DOWN = this.game.input.keyboard.ArrowDown;
@@ -34,7 +44,7 @@ entityState.create = function () {
 entityState.update = function () {
 
     // input system.
-    var H = this.game.entities[1];
+    var H = this.game.entitiesManager.getEntity('hero');
     if (this.UP.isPressed && this.LEFT.isPressed)    {H.sprite.animate(3, [1, 2, 1, 0], 5); H.position.x -= H.velocity.x; H.position.y -= H.velocity.y;} else
     if (this.UP.isPressed && this.RIGHT.isPressed)   {H.sprite.animate(3, [1, 2, 1, 0], 5); H.position.x += H.velocity.x; H.position.y -= H.velocity.y;} else
     if (this.DOWN.isPressed && this.LEFT.isPressed)  {H.sprite.animate(0, [1, 2, 1, 0], 5); H.position.x -= H.velocity.x; H.position.y += H.velocity.y;} else
@@ -55,6 +65,9 @@ entityState.update = function () {
 
     // render system.
     var renderer = this.game.renderer;
+    this.game.entities.sort(function(a, b) {
+        return (a.position.z + a.position.y) - (b.position.z + b.position.y);
+    });  
     renderer.clear();
     renderer.context.save();
     renderer.context.scale(this.game.camera.zoom, this.game.camera.zoom);
