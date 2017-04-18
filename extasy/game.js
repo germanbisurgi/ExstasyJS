@@ -9,14 +9,15 @@ var Game = function (name, canvas) {
     self.isPaused = false;
     self.assets = {};
     self.state = null;
-    self.input = new Extasy.input();
-    self.entities = [];    
+    self.entities = [];
+    self.controllers = [];
 
+    self.inputManager = new Extasy.inputManager(self);
     self.stateManager = new Extasy.stateManager(self);
     self.entityManager = new Extasy.entityManager(self);
     self.assetManager = new Extasy.assetManager(self);
     self.cameraManager = new Extasy.cameraManager(self);
-    self.renderer = new Extasy.renderer(self);
+    self.renderManager = new Extasy.renderManager(self);
 
     self.run = function() {
         var lastTime = 0;
@@ -46,6 +47,8 @@ var Game = function (name, canvas) {
                     if (self.state.created) {
                         self.state.update();
                     }
+
+                    self.renderManager.draw();
 
                     self.frame++;
 

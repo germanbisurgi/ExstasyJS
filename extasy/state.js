@@ -11,6 +11,8 @@ var State = function (name) {
     self.create = function () {}
     self.update = function () {}
 
+    // ---------------------------------------------------------------- entities
+
     self.getEntity = function(entityName) {
         return self.game.entityManager.getEntity(entityName);
     }
@@ -18,6 +20,22 @@ var State = function (name) {
     self.createEntity = function(entDef) {
         return self.game.entityManager.createEntity(entDef);
     }
+
+    // ------------------------------------------------------------------ inputs
+
+    self.getController = function(controllerName) {
+        return self.game.inputManager.getController(controllerName);
+    }
+
+    self.createController = function(controllerName) {
+        return self.game.inputManager.createController(controllerName);
+    }
+
+    self.listControllers = function() {
+        return self.game.inputManager.listControllers();
+    }
+
+    // ------------------------------------------------------------------ camera
 
     self.moveCamera = function(x, y) {
         self.game.cameraManager.move(x, y);

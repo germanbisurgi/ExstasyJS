@@ -1,7 +1,34 @@
-var Input = function(keyName) {
+var InputManager = function(game) {
     
     "use strict";
     var self = this;
+    self.game = game;
+
+    self.getController = function(controllerName) {
+        var output = false;
+        self.game.controllers.forEach(function(controller) {
+            if (controller.name == controllerName) {
+                output = controller;
+            }
+        });
+        return output;
+    }
+
+    self.createController = function(controllerName) {
+        if (!self.getController(controllerName)) {
+            var controller = new Extasy.controller(self.game, controllerName);
+            self.game.controllers.push(controller);
+        } else {
+            console.log('EXCEPTION: This controller is already in the list ->', controllerName);
+            self.game.stop();
+        }
+        
+        return controller;
+    }
+
+    self.listControllers = function() {
+        return self.game.controllers;
+    }
 
     self.mouse = {
         x: null,

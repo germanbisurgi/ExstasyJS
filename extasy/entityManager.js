@@ -33,7 +33,8 @@ var EntityManager = function (game) {
         entity.velocity = entDef.velocity ? entDef.velocity : null;
         if (entDef.sprite) {
             entity.sprite = new Extasy.sprite(
-                this.game.assets[entDef.sprite.name],
+                self.game,
+                self.game.assets[entDef.sprite.name],
                 entDef.sprite.width,
                 entDef.sprite.height
             );

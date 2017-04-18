@@ -1,8 +1,8 @@
-var Sprite = function (spriteSheet, width, height) {
+var Sprite = function (game, spriteSheet, width, height) {
 
     "use strict";
     var self = this;
-    self.frame = 0;
+    self.game = game;
     self.sheet = spriteSheet;
     self.x = 0;
     self.y = 0;
@@ -11,9 +11,8 @@ var Sprite = function (spriteSheet, width, height) {
     self.counter = 0;
 
     self.animate = function (row, sequence, velocity) {
-        self.frame++;
         self.y = row * self.w;
-        if (self.frame % velocity === 0) {
+        if (self.game.frame % velocity === 0) {
             self.counter = (self.counter + 1) % sequence.length;
         }
         self.x = self.w * sequence[self.counter];

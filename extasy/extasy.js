@@ -3,9 +3,11 @@ var Extasy = {
     assetManager: AssetManager,
     entityManager: EntityManager,
     stateManager: StateManager,
-    renderer: Renderer,
+    cameraManager: CameraManager,
+    renderManager: RenderManager,
     state: State,
-    input: Input,
+    inputManager: InputManager,
     sprite: Sprite,
-    cameraManager: CameraManager
+    controller: Controller
+    
 }

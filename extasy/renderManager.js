@@ -1,4 +1,4 @@
-var Renderer = function(game, camera) {
+var RenderManager = function(game, camera) {
     
     "use strict";
     var self = this;
@@ -50,6 +50,20 @@ var Renderer = function(game, camera) {
         self.context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
         self.context.fill();
         self.context.stroke();
+    }
+
+    self.draw = function() {
+        this.game.entities.sort(function(a, b) {
+            return (a.position.z + a.position.y) - (b.position.z + b.position.y);
+        });  
+        self.clear();
+        self.context.save();
+        self.context.scale(this.game.cameraManager.zoom, this.game.cameraManager.zoom);
+        self.context.translate(this.game.cameraManager.x, this.game.cameraManager.y);
+        this.game.entities.forEach(function (e) {
+            self.drawImage(e.sprite.sheet, e.sprite.x, e.sprite.y, e.sprite.w, e.sprite.h, e.position.x, e.position.y, e.size.w, e.size.h);
+        });
+        self.context.restore();
     }
 
 }
