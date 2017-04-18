@@ -17,8 +17,12 @@ var State = function (name) {
         return self.game.entityManager.getEntity(entityName);
     }
 
-    self.createEntity = function(entDef) {
-        return self.game.entityManager.createEntity(entDef);
+    self.createEntity = function(entDef, x, y, z) {
+        return self.game.entityManager.createEntity(entDef, x, y, z);
+    }
+
+    self.createScroller = function(entDef, x, y, z) {
+        return self.game.entityManager.createScroller(entDef, x, y, z);
     }
 
     // ------------------------------------------------------------------ inputs
@@ -39,6 +43,10 @@ var State = function (name) {
 
     self.moveCamera = function(x, y) {
         self.game.cameraManager.move(x, y);
+    }
+
+    self.cameraFollow = function(entity) {
+        self.game.cameraManager.cameraFollow(entity);
     }
 
     self.cameraZoomIn = function() {

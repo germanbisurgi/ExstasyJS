@@ -45,6 +45,12 @@ var RenderManager = function(game, camera) {
         self.context.stroke();
     }
 
+    self.drawPattern = function(image, x1, y1, x2, y2) {
+        var pattern = self.context.createPattern(image, 'repeat');
+        self.context.fillStyle = pattern;
+        self.context.fillRect(x1, y1, x2, y2);
+    }
+
     self.drawCircle = function(centerX, centerY, radius) {
         self.context.beginPath();
         self.context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
@@ -54,14 +60,18 @@ var RenderManager = function(game, camera) {
 
     self.draw = function() {
         this.game.entities.sort(function(a, b) {
-            return (a.position.z + a.position.y) - (b.position.z + b.position.y);
+            return (a.position.z) - (b.position.z);
         });  
         self.clear();
         self.context.save();
         self.context.scale(this.game.cameraManager.zoom, this.game.cameraManager.zoom);
         self.context.translate(this.game.cameraManager.x, this.game.cameraManager.y);
         this.game.entities.forEach(function (e) {
-            self.drawImage(e.sprite.sheet, e.sprite.x, e.sprite.y, e.sprite.w, e.sprite.h, e.position.x, e.position.y, e.size.w, e.size.h);
+            if (e.sprite) {
+                self.drawImage(e.sprite.sheet, e.sprite.x, e.sprite.y, e.sprite.w, e.sprite.h, e.position.x, e.position.y, e.size.w, e.size.h);
+            } else if (e.pattern) {
+                self.drawPattern(e.pattern, e.position.x, e.position.y, e.size.w, e.size.h);
+            }
         });
         self.context.restore();
     }

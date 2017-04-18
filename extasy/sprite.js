@@ -18,4 +18,35 @@ var Sprite = function (game, spriteSheet, width, height) {
         self.x = self.w * sequence[self.counter];
     }
 
+    self.scroll = function (direction, velocity) {
+
+        if (direction ==='left') {
+            self.x += velocity;
+            if (self.x + self.w >= self.w * 2) {
+                self.x = 0;
+            }
+        }
+
+        if (direction ==='right') {
+            self.x -= velocity;
+            if (self.x <= 0) {
+                self.x = self.w;
+            }
+        }
+
+        if (direction ==='up') {
+            self.y += velocity;
+            if (self.y + self.h >= self.h * 2) {
+                self.y = 0;
+            }
+        }
+
+        if (direction ==='down') {
+            self.y -= velocity;
+            if (self.y <= 0) {
+                self.y = self.h;
+            }
+        }
+    }
+
 }

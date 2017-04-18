@@ -2,6 +2,7 @@ var loadState = new Extasy.state('loadState');
 
 loadState.preload = function () {
     this.game.assetManager.loadAssets([
+        {'type': 'image', 'name': 'pattern', 'path': 'src/assets/images/pattern.png'},
         {'type': 'image', 'name': 'space', 'path': 'src/assets/images/space.jpg'},
         {'type': 'image', 'name': 'player', 'path': 'src/assets/images/player.png'},
         {'type': 'image', 'name': 'rainbow', 'path': 'src/assets/images/rainbow.jpg'},

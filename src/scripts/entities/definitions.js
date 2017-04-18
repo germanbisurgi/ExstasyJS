@@ -6,10 +6,17 @@ var definitions = {
         velocity: {x: 3, y: 3},
         sprite: {name: 'player', width: 32, height: 32}
     },
+    scroller: {
+        name: 'scroller',
+        position: {x: 0, y: 0, z: 10},
+        size: {w: 200, h: 200},
+        velocity: {x: 3, y: 3},
+        sprite: {name: 'pattern', width: 200, height: 200},
+    },
     space:  {
         name: 'space',
         position: {x: 0, y: 0, z: 10},
-        size: {w: 402, h: 402},
-        sprite: {name: 'space', width: 402, height: 402}
+        size: {w: 1500, h: 1000},
+        pattern: 'pattern'
     }
 };
