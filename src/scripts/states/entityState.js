@@ -1,9 +1,13 @@
 var entityState = new Extasy.state('entityState');
 entityState.create = function () {
 
-    var scroller = this.createEntity(definitions.scroller, 50, 50, 10);
     var hero = this.createEntity(definitions.hero, 150, 75, 20);
-    var enemy = this.createEntity(definitions.hero, 50, 50, 20);
+    hero.sprite.addAnimation('walkUp', 3, [1, 2, 1, 0], 5); // refactoring sprite animation?
+    hero.sprite.addAnimation('walkRight', 2, [1, 2, 1, 0], 5);
+    hero.sprite.addAnimation('walkDown', 0, [1, 2, 1, 0], 5);
+    hero.sprite.addAnimation('walkLeft', 1, [1, 2, 1, 0], 5);
+
+    var scroller = this.createEntity(definitions.scroller, hero.position.x, hero.position.y, 10);
 
     var controller = this.createController('standard');
     controller.add('UP', 'keyboard', 'ArrowUp');
@@ -19,10 +23,11 @@ entityState.update = function () {
 
     var H = this.getEntity('hero');
     var I = this.getEntity('scroller');
+
     
     var controller = this.getController('standard');
     if (controller.UP.isPressed && controller.LEFT.isPressed) {
-        H.sprite.animate(3, [1, 2, 1, 0], 5);
+        H.sprite.playAnimation('walkUp');
         H.position.x -= H.velocity.x;
         H.position.y -= H.velocity.y;
         I.position.x -= I.velocity.x;
@@ -30,7 +35,7 @@ entityState.update = function () {
         I.sprite.scroll('down', 1);
         I.sprite.scroll('right', 1);
     } else if (controller.UP.isPressed && controller.RIGHT.isPressed) {
-        H.sprite.animate(3, [1, 2, 1, 0], 5);
+        H.sprite.playAnimation('walkUp');
         H.position.x += H.velocity.x;
         H.position.y -= H.velocity.y;
         I.position.x += I.velocity.x;
@@ -38,7 +43,7 @@ entityState.update = function () {
         I.sprite.scroll('down', 1);
         I.sprite.scroll('left', 1);
     } else if (controller.DOWN.isPressed && controller.LEFT.isPressed) {
-        H.sprite.animate(0, [1, 2, 1, 0], 5);
+        H.sprite.playAnimation('walkDown');
         H.position.x -= H.velocity.x;
         H.position.y += H.velocity.y;
         I.position.x -= I.velocity.x;
@@ -46,7 +51,7 @@ entityState.update = function () {
         I.sprite.scroll('up', 1);
         I.sprite.scroll('right', 1);
     } else if (controller.DOWN.isPressed && controller.RIGHT.isPressed) {
-        H.sprite.animate(0, [1, 2, 1, 0], 5);
+        H.sprite.playAnimation('walkDown');
         H.position.x += H.velocity.x;
         H.position.y += H.velocity.y;
         I.position.x += I.velocity.x;
@@ -54,22 +59,22 @@ entityState.update = function () {
         I.sprite.scroll('up', 1);
         I.sprite.scroll('left', 1);
     } else if (controller.DOWN.isPressed) {
-        H.sprite.animate(0, [1, 2, 1, 0], 5);
+        H.sprite.playAnimation('walkDown');
         H.position.y += H.velocity.y;
         I.position.y += H.velocity.y;
         I.sprite.scroll('up', 1);
     } else if (controller.LEFT.isPressed) {
-        H.sprite.animate(1, [1, 2, 1, 0], 5);
+        H.sprite.playAnimation('walkLeft');
         H.position.x -= H.velocity.x;
         I.position.x -= I.velocity.x;
         I.sprite.scroll('right', 1);
     } else if (controller.RIGHT.isPressed) {
-        H.sprite.animate(2, [1, 2, 1, 0], 5);
+        H.sprite.playAnimation('walkRight');
         H.position.x += H.velocity.x;
         I.position.x += I.velocity.x;
         I.sprite.scroll('left', 1);
     } else if (controller.UP.isPressed) {
-        H.sprite.animate(3, [1, 2, 1, 0], 5);
+        H.sprite.playAnimation('walkUp');
         H.position.y -= H.velocity.y;
         I.position.y -= H.velocity.y;
         I.sprite.scroll('down', 1);

@@ -8,9 +8,53 @@ var Sprite = function (game, spriteSheet, width, height) {
     self.y = 0;
     self.w = width;
     self.h = height;
-    self.centerX = self.x + self.w / 2;
-    self.centery = self.y + self.h / 2;
     self.counter = 0;
+    self.animations = [];
+
+    self.addAnimation = function (name, row, sequence, velocity) {
+        if (!self.getAnimation(name)) {
+            self.animations.push({
+                name: name,
+                row: row,
+                sequence: sequence,
+                velocity: velocity
+            });
+        } else {
+            // Exception.
+            console.log('EXCEPTION: This animation is already in the list ->', name);
+            console.log('the game will be stoped');
+            self.game.stop();
+        }
+        
+    }
+
+    self.getAnimation = function (animationName) {
+        var output = false;
+        self.animations.forEach(function(animation, i) {
+            if (animation.name == animationName) {
+                output = animation;
+            }
+        });
+        return output;
+    }
+
+    self.playAnimation = function (animationName) {
+        var animation = self.getAnimation(animationName);
+        if (animation) {
+            self.y = animation.row * self.w;
+            if (self.game.frame % animation.velocity === 0) {
+                self.counter = (self.counter + 1) % animation.sequence.length;
+            }
+            self.x = self.w * animation.sequence[self.counter];
+        } else {
+            // Exception.
+            console.log('EXCEPTION: This animation does not exist ->', animationName);
+            console.log('the game will be stoped');
+            self.game.stop();
+        }
+    }
+
+    self.setOffset = function (x, y) {}
 
     self.animate = function (row, sequence, velocity) {
         self.y = row * self.w;
