@@ -1,7 +1,9 @@
-var Game = function (name, canvas) {
+var Game = function (width, height, name, canvas) {
 
     "use strict";
     var self = this;
+    self.width = width;
+    self.height = height;
     self.name = name;
     self.canvas = document.querySelector(canvas);
     self.frame = 1;

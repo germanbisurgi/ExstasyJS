@@ -9,7 +9,7 @@ var definitions = {
     scroller: {
         name: 'scroller',
         position: {x: 0, y: 0, z: 10},
-        size: {w: 300, h: 200},
+        size: {w: 400, h: 400},
         velocity: {x: 3, y: 3},
         sprite: {name: 'pattern', width: 200, height: 200},
     },

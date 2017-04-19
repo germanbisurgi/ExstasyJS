@@ -15,8 +15,8 @@ var CameraManager = function (game) {
 
     self.cameraFollow = function(entity) {
         self.game.cameraManager.move(
-            (self.game.renderManager.width / 2 / self.game.cameraManager.zoom - entity.position.x - entity.size.w / 2),
-            (self.game.renderManager.height / 2 / self.game.cameraManager.zoom - entity.position.y - entity.size.h / 2)
+            (self.game.width / 2 / self.game.cameraManager.zoom - entity.position.x),
+            (self.game.height / 2 / self.game.cameraManager.zoom - entity.position.y)
         );
     }
 

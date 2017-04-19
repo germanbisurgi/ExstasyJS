@@ -6,16 +6,14 @@ var RenderManager = function(game, camera) {
     self.game = game;
     self.canvas = game.canvas;
     self.context = self.canvas.getContext("2d");
-    self.width = 400; //window.innerWidth;
-    self.height = 200; // window.innerHeight;
     
     self.clear = function() {
-        self.context.clearRect(0, 0, self.width, self.height);
+        self.context.clearRect(0, 0, self.game.width, self.game.height);
     }
 
     self.fullScreen = function() {
-        self.canvas.width  = self.width;
-        self.canvas.height = self.height;
+        self.canvas.width  = self.game.width;
+        self.canvas.height = self.game.height;
     };
 
     self.fullScreen();
@@ -68,7 +66,7 @@ var RenderManager = function(game, camera) {
         self.context.translate(this.game.cameraManager.x, this.game.cameraManager.y);
         this.game.entities.forEach(function (e) {
             if (e.sprite) {
-                self.drawImage(e.sprite.sheet, e.sprite.x, e.sprite.y, e.sprite.w, e.sprite.h, e.position.x, e.position.y, e.size.w, e.size.h);
+                self.drawImage(e.sprite.sheet, e.sprite.x, e.sprite.y, e.sprite.w, e.sprite.h, (e.position.x - e.size.w / 2), (e.position.y - e.size.h / 2), e.size.w, e.size.h);
             } else if (e.pattern) {
                 self.drawPattern(e.pattern, e.position.x, e.position.y, e.size.w, e.size.h);
             }
