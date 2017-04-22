@@ -5,6 +5,7 @@ var Extasy = {
     stateManager: StateManager,
     cameraManager: CameraManager,
     renderManager: RenderManager,
+    entity: Entity,
     state: State,
     inputManager: InputManager,
     sprite: Sprite,
