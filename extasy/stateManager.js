@@ -32,7 +32,7 @@ StateManager = function (game) {
         if (requestedState) {
             requestedState.game = self.game; // MAGIC! :)
             self.game.state = requestedState;
-            console.log('switched to ->', stateName);
+            // console.log('switched to ->', stateName);
         } else {
             // Exception.
             console.log('EXCEPTION: ', stateName, 'was not added.');

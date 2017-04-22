@@ -26,12 +26,12 @@ body {
 }
 
 #debug {
-    background: #000;
+    border: 1px solid red;
     opacity: 0.5;
     position: absolute;
-        left: 0;
-        top: 0;
-    display: none;
+        top: 50%;
+        left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .touch-controller {

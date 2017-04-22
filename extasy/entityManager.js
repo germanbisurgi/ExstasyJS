@@ -24,11 +24,11 @@ var EntityManager = function (game) {
         }
     }
 
-    self.createEntity = function(entDef, x, y, z) {
+    self.createEntity = function(entDef) {
         var entity = {};
         entity.id = (Math.random() * 100000000 | 0).toString(16);
         entity.name = entDef.name ? entDef.name : null;
-        entity.position = {x: x, y: y, z: z};
+        entity.position = entDef.position ? entDef.position : null;
         entity.size = entDef.size ? entDef.size : null;
         entity.velocity = entDef.velocity ? entDef.velocity : null;
         if (entDef.sprite) {
@@ -41,6 +41,11 @@ var EntityManager = function (game) {
         } else if (entDef.pattern) {
             entity.pattern = self.game.assets[entDef.pattern];
         }
+
+        if (entDef.body) {
+            self.game.physicsManager.createBody(entDef.body)
+        }
+        
 
         self.game.entities.push(entity);
 

@@ -1,13 +1,14 @@
 var entityState = new Extasy.state('entityState');
 entityState.create = function () {
 
-    var hero = this.createEntity(definitions.hero, 150, 75, 20);
-    hero.sprite.addAnimation('walkUp', 3, [1, 2, 1, 0], 5); // refactoring sprite animation?
+    var hero = this.createEntity(definitions.hero);
+    // refactoring sprite animation?
+    hero.sprite.addAnimation('walkUp', 3, [1, 2, 1, 0], 5);
     hero.sprite.addAnimation('walkRight', 2, [1, 2, 1, 0], 5);
     hero.sprite.addAnimation('walkDown', 0, [1, 2, 1, 0], 5);
     hero.sprite.addAnimation('walkLeft', 1, [1, 2, 1, 0], 5);
 
-    var scroller = this.createEntity(definitions.scroller, hero.position.x, hero.position.y, 10);
+    var scroller = this.createEntity(definitions.scroller);
 
     var controller = this.createController('standard');
     controller.add('UP', 'keyboard', 'ArrowUp');
@@ -23,7 +24,6 @@ entityState.update = function () {
 
     var H = this.getEntity('hero');
     var I = this.getEntity('scroller');
-
     
     var controller = this.getController('standard');
     if (controller.UP.isPressed && controller.LEFT.isPressed) {

@@ -20,6 +20,7 @@ var Game = function (width, height, name, canvas) {
     self.assetManager = new Extasy.assetManager(self);
     self.cameraManager = new Extasy.cameraManager(self);
     self.renderManager = new Extasy.renderManager(self);
+    self.physicsManager = new Extasy.physicsManager(self);
 
     self.run = function() {
         var lastTime = 0;
@@ -50,6 +51,8 @@ var Game = function (width, height, name, canvas) {
                         self.state.update();
                     }
 
+                    self.physicsManager.update();
+                    self.physicsManager.draw();
                     self.renderManager.draw();
 
                     self.frame++;
