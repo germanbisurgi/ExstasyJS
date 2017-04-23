@@ -1,6 +1,6 @@
-var loadState2 = new Extasy.state('loadState2');
+var loadState3 = new Extasy.state('loadState3');
 
-loadState2.preload = function () {
+loadState3.preload = function () {
     this.loadImage('bubbles', 'src/assets/images/bubbles.jpg');
     this.loadImage('colorito', 'src/assets/images/colorito.jpg');
     this.loadImage('fantasy', 'src/assets/images/fantasy.jpg');
@@ -20,19 +20,8 @@ loadState2.preload = function () {
     this.loadSpriteSheet('player', 'src/assets/images/player.png', 32, 32);
 }
 
-loadState2.create = function () {
-
-    var controller = this.createController('standard');
-    controller.add('UP', 'keyboard', 'ArrowUp');
-    controller.add('DOWN', 'keyboard', 'ArrowDown');
-    controller.add('LEFT', 'keyboard', 'ArrowLeft');
-    controller.add('RIGHT', 'keyboard', 'ArrowRight');
-    controller.add('G', 'keyboard', 'g');
-    controller.add('H', 'keyboard', 'h');
-    controller.add('F', 'keyboard', 'f');
-
-
-    this.game.stateManager.switch('loadState3');
+loadState3.create = function () {
+    this.game.stateManager.switch('testState');
 }
 
-loadState2.update = function () {}
+loadState3.update = function () {}

@@ -14,11 +14,11 @@ var State = function (name) {
     // ------------------------------------------------------------------ assets
 
     self.loadImage = function (imageName, path) {
-        self.game.assetManager2.loadImage(imageName, path);
+        self.game.assetManager.loadImage(imageName, path);
     }
 
     self.loadSpriteSheet = function (spriteSheetName, path, spriteWidth, spriteHeight) {
-        self.game.assetManager2.loadSpriteSheet(spriteSheetName, path, spriteWidth, spriteHeight);
+        self.game.assetManager.loadSpriteSheet(spriteSheetName, path, spriteWidth, spriteHeight);
     }
 
     // ---------------------------------------------------------------- entities

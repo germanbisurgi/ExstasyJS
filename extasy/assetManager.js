@@ -1,83 +1,120 @@
-AssetManager = function (game) {
+var AssetManager = function (game) {
 
     "use strict";
     var self = this;
     self.game = game
-    self.loading;
+    self.loading = false;
     self.downloadQueue = [];
     self.successCount = 0;
     self.errorCount = 0;
 
-    self.loadAssets = function (assets) {
+    self.init = function () {
         self.downloadQueue = [];
         self.successCount = 0;
         self.errorCount = 0;
-        if (!self.loading) {
-            self.loading = true;
-            self.downloadQueue = assets;
-            self.downloadAll();
-        }
     }
 
     self.loadImage = function(imageName, path) {
+        self.downloadQueue.push({
+            type: 'image',
+            name: imageName,
+            path: path
+        });
     }
 
     self.loadSpriteSheet = function(spriteSheetName, path, spriteWidth, spriteHeight) {
+        self.downloadQueue.push({
+            type: 'spriteSheet',
+            name: spriteSheetName,
+            path: path,
+            spriteWidth: spriteWidth,
+            spriteHeight: spriteHeight
+        });
     }
 
     self.getAsset = function(assetName) {
         var output = false;
-        if (self.game.assets[assetName]) {
-            output = self.game.assets[assetName];
-        }
+        self.game.assets2.forEach(function (asset) {
+            if (asset.name === assetName) {
+                output = asset;
+            }
+        });
         return output;
     }
 
-    self.downloadAll = function () {
-        self.downloadQueue.forEach(function (asset, i) {
+    self.loadAll = function () {
+        if (self.downloadQueue.length > 0) {
 
-            if (!self.getAsset(asset.name)) {
+            self.loading = true;
+            self.downloadQueue.forEach(function (asset) {
 
-                var img = new Image();
-                img.onload = function() {
+                if (!self.getAsset(asset.name)) {
+
+                    // ------------------------------------- image and sprite sheets
+
+                    if (asset.type === 'image' || asset.type === 'spriteSheet') {
+
+                        var img = new Image();
+
+                        img.onload = function() {
+                            self.successCount++;
+                            if (self.isDone()) {
+                                self.loading = false;
+                            }
+                        }
+
+                        img.onerror = function() {
+                            self.errorCount++;
+                            if (self.isDone()) {
+                                self.loading = false;
+                            }
+                        }
+
+                        img.src = asset.path;
+
+                        if (asset.type === 'image') {
+                            var imgObj = {
+                                type: 'image',
+                                name: asset.name,
+                                image: img
+                            }
+                        }
+
+                        if (asset.type === 'spriteSheet') {
+                            var imgObj = {
+                                type: 'spreiteSheet',
+                                name: asset.name,
+                                sprite: new Extasy.sprite(self.game, img, asset.spriteWidth, asset.spriteHeight)
+                            }
+                        }
+                        
+                        self.game.assets2.push(imgObj);
+                    }
+
+
+                } else {
+                    // Exception.
+                    console.log('this asset already exist and will be not queued or loaded ->', asset.name);
                     self.successCount++;
-                    if (self.isDone) {
-                        // console.log('loaded', asset.name);
+                    if (self.isDone()) {
                         self.loading = false;
                     }
                 }
-                img.onerror = function() {
-                    self.errorCount++;
-                    if (self.isDone) {
-                        // console.log('error', asset.name);
-                        self.loading = false;
-                    }
-                }
-                img.src = asset.path;
-                var imgObj = {
-                    'name': asset.name,
-                    'image': img
-                }
-                self.game.assets[imgObj.name] = imgObj.image;
 
-            } else {
-                // Exception.
-                console.log('this asset already exist ->', asset.name);
-                self.successCount++;
-                if (self.isDone) {
-                    self.loading = false;
-                }
-            }
-
-        });
+            });
+        }
     }
 
     self.loadProgress = function () {
-        return Math.floor((self.successCount + self.errorCount) / self.downloadQueue.length * 100);
+        var progress = Math.floor((self.successCount + self.errorCount) / self.downloadQueue.length * 100);
+        if (isNaN(progress)) {
+            progress = 0;
+        }
+        return progress;
     }
 
-    self.isDone = function (assets) {
-        return (self.downloadQueue.length == self.successCount + self.errorCount);
+    self.isDone = function () {
+        return (self.downloadQueue.length === self.successCount + self.errorCount);
     }
 
 }

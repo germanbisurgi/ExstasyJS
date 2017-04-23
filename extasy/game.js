@@ -18,7 +18,7 @@ var Game = function (width, height, name, canvas) {
     self.inputManager = new Extasy.inputManager(self);
     self.stateManager = new Extasy.stateManager(self);
     self.entityManager = new Extasy.entityManager(self);
-    self.assetManager2 = new Extasy.assetManager2(self);
+    self.assetManager = new Extasy.assetManager(self);
     self.cameraManager = new Extasy.cameraManager(self);
     self.renderManager = new Extasy.renderManager(self);
     self.physicsManager = new Extasy.physicsManager(self);
@@ -38,37 +38,18 @@ var Game = function (width, height, name, canvas) {
 
                 if (self.delta > requiredElapsed) {
 
-                    console.log('----------------PRE PRELOAD');
-                    console.log('state', self.state.name);
-                    console.log('preloaded', self.state.preloaded);
-                    console.log('created', self.state.created);
-                    console.log('progress', self.assetManager2.loadProgress());
-
                     if (!self.state.preloaded) {
                         self.state.preloaded = true;
-                        self.assetManager2.init();
+                        self.assetManager.init();
                         self.state.preload();
-                        self.assetManager2.loadAll();
+                        self.assetManager.loadAll();
                     }
 
-                    console.log('----------------POST PRELOAD');
-                    console.log('state', self.state.name);
-                    console.log('preloaded', self.state.preloaded);
-                    console.log('created', self.state.created);
-                    console.log('progress', self.assetManager2.loadProgress());
-
-                    if (self.state.preloaded && self.assetManager2.loadProgress() === 100 && !self.state.created) {
-                        self.assetManager2.init();
+                    if (self.state.preloaded && !self.assetManager.loading && !self.state.created) {
                         self.state.created = true;
                         self.state.create();
                     }
 
-                    console.log('----------------POST CREATE');
-                    console.log('state', self.state.name);
-                    console.log('preloaded', self.state.preloaded);
-                    console.log('created', self.state.created);
-                    console.log('progress', self.assetManager2.loadProgress());
-                    
                     if (self.state.created) {
                         self.state.update();
                     }
@@ -76,13 +57,6 @@ var Game = function (width, height, name, canvas) {
                     self.physicsManager.update();
                     self.physicsManager.draw();
                     self.renderManager.draw();
-
-                    console.log('----------------END');
-                    console.log('state', self.state.name);
-                    console.log('preloaded', self.state.preloaded);
-                    console.log('created', self.state.created);
-                    console.log('progress', self.assetManager2.loadProgress());
-                    console.log('---------------------------------------------------');
 
                     self.frame++;
 
