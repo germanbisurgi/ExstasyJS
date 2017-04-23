@@ -13,7 +13,12 @@ AssetManager2 = function (game) {
         self.downloadQueue = [];
         self.successCount = 0;
         self.errorCount = 0;
+        /*if (!self.loading) {
+            self.loading = true;
+            self.loadAll();
+        }*/
     }
+
 
     self.loadImage = function(imageName, path) {
         self.downloadQueue.push({
@@ -47,7 +52,12 @@ AssetManager2 = function (game) {
 
     self.loadAll = function () {
         console.log('loadAll');
-        self.loading = true;
+
+        if (self.loading) {
+
+
+        }
+
         self.downloadQueue.forEach(function (asset) {
 
             if (!self.getAsset(asset.name)) {

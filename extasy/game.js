@@ -38,7 +38,7 @@ var Game = function (width, height, name, canvas) {
 
                 if (self.delta > requiredElapsed) {
 
-                    console.log('----------------START');
+                    console.log('----------------PRE PRELOAD');
                     console.log('state', self.state.name);
                     console.log('preloaded', self.state.preloaded);
                     console.log('created', self.state.created);
@@ -51,10 +51,23 @@ var Game = function (width, height, name, canvas) {
                         self.assetManager2.loadAll();
                     }
 
+                    console.log('----------------POST PRELOAD');
+                    console.log('state', self.state.name);
+                    console.log('preloaded', self.state.preloaded);
+                    console.log('created', self.state.created);
+                    console.log('progress', self.assetManager2.loadProgress());
+
                     if (self.state.preloaded && self.assetManager2.loadProgress() === 100 && !self.state.created) {
+                        self.assetManager2.init();
                         self.state.created = true;
                         self.state.create();
                     }
+
+                    console.log('----------------POST CREATE');
+                    console.log('state', self.state.name);
+                    console.log('preloaded', self.state.preloaded);
+                    console.log('created', self.state.created);
+                    console.log('progress', self.assetManager2.loadProgress());
                     
                     if (self.state.created) {
                         self.state.update();
