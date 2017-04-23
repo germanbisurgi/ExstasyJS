@@ -2,8 +2,9 @@ var CameraManager = function (game) {
 
     "use strict";
     var self = this;
-
+    
     self.game = game;
+    self.angle = 10;
     self.x = 0;
     self.y = 0;
     self.zoom = 1.0;

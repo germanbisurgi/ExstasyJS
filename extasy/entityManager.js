@@ -43,7 +43,7 @@ var EntityManager = function (game) {
         }
 
         if (entDef.body) {
-            self.game.physicsManager.createBody(entDef.body)
+            self.game.physicsManager.createBody(entDef)
         }
         
 

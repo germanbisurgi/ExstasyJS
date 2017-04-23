@@ -33,34 +33,34 @@ var PhysicsManager = function(game) {
         self.context.clearRect(0, 0, self.width, self.height);
     }
 
-    self.createBody = function(bodyDefinition) {
+    self.createBody = function(entityDefinition) {
 
-        var x               = bodyDefinition.position.x  != null ? bodyDefinition.position.x  : 100;
-        var y               = bodyDefinition.position.y  != null ? bodyDefinition.position.y  : 100;
-        var z               = bodyDefinition.position.z  != null ? bodyDefinition.position.z  : 0;
-        var w               = bodyDefinition.size.w      != null ? bodyDefinition.size.w      : 50;
-        var h               = bodyDefinition.size.h      != null ? bodyDefinition.size.h      : 50;
-        var radius          = bodyDefinition.size.radius != null ? bodyDefinition.size.radius : 25;
+        var x               = entityDefinition.body.position.x  != null ? entityDefinition.body.position.x  : 100;
+        var y               = entityDefinition.body.position.y  != null ? entityDefinition.body.position.y  : 100;
+        var z               = entityDefinition.body.position.z  != null ? entityDefinition.body.position.z  : 0;
+        var w               = entityDefinition.body.size.w      != null ? entityDefinition.body.size.w      : 50;
+        var h               = entityDefinition.body.size.h      != null ? entityDefinition.body.size.h      : 50;
+        var radius          = entityDefinition.body.size.radius != null ? entityDefinition.body.size.radius : 25;
         
-        var active          = bodyDefinition.active          != null ? bodyDefinition.active          : true;
-        var allowSleep      = bodyDefinition.allowSleep      != null ? bodyDefinition.allowSleep      : true;
-        var angle           = bodyDefinition.angle           != null ? bodyDefinition.angle           : 0;
-        var angularDamping  = bodyDefinition.angularDamping  != null ? bodyDefinition.angularDamping  : 0;
-        var angularVelocity = bodyDefinition.angularVelocity != null ? bodyDefinition.angularVelocity : 0;
-        var awake           = bodyDefinition.awake           != null ? bodyDefinition.awake           : true;
-        var bullet          = bodyDefinition.bullet          != null ? bodyDefinition.bullet          : false;
-        var fixedRotation   = bodyDefinition.fixedRotation   != null ? bodyDefinition.fixedRotation   : false;
-        var linearDamping   = bodyDefinition.linearDamping   != null ? bodyDefinition.linearDamping   : 0;
-        var linearVelocity  = bodyDefinition.linearVelocity  != null ? bodyDefinition.linearVelocity  : {'x': 0, 'y': 0};
-        var type            = bodyDefinition.type            != null ? bodyDefinition.type            : 'static';
-        var userData        = bodyDefinition.userData        != null ? bodyDefinition.userData        : bodyDefinition;
+        var active          = entityDefinition.body.active          != null ? entityDefinition.body.active          : true;
+        var allowSleep      = entityDefinition.body.allowSleep      != null ? entityDefinition.body.allowSleep      : true;
+        var angle           = entityDefinition.body.angle           != null ? entityDefinition.body.angle           : 0;
+        var angularDamping  = entityDefinition.body.angularDamping  != null ? entityDefinition.body.angularDamping  : 0;
+        var angularVelocity = entityDefinition.body.angularVelocity != null ? entityDefinition.body.angularVelocity : 0;
+        var awake           = entityDefinition.body.awake           != null ? entityDefinition.body.awake           : true;
+        var bullet          = entityDefinition.body.bullet          != null ? entityDefinition.body.bullet          : false;
+        var fixedRotation   = entityDefinition.body.fixedRotation   != null ? entityDefinition.body.fixedRotation   : false;
+        var linearDamping   = entityDefinition.body.linearDamping   != null ? entityDefinition.body.linearDamping   : 0;
+        var linearVelocity  = entityDefinition.body.linearVelocity  != null ? entityDefinition.body.linearVelocity  : {'x': 0, 'y': 0};
+        var type            = entityDefinition.body.type            != null ? entityDefinition.body.type            : 'static';
+        var userData        = entityDefinition
 
-        var density         = bodyDefinition.density      != null ? bodyDefinition.density      : 0;
-        var filter          = bodyDefinition.filter       != null ? bodyDefinition.filter       : null;
-        var friction        = bodyDefinition.friction     != null ? bodyDefinition.friction     : 0;
-        var isSensor        = bodyDefinition.isSensor     != null ? bodyDefinition.isSensor     : false;
-        var restitution     = bodyDefinition.restitution  != null ? bodyDefinition.restitution  : 0.5;
-        var shape           = bodyDefinition.shape        != null ? bodyDefinition.shape        : 'rectangle';
+        var density         = entityDefinition.body.density      != null ? entityDefinition.body.density      : 0;
+        var filter          = entityDefinition.body.filter       != null ? entityDefinition.body.filter       : null;
+        var friction        = entityDefinition.body.friction     != null ? entityDefinition.body.friction     : 0;
+        var isSensor        = entityDefinition.body.isSensor     != null ? entityDefinition.body.isSensor     : false;
+        var restitution     = entityDefinition.body.restitution  != null ? entityDefinition.body.restitution  : 0.5;
+        var shape           = entityDefinition.body.shape        != null ? entityDefinition.body.shape        : 'rectangle';
 
         var bodyDef = new box2d.b2BodyDef();
         /*bodyDef.position.x      = (x + w / 2) / self.scale;
@@ -102,8 +102,7 @@ var PhysicsManager = function(game) {
         body.CreateFixture(fixDef);
         body.SetUserData(userData); 
 
-        console.log(body.GetPosition().x * self.scale);
-        console.log(body.GetPosition().y * self.scale);
+        console.log(body.GetUserData());
 
         return body;
     };
@@ -147,7 +146,5 @@ var PhysicsManager = function(game) {
         self.world.DrawDebugData();
         self.context.restore();
     }
-
-    console.log(self)
 
 }

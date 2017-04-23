@@ -19,6 +19,12 @@ AssetManager = function (game) {
         }
     }
 
+    self.loadImage = function(imageName, path) {
+    }
+
+    self.loadSpriteSheet = function(spriteSheetName, path, spriteWidth, spriteHeight) {
+    }
+
     self.getAsset = function(assetName) {
         var output = false;
         if (self.game.assets[assetName]) {

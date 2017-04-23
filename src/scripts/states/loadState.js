@@ -1,6 +1,10 @@
 var loadState = new Extasy.state('loadState');
 
 loadState.preload = function () {
+
+    this.loadImage('leaf', 'src/assets/images/pattern.png');
+    this.loadSpriteSheet('player', 'src/assets/images/player.png', 32, 32);
+
     this.game.assetManager.loadAssets([
         {'type': 'image', 'name': 'pattern', 'path': 'src/assets/images/pattern.png'},
         {'type': 'image', 'name': 'space', 'path': 'src/assets/images/space.jpg'},
@@ -23,7 +27,18 @@ loadState.preload = function () {
 }
 
 loadState.create = function () {
-    this.game.stateManager.switch('entityState');
+
+    var controller = this.createController('standard');
+    controller.add('UP', 'keyboard', 'ArrowUp');
+    controller.add('DOWN', 'keyboard', 'ArrowDown');
+    controller.add('LEFT', 'keyboard', 'ArrowLeft');
+    controller.add('RIGHT', 'keyboard', 'ArrowRight');
+    controller.add('G', 'keyboard', 'g');
+    controller.add('H', 'keyboard', 'h');
+    controller.add('F', 'keyboard', 'f');
+
+
+    this.game.stateManager.switch('testState');
 }
 
 loadState.update = function () {}

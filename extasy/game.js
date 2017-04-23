@@ -10,6 +10,7 @@ var Game = function (width, height, name, canvas) {
     self.fps = 60;
     self.isPaused = false;
     self.assets = {};
+    self.assets2 = [];
     self.state = null;
     self.entities = [];
     self.controllers = [];
@@ -17,7 +18,7 @@ var Game = function (width, height, name, canvas) {
     self.inputManager = new Extasy.inputManager(self);
     self.stateManager = new Extasy.stateManager(self);
     self.entityManager = new Extasy.entityManager(self);
-    self.assetManager = new Extasy.assetManager(self);
+    self.assetManager2 = new Extasy.assetManager2(self);
     self.cameraManager = new Extasy.cameraManager(self);
     self.renderManager = new Extasy.renderManager(self);
     self.physicsManager = new Extasy.physicsManager(self);
@@ -37,12 +38,20 @@ var Game = function (width, height, name, canvas) {
 
                 if (self.delta > requiredElapsed) {
 
+                    console.log('----------------START');
+                    console.log('state', self.state.name);
+                    console.log('preloaded', self.state.preloaded);
+                    console.log('created', self.state.created);
+                    console.log('progress', self.assetManager2.loadProgress());
+
                     if (!self.state.preloaded) {
                         self.state.preloaded = true;
+                        self.assetManager2.init();
                         self.state.preload();
+                        self.assetManager2.loadAll();
                     }
 
-                    if (!self.state.created && self.state.preloaded && self.assetManager.loadProgress() === 100) {
+                    if (self.state.preloaded && self.assetManager2.loadProgress() === 100 && !self.state.created) {
                         self.state.created = true;
                         self.state.create();
                     }
@@ -54,6 +63,13 @@ var Game = function (width, height, name, canvas) {
                     self.physicsManager.update();
                     self.physicsManager.draw();
                     self.renderManager.draw();
+
+                    console.log('----------------END');
+                    console.log('state', self.state.name);
+                    console.log('preloaded', self.state.preloaded);
+                    console.log('created', self.state.created);
+                    console.log('progress', self.assetManager2.loadProgress());
+                    console.log('---------------------------------------------------');
 
                     self.frame++;
 

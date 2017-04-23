@@ -38,7 +38,7 @@ var Sprite = function (game, spriteSheet, width, height) {
         return output;
     }
 
-    self.playAnimation = function (animationName) {
+    self.play = function (animationName) {
         var animation = self.getAnimation(animationName);
         if (animation) {
             self.y = animation.row * self.w;

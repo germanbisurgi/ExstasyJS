@@ -1,6 +1,7 @@
 var Extasy = {
     game: Game,
     assetManager: AssetManager,
+    assetManager2: AssetManager2,
     entityManager: EntityManager,
     stateManager: StateManager,
     cameraManager: CameraManager,

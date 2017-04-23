@@ -64,6 +64,7 @@ var RenderManager = function(game, camera) {
         self.context.save();
         self.context.scale(this.game.cameraManager.zoom, this.game.cameraManager.zoom);
         self.context.translate(this.game.cameraManager.x, this.game.cameraManager.y);
+        // rotate the camera
         this.game.entities.forEach(function (e) {
             if (e.sprite) {
                 self.drawImage(e.sprite.sheet, e.sprite.x, e.sprite.y, e.sprite.w, e.sprite.h, (e.position.x - e.size.w / 2), (e.position.y - e.size.h / 2), e.size.w, e.size.h);
