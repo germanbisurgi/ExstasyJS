@@ -9,8 +9,7 @@ var Game = function (width, height, name, canvas) {
     self.frame = 1;
     self.fps = 60;
     self.isPaused = false;
-    self.assets = {};
-    self.assets2 = [];
+    self.assets = [];
     self.state = null;
     self.entities = [];
     self.controllers = [];
@@ -40,7 +39,6 @@ var Game = function (width, height, name, canvas) {
 
                     if (!self.state.preloaded) {
                         self.state.preloaded = true;
-                        self.assetManager.init();
                         self.state.preload();
                         self.assetManager.loadAll();
                     }
@@ -56,7 +54,7 @@ var Game = function (width, height, name, canvas) {
 
                     self.physicsManager.update();
                     self.physicsManager.draw();
-                    self.renderManager.draw();
+                    //self.renderManager.draw();
 
                     self.frame++;
 

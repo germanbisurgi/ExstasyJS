@@ -1,11 +1,6 @@
 var loadState2 = new Extasy.state('loadState2');
 
 loadState2.preload = function () {
-    this.loadImage('bubbles', 'src/assets/images/bubbles.jpg');
-    this.loadImage('colorito', 'src/assets/images/colorito.jpg');
-    this.loadImage('fantasy', 'src/assets/images/fantasy.jpg');
-    this.loadImage('leaf', 'src/assets/images/leaf.jpg');
-    this.loadImage('mine', 'src/assets/images/mine.png');
     this.loadImage('mosaic', 'src/assets/images/mosaic.png');
     this.loadImage('numbers', 'src/assets/images/numbers.jpg');
     this.loadImage('pattern', 'src/assets/images/pattern.png');

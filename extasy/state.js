@@ -13,6 +13,10 @@ var State = function (name) {
 
     // ------------------------------------------------------------------ assets
 
+    self.getAsset = function (assetName) {
+        return self.game.assetManager.getAsset(assetName);
+    }
+
     self.loadImage = function (imageName, path) {
         self.game.assetManager.loadImage(imageName, path);
     }

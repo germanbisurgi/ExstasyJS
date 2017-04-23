@@ -8,7 +8,7 @@ var AssetManager = function (game) {
     self.successCount = 0;
     self.errorCount = 0;
 
-    self.init = function () {
+    self.reset = function () {
         self.downloadQueue = [];
         self.successCount = 0;
         self.errorCount = 0;
@@ -34,7 +34,7 @@ var AssetManager = function (game) {
 
     self.getAsset = function(assetName) {
         var output = false;
-        self.game.assets2.forEach(function (asset) {
+        self.game.assets.forEach(function (asset) {
             if (asset.name === assetName) {
                 output = asset;
             }
@@ -60,6 +60,7 @@ var AssetManager = function (game) {
                             self.successCount++;
                             if (self.isDone()) {
                                 self.loading = false;
+                                self.reset();
                             }
                         }
 
@@ -67,28 +68,24 @@ var AssetManager = function (game) {
                             self.errorCount++;
                             if (self.isDone()) {
                                 self.loading = false;
+                                self.reset();
                             }
                         }
 
                         img.src = asset.path;
 
                         if (asset.type === 'image') {
-                            var imgObj = {
-                                type: 'image',
-                                name: asset.name,
-                                image: img
-                            }
+                            var image = img;
+                            image.name = asset.name;
+                            self.game.assets.push(image);
                         }
 
                         if (asset.type === 'spriteSheet') {
-                            var imgObj = {
-                                type: 'spreiteSheet',
-                                name: asset.name,
-                                sprite: new Extasy.sprite(self.game, img, asset.spriteWidth, asset.spriteHeight)
-                            }
+                            var sprite = new Extasy.sprite2(self.game, img, asset.spriteWidth, asset.spriteHeight);
+                            sprite.name = asset.name;
+                            self.game.assets.push(sprite);
                         }
                         
-                        self.game.assets2.push(imgObj);
                     }
 
 
@@ -98,6 +95,7 @@ var AssetManager = function (game) {
                     self.successCount++;
                     if (self.isDone()) {
                         self.loading = false;
+                        self.reset();
                     }
                 }
 
