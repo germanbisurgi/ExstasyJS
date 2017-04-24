@@ -1,16 +1,17 @@
-var testState = new Extasy.state('testState');
+var spriteState = new Extasy.state('spriteState');
 var player;
 
-testState.create = function () {
+spriteState.create = function () {
     player = this.getAsset('player');
+    player.addAnimation('up', [37, 38, 37, 36], 5);
+    player.addAnimation('right', [25, 26, 25, 24], 5);
     player.addAnimation('down', [1, 2, 1, 0], 5);
     player.addAnimation('left', [13, 14, 13, 12], 5);
-    player.addAnimation('right', [25, 26, 25, 24], 5);
     console.log(player);
 }
 
-testState.update = function () {
-    player.play('left');
+spriteState.update = function () {
+    player.play('down');
     this.game.renderManager.clear();
     this.game.renderManager.drawImage(
         player.spriteSheet,
@@ -18,8 +19,8 @@ testState.update = function () {
         player.spriteY,
         player.spriteWidth,
         player.spriteHeight,
-        50,
-        50,
+        0,
+        0,
         player.spriteWidth,
         player.spriteHeight
     );
