@@ -26,7 +26,7 @@ body {
 }
 
 #debug {
-    border: 3px solid #4FC08D;
+    border: 1px solid #4FC08D;
     opacity: 0.5;
     position: absolute;
         top: 50%;

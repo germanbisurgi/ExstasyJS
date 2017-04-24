@@ -27,16 +27,23 @@ var State = function (name) {
 
     // ---------------------------------------------------------------- entities
 
-    self.getEntity = function (entityName) {
-        return self.game.entityManager.getEntity(entityName);
+    self.listEntities = function (x, y, spriteSheetName) {
+        return self.game.entityManager.listEntities();
     }
 
-    self.createEntity = function (entDef, x, y, z) {
-        return self.game.entityManager.createEntity(entDef, x, y, z);
-    }
-
-    self.createScroller = function (entDef, x, y, z) {
-        return self.game.entityManager.createScroller(entDef, x, y, z);
+    self.addSprite = function (x, y, spriteSheetName) {
+        var sprite = self.getAsset(spriteSheetName);
+        if (sprite) {
+            sprite.dx = x;
+            sprite.dy = y;
+            self.game.entityManager.addEntity(sprite);
+            return sprite;
+        } else {
+            console.log('EXCEPTION: this sprite is not present ->', spriteSheetName);
+            console.log('the game will be stoped');
+            self.game.stop();
+        }
+        console.log(sprite);
     }
 
     // ------------------------------------------------------------------ inputs

@@ -14,7 +14,15 @@ var EntityManager = function (game) {
         return output;
     }
 
-    self.createEntity = function(entDef) {
+    self.listEntities = function (x, y, spriteSheetName) {
+        return self.game.entities;
+    }
+
+    self.addEntity = function(entity) {
+        self.game.entities.push(entity);
+    }
+    
+    /* self.createEntity = function(entDef) {
         var entity = {};
         entity.id = (Math.random() * 100000000 | 0).toString(16);
         entity.name = entDef.name ? entDef.name : null;
@@ -41,6 +49,6 @@ var EntityManager = function (game) {
         self.game.entities.push(entity);
 
         return entity;
-    }
+    } */
 
 }

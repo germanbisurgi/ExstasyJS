@@ -81,7 +81,7 @@ var AssetManager = function (game) {
                         }
 
                         if (asset.type === 'spriteSheet') {
-                            var sprite = new Extasy.sprite2(self.game, img, asset.spriteWidth, asset.spriteHeight);
+                            var sprite = new Extasy.sprite(self.game, img, asset.spriteWidth, asset.spriteHeight);
                             sprite.name = asset.name;
                             self.game.assets.push(sprite);
                         }

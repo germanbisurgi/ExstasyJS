@@ -10,6 +10,5 @@ var Extasy = {
     state: State,
     inputManager: InputManager,
     sprite: Sprite,
-    sprite2: Sprite2,
     controller: Controller
 }

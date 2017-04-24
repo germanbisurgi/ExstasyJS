@@ -11,6 +11,14 @@ var RenderManager = function(game, camera) {
         self.context.clearRect(0, 0, self.game.width, self.game.height);
     }
 
+    self.toRadians = function (degrees) {
+        return degrees * 0.0174532925199432957;
+    }
+
+    self.toDegrees = function (radians) {
+        return radians * 57.295779513082320876;
+    }
+
     self.fullScreen = function() {
         self.canvas.width  = self.game.width;
         self.canvas.height = self.game.height;
@@ -56,8 +64,8 @@ var RenderManager = function(game, camera) {
         self.context.stroke();
     }
 
-    self.draw = function() {
-        this.game.entities.sort(function(a, b) {
+    self.draw = function(entities) {
+        /*this.game.entities.sort(function(a, b) {
             return (a.position.z) - (b.position.z);
         });  
         self.clear();
@@ -72,7 +80,40 @@ var RenderManager = function(game, camera) {
                 self.drawPattern(e.pattern, e.position.x, e.position.y, e.size.w, e.size.h);
             }
         });
-        self.context.restore();
+        self.context.restore();*/
+        entities.forEach(function (entity) {
+            self.clear();
+            if (entity.type === 'sprite') {
+                self.context.save();
+                self.drawRectangle(
+                    entity.dx,
+                    entity.dy,
+                    entity.dw,
+                    entity.dh
+                );
+                // move to the middle of where we want to draw our entity.
+                self.context.translate(
+                    entity.dx + (entity.dw / 2),
+                    entity.dy + (entity.dh / 2)
+                );
+                // move to the middle of where we want to draw our entity.
+                self.context.rotate(self.toRadians(entity.angle));
+                self.drawImage(
+                    entity.image,
+                    entity.sx,
+                    entity.sy,
+                    entity.sw,
+                    entity.sh,
+                    entity.dw * -0.5,
+                    entity.dh * -0.5,
+                    entity.dw,
+                    entity.dh
+                );
+                self.context.restore();
+                // self.game.stop();
+
+            }
+        });
     }
 
 }

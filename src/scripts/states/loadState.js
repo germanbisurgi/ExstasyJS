@@ -21,16 +21,7 @@ loadState.preload = function () {
 }
 
 loadState.create = function () {
-    var controller = this.createController('standard');
-    controller.add('UP', 'keyboard', 'ArrowUp');
-    controller.add('DOWN', 'keyboard', 'ArrowDown');
-    controller.add('LEFT', 'keyboard', 'ArrowLeft');
-    controller.add('RIGHT', 'keyboard', 'ArrowRight');
-    controller.add('G', 'keyboard', 'g');
-    controller.add('H', 'keyboard', 'h');
-    controller.add('F', 'keyboard', 'f');
-
-    this.game.stateManager.switch('spriteState');
+    this.game.stateManager.switch('controllerState');
 }
 
 loadState.update = function () {}

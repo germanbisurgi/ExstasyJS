@@ -52,9 +52,9 @@ var Game = function (width, height, name, canvas) {
                         self.state.update();
                     }
 
-                    self.physicsManager.update();
-                    self.physicsManager.draw();
-                    //self.renderManager.draw();
+                    // self.physicsManager.update();
+                    // self.physicsManager.draw();
+                    self.renderManager.draw(self.entities);
 
                     self.frame++;
 
