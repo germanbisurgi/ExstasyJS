@@ -119,4 +119,9 @@ var Sprite = function (game, image, sw, sh) {
         }
     }
 
+    self.translate = function (x, y) {
+        self.dx += x;
+        self.dy += y;
+    }
+
 }
