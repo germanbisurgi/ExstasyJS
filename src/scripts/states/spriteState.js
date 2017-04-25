@@ -10,10 +10,12 @@ spriteState.create = function () {
     player.scale(1.5, 1.5);
     player.shadow(3, 3, 3, 'rgba(0, 0, 0, 0.5)');
     player.opacity(1);
-    player.rotate(10);
+    player.setAngle(10);
+    
     player.translate(100, 50);
 }
 
 spriteState.update = function () {
     player.play('down');
+    player.rotate(1);
 }

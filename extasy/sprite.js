@@ -80,8 +80,12 @@ var Sprite = function (game, image, sw, sh) {
     }
 
     self.rotate = function (degrees) {
-        self.angle = degrees;
+        self.angle += degrees;
     }
+
+    self.setAngle = function (degrees) {
+        self.angle = degrees;
+    }    
 
     self.scale = function (x, y) {
         self.dw *= x;
