@@ -85,12 +85,12 @@ var RenderManager = function(game, camera) {
             self.clear();
             if (entity.type === 'sprite') {
                 self.context.save();
-                self.drawRectangle(
+                /*self.drawRectangle(
                     entity.dx,
                     entity.dy,
                     entity.dw,
                     entity.dh
-                );
+                );*/
                 // move to the middle of where we want to draw our entity.
                 self.context.translate(
                     entity.dx + (entity.dw / 2),
@@ -98,6 +98,14 @@ var RenderManager = function(game, camera) {
                 );
                 // move to the middle of where we want to draw our entity.
                 self.context.rotate(self.toRadians(entity.angle));
+                // opacity
+                self.context.globalAlpha = entity.opacity;
+                // shadows.
+                self.context.shadowOffsetX = entity.shadow.x;
+                self.context.shadowOffsetY = entity.shadow.y;
+                self.context.shadowBlur = entity.shadow.blur;
+                self.context.shadowColor = entity.shadow.color;
+
                 self.drawImage(
                     entity.image,
                     entity.sx,

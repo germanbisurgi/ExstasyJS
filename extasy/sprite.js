@@ -17,27 +17,10 @@ var Sprite = function (game, image, sw, sh) {
     self.angle = 0;
     self.spriteOffsetX = 0;
     self.spriteOffsetY = 0;
-
+    self.opacity = 1.0;
+    self.shadow = {};
     self.counter = 0;
     self.animations = [];
-
-    self.play = function (animationName) {
-        var animation = self.getAnimation(animationName);
-        if (animation) {
-            var ssw = self.image.width;
-            var columns = self.image.width / self.sw;
-            var rows = self.image.height / self.sh;
-            if (game.frame % animation.velocity === 0) {
-                self.counter = (self.counter + 1) % animation.sequence.length;
-            }
-            self.sy = Math.floor((animation.sequence[self.counter] + 1) / columns) * self.sh;
-            self.sx = self.sw * animation.sequence[self.counter]  - ssw * self.sy / self.sh;
-        } else {
-            console.log('EXCEPTION: This animation does not exist ->', animationName);
-            console.log('the game will be stoped');
-            game.stop();
-        }
-    }
 
     self.addAnimation = function (name, sequence, velocity) {
         if (!self.getAnimation(name)) {
@@ -62,6 +45,51 @@ var Sprite = function (game, image, sw, sh) {
             }
         });
         return output;
+    }
+
+    self.getAnimation = function (animationName) {
+        var output = false;
+        self.animations.forEach(function(animation, i) {
+            if (animation.name == animationName) {
+                output = animation;
+            }
+        });
+        return output;
+    }
+
+    self.opacity = function (opacity) {
+        self.opacity = opacity;
+    }
+
+    self.play = function (animationName) {
+        var animation = self.getAnimation(animationName);
+        if (animation) {
+            var ssw = self.image.width;
+            var columns = self.image.width / self.sw;
+            var rows = self.image.height / self.sh;
+            if (game.frame % animation.velocity === 0) {
+                self.counter = (self.counter + 1) % animation.sequence.length;
+            }
+            self.sy = Math.floor((animation.sequence[self.counter] + 1) / columns) * self.sh;
+            self.sx = self.sw * animation.sequence[self.counter]  - ssw * self.sy / self.sh;
+        } else {
+            console.log('EXCEPTION: This animation does not exist ->', animationName);
+            console.log('the game will be stoped');
+            game.stop();
+        }
+    }
+
+    self.rotate = function (degrees) {
+        self.angle = degrees;
+    }
+
+    self.scale = function (x, y) {
+        self.dw *= x;
+        self.dh *= y;
+    }
+
+    self.shadow = function (x, y, blur, color) {
+        self.shadow = {x: x, y: y, blur: blur, color: color};
     }
 
     self.scroll = function (direction, velocity) {

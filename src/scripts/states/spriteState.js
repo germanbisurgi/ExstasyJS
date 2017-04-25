@@ -7,11 +7,12 @@ spriteState.create = function () {
     player.addAnimation('right', [25, 26, 25, 24], 10);
     player.addAnimation('down', [1, 2, 1, 0], 10);
     player.addAnimation('left', [13, 14, 13, 12], 10);
-    console.log(player);
-    console.log(this.listEntities());
+    player.scale(1.5, 1.5);
+    player.shadow(3, 3, 3, 'rgba(0, 0, 0, 0.5)');
+    player.opacity(1);
+    player.rotate(10);
 }
 
 spriteState.update = function () {
     player.play('down');
-    player.angle++; 
 }
