@@ -5,10 +5,10 @@ var RenderManager = function(game, camera) {
 
     self.game = game;
     self.canvas = game.canvas;
-    self.context = self.canvas.getContext("2d");
+    self.ctx = self.canvas.getContext("2d");
     
     self.clear = function() {
-        self.context.clearRect(0, 0, self.game.width, self.game.height);
+        self.ctx.clearRect(0, 0, self.game.width, self.game.height);
     }
 
     self.toRadians = function (degrees) {
@@ -28,98 +28,76 @@ var RenderManager = function(game, camera) {
 
     self.drawImage = function(imageObj, sx, sy, sw, sh, dX, dY, dw, dh) {
         if (sw != null && sh != null && dX != null && dY != null && dw != null && dh != null) {
-            self.context.drawImage(imageObj, sx, sy, sw, sh, dX, dY, dw, dh);
+            self.ctx.drawImage(imageObj, sx, sy, sw, sh, dX, dY, dw, dh);
         } else if (sw != null && sh != null) {
-            self.context.drawImage(imageObj, sx, sy, sw, sh);
+            self.ctx.drawImage(imageObj, sx, sy, sw, sh);
         } else {
-            self.context.drawImage(imageObj, sx, sy);
+            self.ctx.drawImage(imageObj, sx, sy);
         }
     }
 
     self.drawText = function(text, x, y) {    
-        self.context.font = '15px Arial';
-        self.context.fillStyle = "white";
-        self.context.fillText(text, x, y);
-        self.context.restore();
+        self.ctx.font = '15px Arial';
+        self.ctx.fillStyle = "white";
+        self.ctx.fillText(text, x, y);
+        self.ctx.restore();
     }
 
     self.drawRectangle = function(x1, y1, x2, y2) {
-        self.context.fillStyle = 'white';
-        self.context.beginPath();
-        self.context.rect(x1, y1, x2, y2);
-        self.context.fill();
-        self.context.stroke();
+        self.ctx.fillStyle = 'white';
+        self.ctx.beginPath();
+        self.ctx.rect(x1, y1, x2, y2);
+        self.ctx.fill();
+        self.ctx.stroke();
     }
 
     self.drawPattern = function(image, x1, y1, x2, y2) {
-        var pattern = self.context.createPattern(image, 'repeat');
-        self.context.fillStyle = pattern;
-        self.context.fillRect(x1, y1, x2, y2);
+        var pattern = self.ctx.createPattern(image, 'repeat');
+        self.ctx.fillStyle = pattern;
+        self.ctx.fillRect(x1, y1, x2, y2);
     }
 
     self.drawCircle = function(centerX, centerY, radius) {
-        self.context.beginPath();
-        self.context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-        self.context.fill();
-        self.context.stroke();
+        self.ctx.beginPath();
+        self.ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+        self.ctx.fill();
+        self.ctx.stroke();
     }
 
     self.draw = function(entities) {
-        /*this.game.entities.sort(function(a, b) {
-            return (a.position.z) - (b.position.z);
-        });  
         self.clear();
-        self.context.save();
-        self.context.scale(this.game.cameraManager.zoom, this.game.cameraManager.zoom);
-        self.context.translate(this.game.cameraManager.x, this.game.cameraManager.y);
-        // rotate the camera
-        this.game.entities.forEach(function (e) {
-            if (e.sprite) {
-                self.drawImage(e.sprite.sheet, e.sprite.x, e.sprite.y, e.sprite.w, e.sprite.h, (e.position.x - e.size.w / 2), (e.position.y - e.size.h / 2), e.size.w, e.size.h);
-            } else if (e.pattern) {
-                self.drawPattern(e.pattern, e.position.x, e.position.y, e.size.w, e.size.h);
-            }
-        });
-        self.context.restore();*/
-        entities.forEach(function (entity) {
-            self.clear();
-            if (entity.type === 'sprite') {
-                self.context.save();
-                /*self.drawRectangle(
-                    entity.dx,
-                    entity.dy,
-                    entity.dw,
-                    entity.dh
-                );*/
+        entities.forEach(function (e) {
+            if (e.type === 'sprite') {
+
+                self.drawRectangle(e.dx, e.dy, e.dw, e.dh);
+
+                // save the state of the ctx.
+                self.ctx.save();
+
                 // move to the middle of where we want to draw our entity.
-                self.context.translate(
-                    entity.dx + (entity.dw / 2),
-                    entity.dy + (entity.dh / 2)
-                );
-                // move to the middle of where we want to draw our entity.
-                self.context.rotate(self.toRadians(entity.angle));
+                self.ctx.translate(e.dx + (e.dw / 2), e.dy + (e.dh / 2));
+
+                // rotate the canvas.
+                self.ctx.rotate(self.toRadians(e.angle));
+
                 // opacity
-                self.context.globalAlpha = entity.opacity;
+                self.ctx.globalAlpha = e.opacity;
+
                 // shadows.
-                self.context.shadowOffsetX = entity.shadow.x;
-                self.context.shadowOffsetY = entity.shadow.y;
-                self.context.shadowBlur = entity.shadow.blur;
-                self.context.shadowColor = entity.shadow.color;
+                self.ctx.shadowOffsetX = e.shadow.x;
+                self.ctx.shadowOffsetY = e.shadow.y;
+                self.ctx.shadowBlur = e.shadow.blur;
+                self.ctx.shadowColor = e.shadow.color;
 
+                // draw.
                 self.drawImage(
-                    entity.image,
-                    entity.sx,
-                    entity.sy,
-                    entity.sw,
-                    entity.sh,
-                    entity.dw * -0.5,
-                    entity.dh * -0.5,
-                    entity.dw,
-                    entity.dh
+                    e.image,
+                    e.sx, e.sy, e.sw, e.sh,
+                    e.dw * -0.5, e.dh * -0.5, e.dw, e.dh
                 );
-                self.context.restore();
-                // self.game.stop();
 
+                // restore the state of the ctx.
+                self.ctx.restore();
             }
         });
     }

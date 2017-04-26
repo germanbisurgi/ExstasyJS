@@ -1,19 +1,19 @@
-var Sprite = function (game, image, sw, sh) {
+var Sprite = function (game, spriteSheet) {
 
     "use strict";
     var self = this;
     self.id = (Math.random() * 100000000 | 0).toString(16);
     self.type = 'sprite';
     self.name = null;
-    self.image = image;
+    self.image = spriteSheet.image;
     self.sx = 0;
     self.sy = 0;
-    self.sw = sw;
-    self.sh = sh;
+    self.sw = spriteSheet.sw;
+    self.sh = spriteSheet.sh;
     self.dx;
     self.dy;
-    self.dw = sw;
-    self.dh = sh;
+    self.dw = spriteSheet.sw;
+    self.dh = spriteSheet.sh;
     self.angle = 0;
     self.spriteOffsetX = 0;
     self.spriteOffsetY = 0;
@@ -56,6 +56,13 @@ var Sprite = function (game, image, sw, sh) {
         });
         return output;
     }
+
+    self.isOffCanvas = function() {
+        return self.dx + self.dw <= 0
+            || self.dy + self.dh <= 0
+            || self.dx >= game.width
+            || self.dy >= game.height;
+    };
 
     self.opacity = function (opacity) {
         self.opacity = opacity;

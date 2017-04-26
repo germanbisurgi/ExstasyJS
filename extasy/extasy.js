@@ -9,6 +9,7 @@ var Extasy = {
     entity: Entity,
     state: State,
     inputManager: InputManager,
+    spriteSheet: SpriteSheet,
     sprite: Sprite,
     controller: Controller
 }

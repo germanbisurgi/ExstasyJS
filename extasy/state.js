@@ -32,18 +32,18 @@ var State = function (name) {
     }
 
     self.addSprite = function (x, y, spriteSheetName) {
-        var sprite = self.getAsset(spriteSheetName);
-        if (sprite) {
+        var spriteSheet = self.getAsset(spriteSheetName);
+        if (spriteSheet) {
+            var sprite = new Extasy.sprite(self.game, spriteSheet)
             sprite.dx = x;
             sprite.dy = y;
             self.game.entityManager.addEntity(sprite);
             return sprite;
         } else {
-            console.log('EXCEPTION: this sprite is not present ->', spriteSheetName);
+            console.log('EXCEPTION: this sprite sheet is not present ->', spriteSheetName);
             console.log('the game will be stoped');
             self.game.stop();
         }
-        console.log(sprite);
     }
 
     // ------------------------------------------------------------------ inputs
