@@ -101,33 +101,6 @@ var Sprite = function (game, spriteSheet) {
 
     self.shadow = function (x, y, blur, color) {
         self.shadow = {x: x, y: y, blur: blur, color: color};
-    }  
-
-    self.scroll = function (direction, velocity) {
-        if (direction ==='left') {
-            self.sx += velocity;
-            if (self.sx + self.sw >= self.sw * 2) {
-                self.sx = 0;
-            }
-        }
-        if (direction ==='right') {
-            self.sx -= velocity;
-            if (self.sx <= 0) {
-                self.sx = self.sw;
-            }
-        }
-        if (direction ==='up') {
-            self.sy += velocity;
-            if (self.sy + self.sh >= self.sh * 2) {
-                self.sy = 0;
-            }
-        }
-        if (direction ==='down') {
-            self.sy -= velocity;
-            if (self.sy <= 0) {
-                self.sy = self.sh;
-            }
-        }
     }
 
     self.translate = function (x, y) {

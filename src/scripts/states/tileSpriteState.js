@@ -6,7 +6,8 @@ tileSpriteState.create = function () {
 }
 
 tileSpriteState.update = function () {
-    tileSprite.scroll('left', 1);
+    tileSprite.scroll('down', 1);
+    tileSprite.scroll('right', 1);
     
     this.game.renderManager.clear();
     this.game.renderManager.drawImage(
