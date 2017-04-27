@@ -12,7 +12,7 @@ controllerState.create = function () {
     controller.add('G', 'keyboard', 'g');
     controller.add('H', 'keyboard', 'h');
     controller.add('F', 'keyboard', 'f');
-    this.game.stateManager.switch('spriteState');
+    this.game.stateManager.switch('tileSpriteState');
 }
 
 controllerState.update = function () {}

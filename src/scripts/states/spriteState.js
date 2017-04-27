@@ -8,7 +8,7 @@ spriteState.create = function () {
     player.addAnimation('right', [25, 26, 25, 24], 10);
     player.addAnimation('down', [1, 2, 1, 0], 10);
     player.addAnimation('left', [13, 14, 13, 12], 10);
-    player.scale(1.5, 1.5);
+    player.scale(1.1, 1.1);
     player.shadow(3, 3, 3, 'rgba(0, 0, 0, 0.5)');
     player.opacity(1);
     player.setAngle(10);
@@ -19,7 +19,7 @@ spriteState.create = function () {
     player2.addAnimation('right', [25, 26, 25, 24], 10);
     player2.addAnimation('down', [1, 2, 1, 0], 10);
     player2.addAnimation('left', [13, 14, 13, 12], 10);
-    player2.scale(1.5, 1.5);
+    player2.scale(1.1, 1.1);
     player2.shadow(3, 3, 3, 'rgba(0, 0, 0, 0.5)');
     player2.opacity(1);
     player2.setAngle(10);

@@ -1,4 +1,4 @@
-var RenderManager = function(game, camera) {
+var RenderManager = function (game, camera) {
     
     "use strict";
     var self = this;
@@ -7,26 +7,11 @@ var RenderManager = function(game, camera) {
     self.canvas = game.canvas;
     self.ctx = self.canvas.getContext("2d");
     
-    self.clear = function() {
+    self.clear = function () {
         self.ctx.clearRect(0, 0, self.game.width, self.game.height);
     }
 
-    self.toRadians = function (degrees) {
-        return degrees * 0.0174532925199432957;
-    }
-
-    self.toDegrees = function (radians) {
-        return radians * 57.295779513082320876;
-    }
-
-    self.fullScreen = function() {
-        self.canvas.width  = self.game.width;
-        self.canvas.height = self.game.height;
-    };
-
-    self.fullScreen();
-
-    self.drawImage = function(imageObj, sx, sy, sw, sh, dX, dY, dw, dh) {
+    self.drawImage = function (imageObj, sx, sy, sw, sh, dX, dY, dw, dh) {
         if (sw != null && sh != null && dX != null && dY != null && dw != null && dh != null) {
             self.ctx.drawImage(imageObj, sx, sy, sw, sh, dX, dY, dw, dh);
         } else if (sw != null && sh != null) {
@@ -51,20 +36,20 @@ var RenderManager = function(game, camera) {
         self.ctx.stroke();
     }
 
-    self.drawPattern = function(image, x1, y1, x2, y2) {
+    self.drawPattern = function (image, x1, y1, x2, y2) {
         var pattern = self.ctx.createPattern(image, 'repeat');
         self.ctx.fillStyle = pattern;
         self.ctx.fillRect(x1, y1, x2, y2);
     }
 
-    self.drawCircle = function(centerX, centerY, radius) {
+    self.drawCircle = function (centerX, centerY, radius) {
         self.ctx.beginPath();
         self.ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
         self.ctx.fill();
         self.ctx.stroke();
     }
 
-    self.draw = function(entities) {
+    self.draw = function (entities) {
         self.clear();
         entities.forEach(function (e) {
             if (e.type === 'sprite') {
@@ -100,6 +85,21 @@ var RenderManager = function(game, camera) {
                 self.ctx.restore();
             }
         });
+    }
+
+    self.fullScreen = function () {
+        self.canvas.width  = self.game.width;
+        self.canvas.height = self.game.height;
+    };
+
+    self.fullScreen();   
+
+    self.toRadians = function (degrees) {
+        return degrees * 0.0174532925199432957;
+    }
+
+    self.toDegrees = function (radians) {
+        return radians * 57.295779513082320876;
     }
 
 }

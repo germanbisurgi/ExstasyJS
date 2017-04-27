@@ -11,5 +11,6 @@ var Extasy = {
     inputManager: InputManager,
     spriteSheet: SpriteSheet,
     sprite: Sprite,
+    tileSprite: TileSprite,
     controller: Controller
 }

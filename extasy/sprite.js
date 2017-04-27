@@ -101,7 +101,7 @@ var Sprite = function (game, spriteSheet) {
 
     self.shadow = function (x, y, blur, color) {
         self.shadow = {x: x, y: y, blur: blur, color: color};
-    }
+    }  
 
     self.scroll = function (direction, velocity) {
         if (direction ==='left') {

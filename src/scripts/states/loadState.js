@@ -2,6 +2,7 @@ var loadState = new Extasy.state('loadState');
 
 loadState.preload = function () {
     this.loadImage('bubbles', 'src/assets/images/bubbles.jpg');
+    this.loadImage('tileBackground', 'src/assets/images/tileBackground.png');
     this.loadImage('colorito', 'src/assets/images/colorito.jpg');
     this.loadImage('fantasy', 'src/assets/images/fantasy.jpg');
     this.loadImage('leaf', 'src/assets/images/leaf.jpg');

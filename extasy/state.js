@@ -27,14 +27,23 @@ var State = function (name) {
 
     // ---------------------------------------------------------------- entities
 
-    self.listEntities = function (x, y, spriteSheetName) {
-        return self.game.entityManager.listEntities();
+    self.addTileSprite = function (x, y, dw, dh, imageName) {
+        var image = self.getAsset(imageName);
+        if (image) {
+            var tileSprite = new Extasy.tileSprite(self.game, x, y, dw, dh, image);
+            self.game.entityManager.addEntity(tileSprite);
+            return tileSprite;
+        } else {
+            console.log('EXCEPTION: this image is not present ->', imageName);
+            console.log('the game will be stoped');
+            self.game.stop();
+        }
     }
 
     self.addSprite = function (x, y, spriteSheetName) {
         var spriteSheet = self.getAsset(spriteSheetName);
         if (spriteSheet) {
-            var sprite = new Extasy.sprite(self.game, spriteSheet)
+            var sprite = new Extasy.sprite(self.game, spriteSheet);
             sprite.dx = x;
             sprite.dy = y;
             self.game.entityManager.addEntity(sprite);
@@ -44,6 +53,10 @@ var State = function (name) {
             console.log('the game will be stoped');
             self.game.stop();
         }
+    }
+
+    self.listEntities = function (x, y, spriteSheetName) {
+        return self.game.entityManager.listEntities();
     }
 
     // ------------------------------------------------------------------ inputs
