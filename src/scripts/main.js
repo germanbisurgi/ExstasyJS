@@ -1,4 +1,4 @@
-var mygame = new Extasy.game(600, 400, 'my game', '#canvas');
+var mygame = new Extasy.game(400, 300, 'my game', '#canvas');
 
 mygame.stateManager.add(loadState);
 mygame.stateManager.add(controllerState);

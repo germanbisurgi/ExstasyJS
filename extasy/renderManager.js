@@ -11,6 +11,21 @@ var RenderManager = function (game, camera) {
         self.ctx.clearRect(0, 0, self.game.width, self.game.height);
     }
 
+    self.draw = function (entities) {
+        self.clear();
+        entities.forEach(function (e) {
+            if (e.type === 'sprite') {
+
+                self.drawSprite(e);
+            }
+
+            if (e.type === 'tileSprite') {
+                self.tileSprite(e);
+            }
+
+        });
+    }
+
     self.drawImage = function (imageObj, sx, sy, sw, sh, dX, dY, dw, dh) {
         if (sw != null && sh != null && dX != null && dY != null && dw != null && dh != null) {
             self.ctx.drawImage(imageObj, sx, sy, sw, sh, dX, dY, dw, dh);
@@ -49,42 +64,50 @@ var RenderManager = function (game, camera) {
         self.ctx.stroke();
     }
 
-    self.draw = function (entities) {
-        self.clear();
-        entities.forEach(function (e) {
-            if (e.type === 'sprite') {
+    self.drawSprite = function (e) {
+        self.drawRectangle(e.dx, e.dy, e.dw, e.dh);
 
-                self.drawRectangle(e.dx, e.dy, e.dw, e.dh);
+        // save the state of the ctx.
+        self.ctx.save();
 
-                // save the state of the ctx.
-                self.ctx.save();
+        // move to the middle of where we want to draw our entity.
+        self.ctx.translate(e.dx + (e.dw / 2), e.dy + (e.dh / 2));
 
-                // move to the middle of where we want to draw our entity.
-                self.ctx.translate(e.dx + (e.dw / 2), e.dy + (e.dh / 2));
+        // rotate the canvas.
+        self.ctx.rotate(self.toRadians(e.angle));
 
-                // rotate the canvas.
-                self.ctx.rotate(self.toRadians(e.angle));
+        // opacity
+        self.ctx.globalAlpha = e.opacity;
 
-                // opacity
-                self.ctx.globalAlpha = e.opacity;
+        // shadows.
+        self.ctx.shadowOffsetX = e.shadow.x;
+        self.ctx.shadowOffsetY = e.shadow.y;
+        self.ctx.shadowBlur = e.shadow.blur;
+        self.ctx.shadowColor = e.shadow.color;
 
-                // shadows.
-                self.ctx.shadowOffsetX = e.shadow.x;
-                self.ctx.shadowOffsetY = e.shadow.y;
-                self.ctx.shadowBlur = e.shadow.blur;
-                self.ctx.shadowColor = e.shadow.color;
+        // draw.
+        self.drawImage(
+            e.image,
+            e.sx, e.sy, e.sw, e.sh,
+            e.dw * -0.5, e.dh * -0.5, e.dw, e.dh
+        );
 
-                // draw.
-                self.drawImage(
-                    e.image,
-                    e.sx, e.sy, e.sw, e.sh,
-                    e.dw * -0.5, e.dh * -0.5, e.dw, e.dh
-                );
+        // restore the state of the ctx.
+        self.ctx.restore();
+    }
 
-                // restore the state of the ctx.
-                self.ctx.restore();
-            }
-        });
+    self.tileSprite = function(e) {    
+        this.game.renderManager.drawImage(
+            e.image,
+            e.sx,
+            e.sy,
+            e.sw,
+            e.sh,
+            e.dx,
+            e.dy,
+            e.dw,
+            e.dh
+        );
     }
 
     self.fullScreen = function () {

@@ -3,7 +3,8 @@ var TileSprite = function (game, dx, dy, dw, dh, image) {
     "use strict";
     var self = this;
 
-    // off canvas.
+    // to achiev a scroller background we pre-render in a off screen canvas,
+    // a new image and then it paint it content to the real canvas.
     var tmpCanvas = document.createElement('canvas');
     var tmpContext = tmpCanvas.getContext('2d');
     tmpCanvas.width = image.width * 2;
