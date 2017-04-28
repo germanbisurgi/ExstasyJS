@@ -19,6 +19,13 @@ var RenderManager = function (game, camera) {
         });
     }
 
+    self.drawCircle = function (centerX, centerY, radius) {
+        self.ctx.beginPath();
+        self.ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+        self.ctx.fill();
+        self.ctx.stroke();
+    }
+
     self.drawImage = function (imageObj, sx, sy, sw, sh, dX, dY, dw, dh) {
         if (sw != null && sh != null && dX != null && dY != null && dw != null && dh != null) {
             self.ctx.drawImage(imageObj, sx, sy, sw, sh, dX, dY, dw, dh);
@@ -29,11 +36,10 @@ var RenderManager = function (game, camera) {
         }
     }
 
-    self.drawText = function(text, x, y) {    
-        self.ctx.font = '16px Helvetica';
-        self.ctx.fillStyle = "black";
-        self.ctx.fillText(text, x, y);
-        self.ctx.restore();
+    self.drawPattern = function (image, x1, y1, x2, y2) {
+        var pattern = self.ctx.createPattern(image, 'repeat');
+        self.ctx.fillStyle = pattern;
+        self.ctx.fillRect(x1, y1, x2, y2);
     }
 
     self.drawRectangle = function(x1, y1, x2, y2) {
@@ -44,21 +50,8 @@ var RenderManager = function (game, camera) {
         self.ctx.stroke();
     }
 
-    self.drawPattern = function (image, x1, y1, x2, y2) {
-        var pattern = self.ctx.createPattern(image, 'repeat');
-        self.ctx.fillStyle = pattern;
-        self.ctx.fillRect(x1, y1, x2, y2);
-    }
-
-    self.drawCircle = function (centerX, centerY, radius) {
-        self.ctx.beginPath();
-        self.ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-        self.ctx.fill();
-        self.ctx.stroke();
-    }
-
     self.drawSprite = function (e) {
-        self.drawRectangle(e.dx, e.dy, e.dw, e.dh);
+        //self.drawRectangle(e.dx, e.dy, e.dw, e.dh);
 
         // save the state of the ctx.
         self.ctx.save();
@@ -78,7 +71,13 @@ var RenderManager = function (game, camera) {
         self.ctx.shadowBlur = e.shadow.blur;
         self.ctx.shadowColor = e.shadow.color;
 
-        // draw.
+        self.drawText = function(text, x, y) {
+        self.ctx.font = '16px Helvetica';
+        self.ctx.fillStyle = "black";
+        self.ctx.fillText(text, x, y);
+        self.ctx.restore();
+    }
+
         self.drawImage(
             e.image,
             e.sx, e.sy, e.sw, e.sh,
@@ -108,7 +107,7 @@ var RenderManager = function (game, camera) {
         self.canvas.height = self.game.height;
     };
 
-    self.fullScreen();   
+    self.fullScreen();
 
     self.toRadians = function (degrees) {
         return degrees * 0.0174532925199432957;
