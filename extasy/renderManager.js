@@ -15,7 +15,7 @@ var RenderManager = function (game, camera) {
         self.clear();
         entities.forEach(function (e) {
             if (e.type === 'sprite') {self.drawSprite(e);}
-            if (e.type === 'tileSprite') {self.tileSprite(e);}
+            if (e.type === 'tileSprite') {self.drawTileSprite(e);}
         });
     }
 
@@ -89,8 +89,8 @@ var RenderManager = function (game, camera) {
         self.ctx.restore();
     }
 
-    self.tileSprite = function(e) {    
-        this.game.renderManager.drawImage(
+    self.drawTileSprite = function(e) {    
+        self.drawImage(
             e.image,
             e.sx,
             e.sy,

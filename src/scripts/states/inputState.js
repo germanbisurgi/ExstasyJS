@@ -1,24 +1,21 @@
 var inputState = new Extasy.state('inputState');
-var controller;
+var tileSprite;
 
 inputState.preload = function () {}
 
 inputState.create = function () {
-    controller = this.getController('standard');
-    console.log(controller);
+    tileSprite = this.addTileSprite(0, 0, 400, 300, 'tileBackground');
 }
 
 inputState.update = function () {
-    var key = '';
 
-    if (controller.UP.isPressed) {key += 'UP ';}
-    if (controller.RIGHT.isPressed) {key += 'RIGHT ';}
-    if (controller.DOWN.isPressed) {key += 'DOWN ';}
-    if (controller.LEFT.isPressed) {key += 'LEFT ';}
-    if (controller.G.isPressed) {key += 'G ';}
-    if (controller.H.isPressed) {key += 'H ';}
-    if (controller.F.isPressed) {key += 'F ';}
+    controller = this.getController('standard');
+
+    if (controller.UP.isPressed) {tileSprite.scroll('up', 5)}
+    if (controller.RIGHT.isPressed) {tileSprite.scroll('right', 5)}
+    if (controller.DOWN.isPressed) {tileSprite.scroll('down', 5)}
+    if (controller.LEFT.isPressed) {tileSprite.scroll('left', 5)}
 
     this.game.renderManager.clear();
-    this.game.renderManager.drawText('pressing: ' + key, 50, 50);
+    this.game.renderManager.drawTileSprite(tileSprite);
 }
