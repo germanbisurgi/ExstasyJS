@@ -54,7 +54,7 @@ var Game = function (width, height, name, canvas) {
 
                     // self.physicsManager.update();
                     // self.physicsManager.draw();
-                    self.renderManager.draw(self.entities);
+                    //self.renderManager.draw(self.entities);
 
                     self.frame++;
 

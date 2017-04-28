@@ -14,15 +14,8 @@ var RenderManager = function (game, camera) {
     self.draw = function (entities) {
         self.clear();
         entities.forEach(function (e) {
-            if (e.type === 'sprite') {
-
-                self.drawSprite(e);
-            }
-
-            if (e.type === 'tileSprite') {
-                self.tileSprite(e);
-            }
-
+            if (e.type === 'sprite') {self.drawSprite(e);}
+            if (e.type === 'tileSprite') {self.tileSprite(e);}
         });
     }
 
@@ -37,8 +30,8 @@ var RenderManager = function (game, camera) {
     }
 
     self.drawText = function(text, x, y) {    
-        self.ctx.font = '15px Arial';
-        self.ctx.fillStyle = "white";
+        self.ctx.font = '16px Helvetica';
+        self.ctx.fillStyle = "black";
         self.ctx.fillText(text, x, y);
         self.ctx.restore();
     }
