@@ -69,6 +69,10 @@ var Game = function (width, height, name, canvas) {
         self.isPaused = true;
     }
 
+    self.toPPS = function(velocity) {
+        return velocity * self.delta / 1000
+    }
+
     self.continue = function() {
         self.isPaused = false;
     }

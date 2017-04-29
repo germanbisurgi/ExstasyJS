@@ -9,10 +9,10 @@ var TileSprite = function (game, dx, dy, dw, dh, image) {
     var tmpContext = tmpCanvas.getContext('2d');
     tmpCanvas.width = image.width * 2;
     tmpCanvas.height = image.height * 2;
-    tmpContext.drawImage(image, 0, 0, image.width / 2, image.height / 2);
-    tmpContext.drawImage(image, image.width / 2, 0, image.width / 2, image.height / 2);
-    tmpContext.drawImage(image, 0, image.height / 2, image.width / 2, image.height / 2);
-    tmpContext.drawImage(image, image.width / 2, image.height / 2, image.width / 2, image.height / 2);
+    tmpContext.drawImage(image, 0, 0, image.width * 0.5, image.height * 0.5);
+    tmpContext.drawImage(image, image.width * 0.5, 0, image.width * 0.5, image.height * 0.5);
+    tmpContext.drawImage(image, 0, image.height * 0.5, image.width * 0.5, image.height * 0.5);
+    tmpContext.drawImage(image, image.width * 0.5, image.height * 0.5, image.width * 0.5, image.height * 0.5);
 
     // core components.
     self.id = (Math.random() * 100000000 | 0).toString(16);
@@ -41,25 +41,25 @@ var TileSprite = function (game, dx, dy, dw, dh, image) {
 
     self.scroll = function (direction, velocity) {
         if (direction ==='left') {
-            self.sx += velocity;
+            self.sx += game.toPPS(velocity);
             if (self.sx + self.sw >= self.sw * 2) {
                 self.sx = 0;
             }
         }
         if (direction ==='right') {
-            self.sx -= velocity;
+            self.sx -= game.toPPS(velocity);;
             if (self.sx <= 0) {
                 self.sx = self.sw;
             }
         }
         if (direction ==='up') {
-            self.sy += velocity;
+            self.sy += game.toPPS(velocity);;
             if (self.sy + self.sh >= self.sh * 2) {
                 self.sy = 0;
             }
         }
         if (direction ==='down') {
-            self.sy -= velocity;
+            self.sy -= game.toPPS(velocity);;
             if (self.sy <= 0) {
                 self.sy = self.sh;
             }

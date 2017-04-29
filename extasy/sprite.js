@@ -80,6 +80,10 @@ var Sprite = function (game, spriteSheet) {
     self.opacity = function (opacity) {
         self.opacity = opacity;
     }
+    // fps -> each
+    // 60  -> 1
+    // 30  -> 2
+    // 15  -> 3
 
     self.play = function (animationName) {
         var animation = self.getAnimation(animationName);
@@ -87,7 +91,7 @@ var Sprite = function (game, spriteSheet) {
             var ssw = self.image.width;
             var columns = self.image.width / self.sw;
             var rows = self.image.height / self.sh;
-            if (game.frame % animation.velocity === 0) {
+            if (game.frame % Math.floor(animation.velocity / (60 / game.fps)) === 0) {
                 self.counter = (self.counter + 1) % animation.sequence.length;
             }
             self.sy = Math.floor((animation.sequence[self.counter] + 1) / columns) * self.sh;

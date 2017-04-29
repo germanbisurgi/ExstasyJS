@@ -1,11 +1,14 @@
 var inputState = new Extasy.state('inputState');
-var tileSprite;
+var clouds;
+var mountains;
+
 var player;
 
 inputState.preload = function () {}
 
 inputState.create = function () {
-    tileSprite = this.addTileSprite(0, 0, 400, 300, 'tileBackground');
+    clouds = this.addTileSprite(0, 0, 400, 300, 'space');
+    mountains = this.addTileSprite(0, 100, 400, 200, 'mountains');
 
     player = this.addSprite(0, 0, 'player');
     player.addAnimation('up', [37, 38, 37, 36], 10);
@@ -20,19 +23,23 @@ inputState.update = function () {
 
     if (controller.UP.isPressed) {
         player.play('up');
-        tileSprite.scroll('down', 1)
+        clouds.scroll('down', 5)
+        mountains.scroll('down', 30);
     }
     if (controller.RIGHT.isPressed) {
         player.play('right');
-        tileSprite.scroll('left', 1)
+        clouds.scroll('left', 5)
+        mountains.scroll('left', 30);
     }
     if (controller.DOWN.isPressed) {
         player.play('down');
-        tileSprite.scroll('up', 1)
+        clouds.scroll('up', 5)
+        mountains.scroll('up', 30);
     }
     if (controller.LEFT.isPressed) {
         player.play('left');
-        tileSprite.scroll('right', this.pps(1));
+        clouds.scroll('right', 5);
+        mountains.scroll('right', 30);
     }
 
     this.game.renderManager.clear();

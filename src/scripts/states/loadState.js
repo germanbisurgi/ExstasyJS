@@ -18,6 +18,7 @@ loadState.preload = function () {
     this.loadImage('stellar', 'src/assets/images/stellar.jpg');
     this.loadImage('stone', 'src/assets/images/stone.png');
     this.loadImage('yellow', 'src/assets/images/yellow.jpg');
+    this.loadImage('mountains', 'src/assets/images/mountains.png');
     this.loadSpriteSheet('player', 'src/assets/images/player.png', 32, 32);
 }
 
