@@ -91,7 +91,7 @@ var Sprite = function (game, spriteSheet) {
             var ssw = self.image.width;
             var columns = self.image.width / self.sw;
             var rows = self.image.height / self.sh;
-            if (game.frame % Math.floor(animation.velocity / (60 / game.fps)) === 0) {
+            if (game.frame % Math.ceil(animation.velocity / (60 / game.fps) / game.motion) === 0) {
                 self.counter = (self.counter + 1) % animation.sequence.length;
             }
             self.sy = Math.floor((animation.sequence[self.counter] + 1) / columns) * self.sh;

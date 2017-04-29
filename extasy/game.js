@@ -13,6 +13,7 @@ var Game = function (width, height, name, canvas) {
     self.state = null;
     self.entities = [];
     self.controllers = [];
+    self.motion = 1;
 
     self.inputManager = new Extasy.inputManager(self);
     self.stateManager = new Extasy.stateManager(self);
@@ -70,7 +71,7 @@ var Game = function (width, height, name, canvas) {
     }
 
     self.toPPS = function(velocity) {
-        return velocity * self.delta / 1000
+        return velocity * self.delta / 1000 * self.motion;
     }
 
     self.continue = function() {
