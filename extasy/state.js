@@ -11,6 +11,20 @@ var State = function (name) {
     self.create = function () {}
     self.update = function () {}
 
+    // ----------------------------------------------------------------- helpers
+
+    self.pps = function (px) {
+        return px * self.game.delta / 1000;
+    }
+
+    self.loadImage = function (imageName, path) {
+        self.game.assetManager.loadImage(imageName, path);
+    }
+
+    self.loadSpriteSheet = function (spriteSheetName, path, spriteWidth, spriteHeight) {
+        self.game.assetManager.loadSpriteSheet(spriteSheetName, path, spriteWidth, spriteHeight);
+    }
+
     // ------------------------------------------------------------------ assets
 
     self.getAsset = function (assetName) {

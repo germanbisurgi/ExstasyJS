@@ -14,10 +14,14 @@ var TileSprite = function (game, dx, dy, dw, dh, image) {
     tmpContext.drawImage(image, 0, image.height / 2, image.width / 2, image.height / 2);
     tmpContext.drawImage(image, image.width / 2, image.height / 2, image.width / 2, image.height / 2);
 
+    // core components.
     self.id = (Math.random() * 100000000 | 0).toString(16);
+    self.data;
+    self.events;
+    self.name = null;
     self.renderable = true;
     self.type = 'tileSprite';
-    self.name = null;
+    // tileSprite components.
     self.image = tmpCanvas;
     self.sx = 0;
     self.sy = 0;

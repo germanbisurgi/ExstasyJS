@@ -59,7 +59,7 @@ var RenderManager = function (game, camera) {
         self.ctx.save();
 
         // move to the middle of where we want to draw our entity.
-        self.ctx.translate(e.dx + (e.dw / 2), e.dy + (e.dh / 2));
+        self.ctx.translate(e.dx + (e.dw * 0.5), e.dy + (e.dh * 0.5));
 
         // rotate the canvas.
         self.ctx.rotate(self.toRadians(e.angle));

@@ -15,7 +15,7 @@ inputState.create = function () {
 }
 
 inputState.update = function () {
-    
+
     controller = this.getController('standard');
 
     if (controller.UP.isPressed) {
@@ -32,7 +32,7 @@ inputState.update = function () {
     }
     if (controller.LEFT.isPressed) {
         player.play('left');
-        tileSprite.scroll('right', 1)
+        tileSprite.scroll('right', this.pps(1));
     }
 
     this.game.renderManager.clear();

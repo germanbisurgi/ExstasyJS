@@ -2,10 +2,14 @@ var Sprite = function (game, spriteSheet) {
 
     "use strict";
     var self = this;
+    // core components.
     self.id = (Math.random() * 100000000 | 0).toString(16);
+    self.data;
+    self.events;
+    self.name = null;
     self.renderable = true;
     self.type = 'sprite';
-    self.name = null;
+    // sprite components.
     self.image = spriteSheet.image;
     self.sx = 0;
     self.sy = 0;
@@ -15,13 +19,14 @@ var Sprite = function (game, spriteSheet) {
     self.dy;
     self.dw = spriteSheet.sw;
     self.dh = spriteSheet.sh;
+    self.ax = 0.5;
+    self.ay =  0.5;
     self.angle = 0;
-    self.spriteOffsetX = 0;
-    self.spriteOffsetY = 0;
     self.opacity = 1.0;
     self.shadow = {};
     self.counter = 0;
     self.animations = [];
+
 
     self.addAnimation = function (name, sequence, velocity) {
         if (!self.getAnimation(name)) {
