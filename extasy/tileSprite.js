@@ -15,6 +15,7 @@ var TileSprite = function (game, dx, dy, dw, dh, image) {
     tmpContext.drawImage(image, image.width / 2, image.height / 2, image.width / 2, image.height / 2);
 
     self.id = (Math.random() * 100000000 | 0).toString(16);
+    self.renderable = true;
     self.type = 'tileSprite';
     self.name = null;
     self.image = tmpCanvas;
@@ -26,6 +27,13 @@ var TileSprite = function (game, dx, dy, dw, dh, image) {
     self.dy = dy;
     self.dw = dw;
     self.dh = dh;
+
+    self.destroy = function () {
+        var index = game.entities.indexOf(self);
+        if (index > -1) {
+            game.entities.splice(index, 1);
+        }
+    }
 
     self.scroll = function (direction, velocity) {
         if (direction ==='left') {

@@ -14,8 +14,10 @@ var RenderManager = function (game, camera) {
     self.draw = function (entities) {
         self.clear();
         entities.forEach(function (e) {
-            if (e.type === 'sprite') {self.drawSprite(e);}
-            if (e.type === 'tileSprite') {self.drawTileSprite(e);}
+            if (e.renderable) {
+                if (e.type === 'sprite') {self.drawSprite(e);}
+                if (e.type === 'tileSprite') {self.drawTileSprite(e);}
+            }
         });
     }
 

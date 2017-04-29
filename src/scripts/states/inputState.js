@@ -7,7 +7,7 @@ inputState.preload = function () {}
 inputState.create = function () {
     tileSprite = this.addTileSprite(0, 0, 400, 300, 'tileBackground');
 
-    player = this.addSprite(180, 150, 'player');
+    player = this.addSprite(0, 0, 'player');
     player.addAnimation('up', [37, 38, 37, 36], 10);
     player.addAnimation('right', [25, 26, 25, 24], 10);
     player.addAnimation('down', [1, 2, 1, 0], 10);

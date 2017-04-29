@@ -3,6 +3,7 @@ var Sprite = function (game, spriteSheet) {
     "use strict";
     var self = this;
     self.id = (Math.random() * 100000000 | 0).toString(16);
+    self.renderable = true;
     self.type = 'sprite';
     self.name = null;
     self.image = spriteSheet.image;
@@ -34,6 +35,13 @@ var Sprite = function (game, spriteSheet) {
             console.log('EXCEPTION: This animation is already in the list ->', name);
             console.log('the game will be stoped');
             game.stop();
+        }
+    }
+
+    self.destroy = function () {
+        var index = game.entities.indexOf(self);
+        if (index > -1) {
+            game.entities.splice(index, 1);
         }
     }
 
