@@ -7,7 +7,7 @@ var Game = function (width, height, name, canvas) {
     self.name = name;
     self.canvas = document.querySelector(canvas);
     self.frame = 1;
-    self.fps = 60;
+    self.fps = 100;
     self.isPaused = false;
     self.assets = [];
     self.state = null;
@@ -22,6 +22,12 @@ var Game = function (width, height, name, canvas) {
     self.cameraManager = new Extasy.cameraManager(self);
     self.renderManager = new Extasy.renderManager(self);
     self.physicsManager = new Extasy.physicsManager(self);
+
+    self.interval = function (rate, fn) {
+        if (self.frame % Math.ceil((60 / rate) / (60 / self.fps) / self.motion) === 0) {
+            fn();
+        }
+    }
 
     self.run = function() {
         var lastTime = 0;

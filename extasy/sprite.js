@@ -80,10 +80,6 @@ var Sprite = function (game, spriteSheet) {
     self.opacity = function (opacity) {
         self.opacity = opacity;
     }
-    // fps -> each
-    // 60  -> 1
-    // 30  -> 2
-    // 15  -> 3
 
     self.play = function (animationName) {
         var animation = self.getAnimation(animationName);

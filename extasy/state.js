@@ -109,4 +109,10 @@ var State = function (name) {
         self.game.cameraManager.zoomReset();
     }
 
+    // ---------------------------------------------------------- cagame methods
+
+    self.setMotion = function (rate) {
+        self.game.motion = rate;
+    }
+
 }
