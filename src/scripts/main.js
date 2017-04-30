@@ -5,6 +5,7 @@ mygame.stateManager.add(controllerState);
 mygame.stateManager.add(spriteState);
 mygame.stateManager.add(tileSpriteState);
 mygame.stateManager.add(inputState);
+mygame.stateManager.add(physicsState);
 
 mygame.stateManager.switch('loadState');
 

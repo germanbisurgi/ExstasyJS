@@ -12,7 +12,7 @@ controllerState.create = function () {
     controller.add('G', 'keyboard', 'g');
     controller.add('H', 'keyboard', 'h');
     controller.add('F', 'keyboard', 'f');
-    this.game.stateManager.switch('inputState');
+    this.game.stateManager.switch('physicsState');
 }
 
 controllerState.update = function () {}
