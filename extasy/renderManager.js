@@ -58,7 +58,7 @@ var RenderManager = function (game, camera) {
         // save the state of the ctx.
         self.ctx.save();
 
-        // move to the middle of where we want to draw our entity.
+        // move to the anchor point (origin) of the entity entity.
         self.ctx.translate(e.dx + (e.dw * e.ax), e.dy + (e.dh * e.ay));
 
         // rotate the canvas.

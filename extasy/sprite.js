@@ -100,16 +100,17 @@ var Sprite = function (game, spriteSheet) {
     }
 
     self.rotate = function (degrees) {
-        self.angle += degrees;
+        self.angle += degrees / game.fps * game.motion;
+        self.angle %= 360;
     }
 
     self.setAngle = function (degrees) {
-        self.angle = degrees;
+        self.angle = degrees % 360;
     }
 
     self.anchorPoint = function (x, y) {
         self.ax = x;
-        self.ay = y
+        self.ay = y;
     } 
 
     self.scale = function (x, y) {
@@ -122,8 +123,8 @@ var Sprite = function (game, spriteSheet) {
     }
 
     self.translate = function (x, y) {
-        self.dx += x;
-        self.dy += y;
+        self.dx += game.toPPS(x);
+        self.dy += game.toPPS(y);
     }
 
 }

@@ -47,7 +47,7 @@ var TileSprite = function (game, dx, dy, dw, dh, image) {
             }
         }
         if (direction ==='right') {
-            self.sx -= game.toPPS(velocity);;
+            self.sx -= game.toPPS(velocity);
             if (self.sx <= 0) {
                 self.sx = self.sw;
             }
