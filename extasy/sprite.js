@@ -13,8 +13,8 @@ var Sprite = function (game, spriteSheet) {
     self.image = spriteSheet.image;
     self.sx = 0;
     self.sy = 0;
-    self.sw = spriteSheet.sw*6;
-    self.sh = spriteSheet.sh*6;
+    self.sw = spriteSheet.sw;
+    self.sh = spriteSheet.sh;
     self.dx;
     self.dy;
     self.dw = spriteSheet.sw;

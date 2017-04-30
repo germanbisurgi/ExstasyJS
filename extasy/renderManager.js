@@ -53,7 +53,7 @@ var RenderManager = function (game, camera) {
     }
 
     self.drawSprite = function (e) {
-        self.drawRectangle(e.dx, e.dy, e.dw, e.dh);
+        // self.drawRectangle(e.dx, e.dy, e.dw, e.dh);
 
         // save the state of the ctx.
         self.ctx.save();
