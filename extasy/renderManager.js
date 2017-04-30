@@ -53,13 +53,13 @@ var RenderManager = function (game, camera) {
     }
 
     self.drawSprite = function (e) {
-        //self.drawRectangle(e.dx, e.dy, e.dw, e.dh);
+        self.drawRectangle(e.dx, e.dy, e.dw, e.dh);
 
         // save the state of the ctx.
         self.ctx.save();
 
         // move to the middle of where we want to draw our entity.
-        self.ctx.translate(e.dx + (e.dw * 0.5), e.dy + (e.dh * 0.5));
+        self.ctx.translate(e.dx + (e.dw * e.ax), e.dy + (e.dh * e.ay));
 
         // rotate the canvas.
         self.ctx.rotate(self.toRadians(e.angle));
@@ -82,8 +82,14 @@ var RenderManager = function (game, camera) {
 
         self.drawImage(
             e.image,
-            e.sx, e.sy, e.sw, e.sh,
-            e.dw * -0.5, e.dh * -0.5, e.dw, e.dh
+            e.sx,
+            e.sy,
+            e.sw,
+            e.sh,
+            e.dw * -e.ax,
+            e.dh * -e.ay,
+            e.dw,
+            e.dh
         );
 
         // restore the state of the ctx.

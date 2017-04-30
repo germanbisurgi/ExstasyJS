@@ -3,21 +3,23 @@ var clouds;
 var mountains;
 
 var player;
-
 inputState.preload = function () {}
 
 inputState.create = function () {
     clouds = this.addTileSprite(0, 0, 400, 300, 'space');
     mountains = this.addTileSprite(0, 100, 400, 200, 'mountains');
 
-    player = this.addSprite(0, 0, 'player');
+    player = this.addSprite(32, 32, 'player');
     player.addAnimation('up', [37, 38, 37, 36], 10);
     player.addAnimation('right', [25, 26, 25, 24], 10);
     player.addAnimation('down', [1, 2, 1, 0], 10);
     player.addAnimation('left', [13, 14, 13, 12], 10);
+    player.anchorPoint(0.5, 0.5);
+
 }
 
 inputState.update = function () {
+    player.rotate(1);
 
     controller = this.getController('standard');
 

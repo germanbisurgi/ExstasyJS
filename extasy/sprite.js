@@ -13,8 +13,8 @@ var Sprite = function (game, spriteSheet) {
     self.image = spriteSheet.image;
     self.sx = 0;
     self.sy = 0;
-    self.sw = spriteSheet.sw;
-    self.sh = spriteSheet.sh;
+    self.sw = spriteSheet.sw*6;
+    self.sh = spriteSheet.sh*6;
     self.dx;
     self.dy;
     self.dw = spriteSheet.sw;
@@ -105,7 +105,12 @@ var Sprite = function (game, spriteSheet) {
 
     self.setAngle = function (degrees) {
         self.angle = degrees;
-    }    
+    }
+
+    self.anchorPoint = function (x, y) {
+        self.ax = x;
+        self.ay = y
+    } 
 
     self.scale = function (x, y) {
         self.dw *= x;
