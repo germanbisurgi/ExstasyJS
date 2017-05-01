@@ -6,6 +6,7 @@ var Game = function (width, height, name, canvas) {
     self.height = height;
     self.name = name;
     self.canvas = document.querySelector(canvas);
+    self.now;
     self.frame = 1;
     self.fps = 60;
     self.motion = 1;
@@ -66,6 +67,7 @@ var Game = function (width, height, name, canvas) {
                     self.frame++;
 
                     lastTime = Math.floor(now);
+                    self.now = Date.now();
                 }
             }
         }

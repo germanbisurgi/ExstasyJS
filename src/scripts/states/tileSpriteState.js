@@ -9,16 +9,15 @@ tileSpriteState.create = function () {
     ne = this.addTileSprite(200, 0, 200, 150, 'tileBackground');
     so = this.addTileSprite(0, 150, 200, 150, 'tileBackground');
     se = this.addTileSprite(200, 150, 200, 150, 'tileBackground');
-    console.log(this.game.entities);
 }
 
 tileSpriteState.update = function () {
-    no.scroll('left', 0.2);
-    no.scroll('up', 0.2);
-    ne.scroll('right', 0.2);
-    ne.scroll('up', 0.2);
-    so.scroll('left', 0.2);
-    so.scroll('down', 0.2);
-    se.scroll('right', 0.2);
-    se.scroll('down', 0.2);
+    no.scroll('left', 20);
+    no.scroll('up', 20);
+    ne.scroll('right', 20);
+    ne.scroll('up', 20);
+    so.scroll('left', 20);
+    so.scroll('down', 20);
+    se.scroll('right', 20);
+    se.scroll('down', 20);
 }

@@ -23,7 +23,16 @@ loadState.preload = function () {
 }
 
 loadState.create = function () {
-    this.game.stateManager.switch('controllerState');
+    // create a controller and define it inputs.
+    var controller = this.createController('standard');
+    controller.add('UP', 'keyboard', 'ArrowUp');
+    controller.add('DOWN', 'keyboard', 'ArrowDown');
+    controller.add('LEFT', 'keyboard', 'ArrowLeft');
+    controller.add('RIGHT', 'keyboard', 'ArrowRight');
+    controller.add('G', 'keyboard', 'g');
+    controller.add('H', 'keyboard', 'h');
+    controller.add('F', 'keyboard', 'f');
+    this.game.stateManager.switch('physicsState');
 }
 
 loadState.update = function () {}

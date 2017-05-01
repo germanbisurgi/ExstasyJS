@@ -15,9 +15,10 @@ var PhysicsManager = function(game) {
     "use strict";
     var self = this;
     self.game = game;
+    self.fps = 60;
     self.scale = 30;
     self.gx = 0;
-    self.gy = 9.8;
+    self.gy = 0.5;
     self.allowSleep = true;
     self.world = new b2World({'x': self.gx  * self.scale, 'y': self.gy * self.scale}, self.allowSleep);
     self.canvas = document.querySelector('#debug');
@@ -25,17 +26,23 @@ var PhysicsManager = function(game) {
     self.canvas.height = self.game.height;
     self.context = self.canvas.getContext("2d");
 
-    self.createBody = function() {
+    self.createBody = function(x, y, w, h, type) {
         // create and define a body.
         var bodyDef = new b2BodyDef();
-        bodyDef.type = b2Body.b2_staticBody;
-        bodyDef.position.x = 50 / self.scale;
-        bodyDef.position.y = 50 / self.scale;
+        if (type === 'static')    bodyDef.type = b2Body.b2_staticBody;
+        if (type === 'dynamic')   bodyDef.type = b2Body.b2_dynamicBody;
+        if (type === 'kinematic') bodyDef.type = b2Body.b2_kinematicBody;
+        bodyDef.position.x = x / self.scale;
+        bodyDef.position.y = y / self.scale;
+        bodyDef.fixedRotation = false;
+        bodyDef.angularVelocity = -600 / self.game.fps;
+        bodyDef.angle = self.toRadians(1);
 
         // create and define a shape.
         var fixDef = new b2FixtureDef();
         fixDef.shape = new b2PolygonShape();
-        fixDef.shape.SetAsBox(32 * 0.5 / self.scale, 32 * 0.5 / self.scale);
+        fixDef.shape.SetAsBox(w * 0.5 / self.scale, h * 0.5 / self.scale);
+        fixDef.restitution = 0.0;
 
         // createthe body and add it to the world.
         var body = self.world.CreateBody(bodyDef);
@@ -63,8 +70,16 @@ var PhysicsManager = function(game) {
 
     self.setupDebugDraw();
 
+    self.toRadians = function (degrees) {
+        return degrees * 0.0174532925199432957;
+    }
+
+    self.toDegrees = function (radians) {
+        return radians * 57.295779513082320876;
+    }
+
     self.update = function() {
-        self.world.Step(1/60, 4, 3);
+        self.world.Step(1/self.fps, 4, 3);
         self.world.ClearForces();
     }
 
