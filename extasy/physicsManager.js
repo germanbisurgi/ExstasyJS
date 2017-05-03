@@ -18,7 +18,7 @@ var PhysicsManager = function(game) {
     self.fps = 60;
     self.scale = 30;
     self.gx = 0;
-    self.gy = 0.5;
+    self.gy = 0;
     self.allowSleep = true;
     self.world = new b2World({'x': self.gx  * self.scale, 'y': self.gy * self.scale}, self.allowSleep);
     self.canvas = document.querySelector('#debug');
@@ -35,7 +35,7 @@ var PhysicsManager = function(game) {
         bodyDef.position.x = x / self.scale;
         bodyDef.position.y = y / self.scale;
         bodyDef.fixedRotation = false;
-        bodyDef.angularVelocity = -600 / self.game.fps;
+        bodyDef.angularVelocity = -360 / self.game.fps;
         bodyDef.angle = self.toRadians(1);
 
         // create and define a shape.

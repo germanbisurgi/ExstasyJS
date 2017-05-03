@@ -11,11 +11,13 @@ var State = function (name) {
     self.create = function () {}
     self.update = function () {}
 
-    // ----------------------------------------------------------------- helpers
+    // -------------------------------------------------------------------- game
 
     self.pps = function (px) {
         return px * self.game.delta / 1000;
     }
+
+    // ------------------------------------------------------------------ assets
 
     self.loadImage = function (imageName, path) {
         self.game.assetManager.loadImage(imageName, path);
@@ -23,6 +25,12 @@ var State = function (name) {
 
     self.loadSpriteSheet = function (spriteSheetName, path, spriteWidth, spriteHeight) {
         self.game.assetManager.loadSpriteSheet(spriteSheetName, path, spriteWidth, spriteHeight);
+    }
+
+    // ------------------------------------------------------------------ render
+
+     self.createPattern = function (image, repeat) {
+        return self.game.renderManager.createPattern(image, repeat);
     }
 
     // ------------------------------------------------------------------ assets
@@ -69,9 +77,20 @@ var State = function (name) {
         }
     }
 
+    self.addRectangle = function (x, y, w, h) {
+        var rect = new Extasy.rectangle(self.game);
+        rect.x = x;
+        rect.y = y;
+        rect.w = w;
+        rect.h = h;
+        self.game.entityManager.addEntity(rect);
+        return rect;
+    }
+
     self.listEntities = function (x, y, spriteSheetName) {
         return self.game.entityManager.listEntities();
     }
+
 
     // ------------------------------------------------------------------ inputs
 
@@ -109,7 +128,7 @@ var State = function (name) {
         self.game.cameraManager.zoomReset();
     }
 
-    // ---------------------------------------------------------- cagame methods
+    // --------------------------------------------------------..-- game methods
 
     self.setMotion = function (rate) {
         self.game.motion = rate;

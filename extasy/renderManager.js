@@ -11,12 +11,17 @@ var RenderManager = function (game, camera) {
         self.ctx.clearRect(0, 0, self.game.width, self.game.height);
     }
 
+    self.createPattern = function (image, repeat) {
+        return self.ctx.createPattern(image, repeat);
+    }
+
     self.draw = function (entities) {
         self.clear();
         entities.forEach(function (e) {
             if (e.renderable) {
                 if (e.type === 'sprite') {self.drawSprite(e);}
                 if (e.type === 'tileSprite') {self.drawTileSprite(e);}
+                if (e.type === 'rectangle') {self.drawRectangle(e);}
             }
         });
     }
@@ -38,18 +43,18 @@ var RenderManager = function (game, camera) {
         }
     }
 
-    self.drawPattern = function (image, x1, y1, x2, y2) {
-        var pattern = self.ctx.createPattern(image, 'repeat');
-        self.ctx.fillStyle = pattern;
-        self.ctx.fillRect(x1, y1, x2, y2);
-    }
-
-    self.drawRectangle = function(x1, y1, x2, y2) {
-        self.ctx.fillStyle = 'white';
+    self.drawRectangle = function(e) {
+        self.ctx.save();
+        self.ctx.translate(e.x + (e.w * e.ax), e.y + (e.h * e.ay));
+        self.ctx.rotate(self.toRadians(e.angle));
+        self.ctx.fillStyle = e.fillStyle;
+        self.ctx.strokeStyle = e.strokeStyle;
+        self.ctx.lineWidth = e.lineWidth;
         self.ctx.beginPath();
-        self.ctx.rect(x1, y1, x2, y2);
+        self.ctx.rect(e.x, e.y, e.w, e.h);
         self.ctx.fill();
         self.ctx.stroke();
+        self.ctx.restore();
     }
 
     self.drawSprite = function (e) {
@@ -73,13 +78,6 @@ var RenderManager = function (game, camera) {
         self.ctx.shadowBlur = e.shadow.blur;
         self.ctx.shadowColor = e.shadow.color;
 
-        self.drawText = function(text, x, y) {
-        self.ctx.font = '16px Helvetica';
-        self.ctx.fillStyle = "black";
-        self.ctx.fillText(text, x, y);
-        self.ctx.restore();
-    }
-
         self.drawImage(
             e.image,
             e.sx,
@@ -93,6 +91,13 @@ var RenderManager = function (game, camera) {
         );
 
         // restore the state of the ctx.
+        self.ctx.restore();
+    }
+
+    self.drawText = function(text, x, y) {
+        self.ctx.font = '16px Helvetica';
+        self.ctx.fillStyle = "black";
+        self.ctx.fillText(text, x, y);
         self.ctx.restore();
     }
 
