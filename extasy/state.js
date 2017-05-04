@@ -78,11 +78,7 @@ var State = function (name) {
     }
 
     self.addRectangle = function (x, y, w, h) {
-        var rect = new Extasy.rectangle(self.game);
-        rect.x = x;
-        rect.y = y;
-        rect.w = w;
-        rect.h = h;
+        var rect = new Extasy.rectangle(self.game, x, y, w, h);
         self.game.entityManager.addEntity(rect);
         return rect;
     }

@@ -8,7 +8,7 @@ var Game = function (width, height, name, canvas) {
     self.canvas = document.querySelector(canvas);
     self.now;
     self.frame = 1;
-    self.fps = 60;
+    self.fps = 70;
     self.motion = 1;
     self.isPaused = false;
     self.assets = [];
@@ -60,8 +60,8 @@ var Game = function (width, height, name, canvas) {
                         self.state.update();
                     }
 
-                    self.physicsManager.update();
-                    self.physicsManager.draw();
+                    //self.physicsManager.update();
+                    //self.physicsManager.draw();
                     self.renderManager.draw(self.entities);
 
                     self.frame++;

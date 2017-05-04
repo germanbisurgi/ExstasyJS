@@ -31,6 +31,11 @@ var TileSprite = function (game, dx, dy, dw, dh, image) {
     self.dy = dy;
     self.dw = dw;
     self.dh = dh;
+    self.ax = 0.5;
+    self.ay =  0.5;
+    self.angle = 0;
+    self.opacity = 1.0;
+    self.shadow = {};
 
     self.destroy = function () {
         var index = game.entities.indexOf(self);
@@ -64,6 +69,38 @@ var TileSprite = function (game, dx, dy, dw, dh, image) {
                 self.sy = self.sh;
             }
         }
+    }
+
+    self.opacity = function (opacity) {
+        self.opacity = opacity;
+    }
+
+    self.rotate = function (degrees) {
+        self.angle += degrees / game.fps * game.motion;
+        self.angle %= 360;
+    }
+
+    self.setAngle = function (degrees) {
+        self.angle = degrees % 360;
+    }
+
+    self.anchorPoint = function (x, y) {
+        self.ax = x;
+        self.ay = y;
+    } 
+
+    self.scale = function (x, y) {
+        self.sw *= x;
+        self.dh *= y;
+    }
+
+    self.shadow = function (x, y, blur, color) {
+        self.shadow = {x: x, y: y, blur: blur, color: color};
+    }
+
+    self.translate = function (x, y) {
+        self.dx += game.toPPS(x);
+        self.dy += game.toPPS(y);
     }
 
 }
