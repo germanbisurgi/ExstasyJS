@@ -6,8 +6,7 @@ tileSpriteState.create = function () {
 }
 
 tileSpriteState.update = function () {
-    tileSprite.scroll('left', 30);
-    tileSprite.scroll('up', 30);
-    tileSprite.rotate(-30);
-    tileSprite.translate(10, 10);
+    tileSprite.scroll('right', 60);
+    tileSprite.scroll('down', 30);
+    tileSprite.rotate(60);
 }

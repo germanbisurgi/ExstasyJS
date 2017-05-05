@@ -1,4 +1,4 @@
-var Rectangle = function (game, x, y, w, h) {
+var Circle = function (game, x, y, r) {
 
     "use strict";
     var self = this;
@@ -8,7 +8,7 @@ var Rectangle = function (game, x, y, w, h) {
     self.events;
     self.name = null;
     self.renderable = true;
-    self.type = 'rectangle';
+    self.type = 'circle';
     // shape components.
     self.fillStyle  = 'grey';
     self.strokeStyle = 'black';
@@ -16,12 +16,12 @@ var Rectangle = function (game, x, y, w, h) {
     self.image;
     self.sx = 0;
     self.sy = 0;
-    self.sw = w;
-    self.sh = h;
+    self.sw = r * 2;
+    self.sh = r * 2;
     self.dx = x;
     self.dy = y;
-    self.dw = w;
-    self.dh = h;
+    self.dw = r * 2;
+    self.dh = r * 2;
     self.ax = 0.5;
     self.ay =  0.5;
     self.angle = 0;
@@ -42,7 +42,7 @@ var Rectangle = function (game, x, y, w, h) {
         tmpContext.strokeStyle = self.strokeStyle;
         tmpContext.lineWidth = self.lineWidth;
         tmpContext.beginPath();
-        tmpContext.rect(self.sx, self.sy, self.sw, self.sh);
+        tmpContext.arc(r, r, r - self.lineWidth, 0, 2 * Math.PI, false);
         tmpContext.fill();
         if (self.lineWidth > 0) {tmpContext.stroke();} 
         self.image = tmpCanvas;

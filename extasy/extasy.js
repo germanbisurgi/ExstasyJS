@@ -12,6 +12,7 @@ var Extasy = {
     spriteSheet: SpriteSheet,
     sprite: Sprite,
     rectangle: Rectangle,
+    circle: Circle,
     tileSprite: TileSprite,
     controller: Controller
 }

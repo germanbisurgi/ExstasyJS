@@ -78,9 +78,17 @@ var State = function (name) {
     }
 
     self.addRectangle = function (x, y, w, h) {
-        var rect = new Extasy.rectangle(self.game, x, y, w, h);
-        self.game.entityManager.addEntity(rect);
-        return rect;
+        var rectangle = new Extasy.rectangle(self.game, x, y, w, h);
+        rectangle.prerender();
+        self.game.entityManager.addEntity(rectangle);
+        return rectangle;
+    }
+
+    self.addCircle = function (x, y, r) {
+        var circle = new Extasy.circle(self.game, x, y, r);
+        circle.prerender();
+        self.game.entityManager.addEntity(circle);
+        return circle;
     }
 
     self.listEntities = function (x, y, spriteSheetName) {
