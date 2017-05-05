@@ -8,17 +8,8 @@ primitivesState.create = function () {
 
     var pattern = this.createPattern(this.getAsset('stone'), 'repeat');
 
-    rectangle = this.addRectangle(0, 0, 50, 50);
+    rectangle = this.addRectangle(0, 0, 100, 100);
     rectangle.fill(pattern);
-
-    rectangle2 = this.addRectangle(50, 0, 50, 50);
-    rectangle2.fill(pattern);
-
-    rectangle3 = this.addRectangle(50, 50, 50, 50);
-    rectangle3.fill(pattern);
-
-    rectangle4 = this.addRectangle(0, 50, 50, 50);
-    rectangle4.fill(pattern);
 
     circle = this.addCircle(100, 100, 25);
     circle.fill(pattern);
@@ -32,11 +23,11 @@ primitivesState.create = function () {
 
 primitivesState.update = function () {
     //rectangle.translate(30,0);
-    //rectangle.rotate(60);
+    rectangle.rotate(60);
 
     //circle.translate(30,0);
-    //circle.rotate(60);
+    circle.rotate(60);
 
     //circle2.translate(30,0);
-    //circle2.rotate(-30);
+    circle2.rotate(-30);
 }
