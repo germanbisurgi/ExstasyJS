@@ -132,6 +132,38 @@ var State = function (name) {
         self.game.cameraManager.zoomReset();
     }
 
+    self.cameraRotate = function (degrees) {
+        self.game.cameraManager.rotate(degrees);
+    }
+
+    self.cameraSetAngle = function (degrees) {
+        self.game.cameraManager.setAngle(degrees);
+    }
+
+    /* self.lerp = function () {
+        self.game.cameraManager.zoomReset();
+    } */
+
+    /* self.flash = function () {
+        self.game.cameraManager.zoomReset();
+    } */
+
+    /* self.fade = function () {
+        self.game.cameraManager.zoomReset();
+    } */
+
+    /* self.bounds = function () {
+        self.game.cameraManager.zoomReset();
+    } */
+
+    /* self.shake = function () {
+        self.game.cameraManager.zoomReset();
+    } */
+
+    /* self.deadZone = function () {
+        self.game.cameraManager.zoomReset();
+    } */
+
     // --------------------------------------------------------..-- game methods
 
     self.setMotion = function (rate) {

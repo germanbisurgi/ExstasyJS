@@ -6,6 +6,7 @@ var RenderManager = function (game, camera) {
     self.game = game;
     self.canvas = game.canvas;
     self.ctx = self.canvas.getContext("2d");
+    var camera = game.cameraManager;
     
     self.clear = function () {
         self.ctx.clearRect(0, 0, self.game.width, self.game.height);
@@ -16,8 +17,23 @@ var RenderManager = function (game, camera) {
     }
 
     self.draw = function (entities) {
+        
         self.clear();
-            entities.forEach(function (e) {
+
+        // camera properties
+        self.ctx.save();
+        //self.ctx.scale(camera.zoom, camera.zoom);
+        self.ctx.translate(camera.x, camera.y);
+
+        // camera rotation
+        self.ctx.translate((camera.w * camera.ax), (camera.h * camera.ay));
+        self.ctx.rotate(self.toRadians(camera.angle));
+        self.ctx.translate(-(camera.w * camera.ax), -(camera.h * camera.ay));
+
+        // TODO culling.
+
+        // render entities
+        entities.forEach(function (e) {
                 // save the state of the ctx.
             self.ctx.save();
 
@@ -42,15 +58,16 @@ var RenderManager = function (game, camera) {
                 e.sy,
                 e.sw,
                 e.sh,
-                e.dw * -e.ax,
-                e.dh * -e.ay,
-                e.dw,
-                e.dh
+                e.dw * -e.ax  * camera.zoom,
+                e.dh * -e.ay * camera.zoom,
+                e.dw * camera.zoom,
+                e.dh * camera.zoom
             );
 
             // restore the state of the ctx.
             self.ctx.restore();
         });
+        self.ctx.restore();
     }
 
     self.drawCircle = function (centerX, centerY, radius) {
