@@ -14,6 +14,7 @@ loadState.preload = function () {
     this.loadImage('rainbow', 'src/assets/images/rainbow.jpg');
     this.loadImage('rocket', 'src/assets/images/rocket.png');
     this.loadImage('rowe', 'src/assets/images/rowe.png');
+    this.loadImage('snow', 'src/assets/images/snow.png');
     this.loadImage('space', 'src/assets/images/space.jpg');
     this.loadImage('stellar', 'src/assets/images/stellar.jpg');
     this.loadImage('stone', 'src/assets/images/stone.png');
@@ -32,7 +33,7 @@ loadState.create = function () {
     controller.add('G', 'keyboard', 'g');
     controller.add('H', 'keyboard', 'h');
     controller.add('F', 'keyboard', 'f');
-    this.game.stateManager.switch('primitivesState');
+    this.game.stateManager.switch('tileSpriteState');
 }
 
 loadState.update = function () {}
