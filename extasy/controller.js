@@ -7,6 +7,6 @@ var Controller = function (game, name) {
 
     self.add = function (name, device, input) {
         self[name] = self.game.inputManager[device][input];
-    }
+    };
 
-}
+};

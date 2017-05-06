@@ -13,6 +13,6 @@ var Entity = function (game, name) {
             console.log('the game will be stoped');
             game.stop();
         }
-    }
+    };
     
-}
+};

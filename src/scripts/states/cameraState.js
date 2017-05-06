@@ -3,14 +3,13 @@ var bg;
 var rectangle;
 
 cameraState.create = function () {
-
     bg = this.addRectangle(50, 50, 300, 200);
     bg.fill('pink');
     rectangle = this.addRectangle(175, 125, 50, 50);
 
     this.cameraSetLerp(10);
 
-}
+};
 
 cameraState.update = function () {
 
@@ -21,7 +20,7 @@ cameraState.update = function () {
     // this.cameraRotate(30);
     //this.cameraSetAngle(42);
 
-    controller = this.getController('standard');
+    var controller = this.getController('standard');
 
     if (controller.UP.isPressed) {
         rectangle.translate(0, -150);
@@ -43,4 +42,4 @@ cameraState.update = function () {
         this.cameraZoomOut();
     }
 
-}
+};

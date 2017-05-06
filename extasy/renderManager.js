@@ -91,7 +91,7 @@ var RenderManager = function (game, camera) {
 
     self.drawRectangle = function(x, y, w, h) {
         self.ctx.beginPath();
-        self.ctx.rect(0, 0, game.width, game.height);
+        self.ctx.rect(x, y, w, h);
         self.ctx.fill();
     };
 

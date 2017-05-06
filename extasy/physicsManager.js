@@ -29,9 +29,9 @@ var PhysicsManager = function(game) {
     self.createBody = function(x, y, w, h, type) {
         // create and define a body.
         var bodyDef = new b2BodyDef();
-        if (type === 'static')    bodyDef.type = b2Body.b2_staticBody;
-        if (type === 'dynamic')   bodyDef.type = b2Body.b2_dynamicBody;
-        if (type === 'kinematic') bodyDef.type = b2Body.b2_kinematicBody;
+        if (type === 'static')    {bodyDef.type = b2Body.b2_staticBody;}
+        if (type === 'dynamic')   {bodyDef.type = b2Body.b2_dynamicBody;}
+        if (type === 'kinematic') {bodyDef.type = b2Body.b2_kinematicBody;}
         bodyDef.position.x = x / self.scale;
         bodyDef.position.y = y / self.scale;
         bodyDef.fixedRotation = false;
@@ -51,36 +51,36 @@ var PhysicsManager = function(game) {
         body.CreateFixture(fixDef);
 
         return body;
-    }
+    };
 
     self.draw = function() {
         self.context.clearRect(0, 0, self.width, self.height);
         self.context.save();
         self.world.DrawDebugData();
         self.context.restore();
-    }
+    };
 
     self.setupDebugDraw = function() {
         var debugDraw = new b2DebugDraw();
         debugDraw.SetSprite(self.context);
         debugDraw.SetDrawScale(self.scale);
-        debugDraw.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit)
+        debugDraw.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
         self.world.SetDebugDraw(debugDraw);
-    }
+    };
 
     self.setupDebugDraw();
 
     self.toRadians = function (degrees) {
         return degrees * 0.0174532925199432957;
-    }
+    };
 
     self.toDegrees = function (radians) {
         return radians * 57.295779513082320876;
-    }
+    };
 
     self.update = function() {
-        self.world.Step(1/self.fps, 4, 3);
+        self.world.Step(1 / self.fps, 4, 3);
         self.world.ClearForces();
-    }
+    };
 
-}
+};

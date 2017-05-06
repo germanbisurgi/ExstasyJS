@@ -15,4 +15,4 @@ var Extasy = {
     circle: Circle,
     tileSprite: TileSprite,
     controller: Controller
-}
+};

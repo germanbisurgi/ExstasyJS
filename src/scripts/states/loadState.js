@@ -21,7 +21,7 @@ loadState.preload = function () {
     this.loadImage('yellow', 'src/assets/images/yellow.jpg');
     this.loadImage('mountains', 'src/assets/images/mountains.png');
     this.loadSpriteSheet('player', 'src/assets/images/player.png', 32, 32);
-}
+};
 
 loadState.create = function () {
     // create a controller and define it inputs.
@@ -34,6 +34,4 @@ loadState.create = function () {
     controller.add('H', 'keyboard', 'h');
     controller.add('F', 'keyboard', 'f');
     this.game.stateManager.switch('cameraState');
-}
-
-loadState.update = function () {}
+};

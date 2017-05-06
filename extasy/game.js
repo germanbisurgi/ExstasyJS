@@ -6,7 +6,7 @@ var Game = function (width, height, name, canvas) {
     self.height = height;
     self.name = name;
     self.canvas = document.querySelector(canvas);
-    self.now;
+    self.now = null;
     self.frame = 1;
     self.fps = 70;
     self.motion = 1;
@@ -28,7 +28,7 @@ var Game = function (width, height, name, canvas) {
         if (self.frame % Math.ceil((60 / rate) / (60 / self.fps) / self.motion) === 0) {
             fn();
         }
-    }
+    };
 
     self.run = function() {
         var lastTime = 0;
@@ -72,18 +72,18 @@ var Game = function (width, height, name, canvas) {
             }
         }
         requestAnimationFrame(tick);
-    }
+    };
 
     self.stop = function() {
         self.isPaused = true;
-    }
+    };
 
     self.toPPS = function(velocity) {
         return velocity * self.delta / 1000 * self.motion;
-    }
+    };
 
     self.continue = function() {
         self.isPaused = false;
-    }
+    };
 
-}
+};

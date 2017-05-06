@@ -16,8 +16,8 @@ var TileSprite = function (game, dx, dy, dw, dh, image) {
 
     // core components.
     self.id = (Math.random() * 100000000 | 0).toString(16);
-    self.data;
-    self.events;
+    self.data = null;
+    self.events = null;
     self.name = null;
     self.renderable = true;
     self.type = 'tileSprite';
@@ -42,7 +42,7 @@ var TileSprite = function (game, dx, dy, dw, dh, image) {
         if (index > -1) {
             game.entities.splice(index, 1);
         }
-    }
+    };
 
     self.scroll = function (direction, velocity) {
         if (direction ==='left') {
@@ -58,49 +58,49 @@ var TileSprite = function (game, dx, dy, dw, dh, image) {
             }
         }
         if (direction ==='up') {
-            self.sy += game.toPPS(velocity);;
+            self.sy += game.toPPS(velocity);
             if (self.sy + self.sh >= self.sh * 2) {
                 self.sy = 0;
             }
         }
         if (direction ==='down') {
-            self.sy -= game.toPPS(velocity);;
+            self.sy -= game.toPPS(velocity);
             if (self.sy <= 0) {
                 self.sy = self.sh;
             }
         }
-    }
+    };
 
     self.opacity = function (opacity) {
         self.opacity = opacity;
-    }
+    };
 
     self.rotate = function (degrees) {
         self.angle += degrees / game.fps * game.motion;
         self.angle %= 360;
-    }
+    };
 
     self.setAngle = function (degrees) {
         self.angle = degrees % 360;
-    }
+    };
 
     self.anchorPoint = function (x, y) {
         self.ax = x;
         self.ay = y;
-    } 
+    } ;
 
     self.scale = function (x, y) {
         self.sw *= x;
         self.dh *= y;
-    }
+    };
 
     self.shadow = function (x, y, blur, color) {
         self.shadow = {x: x, y: y, blur: blur, color: color};
-    }
+    };
 
     self.translate = function (x, y) {
         self.dx += game.toPPS(x);
         self.dy += game.toPPS(y);
-    }
+    };
 
-}
+};

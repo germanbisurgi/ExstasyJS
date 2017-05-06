@@ -7,4 +7,4 @@ var SpriteSheet = function (image, sw, sh) {
     self.sw = sw;
     self.sh = sh;
 
-}
+};

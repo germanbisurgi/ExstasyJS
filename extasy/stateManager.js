@@ -6,13 +6,13 @@ StateManager = function (game) {
 
     self.getState = function(stateName) {
         var output = false;
-        self.list.forEach(function(state, i) {
-            if (state.name == stateName) {
+        self.list.forEach(function(state) {
+            if (state.name === stateName) {
                 output = state;
             }
         });
         return output;
-    }
+    };
 
     // Add a state object if not exists.
     self.add = function(stateObject) {
@@ -24,7 +24,7 @@ StateManager = function (game) {
             console.log('the game will be stoped');
             self.game.stop();
         }
-    }
+    };
 
     // Set the current state to the new state if exists.
     self.switch = function(stateName) {
@@ -39,6 +39,6 @@ StateManager = function (game) {
             console.log('the game will be stoped');
             self.game.stop();
         }
-    }
+    };
 
-}
+};

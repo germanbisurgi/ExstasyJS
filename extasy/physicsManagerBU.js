@@ -31,36 +31,36 @@ var PhysicsManagerBU = function(game) {
 
     self.clear = function() {
         self.context.clearRect(0, 0, self.width, self.height);
-    }
+    };
 
     self.createBody = function(entityDefinition) {
 
-        var x               = entityDefinition.body.position.x  != null ? entityDefinition.body.position.x  : 100;
-        var y               = entityDefinition.body.position.y  != null ? entityDefinition.body.position.y  : 100;
-        var z               = entityDefinition.body.position.z  != null ? entityDefinition.body.position.z  : 0;
-        var w               = entityDefinition.body.size.w      != null ? entityDefinition.body.size.w      : 50;
-        var h               = entityDefinition.body.size.h      != null ? entityDefinition.body.size.h      : 50;
-        var radius          = entityDefinition.body.size.radius != null ? entityDefinition.body.size.radius : 25;
+        var x               = entityDefinition.body.position.x  !== null ? entityDefinition.body.position.x  : 100;
+        var y               = entityDefinition.body.position.y  !== null ? entityDefinition.body.position.y  : 100;
+        var z               = entityDefinition.body.position.z  !== null ? entityDefinition.body.position.z  : 0;
+        var w               = entityDefinition.body.size.w      !== null ? entityDefinition.body.size.w      : 50;
+        var h               = entityDefinition.body.size.h      !== null ? entityDefinition.body.size.h      : 50;
+        var radius          = entityDefinition.body.size.radius !== null ? entityDefinition.body.size.radius : 25;
         
-        var active          = entityDefinition.body.active          != null ? entityDefinition.body.active          : true;
-        var allowSleep      = entityDefinition.body.allowSleep      != null ? entityDefinition.body.allowSleep      : true;
-        var angle           = entityDefinition.body.angle           != null ? entityDefinition.body.angle           : 0;
-        var angularDamping  = entityDefinition.body.angularDamping  != null ? entityDefinition.body.angularDamping  : 0;
-        var angularVelocity = entityDefinition.body.angularVelocity != null ? entityDefinition.body.angularVelocity : 0;
-        var awake           = entityDefinition.body.awake           != null ? entityDefinition.body.awake           : true;
-        var bullet          = entityDefinition.body.bullet          != null ? entityDefinition.body.bullet          : false;
-        var fixedRotation   = entityDefinition.body.fixedRotation   != null ? entityDefinition.body.fixedRotation   : false;
-        var linearDamping   = entityDefinition.body.linearDamping   != null ? entityDefinition.body.linearDamping   : 0;
-        var linearVelocity  = entityDefinition.body.linearVelocity  != null ? entityDefinition.body.linearVelocity  : {'x': 0, 'y': 0};
-        var type            = entityDefinition.body.type            != null ? entityDefinition.body.type            : 'static';
-        var userData        = entityDefinition
+        var active          = entityDefinition.body.active          !== null ? entityDefinition.body.active          : true;
+        var allowSleep      = entityDefinition.body.allowSleep      !== null ? entityDefinition.body.allowSleep      : true;
+        var angle           = entityDefinition.body.angle           !== null ? entityDefinition.body.angle           : 0;
+        var angularDamping  = entityDefinition.body.angularDamping  !== null ? entityDefinition.body.angularDamping  : 0;
+        var angularVelocity = entityDefinition.body.angularVelocity !== null ? entityDefinition.body.angularVelocity : 0;
+        var awake           = entityDefinition.body.awake           !== null ? entityDefinition.body.awake           : true;
+        var bullet          = entityDefinition.body.bullet          !== null ? entityDefinition.body.bullet          : false;
+        var fixedRotation   = entityDefinition.body.fixedRotation   !== null ? entityDefinition.body.fixedRotation   : false;
+        var linearDamping   = entityDefinition.body.linearDamping   !== null ? entityDefinition.body.linearDamping   : 0;
+        var linearVelocity  = entityDefinition.body.linearVelocity  !== null ? entityDefinition.body.linearVelocity  : {'x': 0, 'y': 0};
+        var type            = entityDefinition.body.type            !== null ? entityDefinition.body.type            : 'static';
+        var userData        = entityDefinition;
 
-        var density         = entityDefinition.body.density      != null ? entityDefinition.body.density      : 0;
-        var filter          = entityDefinition.body.filter       != null ? entityDefinition.body.filter       : null;
-        var friction        = entityDefinition.body.friction     != null ? entityDefinition.body.friction     : 0;
-        var isSensor        = entityDefinition.body.isSensor     != null ? entityDefinition.body.isSensor     : false;
-        var restitution     = entityDefinition.body.restitution  != null ? entityDefinition.body.restitution  : 0.5;
-        var shape           = entityDefinition.body.shape        != null ? entityDefinition.body.shape        : 'rectangle';
+        var density         = entityDefinition.body.density      !== null ? entityDefinition.body.density      : 0;
+        var filter          = entityDefinition.body.filter       !== null ? entityDefinition.body.filter       : null;
+        var friction        = entityDefinition.body.friction     !== null ? entityDefinition.body.friction     : 0;
+        var isSensor        = entityDefinition.body.isSensor     !== null ? entityDefinition.body.isSensor     : false;
+        var restitution     = entityDefinition.body.restitution  !== null ? entityDefinition.body.restitution  : 0.5;
+        var shape           = entityDefinition.body.shape        !== null ? entityDefinition.body.shape        : 'rectangle';
 
         var bodyDef = new box2d.b2BodyDef();
         /*bodyDef.position.x      = (x + w / 2) / self.scale;
@@ -79,9 +79,9 @@ var PhysicsManagerBU = function(game) {
         bodyDef.linearVelocity  = linearVelocity;  
 
         // Define type of body
-        if (type === 'static')    bodyDef.type = box2d.b2Body.b2_staticBody;
-        if (type === 'dynamic')   bodyDef.type = box2d.b2Body.b2_dynamicBody;
-        if (type === 'kinematic') bodyDef.type = box2d.b2Body.b2_kinematicBody;
+        if (type === 'static')    {bodyDef.type = box2d.b2Body.b2_staticBody;}
+        if (type === 'dynamic')   {bodyDef.type = box2d.b2Body.b2_dynamicBody;}
+        if (type === 'kinematic') {bodyDef.type = box2d.b2Body.b2_kinematicBody;}
 
         var fixDef = new box2d.b2FixtureDef();
         fixDef.density     = density;
@@ -108,7 +108,7 @@ var PhysicsManagerBU = function(game) {
     };
 
     self.onBeginContact = function(id, fn) {
-        var listener = new Box2D.Dynamics.b2ContactListener;
+        var listener = new Box2D.Dynamics.b2ContactListener();
         listener.BeginContact = function(contact) {
             var BodyA = contact.GetFixtureA().GetBody().GetUserData();
             var BodyB = contact.GetFixtureB().GetBody().GetUserData();
@@ -119,32 +119,32 @@ var PhysicsManagerBU = function(game) {
             if (BodyB && BodyB.type === id && contact.IsTouching()) {
                 fn();
             }
-        }
+        };
         self.world.SetContactListener(listener);
-    }
+    };
 
     self.setupDebugDraw = function() {
         var debugDraw = new box2d.b2DebugDraw();
         debugDraw.SetSprite(self.context);
         debugDraw.SetDrawScale(self.scale);
-        debugDraw.SetFlags(box2d.b2DebugDraw.e_shapeBit | box2d.b2DebugDraw.e_jointBit)
+        debugDraw.SetFlags(box2d.b2DebugDraw.e_shapeBit | box2d.b2DebugDraw.e_jointBit);
         self.world.SetDebugDraw(debugDraw);
-    }
+    };
 
     self.setupDebugDraw();
 
-    self.update = function(id, fn) {
+    self.update = function() {
         self.world.Step(1/60, 4, 3);
         self.world.ClearForces();
-    }
+    };
 
-    self.draw = function(id, fn) {
+    self.draw = function() {
         self.clear();
         self.context.save();
         self.context.scale(this.game.cameraManager.zoom, this.game.cameraManager.zoom);
         self.context.translate(this.game.cameraManager.x, this.game.cameraManager.y);
         self.world.DrawDebugData();
         self.context.restore();
-    }
+    };
 
-}
+};

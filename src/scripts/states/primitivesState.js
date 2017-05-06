@@ -1,6 +1,5 @@
 var primitivesState = new Extasy.state('primitivesState');
 var rectangle;
-var rectangle2;
 var circle;
 var circle2;
 
@@ -19,7 +18,7 @@ primitivesState.create = function () {
 
     console.log(this.listEntities());
 
-}
+};
 
 primitivesState.update = function () {
     //rectangle.translate(30,0);
@@ -30,4 +29,4 @@ primitivesState.update = function () {
 
     //circle2.translate(30,0);
     circle2.rotate(-30);
-}
+};

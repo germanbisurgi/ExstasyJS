@@ -24,7 +24,7 @@ spriteState.create = function () {
     player2.opacity(1);
     player2.setAngle(10);
     player2.translate(20, 20);
-}
+};
 
 spriteState.update = function () {
     player.play('down');
@@ -33,4 +33,4 @@ spriteState.update = function () {
     player2.play('left');
     player2.rotate(1);
 
-}
+};

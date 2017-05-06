@@ -7,28 +7,28 @@ var InputManager = function(game) {
     self.getController = function(controllerName) {
         var output = false;
         self.game.controllers.forEach(function(controller) {
-            if (controller.name == controllerName) {
+            if (controller.name === controllerName) {
                 output = controller;
             }
         });
         return output;
-    }
+    };
 
     self.createController = function(controllerName) {
         if (!self.getController(controllerName)) {
             var controller = new Extasy.controller(self.game, controllerName);
             self.game.controllers.push(controller);
+            return controller;
         } else {
             console.log('EXCEPTION: This controller is already in the list ->', controllerName);
             self.game.stop();
         }
         
-        return controller;
-    }
+    };
 
     self.listControllers = function() {
         return self.game.controllers;
-    }
+    };
 
     self.mouse = {
         x: null,
@@ -36,7 +36,7 @@ var InputManager = function(game) {
         left: {isPressed: false},
         right: {isPressed: false},
         middle: {isPressed: false}
-    }
+    };
 
     self.keyboard = {
         Enter:      {isPressed: false, name: 'Enter'},
@@ -84,8 +84,7 @@ var InputManager = function(game) {
         7:          {isPressed: false, name: '7'},
         8:          {isPressed: false, name: '8'},
         9:          {isPressed: false, name: '9'},
-        b:          {isPressed: false, name: 'b'}
-    }
+    };
 
     var checkKey = function check(e) {
         var code = e.keyCode;
@@ -249,7 +248,7 @@ var InputManager = function(game) {
             // case 255 : key = "toggle touchpad"; break;
         }
         return key;
-    }
+    };
 
     document.onkeydown = function(event) {
         event.preventDefault();
@@ -258,7 +257,7 @@ var InputManager = function(game) {
             self.keyboard[keyboarKey].isPressed = true;
         }
         
-    }
+    };
 
     document.onkeyup = function(event) {
         event.preventDefault();
@@ -266,7 +265,7 @@ var InputManager = function(game) {
         if (keyboarKey) {
             self.keyboard[keyboarKey].isPressed = false;
         }
-    }
+    };
 
     document.onmousedown = function(event) {
         event.preventDefault();
@@ -280,7 +279,7 @@ var InputManager = function(game) {
         if (keyCode === 3) {
             self.mouse.right.isPressed = true;
         }
-    }
+    };
 
     document.onmouseup = function(event) {
         event.preventDefault();
@@ -294,13 +293,11 @@ var InputManager = function(game) {
         if (keyCode === 3) {
             self.mouse.right.isPressed = false;
         }
-    }
+    };
 
     document.onmousemove = function(event) {
         self.mouse.x = event.clientX;
         self.mouse.y = event.clientY;
-    }
+    };
 
-}
-
-
+};

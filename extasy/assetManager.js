@@ -2,7 +2,7 @@ var AssetManager = function (game) {
 
     "use strict";
     var self = this;
-    self.game = game
+    self.game = game;
     self.loading = false;
     self.downloadQueue = [];
     self.successCount = 0;
@@ -12,7 +12,7 @@ var AssetManager = function (game) {
         self.downloadQueue = [];
         self.successCount = 0;
         self.errorCount = 0;
-    }
+    };
 
     self.loadImage = function(imageName, path) {
         self.downloadQueue.push({
@@ -20,7 +20,7 @@ var AssetManager = function (game) {
             name: imageName,
             path: path
         });
-    }
+    };
 
     self.loadSpriteSheet = function(spriteSheetName, path, spriteWidth, spriteHeight) {
         self.downloadQueue.push({
@@ -30,7 +30,7 @@ var AssetManager = function (game) {
             spriteWidth: spriteWidth,
             spriteHeight: spriteHeight
         });
-    }
+    };
 
     self.getAsset = function(assetName) {
         var output = false;
@@ -40,7 +40,7 @@ var AssetManager = function (game) {
             }
         });
         return output;
-    }
+    };
 
     self.loadAll = function () {
         if (self.downloadQueue.length > 0) {
@@ -62,7 +62,7 @@ var AssetManager = function (game) {
                                 self.loading = false;
                                 self.reset();
                             }
-                        }
+                        };
 
                         img.onerror = function() {
                             self.errorCount++;
@@ -70,7 +70,7 @@ var AssetManager = function (game) {
                                 self.loading = false;
                                 self.reset();
                             }
-                        }
+                        };
 
                         img.src = asset.path;
 
@@ -101,7 +101,7 @@ var AssetManager = function (game) {
 
             });
         }
-    }
+    };
 
     self.loadProgress = function () {
         var progress = Math.floor((self.successCount + self.errorCount) / self.downloadQueue.length * 100);
@@ -109,10 +109,10 @@ var AssetManager = function (game) {
             progress = 0;
         }
         return progress;
-    }
+    };
 
     self.isDone = function () {
         return (self.downloadQueue.length === self.successCount + self.errorCount);
-    }
+    };
 
-}
+};

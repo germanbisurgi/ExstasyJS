@@ -10,7 +10,8 @@ entityState.create = function () {
 
     var scroller = this.createEntity(definitions.scroller);
 
-}
+};
+
 entityState.update = function () {
 
     var H = this.getEntity('hero');
@@ -81,4 +82,4 @@ entityState.update = function () {
     }
 
     this.cameraFollow(H); // lerp?
-}
+};

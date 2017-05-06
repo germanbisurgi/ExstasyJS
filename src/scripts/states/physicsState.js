@@ -8,7 +8,7 @@ physicsState.create = function () {
     console.log('position', box.GetPosition());
     console.log('angle', box.GetAngle());
     console.log('world center', box.GetWorldCenter());
-}
+};
 
 physicsState.update = function () {
     var game = this.game;
@@ -21,4 +21,4 @@ physicsState.update = function () {
     });
     
     // box.ApplyImpulse({'x': 0.5 / 30, 'y': 0.5 / 30}, box.GetWorldCenter()); 
-}
+};
