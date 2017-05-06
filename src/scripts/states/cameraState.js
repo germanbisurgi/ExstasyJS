@@ -36,10 +36,10 @@ cameraState.update = function () {
     }
 
     if (controller.H.isPressed) {
-        this.cameraZoomIn(1);
+        this.cameraZoomIn(60);
     }
     if (controller.G.isPressed) {
-        this.cameraZoomOut(1);
+        this.cameraZoomOut(60);
     }
 
     if (controller.A.isPressed) {

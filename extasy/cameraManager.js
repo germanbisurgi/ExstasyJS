@@ -33,14 +33,15 @@ var CameraManager = function (game) {
     };
 
     self.zoomIn = function (px) {
-        self.zoom += game.toPPS(px);
+        self.zoom += game.toPPS(px) / 100;
         if (self.zoom > 3) {
             self.zoom = 3;
         }
     };
 
     self.zoomOut = function (px) {
-        self.zoom -= game.toPPS(px);
+        self.zoom -= game.toPPS(px) / 100;
+        console.log(self.zoom);
         if (self.zoom < 0.3) {
             self.zoom = 0.3;
         }
