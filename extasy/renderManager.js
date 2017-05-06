@@ -6,15 +6,15 @@ var RenderManager = function (game, camera) {
     self.game = game;
     self.canvas = game.canvas;
     self.ctx = self.canvas.getContext("2d");
-    var camera = game.cameraManager;
+    camera = game.cameraManager;
     
     self.clear = function () {
         self.ctx.clearRect(0, 0, self.game.width, self.game.height);
-    }
+    };
 
     self.createPattern = function (image, repeat) {
         return self.ctx.createPattern(image, repeat);
-    }
+    };
 
     self.draw = function (entities) {
         
@@ -61,49 +61,46 @@ var RenderManager = function (game, camera) {
                 e.dh * camera.zoom
             );
 
-            // restore the state of the ctx.
+            // entity transforms.
             self.ctx.restore();
         });
+        // camera transforms.
         self.ctx.restore();
-    }
+
+        // camera opacity
+        self.ctx.fillStyle = camera.lens;
+        self.drawRectangle(camera.x, camera.y, camera.w, camera.h);
+    };
 
     self.drawCircle = function (centerX, centerY, radius) {
         self.ctx.beginPath();
         self.ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
         self.ctx.fill();
         self.ctx.stroke();
-    }
+    };
 
     self.drawImage = function (imageObj, sx, sy, sw, sh, dX, dY, dw, dh) {
-        if (sw != null && sh != null && dX != null && dY != null && dw != null && dh != null) {
+        if (sw !== null && sh !== null && dX !== null && dY !== null && dw !== null && dh !== null) {
             self.ctx.drawImage(imageObj, sx, sy, sw, sh, dX, dY, dw, dh);
-        } else if (sw != null && sh != null) {
+        } else if (sw !== null && sh !== null) {
             self.ctx.drawImage(imageObj, sx, sy, sw, sh);
         } else {
             self.ctx.drawImage(imageObj, sx, sy);
         }
-    }
+    };
 
-    self.drawRectangle = function(e) {
-        self.ctx.save();
-        self.ctx.translate(e.x + (e.w * e.ax), e.y + (e.h * e.ay));
-        self.ctx.rotate(self.toRadians(e.angle));
-        self.ctx.fillStyle = e.fillStyle;
-        self.ctx.strokeStyle = e.strokeStyle;
-        self.ctx.lineWidth = e.lineWidth;
+    self.drawRectangle = function(x, y, w, h) {
         self.ctx.beginPath();
-        self.ctx.rect(e.x, e.y, e.w, e.h);
+        self.ctx.rect(0, 0, game.width, game.height);
         self.ctx.fill();
-        self.ctx.stroke();
-        self.ctx.restore();
-    }
+    };
 
     self.drawText = function(text, x, y) {
         self.ctx.font = '16px Helvetica';
         self.ctx.fillStyle = "black";
         self.ctx.fillText(text, x, y);
         self.ctx.restore();
-    }
+    };
 
     self.fullScreen = function () {
         self.canvas.width  = self.game.width;
@@ -114,10 +111,10 @@ var RenderManager = function (game, camera) {
 
     self.toRadians = function (degrees) {
         return degrees * 0.0174532925199432957;
-    }
+    };
 
     self.toDegrees = function (radians) {
         return radians * 57.295779513082320876;
-    }
+    };
 
-}
+};
