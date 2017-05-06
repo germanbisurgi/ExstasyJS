@@ -17,7 +17,7 @@ cameraState.update = function () {
 
     this.cameraFollow(rectangle);
 
-    // this.cameraRotate(30);
+    
     //this.cameraSetAngle(42);
 
     var controller = this.getController('standard');
@@ -36,10 +36,17 @@ cameraState.update = function () {
     }
 
     if (controller.H.isPressed) {
-        this.cameraZoomIn();
+        this.cameraZoomIn(1);
     }
     if (controller.G.isPressed) {
-        this.cameraZoomOut();
+        this.cameraZoomOut(1);
+    }
+
+    if (controller.A.isPressed) {
+        this.cameraRotate(-60);
+    }
+    if (controller.S.isPressed) {
+        this.cameraRotate(60);
     }
 
 };

@@ -33,5 +33,7 @@ loadState.create = function () {
     controller.add('G', 'keyboard', 'g');
     controller.add('H', 'keyboard', 'h');
     controller.add('F', 'keyboard', 'f');
+    controller.add('A', 'keyboard', 'a');
+    controller.add('S', 'keyboard', 's');
     this.game.stateManager.switch('cameraState');
 };

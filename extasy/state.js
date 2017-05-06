@@ -120,12 +120,12 @@ var State = function (name) {
         self.game.cameraManager.cameraFollow(entity);
     };
 
-    self.cameraZoomIn = function () {
-        self.game.cameraManager.zoomIn();
+    self.cameraZoomIn = function (px) {
+        self.game.cameraManager.zoomIn(px);
     };
 
-    self.cameraZoomOut = function () {
-        self.game.cameraManager.zoomOut();
+    self.cameraZoomOut = function (px) {
+        self.game.cameraManager.zoomOut(px);
     };
 
     self.cameraZoomReset = function () {
