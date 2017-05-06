@@ -20,17 +20,14 @@ var RenderManager = function (game, camera) {
         
         self.clear();
 
-        // camera properties
         self.ctx.save();
-        //self.ctx.scale(camera.zoom, camera.zoom);
-        self.ctx.translate(camera.x, camera.y);
 
         // camera rotation
         self.ctx.translate((camera.w * camera.ax), (camera.h * camera.ay));
         self.ctx.rotate(self.toRadians(camera.angle));
         self.ctx.translate(-(camera.w * camera.ax), -(camera.h * camera.ay));
-
-        // TODO culling.
+        //camera position
+        self.ctx.translate(camera.x, camera.y);
 
         // render entities
         entities.forEach(function (e) {

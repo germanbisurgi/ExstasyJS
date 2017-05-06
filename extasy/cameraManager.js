@@ -11,6 +11,7 @@ var CameraManager = function (game) {
     self.h = game.height;
     self.ax = 0.5;
     self.ay =  0.5;
+    self.lerp = 1;
     self.zoom = 1.0;
     self.angle = 0;
 
@@ -20,10 +21,9 @@ var CameraManager = function (game) {
     }
 
     self.cameraFollow = function(e) {
-        self.game.cameraManager.move(
-            (self.game.width / 2 - e.dx - (e.dw * e.ax)),
-            (self.game.height / 2 - e.dy - (e.dh * e.ay))
-        );
+        if (self.lerp < 1) { self.lerp = 1;}
+        self.x += ((self.game.width / 2 - e.dx - (e.dw * e.ax)) - self.x) / self.lerp;
+        self.y += ((self.game.height / 2 - e.dy - (e.dh * e.ay)) - self.y) / self.lerp;
     }
 
     self.zoomReset = function () {
@@ -51,6 +51,10 @@ var CameraManager = function (game) {
 
     self.setAngle = function (degrees) {
         self.angle = degrees % 360;
+    }
+
+    self.setLerp = function (lerp) {
+        self.lerp = lerp;
     }
 
 }

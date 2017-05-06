@@ -140,9 +140,9 @@ var State = function (name) {
         self.game.cameraManager.setAngle(degrees);
     }
 
-    /* self.lerp = function () {
-        self.game.cameraManager.zoomReset();
-    } */
+    self.cameraSetLerp = function (lerp) {
+        self.game.cameraManager.setLerp(lerp);
+    }
 
     /* self.flash = function () {
         self.game.cameraManager.zoomReset();
