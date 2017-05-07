@@ -13,6 +13,7 @@ var Extasy = {
     sprite: Sprite,
     rectangle: Rectangle,
     circle: Circle,
+    polygon: Polygon,
     tileSprite: TileSprite,
     controller: Controller
 };

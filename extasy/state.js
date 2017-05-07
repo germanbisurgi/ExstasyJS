@@ -91,10 +91,16 @@ var State = function (name) {
         return circle;
     };
 
+    self.addPolygon = function (x, y, points) {
+        var polygon = new Extasy.polygon(self.game, x, y, points);
+        polygon.prerender();
+        self.game.entityManager.addEntity(polygon);
+        return polygon;
+    };
+
     self.listEntities = function () {
         return self.game.entityManager.listEntities();
     };
-
 
     // ------------------------------------------------------------------ inputs
 

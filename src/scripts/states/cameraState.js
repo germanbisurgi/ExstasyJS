@@ -8,7 +8,6 @@ cameraState.create = function () {
     rectangle = this.addRectangle(175, 125, 50, 50);
 
     this.cameraSetLerp(10);
-
 };
 
 cameraState.update = function () {
@@ -16,9 +15,6 @@ cameraState.update = function () {
     rectangle.rotate(-90);
 
     this.cameraFollow(rectangle);
-
-    
-    //this.cameraSetAngle(42);
 
     var controller = this.getController('standard');
 

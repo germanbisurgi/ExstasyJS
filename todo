@@ -3,9 +3,14 @@ fix garbage collection
 audio manager
 loop manager
 time
+zoom rates
+degrees per second
+general rates
 core components
 particle system
 events
 physics manager
 ui
 touch
+camera as entity (like controller);
+check prerendered canvas measures

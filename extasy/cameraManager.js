@@ -41,7 +41,6 @@ var CameraManager = function (game) {
 
     self.zoomOut = function (px) {
         self.zoom -= game.toPPS(px) / 100;
-        console.log(self.zoom);
         if (self.zoom < 0.3) {
             self.zoom = 0.3;
         }
