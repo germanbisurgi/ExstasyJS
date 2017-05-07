@@ -1,8 +1,9 @@
-addPoligon
+regular polygons
 fix garbage collection
+implement pools
 audio manager
 loop manager
-time
+time (* this.game.delta / 1000 * this.game.fps;)
 zoom rates
 degrees per second
 general rates
@@ -14,3 +15,4 @@ ui
 touch
 camera as entity (like controller);
 check prerendered canvas measures
+

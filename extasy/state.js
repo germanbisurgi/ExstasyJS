@@ -176,4 +176,10 @@ var State = function (name) {
         self.game.motion = rate;
     };
 
+    // -------------------------------------------------------------------- time
+
+    self.createTimer = function () {
+        return new Extasy.timer(self.game);
+    };
+
 };

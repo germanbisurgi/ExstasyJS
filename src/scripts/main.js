@@ -7,6 +7,7 @@ mygame.stateManager.add(tileSpriteState);
 mygame.stateManager.add(inputState);
 mygame.stateManager.add(cameraState);
 mygame.stateManager.add(physicsState);
+mygame.stateManager.add(timeState);
 
 mygame.stateManager.switch('loadState');
 

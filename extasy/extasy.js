@@ -6,6 +6,7 @@ var Extasy = {
     cameraManager: CameraManager,
     renderManager: RenderManager,
     physicsManager: PhysicsManager,
+    timeManager: TimeManager,
     entity: Entity,
     state: State,
     inputManager: InputManager,
@@ -15,5 +16,6 @@ var Extasy = {
     circle: Circle,
     polygon: Polygon,
     tileSprite: TileSprite,
+    timer: Timer,
     controller: Controller
 };

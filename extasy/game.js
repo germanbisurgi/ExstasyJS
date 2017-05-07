@@ -23,6 +23,7 @@ var Game = function (width, height, name, canvas) {
     self.cameraManager = new Extasy.cameraManager(self);
     self.renderManager = new Extasy.renderManager(self);
     self.physicsManager = new Extasy.physicsManager(self);
+    self.timeManager = new Extasy.timeManager(self);
 
     self.interval = function (rate, fn) {
         if (self.frame % Math.ceil((60 / rate) / (60 / self.fps) / self.motion) === 0) {
@@ -57,6 +58,7 @@ var Game = function (width, height, name, canvas) {
                     }
 
                     if (self.state.created) {
+                        // check events.
                         self.state.update();
                     }
 
@@ -67,7 +69,7 @@ var Game = function (width, height, name, canvas) {
                     self.frame++;
 
                     lastTime = Math.floor(now);
-                    self.now = Date.now();
+                    self.timeManager.now = Date.now();
                 }
             }
         }
