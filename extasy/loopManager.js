@@ -1,8 +1,7 @@
-var LoopManager = function (game) {
+var LoopManager = function () {
     
     "use strict";
     var self = this;
-    self.game = game;
     self.now = null;
     self.frame = 1;
     self.fps = 70;
@@ -13,9 +12,7 @@ var LoopManager = function (game) {
         var lastTime = 0;
         var requiredElapsed = 1000 / self.fps;
         function tick(now) {
-
             requestAnimationFrame(tick);
-            
             if (!self.isPaused) {
                 if (!lastTime) {
                     lastTime = Math.floor(now);
@@ -37,5 +34,9 @@ var LoopManager = function (game) {
 
     self.stop = function() {
         self.isPaused = true;
+    };
+
+    self.toPPS = function(velocity) {
+        return velocity * self.delta / 1000 * self.motion;
     };
 };

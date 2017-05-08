@@ -16,6 +16,7 @@ var Game = function (width, height, name, canvas) {
     self.controllers = [];
     self.state = null;    
 
+    self.loopManager = new Extasy.loopManager(self);
     self.inputManager = new Extasy.inputManager(self);
     self.stateManager = new Extasy.stateManager(self);
     self.entityManager = new Extasy.entityManager(self);
@@ -25,6 +26,26 @@ var Game = function (width, height, name, canvas) {
     self.physicsManager = new Extasy.physicsManager(self);
     self.timeManager = new Extasy.timeManager(self);
 
+    self.loopLogic = function () {
+        if (!self.state.preloaded) {
+            self.state.preloaded = true;
+            self.state.preload();
+            self.assetManager.loadAll();
+        }
+        if (self.state.preloaded && !self.assetManager.loading && !self.state.created) {
+            self.state.created = true;
+            self.state.create();
+        }
+        if (self.state.created) {
+            // check events.
+            self.state.update();
+        }
+        //self.physicsManager.update();
+        //self.physicsManager.draw();
+        self.renderManager.draw(self.entities);
+        self.timeManager.now = Date.now();
+    };
+
     self.interval = function (rate, fn) {
         if (self.frame % Math.ceil((60 / rate) / (60 / self.fps) / self.motion) === 0) {
             fn();
@@ -32,48 +53,7 @@ var Game = function (width, height, name, canvas) {
     };
 
     self.run = function() {
-        var lastTime = 0;
-        var requiredElapsed = 1000 / self.fps;
-        function tick(now) {
-
-            requestAnimationFrame(tick);
-            
-            if (!self.isPaused) {
-                if (!lastTime) {
-                    lastTime = Math.floor(now);
-                }
-                self.delta = now - lastTime;   
-
-                if (self.delta > requiredElapsed) {
-
-                    if (!self.state.preloaded) {
-                        self.state.preloaded = true;
-                        self.state.preload();
-                        self.assetManager.loadAll();
-                    }
-
-                    if (self.state.preloaded && !self.assetManager.loading && !self.state.created) {
-                        self.state.created = true;
-                        self.state.create();
-                    }
-
-                    if (self.state.created) {
-                        // check events.
-                        self.state.update();
-                    }
-
-                    //self.physicsManager.update();
-                    //self.physicsManager.draw();
-                    self.renderManager.draw(self.entities);
-                    self.timeManager.now = Date.now();
-
-                    self.frame++;
-                    lastTime = Math.floor(now);
-                    
-                }
-            }
-        }
-        requestAnimationFrame(tick);
+        self.loopManager.run(self.loopLogic);
     };
 
     self.stop = function() {
@@ -81,7 +61,7 @@ var Game = function (width, height, name, canvas) {
     };
 
     self.toPPS = function(velocity) {
-        return velocity * self.delta / 1000 * self.motion;
+        return self.loopManager.toPPS(velocity);
     };
 
     self.continue = function() {

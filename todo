@@ -1,6 +1,6 @@
 regular polygons
 
-loop manager
+decouple toPPS
 
 implement pool
     fix garbage collection
