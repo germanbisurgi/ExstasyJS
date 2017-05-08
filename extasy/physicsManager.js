@@ -35,7 +35,7 @@ var PhysicsManager = function(game) {
         bodyDef.position.x = x / self.scale;
         bodyDef.position.y = y / self.scale;
         bodyDef.fixedRotation = false;
-        bodyDef.angularVelocity = -360 / self.game.fps;
+        bodyDef.angularVelocity = -360 / self.game.loopManager.fps;
         bodyDef.angle = self.toRadians(1);
 
         // create and define a shape.

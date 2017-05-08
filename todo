@@ -1,10 +1,10 @@
+implement pool (garbage collection optimization)
+
 regular polygons
 
-decouple toPPS
+activate physics in create
 
-implement pool
-    fix garbage collection
-
+use dependency injection?
 
 entities
     core components?

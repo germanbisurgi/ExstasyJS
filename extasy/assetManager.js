@@ -7,6 +7,7 @@ var AssetManager = function (game) {
     self.downloadQueue = [];
     self.successCount = 0;
     self.errorCount = 0;
+    self.assets = [];
 
     self.reset = function () {
         self.downloadQueue = [];
@@ -34,7 +35,7 @@ var AssetManager = function (game) {
 
     self.getAsset = function(assetName) {
         var output = false;
-        self.game.assets.forEach(function (asset) {
+        self.assets.forEach(function (asset) {
             if (asset.name === assetName) {
                 output = asset;
             }
@@ -77,13 +78,13 @@ var AssetManager = function (game) {
                         if (asset.type === 'image') {
                             var image = img;
                             image.name = asset.name;
-                            self.game.assets.push(image);
+                            self.assets.push(image);
                         }
 
                         if (asset.type === 'spriteSheet') {
                             var sprite = new Extasy.spriteSheet(img, asset.spriteWidth, asset.spriteHeight);
                             sprite.name = asset.name;
-                            self.game.assets.push(sprite);
+                            self.assets.push(sprite);
                         }
                         
                     }

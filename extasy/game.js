@@ -7,16 +7,11 @@ var Game = function (width, height, name, canvas) {
     self.name = name;
     self.canvas = document.querySelector(canvas);
     self.now = null;
-    self.frame = 1;
     self.fps = 70;
-    self.motion = 1;
-    self.isPaused = false;
-    self.assets = [];
     self.entities = [];
-    self.controllers = [];
     self.state = null;    
 
-    self.loopManager = new Extasy.loopManager(self);
+    self.loopManager = new Extasy.loopManager(self.fps);
     self.inputManager = new Extasy.inputManager(self);
     self.stateManager = new Extasy.stateManager(self);
     self.entityManager = new Extasy.entityManager(self);
@@ -40,14 +35,14 @@ var Game = function (width, height, name, canvas) {
             // check events.
             self.state.update();
         }
-        //self.physicsManager.update();
-        //self.physicsManager.draw();
-        self.renderManager.draw(self.entities);
+        self.physicsManager.update();
+        self.physicsManager.draw();
+        self.renderManager.draw(self.entityManager.entities);
         self.timeManager.now = Date.now();
     };
 
     self.interval = function (rate, fn) {
-        if (self.frame % Math.ceil((60 / rate) / (60 / self.fps) / self.motion) === 0) {
+        if (self.loopManager.frame % Math.ceil((60 / rate) / (60 / self.loopManager.fps) / self.loopManager.motion) === 0) {
             fn();
         }
     };
@@ -57,15 +52,11 @@ var Game = function (width, height, name, canvas) {
     };
 
     self.stop = function() {
-        self.isPaused = true;
-    };
-
-    self.toPPS = function(velocity) {
-        return self.loopManager.toPPS(velocity);
+        self.loopManager.isPaused = true;
     };
 
     self.continue = function() {
-        self.isPaused = false;
+        self.loopManager.isPaused = false;
     };
 
 };

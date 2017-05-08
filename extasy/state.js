@@ -170,10 +170,10 @@ var State = function (name) {
         self.game.cameraManager.zoomReset();
     } */
 
-    // --------------------------------------------------------..-- game methods
+    // -----------------------------------------------------........------- loop
 
     self.setMotion = function (rate) {
-        self.game.motion = rate;
+        self.game.loopManager.motion = rate;
     };
 
     // -------------------------------------------------------------------- time

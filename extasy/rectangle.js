@@ -47,9 +47,9 @@ var Rectangle = function (game, x, y, w, h) {
     };
 
     self.destroy = function () {
-        var index = game.entities.indexOf(self);
+        var index = game.entityManager.entities.indexOf(self);
         if (index > -1) {
-            game.entities.splice(index, 1);
+            game.entityManager.entities.splice(index, 1);
         }
     };
 
@@ -62,7 +62,7 @@ var Rectangle = function (game, x, y, w, h) {
     };
 
     self.rotate = function (degrees) {
-        self.angle += degrees / game.fps * game.motion;
+        self.angle += degrees / game.loopManager.fps * game.loopManager.motion;
         self.angle %= 360;
     };
 
@@ -85,8 +85,8 @@ var Rectangle = function (game, x, y, w, h) {
     };
 
     self.translate = function (x, y) {
-        self.dx += game.toPPS(x);
-        self.dy += game.toPPS(y);
+        self.dx += game.loopManager.toPPS(x);
+        self.dy += game.loopManager.toPPS(y);
     };
 
 };

@@ -44,9 +44,9 @@ var Sprite = function (game, spriteSheet) {
     };
 
     self.destroy = function () {
-        var index = game.entities.indexOf(self);
+        var index = game.entityManager.entities.indexOf(self);
         if (index > -1) {
-            game.entities.splice(index, 1);
+            game.entityManager.entities.splice(index, 1);
         }
     };
 
@@ -83,7 +83,7 @@ var Sprite = function (game, spriteSheet) {
         if (animation) {
             var ssw = self.image.width;
             var columns = self.image.width / self.sw;
-            if (game.frame % Math.ceil(animation.velocity / (60 / game.fps) / game.motion) === 0) {
+            if (game.loopManager.frame % Math.ceil(animation.velocity / (60 / game.loopManager.fps) / game.loopManager.motion) === 0) {
                 self.counter = (self.counter + 1) % animation.sequence.length;
             }
             self.sy = Math.floor((animation.sequence[self.counter] + 1) / columns) * self.sh;
@@ -96,7 +96,7 @@ var Sprite = function (game, spriteSheet) {
     };
 
     self.rotate = function (degrees) {
-        self.angle += degrees / game.fps * game.motion;
+        self.angle += degrees / game.loopManager.fps * game.loopManager.motion;
         self.angle %= 360;
     };
 
@@ -119,8 +119,8 @@ var Sprite = function (game, spriteSheet) {
     };
 
     self.translate = function (x, y) {
-        self.dx += game.toPPS(x);
-        self.dy += game.toPPS(y);
+        self.dx += game.loopManager.toPPS(x);
+        self.dy += game.loopManager.toPPS(y);
     };
 
 };

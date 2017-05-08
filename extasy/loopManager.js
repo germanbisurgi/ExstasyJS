@@ -1,10 +1,10 @@
-var LoopManager = function () {
+var LoopManager = function (fps) {
     
     "use strict";
     var self = this;
     self.now = null;
     self.frame = 1;
-    self.fps = 70;
+    self.fps = fps;
     self.motion = 1;
     self.isPaused = false;
 

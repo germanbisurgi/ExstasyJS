@@ -38,33 +38,33 @@ var TileSprite = function (game, dx, dy, dw, dh, image) {
     self.shadow = {};
 
     self.destroy = function () {
-        var index = game.entities.indexOf(self);
+        var index = game.entityManager.entities.indexOf(self);
         if (index > -1) {
-            game.entities.splice(index, 1);
+            game.entityManager.entities.splice(index, 1);
         }
     };
 
     self.scroll = function (direction, velocity) {
         if (direction ==='left') {
-            self.sx += game.toPPS(velocity);
+            self.sx += game.loopManager.toPPS(velocity);
             if (self.sx + self.sw >= self.sw * 2) {
                 self.sx = 0;
             }
         }
         if (direction ==='right') {
-            self.sx -= game.toPPS(velocity);
+            self.sx -= game.loopManager.toPPS(velocity);
             if (self.sx <= 0) {
                 self.sx = self.sw;
             }
         }
         if (direction ==='up') {
-            self.sy += game.toPPS(velocity);
+            self.sy += game.loopManager.toPPS(velocity);
             if (self.sy + self.sh >= self.sh * 2) {
                 self.sy = 0;
             }
         }
         if (direction ==='down') {
-            self.sy -= game.toPPS(velocity);
+            self.sy -= game.loopManager.toPPS(velocity);
             if (self.sy <= 0) {
                 self.sy = self.sh;
             }
@@ -76,7 +76,7 @@ var TileSprite = function (game, dx, dy, dw, dh, image) {
     };
 
     self.rotate = function (degrees) {
-        self.angle += degrees / game.fps * game.motion;
+        self.angle += degrees / game.loopManager.fps * game.loopManager.motion;
         self.angle %= 360;
     };
 
@@ -99,8 +99,8 @@ var TileSprite = function (game, dx, dy, dw, dh, image) {
     };
 
     self.translate = function (x, y) {
-        self.dx += game.toPPS(x);
-        self.dy += game.toPPS(y);
+        self.dx += game.loopManager.toPPS(x);
+        self.dy += game.loopManager.toPPS(y);
     };
 
 };

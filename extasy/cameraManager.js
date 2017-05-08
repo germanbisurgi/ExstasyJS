@@ -33,21 +33,21 @@ var CameraManager = function (game) {
     };
 
     self.zoomIn = function (px) {
-        self.zoom += game.toPPS(px) / 100;
+        self.zoom += game.loopManager.toPPS(px) / 100;
         if (self.zoom > 3) {
             self.zoom = 3;
         }
     };
 
     self.zoomOut = function (px) {
-        self.zoom -= game.toPPS(px) / 100;
+        self.zoom -= game.loopManager.toPPS(px) / 100;
         if (self.zoom < 0.3) {
             self.zoom = 0.3;
         }
     };
 
     self.rotate = function (degrees) {
-        self.angle += degrees / game.fps * game.motion;
+        self.angle += degrees / game.loopManager.fps * game.loopManager.motion;
         self.angle %= 360;
     };
 
