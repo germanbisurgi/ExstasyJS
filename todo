@@ -1,18 +1,45 @@
 regular polygons
-fix garbage collection
-implement pools
-audio manager
+
 loop manager
-time (* this.game.delta / 1000 * this.game.fps;)
-zoom rates
-degrees per second
-general rates
-core components
-particle system
+
+implement pool
+    fix garbage collection
+
+
+entities
+    core components?
+
 events
+
 physics manager
+    rectangle
+    circle
+    polygons
+    contac listeners
+    ...
+
+audio manager
+
 ui
-touch
+
+input
+    touch
+    ...
+
 camera as entity (like controller);
-check prerendered canvas measures
+    camera manager
+    camera object
+    changecamera
+    ...
+
+
+
+timer
+    time (* this.game.delta / 1000 * this.game.fps;)
+    zoom rates
+    degrees per second
+    general rates
+    ...
+
+particle system
 

@@ -1,5 +1,6 @@
 var Extasy = {
     game: Game,
+    loopManager:LoopManager,
     assetManager: AssetManager,
     entityManager: EntityManager,
     stateManager: StateManager,

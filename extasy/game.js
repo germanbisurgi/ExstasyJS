@@ -65,11 +65,11 @@ var Game = function (width, height, name, canvas) {
                     //self.physicsManager.update();
                     //self.physicsManager.draw();
                     self.renderManager.draw(self.entities);
+                    self.timeManager.now = Date.now();
 
                     self.frame++;
-
                     lastTime = Math.floor(now);
-                    self.timeManager.now = Date.now();
+                    
                 }
             }
         }

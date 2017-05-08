@@ -39,7 +39,6 @@ var Polygon = function (game, x, y, points) {
         tmpContext.fillStyle = self.fillStyle;
         tmpContext.strokeStyle = self.strokeStyle;
         tmpContext.lineWidth = self.lineWidth;
-
         tmpContext.beginPath();
         tmpContext.moveTo(0, 0);
         points.forEach(function (point) {
