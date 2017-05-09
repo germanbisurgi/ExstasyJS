@@ -8,11 +8,20 @@ var LoopManager = function (fps) {
     self.motion = 1;
     self.isPaused = false;
 
+    window.requestAnimFrame = (function(){
+      return  window.requestAnimationFrame       ||
+              window.webkitRequestAnimationFrame ||
+              window.mozRequestAnimationFrame    ||
+              function( callback ){
+                window.setTimeout(callback, 1000 / 60);
+              };
+    })();
+
     self.run = function(loopLogic) {
         var lastTime = 0;
         var requiredElapsed = 1000 / self.fps;
         function tick(now) {
-            requestAnimationFrame(tick);
+            requestAnimFrame(tick);
             if (!self.isPaused) {
                 if (!lastTime) {
                     lastTime = Math.floor(now);
@@ -25,7 +34,7 @@ var LoopManager = function (fps) {
                 }
             }
         }
-        requestAnimationFrame(tick);
+        requestAnimFrame(tick);
     };
 
     self.continue = function() {
