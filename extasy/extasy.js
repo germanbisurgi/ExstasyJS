@@ -16,6 +16,7 @@ var Extasy = {
     rectangle: Rectangle,
     circle: Circle,
     polygon: Polygon,
+    regularPolygon: RegularPolygon,
     tileSprite: TileSprite,
     timer: Timer,
     controller: Controller
