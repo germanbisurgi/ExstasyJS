@@ -35,6 +35,18 @@ var Polygon = function (game, x, y, points) {
 
     self.prerender = function() {
         var tmpCanvas = document.createElement('canvas');
+        var tx = 0;
+        var ty = 0;
+        points.forEach(function (point) {
+            if (point.x > tx) {
+                tx = point.x;
+                tmpCanvas.width = point.x;
+            }
+            if (point.y > ty) {
+                ty = point.y;
+                tmpCanvas.height = point.y;
+            }
+        });
         var tmpContext = tmpCanvas.getContext('2d');
         tmpContext.fillStyle = self.fillStyle;
         tmpContext.strokeStyle = self.strokeStyle;
@@ -52,6 +64,7 @@ var Polygon = function (game, x, y, points) {
                 self.dh = point.y;
             }
         });
+        
         tmpContext.fill();
         tmpContext.closePath();
 

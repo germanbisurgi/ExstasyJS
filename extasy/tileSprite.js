@@ -90,7 +90,7 @@ var TileSprite = function (game, dx, dy, dw, dh, image) {
     } ;
 
     self.scale = function (x, y) {
-        self.sw *= x;
+        self.dw *= x;
         self.dh *= y;
     };
 

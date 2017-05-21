@@ -11,10 +11,10 @@ primitivesState.create = function () {
     rectangle = this.addRectangle(0, 0, 50, 50);
     rectangle.fill(pattern);
 
-    circle = this.addCircle(100, 150, 25);
+    circle = this.addCircle(100, 0, 25);
     circle.fill(pattern);
 
-    polygon = this.addPolygon(50, 200, [
+    polygon = this.addPolygon(20, 100, [
         {x: 50, y: 0},
         {x: 400, y: 25},
         {x: 50, y: 50},
@@ -25,11 +25,11 @@ primitivesState.create = function () {
     regularPolygon = this.addRegularPolygon(50, 0, 25, 4);
 
     console.log(this.listEntities());
-    console.log(regularPolygon);
-    console.log(regularPolygon.image.width);
-    console.log(regularPolygon.image.height);
+    console.log(polygon);
+    console.log(polygon.image.width);
+    console.log(polygon.image.height);
 
-    regularPolygon.setAngle(45);
+    //regularPolygon.setAngle(45);
 
 
 };
