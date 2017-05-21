@@ -32,7 +32,6 @@ var Game = function (width, height, name, canvas) {
             self.state.create();
         }
         if (self.state.created) {
-            // check events.
             self.state.update();
         }
         self.physicsManager.update();

@@ -48,14 +48,35 @@ var PhysicsManager = function(game) {
         return body;
     };
 
-    self.createBox = function(w, h) {
+    self.createRectangle = function(w, h) {
         var fixDef = new b2FixtureDef();
-        fixDef.density     = 0;
+        fixDef.density     = 1;
         fixDef.friction    = 0;
         fixDef.isSensor    = false;
         fixDef.restitution = 0.5;
         fixDef.shape = new b2PolygonShape();
         fixDef.shape.SetAsBox(w * 0.5 / self.scale, h * 0.5 / self.scale);
+        return fixDef;
+    };
+
+    self.createCircle = function(radius) {
+        var fixDef = new b2FixtureDef();
+        fixDef.density     = 1;
+        fixDef.friction    = 0;
+        fixDef.isSensor    = false;
+        fixDef.restitution = 0.5;
+        fixDef.shape = new b2CircleShape(radius / self.scale);
+        return fixDef;
+    };
+
+    self.createPolygon = function(points) {
+        var fixDef = new b2FixtureDef();
+        fixDef.density     = 1;
+        fixDef.friction    = 0;
+        fixDef.isSensor    = false;
+        fixDef.restitution = 0.5;
+        fixDef.shape = new b2PolygonShape();
+        fixDef.shape.SetAsArray(points, points.length);
         return fixDef;
     };
 
@@ -85,7 +106,7 @@ var PhysicsManager = function(game) {
     };
 
     self.update = function() {
-        self.world.Step(1 / self.fps, 4, 3);
+        self.world.Step(1/60, 4, 3);
         self.world.ClearForces();
     };
 
