@@ -16,7 +16,7 @@ primitivesState.create = function () {
 
     polygon = this.addPolygon(20, 100, [
         {x: 50, y: 0},
-        {x: 400, y: 25},
+        {x: 100, y: 25},
         {x: 50, y: 50},
         {x: 0, y: 50}
     ]);
@@ -25,11 +25,8 @@ primitivesState.create = function () {
     regularPolygon = this.addRegularPolygon(50, 0, 25, 4);
 
     console.log(this.listEntities());
-    console.log(polygon);
-    console.log(polygon.image.width);
-    console.log(polygon.image.height);
 
-    //regularPolygon.setAngle(45);
+    regularPolygon.setAngle(45);
 
 
 };
