@@ -1,18 +1,17 @@
 var physicsState = new Extasy.state('physicsState');
-var plattform;
-var box;
+var body;
+var fixture;
 
 physicsState.create = function () {
-    plattform = this.game.physicsManager.createBody(250, 250, 300, 20, 'kinematic');
-    box = this.game.physicsManager.createBody(150, 30, 20, 20, 'dynamic');
+    body = this.game.physicsManager.createBody(50, 50, 'dynamic');
+    fixture = this.game.physicsManager.createBox(50, 50);
+    body.CreateFixture(fixture);
+    console.log(body.GetDefinition());
 };
 
 physicsState.update = function () {
-    var game = this.game;
-    this.game.interval(1, function () {
-        game.physicsManager.createBody(250, 120, 20, 20, 'dynamic');
-    });
-    
-    plattform.ApplyTorque(6);
-    
+    //body.ApplyImpulse({'x': 1/30, 'y': 1/30}, body.GetWorldCenter());
+    //body.ApplyForce({'x': 1/30, 'y': 0/30}, body.GetWorldCenter());
+    body.ApplyTorque(6);
+    console.log(body.GetDefinition().angularVelocity);
 };

@@ -26,31 +26,37 @@ var PhysicsManager = function(game) {
     self.canvas.height = self.game.height;
     self.context = self.canvas.getContext("2d");
 
-    self.createBody = function(x, y, w, h, type) {
-        // create and define a body.
+    self.createBody = function(x, y, type) {
         var bodyDef = new b2BodyDef();
+        bodyDef.position.x      = x / self.scale;
+        bodyDef.position.y      = y / self.scale;
+        bodyDef.active          = true;
+        bodyDef.allowSleep      = true;
+        bodyDef.angle           = 0;
+        bodyDef.angularDamping  = 0;
+        bodyDef.angularVelocity = 0;
+        bodyDef.awake           = true;
+        bodyDef.bullet          = false;
+        bodyDef.fixedRotation   = false;
+        bodyDef.linearDamping   = 0;
+        bodyDef.linearVelocity  = {'x': 0, 'y': 0};
+        bodyDef.userData        = '';
         if (type === 'static')    {bodyDef.type = b2Body.b2_staticBody;}
         if (type === 'dynamic')   {bodyDef.type = b2Body.b2_dynamicBody;}
         if (type === 'kinematic') {bodyDef.type = b2Body.b2_kinematicBody;}
-        bodyDef.position.x = x / self.scale;
-        bodyDef.position.y = y / self.scale;
-        bodyDef.fixedRotation = false;
-        bodyDef.angularVelocity = -360 / self.game.loopManager.fps;
-        bodyDef.angle = self.toRadians(1);
+        var body = self.world.CreateBody(bodyDef);
+        return body;
+    };
 
-        // create and define a shape.
+    self.createBox = function(w, h) {
         var fixDef = new b2FixtureDef();
+        fixDef.density     = 0;
+        fixDef.friction    = 0;
+        fixDef.isSensor    = false;
+        fixDef.restitution = 0.5;
         fixDef.shape = new b2PolygonShape();
         fixDef.shape.SetAsBox(w * 0.5 / self.scale, h * 0.5 / self.scale);
-        fixDef.restitution = 0.0;
-
-        // createthe body and add it to the world.
-        var body = self.world.CreateBody(bodyDef);
-
-        // Add a shape to the body.
-        body.CreateFixture(fixDef);
-
-        return body;
+        return fixDef;
     };
 
     self.draw = function() {

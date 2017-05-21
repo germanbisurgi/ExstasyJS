@@ -22,11 +22,9 @@ primitivesState.create = function () {
     ]);
     polygon.fill(pattern);
 
-    regularPolygon = this.addRegularPolygon(50, 0, 25, 4);
+    regularPolygon = this.addRegularPolygon(50, 0, 25, 3);
 
     console.log(this.listEntities());
-
-    regularPolygon.setAngle(45);
 
 
 };
@@ -35,5 +33,5 @@ primitivesState.update = function () {
     //rectangle.rotate(60);
     //circle.rotate(60);
     //polygon.rotate(-30);
-    //regularPolygon.rotate(-180);
+    regularPolygon.rotate(360);
 };
