@@ -89,7 +89,7 @@ var Polygon = function (game, x, y, points) {
     } ;
 
     self.scale = function (x, y) {
-        self.sw *= x;
+        self.dw *= x;
         self.dh *= y;
     };
 

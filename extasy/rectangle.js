@@ -35,6 +35,8 @@ var Rectangle = function (game, x, y, w, h) {
 
     self.prerender = function() {
         var tmpCanvas = document.createElement('canvas');
+        tmpCanvas.width = w;
+        tmpCanvas.height = h;
         var tmpContext = tmpCanvas.getContext('2d');
         tmpContext.fillStyle = self.fillStyle;
         tmpContext.strokeStyle = self.strokeStyle;
@@ -76,7 +78,7 @@ var Rectangle = function (game, x, y, w, h) {
     } ;
 
     self.scale = function (x, y) {
-        self.sw *= x;
+        self.dw *= x;
         self.dh *= y;
     };
 

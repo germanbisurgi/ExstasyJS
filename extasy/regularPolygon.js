@@ -1,4 +1,4 @@
-var RegularPolygon = function (game, x, y, points) {
+var RegularPolygon = function (game, x, y, radius, sides) {
 
     "use strict";
     var self = this;
@@ -8,7 +8,7 @@ var RegularPolygon = function (game, x, y, points) {
     self.events = null;
     self.name = null;
     self.renderable = true;
-    self.type = 'polygon';
+    self.type = 'regularPolygon';
     // shape components.
     self.fillStyle  = 'grey';
     self.strokeStyle = 'black';
@@ -16,12 +16,12 @@ var RegularPolygon = function (game, x, y, points) {
     self.image = null;
     self.sx = 0;
     self.sy = 0;
-    self.sw = null;
-    self.sh = null;
+    self.sw = radius * 2;
+    self.sh = radius * 2;
     self.dx = x;
     self.dy = y;
-    self.dw = null;
-    self.dh = null;
+    self.dw = radius * 2;
+    self.dh = radius * 2;
     self.ax = 0.5;
     self.ay =  0.5;
     self.angle = 0;
@@ -35,26 +35,24 @@ var RegularPolygon = function (game, x, y, points) {
 
     self.prerender = function() {
         var tmpCanvas = document.createElement('canvas');
+        tmpCanvas.width = radius * 2;
+        tmpCanvas.height = radius * 2;
         var tmpContext = tmpCanvas.getContext('2d');
         tmpContext.fillStyle = self.fillStyle;
         tmpContext.strokeStyle = self.strokeStyle;
         tmpContext.lineWidth = self.lineWidth;
-        tmpContext.beginPath();
-        tmpContext.moveTo(0, 0);
-        points.forEach(function (point) {
-            tmpContext.lineTo(point.x, point.y);
-            if (point.x > self.sw) {
-                self.sw = point.x;
-                self.dw = point.x;
-            }
-            if (point.y > self.sh) {
-                self.sh = point.y;
-                self.dh = point.y;
-            }
-        });
-        tmpContext.fill();
+        if (sides < 3) {return;}
+        var angle = (Math.PI * 2) / sides;
+        tmpContext.save();
+        tmpContext.translate(radius, radius);
+        tmpContext.moveTo(radius, 0);
+        for (var i = 0; i < sides; i++) {
+            tmpContext.lineTo(radius * Math.cos(angle * i), radius * Math.sin(angle * i));
+        }
+        tmpContext.restore();
         tmpContext.closePath();
-
+        
+        tmpContext.fill();
         if (self.lineWidth > 0) {tmpContext.stroke();} 
         self.image = tmpCanvas;
     };
@@ -89,7 +87,7 @@ var RegularPolygon = function (game, x, y, points) {
     } ;
 
     self.scale = function (x, y) {
-        self.sw *= x;
+        self.dw *= x;
         self.dh *= y;
     };
 

@@ -35,6 +35,8 @@ var Circle = function (game, x, y, r) {
 
     self.prerender = function() {
         var tmpCanvas = document.createElement('canvas');
+        tmpCanvas.width = r * 2;
+        tmpCanvas.height = r * 2;
         var tmpContext = tmpCanvas.getContext('2d');
         tmpContext.fillStyle = self.fillStyle;
         tmpContext.strokeStyle = self.strokeStyle;
@@ -76,7 +78,7 @@ var Circle = function (game, x, y, r) {
     } ;
 
     self.scale = function (x, y) {
-        self.sw *= x;
+        self.dw *= x;
         self.dh *= y;
     };
 

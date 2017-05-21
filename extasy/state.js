@@ -98,6 +98,13 @@ var State = function (name) {
         return polygon;
     };
 
+    self.addRegularPolygon = function (x, y, radius, sides) {
+        var regularPolygon = new Extasy.regularPolygon(self.game, x, y, radius, sides);
+        regularPolygon.prerender();
+        self.game.entityManager.addEntity(regularPolygon);
+        return regularPolygon;
+    };
+
     self.listEntities = function () {
         return self.game.entityManager.listEntities();
     };
