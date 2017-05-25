@@ -111,6 +111,13 @@ var State = function (name) {
 
     // ----------------------------------------------------------------- physics
 
+    self.setGravity = function (x, y) {
+        this.game.physicsManager.world.SetGravity({
+            x: x * this.game.physicsManager.scale,
+            y: y * this.game.physicsManager.scale
+        });
+    }
+
     self.addEdge = function (x1, y1, x2, y2) {
         var body = this.game.physicsManager.createBody(x1, y1, 'static');
         var fixture = this.game.physicsManager.createEdge(0, 0, x2-x1, y2-y1);

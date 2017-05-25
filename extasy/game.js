@@ -9,7 +9,8 @@ var Game = function (width, height, name, canvas) {
     self.now = null;
     self.fps = 70;
     self.entities = [];
-    self.state = null;    
+    self.state = null;
+    self.data = {};
 
     self.loopManager = new Extasy.loopManager(self.fps);
     self.inputManager = new Extasy.inputManager(self);
