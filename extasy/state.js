@@ -109,6 +109,15 @@ var State = function (name) {
         return self.game.entityManager.listEntities();
     };
 
+    // ----------------------------------------------------------------- physics
+
+    self.addEdge = function (x1, y1, x2, y2) {
+        var body = this.game.physicsManager.createBody(x1, y1, 'static');
+        var fixture = this.game.physicsManager.createEdge(0, 0, x2-x1, y2-y1);
+        body.CreateFixture(fixture);
+        return body;
+    }
+
     // ------------------------------------------------------------------ inputs
 
     self.getController = function (controllerName) {
