@@ -7,7 +7,7 @@ cameraState.create = function () {
     bg.fill('pink');
     rectangle = this.addRectangle(175, 125, 50, 50);
 
-    this.cameraSetLerp(10);
+    //this.cameraSetLerp(10);
 };
 
 cameraState.update = function () {
@@ -20,13 +20,13 @@ cameraState.update = function () {
         rectangle.translate(0, -150);
     }
     if (controller.RIGHT.isPressed) {
-        rectangle.translate(150, 0);
+        rectangle.angle += 1;
     }
     if (controller.DOWN.isPressed) {
         rectangle.translate(0, 150);
     }
     if (controller.LEFT.isPressed) {
-        rectangle.translate(-150, 0);
+        rectangle.angle -= 1;
     }
 
     if (controller.H.isPressed) {
@@ -43,6 +43,7 @@ cameraState.update = function () {
         this.cameraRotate(60);
     }
 
+    this.cameraSetAngle(-rectangle.angle);
     this.cameraFollow(rectangle);
 
 };

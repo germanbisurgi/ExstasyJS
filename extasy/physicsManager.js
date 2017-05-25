@@ -25,6 +25,7 @@ var PhysicsManager = function(game) {
     self.canvas.width = self.game.width;
     self.canvas.height = self.game.height;
     self.context = self.canvas.getContext("2d");
+    var camera = game.cameraManager;
 
     self.createBody = function(x, y, type) {
         var bodyDef = new b2BodyDef();
@@ -102,6 +103,7 @@ var PhysicsManager = function(game) {
     self.draw = function() {
         self.context.clearRect(0, 0, self.width, self.height);
         self.context.save();
+        self.context.scale(camera.zoom, camera.zoom);
         self.world.DrawDebugData();
         self.context.restore();
     };

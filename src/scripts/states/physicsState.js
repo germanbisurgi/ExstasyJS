@@ -67,7 +67,7 @@ physicsState.update = function () {
 
     rectangle.body.m_angularVelocity = 40;
 
-    //this.cameraFollow(circle);
+    
 
     var controller = this.getController('standard');
 
@@ -84,5 +84,7 @@ physicsState.update = function () {
     if (controller.S.isPressed) {
         this.cameraRotate(60);
     }
+
+    this.cameraFollow(polygon);
 
 };

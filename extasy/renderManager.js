@@ -26,8 +26,12 @@ var RenderManager = function (game, camera) {
         self.ctx.translate((camera.w * camera.ax), (camera.h * camera.ay));
         self.ctx.rotate(self.toRadians(camera.angle));
         self.ctx.translate(-(camera.w * camera.ax), -(camera.h * camera.ay));
+
         //camera position
         self.ctx.translate(camera.x, camera.y);
+
+        // camera zoom.
+        self.ctx.scale(camera.zoom, camera.zoom);        
 
         // render entities
         entities.forEach(function (e) {
@@ -55,10 +59,10 @@ var RenderManager = function (game, camera) {
                 e.sy,
                 e.sw,
                 e.sh,
-                e.dw * -e.ax  * camera.zoom,
-                e.dh * -e.ay * camera.zoom,
-                e.dw * camera.zoom,
-                e.dh * camera.zoom
+                e.dw * -e.ax,
+                e.dh * -e.ay,
+                e.dw,
+                e.dh
             );
 
             // entity transforms.
