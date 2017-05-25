@@ -11,6 +11,9 @@ var body3;
 var fixture3;
 var img3;
 
+var body4;
+var fixture4;
+
 physicsState.create = function () {
     img1 = this.addCircle(100, 100, 25);
     body = this.game.physicsManager.createBody(img1.cx, img1.cy, 'dynamic');
@@ -22,22 +25,26 @@ physicsState.create = function () {
     fixture2 = this.game.physicsManager.createRectangle(img2.dw, img2.dh);
     body2.CreateFixture(fixture2);
 
-    img3 = this.addPolygon(0, 0, [
-        {x: 50, y: 0},
+    img3 = this.addPolygon(70, 200, [
+        {x:  50, y:  0},
         {x: 100, y: 25},
-        {x: 50, y: 50},
-        {x: 0, y: 50}
+        {x:  50, y: 50},
+        {x:   0, y: 50}
     ]);
     body3 = this.game.physicsManager.createBody(img3.cx, img3.cy, 'dynamic');
     fixture3 = this.game.physicsManager.createPolygon([
-        {x: 0, y: 0},
-        {x: 50/30, y: 0/30},
-        {x: 100/30, y: 25/30},
-        {x: 50/30, y: 50/30},
-        {x: 0/30, y: 50/30}
+        {x:   0 - img3.dw/2, y:  0 - img3.dh/2},
+        {x:  50 - img3.dw/2, y:  0 - img3.dh/2},
+        {x: 100 - img3.dw/2, y: 25 - img3.dh/2},
+        {x:  50 - img3.dw/2, y: 50 - img3.dh/2},
+        {x:   0 - img3.dw/2, y: 50 - img3.dh/2}
     ]);
     body3.CreateFixture(fixture3);
-    console.log(img3);
+
+    body4 = this.game.physicsManager.createBody(50, 50, 'static');
+    fixture4 = this.game.physicsManager.createEdge(0, 0, 50, 0);
+    body4.CreateFixture(fixture4);
+    
 
     body.ApplyImpulse({'x': 240/30, 'y': 160/30}, body.GetWorldCenter());
     body3.ApplyImpulse({'x': 3/30, 'y': 3/30}, body.GetWorldCenter());
@@ -54,7 +61,6 @@ physicsState.update = function () {
 
     img3.dx = body3.GetPosition().x*30-img3.dw/2;
     img3.dy = body3.GetPosition().y*30-img3.dh/2;
-    console.log(img3.dx, img3.dy, body3.GetPosition().x*30, body3.GetPosition().y*30);
     img3.angle = this.game.physicsManager.toDegrees(body3.GetAngle());
 
 

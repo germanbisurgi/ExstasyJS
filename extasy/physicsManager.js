@@ -76,7 +76,26 @@ var PhysicsManager = function(game) {
         fixDef.isSensor    = false;
         fixDef.restitution = 0.5;
         fixDef.shape = new b2PolygonShape();
+        points.forEach(function (point) {
+            point.x /= self.scale;
+            point.y /= self.scale;
+        });
         fixDef.shape.SetAsArray(points, points.length);
+        return fixDef;
+    };
+
+    self.createEdge = function(x1, y1, x2, y2) {
+        var fixDef = new b2FixtureDef();
+        fixDef.density     = 1;
+        fixDef.friction    = 0;
+        fixDef.isSensor    = false;
+        fixDef.restitution = 0.5;
+        fixDef.shape = new b2PolygonShape();
+        x1 /= self.scale;
+        y1 /= self.scale;
+        x2 /= self.scale;
+        y2 /= self.scale;
+        fixDef.shape.SetAsEdge({x: x1, y: y1}, {x: x2, y: y2});
         return fixDef;
     };
 
