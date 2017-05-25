@@ -48,18 +48,7 @@ var PhysicsManager = function(game) {
         return body;
     };
 
-    self.createRectangle = function(w, h) {
-        var fixDef = new b2FixtureDef();
-        fixDef.density     = 1;
-        fixDef.friction    = 0.5;
-        fixDef.isSensor    = false;
-        fixDef.restitution = 0.5;
-        fixDef.shape = new b2PolygonShape();
-        fixDef.shape.SetAsBox(w * 0.5 / self.scale, h * 0.5 / self.scale);
-        return fixDef;
-    };
-
-    self.createCircle = function(radius) {
+    self.createCircleShape = function(radius) {
         var fixDef = new b2FixtureDef();
         fixDef.density     = 1;
         fixDef.friction    = 0.5;
@@ -69,7 +58,18 @@ var PhysicsManager = function(game) {
         return fixDef;
     };
 
-    self.createPolygon = function(points) {
+    self.createRectangleShape = function(w, h) {
+        var fixDef = new b2FixtureDef();
+        fixDef.density     = 1;
+        fixDef.friction    = 0.5;
+        fixDef.isSensor    = false;
+        fixDef.restitution = 0.5;
+        fixDef.shape = new b2PolygonShape();
+        fixDef.shape.SetAsBox(w * 0.5 / self.scale, h * 0.5 / self.scale);
+        return fixDef;
+    };    
+
+    self.createPolygonShape = function(points) {
         var fixDef = new b2FixtureDef();
         fixDef.density     = 1;
         fixDef.friction    = 0.5;

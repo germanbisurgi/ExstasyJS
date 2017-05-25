@@ -118,6 +118,26 @@ var State = function (name) {
         return body;
     }
 
+    self.createBody = function (x, y, type) {
+        var body = this.game.physicsManager.createBody(x, y, type);
+        return body;
+    }
+
+    self.createCircleShape = function (radius) {
+        var shape = this.game.physicsManager.createCircleShape(radius);
+        return shape;
+    }
+
+    self.createRectangleShape = function (w, h) {
+        var shape = this.game.physicsManager.createRectangleShape(w, h);
+        return shape;
+    }
+
+    self.createPolygonShape = function (points) {
+        var shape = this.game.physicsManager.createPolygonShape(points);
+        return shape;
+    }  
+
     // ------------------------------------------------------------------ inputs
 
     self.getController = function (controllerName) {

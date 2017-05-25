@@ -12,9 +12,7 @@ cameraState.create = function () {
 
 cameraState.update = function () {
 
-    rectangle.rotate(-90);
-
-    this.cameraFollow(rectangle);
+    //rectangle.rotate(-90);
 
     var controller = this.getController('standard');
 
@@ -44,5 +42,7 @@ cameraState.update = function () {
     if (controller.S.isPressed) {
         this.cameraRotate(60);
     }
+
+    this.cameraFollow(rectangle);
 
 };
