@@ -24,7 +24,7 @@ var PhysicsManager = function(game) {
     self.canvas = document.querySelector('#debug');
     self.canvas.width = self.game.width;
     self.canvas.height = self.game.height;
-    self.context = self.canvas.getContext("2d");
+    self.ctx = self.canvas.getContext("2d");
     var camera = game.cameraManager;
 
     self.createBody = function(x, y, type) {
@@ -101,16 +101,24 @@ var PhysicsManager = function(game) {
     };
 
     self.draw = function() {
-        self.context.clearRect(0, 0, self.width, self.height);
-        self.context.save();
-        self.context.scale(camera.zoom, camera.zoom);
+        self.ctx.clearRect(0, 0, self.game.width, self.game.height);
+        self.ctx.save();
+        //camera rotation.
+        self.ctx.translate((camera.w * camera.ax), (camera.h * camera.ay));
+        self.ctx.rotate(self.toRadians(camera.angle));
+        self.ctx.translate(-(camera.w * camera.ax), -(camera.h * camera.ay));
+        //camera position.
+        self.ctx.translate(camera.x, camera.y);
+        // camera zoom.
+        self.ctx.scale(camera.zoom, camera.zoom);  
+        // draw box2d world.
         self.world.DrawDebugData();
-        self.context.restore();
+        self.ctx.restore();
     };
 
     self.setupDebugDraw = function() {
         var debugDraw = new b2DebugDraw();
-        debugDraw.SetSprite(self.context);
+        debugDraw.SetSprite(self.ctx);
         debugDraw.SetDrawScale(self.scale);
         debugDraw.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
         self.world.SetDebugDraw(debugDraw);

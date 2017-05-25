@@ -24,7 +24,7 @@ var CameraManager = function (game) {
 
     self.cameraFollow = function(e) {
         if (self.lerp < 1) { self.lerp = 1;}
-        self.x += ((self.game.width /  2 - (e.dx + e.dw * 0.5)  * self.zoom) - self.x) / self.lerp;
+        self.x += ((self.game.width  / 2 - (e.dx + e.dw * 0.5)  * self.zoom) - self.x) / self.lerp;
         self.y += ((self.game.height / 2 - (e.dy + e.dh * 0.5)  * self.zoom) - self.y) / self.lerp;
     };
 

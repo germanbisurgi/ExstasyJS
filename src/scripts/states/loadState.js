@@ -35,5 +35,5 @@ loadState.create = function () {
     controller.add('F', 'keyboard', 'f');
     controller.add('A', 'keyboard', 'a');
     controller.add('S', 'keyboard', 's');
-    this.game.stateManager.switch('cameraState');
+    this.game.stateManager.switch('physicsState');
 };

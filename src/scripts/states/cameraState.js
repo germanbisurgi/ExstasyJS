@@ -7,7 +7,7 @@ cameraState.create = function () {
     bg.fill('pink');
     rectangle = this.addRectangle(175, 125, 50, 50);
 
-    //this.cameraSetLerp(10);
+    this.cameraSetLerp(10);
 };
 
 cameraState.update = function () {
