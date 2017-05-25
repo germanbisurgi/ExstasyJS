@@ -79,10 +79,10 @@ physicsState.update = function () {
     }
 
     if (controller.A.isPressed) {
-        this.cameraRotate(-60);
+        this.cameraRotate(-180);
     }
     if (controller.S.isPressed) {
-        this.cameraRotate(60);
+        this.cameraRotate(180);
     }
 
     this.cameraFollow(polygon);
