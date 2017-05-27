@@ -20,7 +20,7 @@ var PhysicsManager = function(game) {
     self.gx = 0;
     self.gy = 0;
     self.allowSleep = true;
-    self.world = new b2World({'x': self.gx  * self.scale, 'y': self.gy * self.scale}, self.allowSleep);
+    self.world = new b2World({x: self.gx, y: self.gy}, self.allowSleep);
     self.canvas = document.querySelector('#debug');
     self.canvas.width = self.game.width;
     self.canvas.height = self.game.height;
@@ -54,7 +54,7 @@ var PhysicsManager = function(game) {
         fixDef.density     = 1;
         fixDef.friction    = 0.5;
         fixDef.isSensor    = false;
-        fixDef.restitution = 0.5;
+        fixDef.restitution = 0.0;
         fixDef.shape = new b2CircleShape(radius / self.scale);
         return fixDef;
     };
@@ -64,7 +64,7 @@ var PhysicsManager = function(game) {
         fixDef.density     = 1;
         fixDef.friction    = 0.5;
         fixDef.isSensor    = false;
-        fixDef.restitution = 0.5;
+        fixDef.restitution = 0.0;
         fixDef.shape = new b2PolygonShape();
         fixDef.shape.SetAsBox(w * 0.5 / self.scale, h * 0.5 / self.scale);
         return fixDef;
@@ -75,7 +75,7 @@ var PhysicsManager = function(game) {
         fixDef.density     = 1;
         fixDef.friction    = 0.5;
         fixDef.isSensor    = false;
-        fixDef.restitution = 0.5;
+        fixDef.restitution = 0.0;
         fixDef.shape = new b2PolygonShape();
         points.forEach(function (point) {
             point.x /= self.scale;
@@ -90,7 +90,7 @@ var PhysicsManager = function(game) {
         fixDef.density     = 1;
         fixDef.friction    = 0.5;
         fixDef.isSensor    = false;
-        fixDef.restitution = 0.5;
+        fixDef.restitution = 0.0;
         fixDef.shape = new b2PolygonShape();
         x1 /= self.scale;
         y1 /= self.scale;
@@ -135,7 +135,7 @@ var PhysicsManager = function(game) {
     };
 
     self.update = function() {
-        self.world.Step(1/60, 4, 3);
+        self.world.Step(1/60, 8, 3);
         self.world.ClearForces();
     };
 
