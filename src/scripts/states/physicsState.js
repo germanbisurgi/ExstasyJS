@@ -46,7 +46,7 @@ physicsState.create = function () {
 
 
     circle.body.ApplyImpulse({'x': 100/30, 'y': 600/30}, circle.body.GetWorldCenter());
-    polygon.body.ApplyImpulse({'x': 3/30, 'y': 3/30}, polygon.body.GetWorldCenter());
+    rectangle.body.ApplyImpulse({'x': 3/30, 'y': 3/30}, polygon.body.GetWorldCenter());
 
     this.cameraSetLerp(2);
 };
@@ -66,8 +66,6 @@ physicsState.update = function () {
     polygon.angle = this.game.physicsManager.toDegrees(polygon.body.GetAngle());
 
     rectangle.body.m_angularVelocity = 40;
-
-    
 
     var controller = this.getController('standard');
 
