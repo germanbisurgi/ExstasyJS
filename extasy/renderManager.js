@@ -6,7 +6,7 @@ var RenderManager = function (game, camera) {
     self.game = game;
     self.canvas = game.canvas;
     self.ctx = self.canvas.getContext("2d");
-    camera = game.cameraManager;
+    
     
     self.clear = function () {
         self.ctx.clearRect(0, 0, self.game.width, self.game.height);
@@ -17,6 +17,7 @@ var RenderManager = function (game, camera) {
     };
 
     self.draw = function (entities) {
+        camera = game.cameraManager.active;
         
         self.clear();
 

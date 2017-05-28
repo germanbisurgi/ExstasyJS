@@ -161,59 +161,29 @@ var State = function (name) {
 
     // ------------------------------------------------------------------ camera
 
-    self.moveCamera = function (x, y) {
-        self.game.cameraManager.move(x, y);
+    self.addCamera = function (name) {
+        var camera = new Extasy.camera(self.game, name);
+        self.game.cameraManager.addCamera(camera);
+        return camera;
     };
 
-    self.cameraFollow = function (entity) {
-        self.game.cameraManager.cameraFollow(entity);
+    self.getCamera = function (name) {
+        return self.game.cameraManager.getCamera(name);
     };
 
-    self.cameraZoomIn = function (px) {
-        self.game.cameraManager.zoomIn(px);
+    self.getActiveCamera = function () {
+        return self.game.cameraManager.active;
     };
 
-    self.cameraZoomOut = function (px) {
-        self.game.cameraManager.zoomOut(px);
+    self.switchCamera = function (name) {
+        return self.game.cameraManager.switch(name);
     };
 
-    self.cameraZoomReset = function () {
-        self.game.cameraManager.zoomReset();
+    self.listCameras = function () {
+        return self.game.cameraManager.listCameras();
     };
 
-    self.cameraRotate = function (degrees) {
-        self.game.cameraManager.rotate(degrees);
-    };
-
-    self.cameraSetAngle = function (degrees) {
-        self.game.cameraManager.setAngle(degrees);
-    };
-
-    self.cameraSetLerp = function (lerp) {
-        self.game.cameraManager.setLerp(lerp);
-    };
-
-    /* self.flash = function () {
-        self.game.cameraManager.zoomReset();
-    } */
-
-    /* self.fade = function () {
-        self.game.cameraManager.zoomReset();
-    } */
-
-    /* self.bounds = function () {
-        self.game.cameraManager.zoomReset();
-    } */
-
-    /* self.shake = function () {
-        self.game.cameraManager.zoomReset();
-    } */
-
-    /* self.deadZone = function () {
-        self.game.cameraManager.zoomReset();
-    } */
-
-    // -----------------------------------------------------........------- loop
+    // -------------------------------------------------------------------- loop
 
     self.setMotion = function (rate) {
         self.game.loopManager.motion = rate;

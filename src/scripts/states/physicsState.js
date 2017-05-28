@@ -6,6 +6,11 @@ var rectangle;
 var fixture3;
 var polygon;
 
+var mainCamera;
+var camera1;
+var camera2;
+var camera3;
+
 physicsState.create = function () {
 
     var pattern = this.createPattern(this.getAsset('stone'), 'repeat');
@@ -48,7 +53,17 @@ physicsState.create = function () {
     circle.body.ApplyImpulse({'x': 100/30, 'y': 600/30}, circle.body.GetWorldCenter());
     rectangle.body.ApplyImpulse({'x': 3/30, 'y': 3/30}, polygon.body.GetWorldCenter());
 
-    this.cameraSetLerp(2);
+    mainCamera = this.getCamera('main');
+    camera1 = this.addCamera('camera1');
+    camera2 = this.addCamera('camera2');
+    camera3 = this.addCamera('camera3');
+
+    console.log(camera1);
+    console.log(camera2);
+
+    this.switchCamera('camera3');
+
+    this.getActiveCamera().setLerp(10);    
 };
 
 physicsState.update = function () {
@@ -66,23 +81,27 @@ physicsState.update = function () {
     polygon.angle = this.game.physicsManager.toDegrees(polygon.body.GetAngle());
 
     rectangle.body.m_angularVelocity = 40;
+    
+    camera1.follow(circle);
+    camera2.follow(rectangle);
+    camera3.follow(polygon);
 
+
+    var camera = this.getActiveCamera();
     var controller = this.getController('standard');
 
     if (controller.H.isPressed) {
-        this.cameraZoomIn(60);
+        camera.zoomIn(60);
     }
     if (controller.G.isPressed) {
-        this.cameraZoomOut(60);
+        camera.zoomOut(60);
     }
-
     if (controller.A.isPressed) {
-        this.cameraRotate(-180);
+        camera.rotate(-180);
     }
     if (controller.S.isPressed) {
-        this.cameraRotate(180);
+        camera.rotate(180);
     }
 
-    this.cameraFollow(polygon);
-
+    
 };

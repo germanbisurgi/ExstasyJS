@@ -25,7 +25,7 @@ var PhysicsManager = function(game) {
     self.canvas.width = self.game.width;
     self.canvas.height = self.game.height;
     self.ctx = self.canvas.getContext("2d");
-    var camera = game.cameraManager;
+    
 
     self.createBody = function(x, y, type) {
         var bodyDef = new b2BodyDef();
@@ -90,7 +90,7 @@ var PhysicsManager = function(game) {
         fixDef.density     = 1;
         fixDef.friction    = 0.5;
         fixDef.isSensor    = false;
-        fixDef.restitution = 0.0;
+        fixDef.restitution = 0.5;
         fixDef.shape = new b2PolygonShape();
         x1 /= self.scale;
         y1 /= self.scale;
@@ -101,6 +101,7 @@ var PhysicsManager = function(game) {
     };
 
     self.draw = function() {
+        var camera = game.cameraManager.active;
         self.ctx.clearRect(0, 0, self.game.width, self.game.height);
         self.ctx.save();
         //camera rotation.

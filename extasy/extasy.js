@@ -10,6 +10,7 @@ var Extasy = {
     timeManager: TimeManager,
     entity: Entity,
     state: State,
+    camera: Camera,
     inputManager: InputManager,
     spriteSheet: SpriteSheet,
     sprite: Sprite,
