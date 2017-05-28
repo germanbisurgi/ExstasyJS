@@ -58,9 +58,6 @@ physicsState.create = function () {
     camera2 = this.addCamera('camera2');
     camera3 = this.addCamera('camera3');
 
-    console.log(camera1);
-    console.log(camera2);
-
     this.switchCamera('camera3');
 
     this.getActiveCamera().setLerp(10);    
@@ -101,6 +98,15 @@ physicsState.update = function () {
     }
     if (controller.S.isPressed) {
         camera.rotate(180);
+    }
+    if (controller.num1.isPressed) {
+        this.switchCamera('camera1');
+    }
+    if (controller.num2.isPressed) {
+        this.switchCamera('camera2');
+    }
+    if (controller.num3.isPressed) {
+        this.switchCamera('camera3');
     }
 
     

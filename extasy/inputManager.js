@@ -75,16 +75,16 @@ var InputManager = function(game) {
         x:          {isPressed: false, name: 'x'},
         y:          {isPressed: false, name: 'y'},
         z:          {isPressed: false, name: 'z'},
-        0:          {isPressed: false, name: '0'},
-        1:          {isPressed: false, name: '1'},
-        2:          {isPressed: false, name: '2'},
-        3:          {isPressed: false, name: '3'},
-        4:          {isPressed: false, name: '4'},
-        5:          {isPressed: false, name: '5'},
-        6:          {isPressed: false, name: '6'},
-        7:          {isPressed: false, name: '7'},
-        8:          {isPressed: false, name: '8'},
-        9:          {isPressed: false, name: '9'},
+        num0:          {isPressed: false, name: '0'},
+        num1:          {isPressed: false, name: '1'},
+        num2:          {isPressed: false, name: '2'},
+        num3:          {isPressed: false, name: '3'},
+        num4:          {isPressed: false, name: '4'},
+        num5:          {isPressed: false, name: '5'},
+        num6:          {isPressed: false, name: '6'},
+        num7:          {isPressed: false, name: '7'},
+        num8:          {isPressed: false, name: '8'},
+        num9:          {isPressed: false, name: '9'},
     };
 
     var checkKey = function check(e) {
@@ -117,16 +117,16 @@ var InputManager = function(game) {
             // case 44 : key = "Print Screen"; break;
             // case 45 : key = "insert "; break;
             // case 46 : key = "delete"; break;
-            case 48 : key = "0"; break;
-            case 49 : key = "1"; break;
-            case 50 : key = "2"; break;
-            case 51 : key = "3"; break;
-            case 52 : key = "4"; break;
-            case 53 : key = "5"; break;
-            case 54 : key = "6"; break;
-            case 55 : key = "7"; break;
-            case 56 : key = "8"; break;
-            case 57 : key = "9"; break;
+            case 48 : key = "num0"; break;
+            case 49 : key = "num1"; break;
+            case 50 : key = "num2"; break;
+            case 51 : key = "num3"; break;
+            case 52 : key = "num4"; break;
+            case 53 : key = "num5"; break;
+            case 54 : key = "num6"; break;
+            case 55 : key = "num7"; break;
+            case 56 : key = "num8"; break;
+            case 57 : key = "num9"; break;
             // case 58 : key = ":" ; break;
             // case 59 : key = "semicolon (firefox); break; equals"; break;
             // case 60 : key = "<"; break;

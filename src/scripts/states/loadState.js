@@ -35,5 +35,8 @@ loadState.create = function () {
     controller.add('F', 'keyboard', 'f');
     controller.add('A', 'keyboard', 'a');
     controller.add('S', 'keyboard', 's');
+    controller.add('num1', 'keyboard', 'num1');
+    controller.add('num2', 'keyboard', 'num2');
+    controller.add('num3', 'keyboard', 'num3');
     this.game.stateManager.switch('physicsState');
 };
