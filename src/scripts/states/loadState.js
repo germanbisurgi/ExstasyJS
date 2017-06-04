@@ -38,5 +38,10 @@ loadState.create = function () {
     controller.add('num1', 'keyboard', 'num1');
     controller.add('num2', 'keyboard', 'num2');
     controller.add('num3', 'keyboard', 'num3');
-    this.game.stateManager.switch('physicsState');
+    this.game.stateManager.switch('cameraState');
+    //this.game.stateManager.switch('inputState');
+    //this.game.stateManager.switch('physicsState');
+    //this.game.stateManager.switch('primitivesState');
+    //this.game.stateManager.switch('spriteState');
+    //this.game.stateManager.switch('tileSpriteState');
 };
