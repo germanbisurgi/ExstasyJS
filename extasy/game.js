@@ -5,7 +5,7 @@ var Game = function (width, height, name, canvas) {
     self.width = width;
     self.height = height;
     self.name = name;
-    self.canvas = document.querySelector(canvas);
+    self.canvas = document.querySelector('.canvas');
     self.now = null;
     self.fps = 60;
     self.entities = [];
@@ -23,12 +23,18 @@ var Game = function (width, height, name, canvas) {
     self.timeManager = new Extasy.timeManager(self);
 
     self.loopLogic = function () {
+        if (self.assetManager.loading) {
+            document.querySelector('.progress').textContent = self.assetManager.loadProgress();
+            document.querySelector('.load-screen').classList.remove("loaded");
+        }
+        
         if (!self.state.preloaded) {
             self.state.preloaded = true;
             self.state.preload();
             self.assetManager.loadAll();
         }
         if (self.state.preloaded && !self.assetManager.loading && !self.state.created) {
+            document.querySelector('.load-screen').classList.add("loaded");
             self.state.created = true;
             self.state.create();
         }

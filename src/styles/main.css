@@ -17,7 +17,7 @@ body {
     position: relative;
 }
 
-#canvas {
+.canvas {
     background: #fff;
     position: absolute;
         top: 50%;
@@ -25,13 +25,43 @@ body {
     transform: translate(-50%, -50%);
 }
 
-#debug {
+.debug {
     border: 1px solid #7053A4;
     opacity: 0.5;
     position: absolute;
         top: 50%;
         left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.load-screen {
+    background: #000;
+    height: 100vh;
+    position: absolute;
+    width: 100vw;
+    z-index: 10;
+}
+
+.loaded {
+    display: none;
+}
+
+.progress {
+    color: #fff;
+}
+
+.load-screen-preloader {
+    animation: loading 1s linear infinite;
+    position: absolute;
+        top: 48%;
+        left: 48%;
+    z-index: 20; 
+}
+
+@keyframes loading {
+  to {
+        transform: rotate(360deg);
+  }
 }
 
 .touch-controller {
