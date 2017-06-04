@@ -1,41 +1,48 @@
 var cameraState = new Extasy.state('cameraState');
-var bg;
-var rectangle;
+var grass;
+var tank;
 var DEGTORAD = 0.0174532925199432957;
-var RADTODEG = 57.295779513082320876;
 
 cameraState.create = function () {
-    bg = this.addRectangle(50, 50, 300, 200);
-    bg.fill('pink');
-    rectangle = this.addRectangle(175, 125, 50, 50);
+    var file = this.getAsset('audio');
+    console.log(file);
+    file.play();
+
+    grass = this.addTileSprite(this.getActiveCamera().x, this.getActiveCamera().y, 400, 400, 'grass');
+    
+    tank = this.addSprite(200, 200, 'tanks');
+    tank.addAnimation('forward', [0, 1, 2, 3, 4, 5, 6], 5);
+    tank.addAnimation('backward', [6, 5, 4, 3, 2, 1, 0], 5);
 
     this.getActiveCamera().setLerp(10);  
 };
 
 cameraState.update = function () {
 
-
     var camera = this.getActiveCamera();
     var controller = this.getController('standard');
 
     if (controller.UP.isPressed) {
-        
-        var currentAngle = (rectangle.angle - 90) * DEGTORAD;
+        tank.play('forward');
+        var currentAngle = (tank.angle - 0) * DEGTORAD;
         var cos = Math.cos(currentAngle);
         var sin = Math.sin(currentAngle);
-        rectangle.translate(cos  * 200, sin * 200);
+        tank.translate(cos  * 200, sin * 200);
     }
     if (controller.RIGHT.isPressed) {
-        rectangle.angle += 3;
+        tank.play('backward');
+        tank.angle += 3;
     }
     if (controller.DOWN.isPressed) {
-        var currentAngle = (rectangle.angle - 90) * DEGTORAD;
+        tank.play('backward');
+        var currentAngle = (tank.angle - 0) * DEGTORAD;
         var cos = Math.cos(currentAngle);
         var sin = Math.sin(currentAngle);
-        rectangle.translate(-cos  * 200, -sin * 200);
+        tank.translate(-cos  * 200, -sin * 200);
     }
     if (controller.LEFT.isPressed) {
-        rectangle.angle -= 3;
+        tank.play('forward');
+        tank.angle -= 3;
     }
 
     if (controller.H.isPressed) {
@@ -52,7 +59,7 @@ cameraState.update = function () {
         camera.rotate(180);
     }
 
-    //camera.setAngle(-rectangle.angle);
-    camera.follow(rectangle);
+    //camera.setAngle(-tank.angle - 90);
+    camera.follow(tank);
 
 };

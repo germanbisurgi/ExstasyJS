@@ -19,6 +19,10 @@ var State = function (name) {
 
     // ------------------------------------------------------------------ assets
 
+    self.loadAudio = function (audioName, path) {
+        self.game.assetManager.loadAudio(audioName, path);
+    };
+
     self.loadImage = function (imageName, path) {
         self.game.assetManager.loadImage(imageName, path);
     };

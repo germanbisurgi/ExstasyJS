@@ -15,6 +15,14 @@ var AssetManager = function (game) {
         self.errorCount = 0;
     };
 
+    self.loadAudio = function(audioName, path) {
+        self.downloadQueue.push({
+            type: 'audio',
+            name: audioName,
+            path: path
+        });
+    };
+
     self.loadImage = function(imageName, path) {
         self.downloadQueue.push({
             type: 'image',
@@ -87,6 +95,31 @@ var AssetManager = function (game) {
                             self.assets.push(sprite);
                         }
                         
+                    }
+
+                    if (asset.type === 'audio') {
+                        var audio = new Audio();
+                        audio.onprogress = function() {
+                            console.log("Downloading audio");
+                        };
+                        audio.oncanplaythrough = function() {
+                            console.log('canplaythrough');
+                            self.successCount++;
+                            if (self.isDone()) {
+                                self.loading = false;
+                                self.reset();
+                            }
+                        };
+                        audio.onerror = function() {
+                            self.errorCount++;
+                            if (self.isDone()) {
+                                self.loading = false;
+                                self.reset();
+                            }
+                        };
+                        audio.src = asset.path;
+                        audio.name = asset.name;
+                        self.assets.push(audio);
                     }
 
 

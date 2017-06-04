@@ -5,6 +5,7 @@ loadState.preload = function () {
     this.loadImage('tileBackground', 'src/assets/images/tileBackground.png');
     this.loadImage('colorito', 'src/assets/images/colorito.jpg');
     this.loadImage('fantasy', 'src/assets/images/fantasy.jpg');
+    this.loadImage('grass', 'src/assets/images/grass.jpg');
     this.loadImage('leaf', 'src/assets/images/leaf.jpg');
     this.loadImage('mine', 'src/assets/images/mine.png');
     this.loadImage('mosaic', 'src/assets/images/mosaic.png');
@@ -21,6 +22,8 @@ loadState.preload = function () {
     this.loadImage('yellow', 'src/assets/images/yellow.jpg');
     this.loadImage('mountains', 'src/assets/images/mountains.png');
     this.loadSpriteSheet('player', 'src/assets/images/player.png', 32, 32);
+    this.loadSpriteSheet('tanks', 'src/assets/images/tanks.png', 32, 32);
+    this.loadAudio('audio', 'src/assets/audio/audio.mp3');
 };
 
 loadState.create = function () {
