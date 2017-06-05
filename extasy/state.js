@@ -11,6 +11,16 @@ var State = function (name) {
     self.create = function () {};
     self.update = function () {};
 
+
+    // ------------------------------------------------------------------- audio
+
+    self.addAudio = function (audioName, volume, loop) {
+        var audio = self.game.assetManager.getAsset(audioName);
+        audio.volume = volume;
+        audio.loop = loop;
+        return audio;
+    };
+
     // -------------------------------------------------------------------- game
 
     self.pps = function (px) {

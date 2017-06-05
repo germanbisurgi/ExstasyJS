@@ -8,12 +8,8 @@ var canFire = true;
 
 audioState.create = function () {   
 
-    shot = this.getAsset('shot');
-    shot.volume = 0.2;
-
-
-    motor = this.getAsset('motor');
-    //motor.loop = true;
+    shot = this.addAudio('shot', 0.2, false);
+    motor = this.addAudio('motor', 0.15, true);
     motor.play();
 
     grass = this.addTileSprite(this.getActiveCamera().x, this.getActiveCamera().y, 400, 400, 'grass');
