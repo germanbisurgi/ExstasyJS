@@ -12,7 +12,6 @@ loadState.preload = function () {
     this.loadImage('mountains', 'src/assets/images/mountains.png');
     this.loadSpriteSheet('player', 'src/assets/images/player.png', 32, 32);
     this.loadSpriteSheet('tanks', 'src/assets/images/tanks.png', 32, 32);
-    this.loadAudio('audio', 'src/assets/audio/audio.mp3');
     this.loadAudio('laser', 'src/assets/audio/laser.wav');
 };
 
