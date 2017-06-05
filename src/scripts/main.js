@@ -8,6 +8,7 @@ mygame.stateManager.add(inputState);
 mygame.stateManager.add(cameraState);
 mygame.stateManager.add(physicsState);
 mygame.stateManager.add(gameState);
+mygame.stateManager.add(audioState);
 
 mygame.stateManager.switch('loadState');
 
