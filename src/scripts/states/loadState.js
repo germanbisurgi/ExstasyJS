@@ -13,6 +13,8 @@ loadState.preload = function () {
     this.loadSpriteSheet('player', 'src/assets/images/player.png', 32, 32);
     this.loadSpriteSheet('tanks', 'src/assets/images/tanks.png', 32, 32);
     this.loadAudio('laser', 'src/assets/audio/laser.wav');
+    this.loadAudio('shot', 'src/assets/audio/shot.wav');
+    this.loadAudio('motor', 'src/assets/audio/motor.wav');
 };
 
 loadState.create = function () {
