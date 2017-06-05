@@ -99,11 +99,7 @@ var AssetManager = function (game) {
 
                     if (asset.type === 'audio') {
                         var audio = new Audio();
-                        audio.onprogress = function() {
-                            console.log("Downloading audio");
-                        };
                         audio.oncanplaythrough = function() {
-                            console.log('canplaythrough');
                             self.successCount++;
                             if (self.isDone()) {
                                 self.loading = false;
