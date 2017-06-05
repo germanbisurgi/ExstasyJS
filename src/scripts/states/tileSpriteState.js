@@ -6,7 +6,7 @@ var snow2;
 var typ;
 
 tileSpriteState.create = function () {
-    clouds = this.addTileSprite(0, 0, 400, 300, 'space');
+    clouds = this.addTileSprite(0, 0, 400, 300, 'clouds');
     mountains = this.addTileSprite(0, 100, 400, 200, 'mountains');
     snow = this.addTileSprite(0, 0, 400, 300, 'snow');
     snow2 = this.addTileSprite(-100, -100, 500, 400, 'snow');

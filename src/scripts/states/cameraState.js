@@ -4,9 +4,8 @@ var tank;
 var DEGTORAD = 0.0174532925199432957;
 
 cameraState.create = function () {
-    var file = this.getAsset('audio');
-    console.log(file);
-    file.play();
+    var audio = this.getAsset('audio');
+    audio.play();
 
     grass = this.addTileSprite(this.getActiveCamera().x, this.getActiveCamera().y, 400, 400, 'grass');
     

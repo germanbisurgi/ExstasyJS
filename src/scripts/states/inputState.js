@@ -1,11 +1,10 @@
 var inputState = new Extasy.state('inputState');
 var clouds;
 var mountains;
-
 var player;
 
 inputState.create = function () {
-    clouds = this.addTileSprite(0, 0, 400, 300, 'space');
+    clouds = this.addTileSprite(0, 0, 400, 300, 'clouds');
     mountains = this.addTileSprite(0, 100, 400, 200, 'mountains');
 
     player = this.addSprite(0, 0, 'player');

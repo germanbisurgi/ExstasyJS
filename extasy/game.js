@@ -24,8 +24,8 @@ var Game = function (width, height, name, canvas) {
 
     self.loopLogic = function () {
         if (self.assetManager.loading) {
-            document.querySelector('.progress').textContent = self.assetManager.loadProgress();
-            document.querySelector('.load-screen').classList.remove("loaded");
+            document.querySelector('.loading-screen-progress').textContent = self.assetManager.loadProgress();
+            document.querySelector('.loading-screen').classList.remove("loading-screen-loaded");
         }
         
         if (!self.state.preloaded) {
@@ -34,7 +34,7 @@ var Game = function (width, height, name, canvas) {
             self.assetManager.loadAll();
         }
         if (self.state.preloaded && !self.assetManager.loading && !self.state.created) {
-            document.querySelector('.load-screen').classList.add("loaded");
+            document.querySelector('.loading-screen').classList.add("loading-screen-loaded");
             self.state.created = true;
             self.state.create();
         }
