@@ -11,7 +11,7 @@ var TimeManager = function (game) {
     self.update = function () {
         if (!self.paused) {
             self.lastTime = self.currentTime;
-            self.currentTime = self.lastTime + self.game.loopManager.delta;
+            self.currentTime = self.lastTime + Math.floor(self.game.loopManager.delta);
         }
     };
 
