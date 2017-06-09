@@ -1,7 +1,6 @@
 var audioState = new Extasy.state('audioState');
 var grass;
 var tank;
-var DEGTORAD = 0.0174532925199432957;
 var shot;
 var motor;
 var canFire = true;
@@ -33,7 +32,7 @@ audioState.update = function () {
 
     if (controller.UP.isPressed) {
         tank.play('forward');
-        var currentAngle = (tank.angle - 0) * DEGTORAD;
+        var currentAngle = this.toRadians((tank.angle - 0));
         var cos = Math.cos(currentAngle);
         var sin = Math.sin(currentAngle);
         tank.translate(cos  * 200, sin * 200);
@@ -47,7 +46,7 @@ audioState.update = function () {
     }
     if (controller.DOWN.isPressed) {
         tank.play('backward');
-        var currentAngle = (tank.angle - 0) * DEGTORAD;
+        var currentAngle = this.toRadians((tank.angle - 0));
         var cos = Math.cos(currentAngle);
         var sin = Math.sin(currentAngle);
         tank.translate(-cos  * 200, -sin * 200);

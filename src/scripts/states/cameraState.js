@@ -1,12 +1,8 @@
 var cameraState = new Extasy.state('cameraState');
 var grass;
 var tank;
-var DEGTORAD = 0.0174532925199432957;
 
 cameraState.create = function () {
-    var audio = this.getAsset('audio');
-    audio.play();
-
     grass = this.addTileSprite(this.getActiveCamera().x, this.getActiveCamera().y, 400, 400, 'grass');
     
     tank = this.addSprite(200, 200, 'tanks');
@@ -23,7 +19,7 @@ cameraState.update = function () {
 
     if (controller.UP.isPressed) {
         tank.play('forward');
-        var currentAngle = (tank.angle - 0) * DEGTORAD;
+        var currentAngle = this.toRadians((tank.angle - 0));
         var cos = Math.cos(currentAngle);
         var sin = Math.sin(currentAngle);
         tank.translate(cos  * 200, sin * 200);
@@ -34,7 +30,7 @@ cameraState.update = function () {
     }
     if (controller.DOWN.isPressed) {
         tank.play('backward');
-        var currentAngle = (tank.angle - 0) * DEGTORAD;
+        var currentAngle = this.toRadians((tank.angle - 0));
         var cos = Math.cos(currentAngle);
         var sin = Math.sin(currentAngle);
         tank.translate(-cos  * 200, -sin * 200);

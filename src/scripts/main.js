@@ -1,4 +1,4 @@
-var mygame = new Extasy.game(400, 400, 'my game', '#canvas');
+var mygame = new Extasy.game(400, 400, 'my game', '.canvas');
 
 mygame.stateManager.add(loadState);
 mygame.stateManager.add(primitivesState);
@@ -9,6 +9,8 @@ mygame.stateManager.add(cameraState);
 mygame.stateManager.add(physicsState);
 mygame.stateManager.add(gameState);
 mygame.stateManager.add(audioState);
+mygame.stateManager.add(mathState);
+mygame.stateManager.add(timeState);
 
 mygame.stateManager.switch('loadState');
 

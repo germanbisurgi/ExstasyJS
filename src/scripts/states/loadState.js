@@ -40,5 +40,7 @@ loadState.create = function () {
     //this.game.stateManager.switch('primitivesState');
     //this.game.stateManager.switch('spriteState');
     //this.game.stateManager.switch('tileSpriteState');
-    this.game.stateManager.switch('audioState');
+    //this.game.stateManager.switch('audioState');
+    //this.game.stateManager.switch('mathState');
+    this.game.stateManager.switch('timeState');
 };

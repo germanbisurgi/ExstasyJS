@@ -203,10 +203,68 @@ var State = function (name) {
         self.game.loopManager.motion = rate;
     };
 
-    // -------------------------------------------------------------------- time
+    // -------------------------------------------------------------------- math
 
-    self.createTimer = function () {
-        return new Extasy.timer(self.game);
+    self.random = function(min, max) {
+        return self.game.mathManager.random(min, max);
+    };
+
+    self.randomInt = function(min, max) {
+        return self.game.mathManager.randomInt(min, max);
+    };
+
+    self.randomChoice = function(choices) {
+        return self.game.mathManager.randomChoice(choices);
+    };
+
+    self.randomBool = function() {
+        return self.game.mathManager.randomBool();
+    };
+
+    // Simple Math.
+
+    self.limit = function(x, min, max) {
+        return self.game.limit.bla(x, min, max);
+    };
+
+    self.between = function(n, min, max) {
+        return self.game.mathManager.between(n, min, max);
+    };
+
+    self.accelerate = function(v, accel, dt) {
+        return self.game.mathManager.accelerate(v, accel, dt);
+    };
+
+    self.lerp = function(n, dn, dt) {
+        return self.game.mathManager.lerp(n, dn, dt);
+    };
+
+    // Easing Equations.
+
+    self.interpolate = function(a, b, percent) {
+        return self.game.mathManager.interpolate(a, b, percent);
+    };
+
+    self.easeIn = function(a, b, percent) {
+        return self.game.mathManager.easeIn(a, b, percent);
+    };
+
+    self.easeOut = function(a, b, percent) {
+        return self.game.mathManager.easeOut(a, b, percent);
+    };
+
+    self.easeInOut = function(a, b, percent) {
+        return self.game.mathManager.easeInOut(a, b, percent);
+    };
+
+    // Converter.
+
+    self.toRadians = function(x) {
+        return self.game.mathManager.toRadians(x);
+    };
+
+    self.toDegrees = function(x) {
+        return self.game.mathManager.toDegrees(x);
     };
 
 };
