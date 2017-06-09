@@ -6,7 +6,7 @@ var LoopManager = function (fps) {
     self.frame = 1;
     self.fps = fps;
     self.motion = 1;
-    self.isPaused = false;
+    self.delta = null;
 
     window.requestAnimFrame = (function(){
       return  window.requestAnimationFrame       ||
@@ -22,27 +22,17 @@ var LoopManager = function (fps) {
         var requiredElapsed = 1000 / self.fps;
         function tick(now) {
             requestAnimFrame(tick);
-            if (!self.isPaused) {
-                if (!lastTime) {
-                    lastTime = Math.floor(now);
-                }
-                self.delta = now - lastTime;   
-                if (self.delta > requiredElapsed) {
-                    loopLogic();
-                    self.frame++;
-                    lastTime = Math.floor(now);
-                }
+            if (!lastTime) {
+                lastTime = Math.floor(now);
+            }
+            self.delta = now - lastTime;   
+            if (self.delta >= requiredElapsed) {
+                loopLogic();
+                self.frame++;
+                lastTime = Math.floor(now);
             }
         }
         requestAnimFrame(tick);
-    };
-
-    self.continue = function() {
-        self.isPaused = false;
-    };
-
-    self.stop = function() {
-        self.isPaused = true;
     };
 
     self.toPPS = function(velocity) {

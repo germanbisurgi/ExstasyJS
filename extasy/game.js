@@ -7,7 +7,8 @@ var Game = function (width, height, name, canvas) {
     self.name = name;
     self.canvas = document.querySelector('.canvas');
     self.now = null;
-    self.fps = 60;
+    self.isPaused = false;
+    self.fps = 70;
     self.entities = [];
     self.state = null;
     self.data = {};
@@ -42,10 +43,13 @@ var Game = function (width, height, name, canvas) {
         if (self.state.created) {
             self.state.update();
         }
-        self.physicsManager.update();
-        self.physicsManager.draw();
-        self.renderManager.draw(self.entityManager.entities);
-        self.timeManager.now = Date.now();
+        if (!self.timeManager.paused) {
+            self.physicsManager.update();
+            self.physicsManager.draw();
+            self.renderManager.draw(self.entityManager.entities);
+        }
+        self.timeManager.realTime = Date.now();
+        self.timeManager.update();
     };
 
     self.interval = function (rate, fn) {
@@ -56,14 +60,6 @@ var Game = function (width, height, name, canvas) {
 
     self.run = function() {
         self.loopManager.run(self.loopLogic);
-    };
-
-    self.stop = function() {
-        self.loopManager.isPaused = true;
-    };
-
-    self.continue = function() {
-        self.loopManager.isPaused = false;
     };
 
 };
