@@ -3,7 +3,7 @@ var player;
 var player2;
 
 spriteState.create = function () {
-    player = this.addSprite(50, 50, 'player');
+    player = this.addSprite(320, 50, 'player');
     player.addAnimation('up', [37, 38, 37, 36], 10);
     player.addAnimation('right', [25, 26, 25, 24], 10);
     player.addAnimation('down', [1, 2, 1, 0], 10);
@@ -14,7 +14,7 @@ spriteState.create = function () {
     player.setAngle(10);
     player.translate(50, 50);
 
-    player2 = this.addSprite(0, 0, 'player');
+    player2 = this.addSprite(300, 0, 'player');
     player2.addAnimation('up', [37, 38, 37, 36], 10);
     player2.addAnimation('right', [25, 26, 25, 24], 10);
     player2.addAnimation('down', [1, 2, 1, 0], 10);

@@ -83,13 +83,12 @@ var Sprite = function (game, spriteSheet) {
     self.play = function (animationName) {
         var animation = self.getAnimation(animationName);
         if (animation) {
-            var ssw = self.image.width;
             var columns = self.image.width / self.sw;
             if (game.loopManager.frame % Math.ceil(animation.velocity / (60 / game.loopManager.fps) / game.loopManager.motion) === 0) {
                 self.counter = (self.counter + 1) % animation.sequence.length;
             }
             self.sy = Math.floor((animation.sequence[self.counter] + 1) / columns) * self.sh;
-            self.sx = self.sw * animation.sequence[self.counter]  - ssw * self.sy / self.sh;
+            self.sx = self.sw * animation.sequence[self.counter]  - self.image.width * self.sy / self.sh;
         } else {
             console.log('EXCEPTION: This animation does not exist ->', animationName);
             console.log('the game will be stoped');
