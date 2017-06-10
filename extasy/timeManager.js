@@ -6,12 +6,15 @@ var TimeManager = function (game) {
     self.realTime = 0;
     self.lastTime = 0;
     self.currentTime = 0;
+    self.delta = 0;
     self.paused = 0;
 
     self.update = function () {
+        self.delta = 0;
         if (!self.paused) {
             self.lastTime = self.currentTime;
             self.currentTime = self.lastTime + Math.floor(self.game.loopManager.delta);
+            self.delta = self.currentTime - self.lastTime;
         }
     };
 
