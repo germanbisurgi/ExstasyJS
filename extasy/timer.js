@@ -1,37 +1,23 @@
-var Timer = function (game) {
-
-    "use strict";
+var Timer = function (game, delay, callback, repeat) {
     var self = this;
+    self.game = game;
     self.active = true;
-    self.startTime = game.timeManager.now;
-    self.elapsed = {};
+    self.originalDelay = delay;
+    self.delay = self.originalDelay;
+    self.repeat = repeat;
 
-    self.now = function () {
-        return game.timeManager.now;
+    self.update = function () {
+        if (self.active) {
+            self.delay -= self.game.timeManager.delta;
+            if (self.delay <= 0) {
+                callback();
+                if (self.repeat) {
+                    self.delay = self.originalDelay;
+                } else {
+                    self.active = false;
+                    self.delay = 0;
+                }
+            }
+        }
     };
-
-    self.reset = function () {
-        self.startTime = game.timeManager.now;
-    };
-
-    self.elapsed = function () {
-        self.elapsed.milliseconds = self.now() - self.startTime;
-        self.elapsed.seconds = Math.floor(self.elapsed.milliseconds / 1000);
-        self.elapsed.minutes = Math.floor(self.elapsed.seconds / 60);
-        self.elapsed.hours = Math.floor(self.elapsed.minutes / 60);
-        self.elapsed.days = Math.floor(self.elapsed.hours / 24);
-        return  self.elapsed;
-    };
-
-    self.loop = function (delay, callback) {
-        if (self.elapsed().milliseconds > delay) {
-            callback();
-            self.reset();
-        } 
-    };
-
-    self.destroy = function () {
-        self.active = false;
-    };
-
 };

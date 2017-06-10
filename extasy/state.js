@@ -267,4 +267,11 @@ var State = function (name) {
         return self.game.mathManager.toDegrees(x);
     };
 
+    // -------------------------------------------------------------------- time
+
+    self.createTimer = function(delay, callback, repeat) {
+        var timer = new Extasy.timer(self.game, delay, callback, repeat);
+        return timer;
+    };    
+
 };
