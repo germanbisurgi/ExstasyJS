@@ -1,5 +1,6 @@
 var timeState = new Extasy.state('timeState');
 var player;
+var circle;
 var myTimer;
 var mountains;
 
@@ -7,8 +8,11 @@ timeState.create = function () {
     player = this.addSprite(0, 0, 'player');
     player.addAnimation('left', [13, 14, 13, 12], 100);
     mountains = this.addTileSprite(0, 200, 400, 200, 'mountains');
-    var callback = function() {console.log('banane');};
-    myTimer = this.createTimer(5000, callback, false);
+
+    myTimer = this.createTimer(3000, function() {
+        console.log('banane');
+    }, true);
+
 };
 
 timeState.update = function () {

@@ -3,6 +3,7 @@ var RegularPolygon = function (game, x, y, radius, sides) {
     "use strict";
     var self = this;
     // core components.
+    self.game = game;
     self.id = (Math.random() * 100000000 | 0).toString(16);
     self.data = null;
     self.events = null;
@@ -58,14 +59,14 @@ var RegularPolygon = function (game, x, y, radius, sides) {
     };
 
     self.destroy = function () {
-        var index = game.entityManager.entities.indexOf(self);
+        var index = self.game.entityManager.entities.indexOf(self);
         if (index > -1) {
-            game.entityManager.entities.splice(index, 1);
+            self.game.entityManager.entities.splice(index, 1);
         }
     };
 
     self.isOffCanvas = function() {
-        return self.dx + self.sw <= 0 || self.dy + self.dh <= 0 || self.dx >= game.width || self.dy >= game.height;
+        return self.dx + self.sw <= 0 || self.dy + self.dh <= 0 || self.dx >= self.game.width || self.dy >= self.game.height;
     };
 
     self.opacity = function (opacity) {
@@ -73,7 +74,7 @@ var RegularPolygon = function (game, x, y, radius, sides) {
     };
 
     self.rotate = function (degrees) {
-        self.angle += degrees / game.loopManager.fps * game.loopManager.motion;
+        self.angle += self.game.timeManager.dps(degrees);
         self.angle %= 360;
     };
 
@@ -96,8 +97,8 @@ var RegularPolygon = function (game, x, y, radius, sides) {
     };
 
     self.translate = function (x, y) {
-        self.dx += game.loopManager.toPPS(x);
-        self.dy += game.loopManager.toPPS(y);
+        self.dx += self.game.timeManager.pps(x);
+        self.dy += self.game.timeManager.pps(y);
     };
 
 };

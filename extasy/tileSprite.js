@@ -77,7 +77,7 @@ var TileSprite = function (game, dx, dy, dw, dh, image) {
     };
 
     self.rotate = function (degrees) {
-        self.angle += degrees / self.game.loopManager.fps * self.game.loopManager.motion;
+        self.angle += self.game.timeManager.dps(degrees);
         self.angle %= 360;
     };
 
@@ -100,8 +100,8 @@ var TileSprite = function (game, dx, dy, dw, dh, image) {
     };
 
     self.translate = function (x, y) {
-        self.dx += self.game.loopManager.toPPS(x);
-        self.dy += self.game.loopManager.toPPS(y);
+        self.dx += self.game.timeManager.pps(x);
+        self.dy += self.game.timeManager.pps(y);
     };
 
 };

@@ -35,7 +35,4 @@ var LoopManager = function (fps) {
         requestAnimFrame(tick);
     };
 
-    self.toPPS = function(velocity) {
-        return velocity * self.delta / 1000 * self.motion;
-    };
 };

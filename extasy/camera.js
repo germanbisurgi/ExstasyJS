@@ -8,8 +8,8 @@ var Camera = function (game, name) {
     self.angle = 10;
     self.x = 0;
     self.y = 0;
-    self.w = game.width;
-    self.h = game.height;
+    self.w = self.game.width;
+    self.h = self.game.height;
     self.ax = 0.5;
     self.ay =  0.5;
     self.lerp = 1;
@@ -34,21 +34,21 @@ var Camera = function (game, name) {
     };
 
     self.zoomIn = function (px) {
-        self.zoom += game.loopManager.toPPS(px) / 100;
+        self.zoom += self.game.timeManager.pps(px) / 100;
         if (self.zoom > 3) {
             self.zoom = 3;
         }
     };
 
     self.zoomOut = function (px) {
-        self.zoom -= game.loopManager.toPPS(px) / 100;
+        self.zoom -= self.game.timeManager.pps(px) / 100;
         if (self.zoom < 0.3) {
             self.zoom = 0.3;
         }
     };
 
     self.rotate = function (degrees) {
-        self.angle += degrees / game.loopManager.fps * game.loopManager.motion;
+        self.angle += self.game.timeManager.dps(degrees);
         self.angle %= 360;
     };
 
