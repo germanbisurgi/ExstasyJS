@@ -11,6 +11,7 @@ mygame.stateManager.add(gameState);
 mygame.stateManager.add(audioState);
 mygame.stateManager.add(mathState);
 mygame.stateManager.add(timeState);
+mygame.stateManager.add(textState);
 
 mygame.stateManager.switch('loadState');
 

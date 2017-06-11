@@ -1,6 +1,5 @@
 var timeState = new Extasy.state('timeState');
 var player;
-var circle;
 var myTimer;
 var mountains;
 

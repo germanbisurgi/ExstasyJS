@@ -119,6 +119,13 @@ var State = function (name) {
         return regularPolygon;
     };
 
+    self.addTextField = function (x, y, text) {
+        var txt = new Extasy.textField(self.game, x, y, text);
+        txt.prerender();
+        self.game.entityManager.addEntity(txt);
+        return txt;
+    };
+
     self.listEntities = function () {
         return self.game.entityManager.listEntities();
     };
