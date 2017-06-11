@@ -9,9 +9,9 @@ timeState.create = function () {
     player.addAnimation('left', [13, 14, 13, 12], 100);
     mountains = this.addTileSprite(0, 200, 400, 200, 'mountains');
 
-    myTimer = this.createTimer(3000, function() {
+    myTimer = this.addTimer(3000, false, function() {
         console.log('banane');
-    }, true);
+    });
 
 };
 

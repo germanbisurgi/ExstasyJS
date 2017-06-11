@@ -269,9 +269,17 @@ var State = function (name) {
 
     // -------------------------------------------------------------------- time
 
-    self.createTimer = function(delay, callback, repeat) {
-        var timer = new Extasy.timer(self.game, delay, callback, repeat);
+    self.addTimer = function(delay, repeat,callback) {
+        var timer = new Extasy.timer(self.game, delay, repeat, callback);
         return timer;
-    };    
+    };
+
+    self.pause = function() {
+        self.game.timeManager.pause();
+    }; 
+
+    self.continue = function() {
+        self.game.timeManager.continue();
+    }; 
 
 };

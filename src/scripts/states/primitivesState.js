@@ -27,6 +27,12 @@ primitivesState.create = function () {
 };
 
 primitivesState.update = function () {
+    rectangle.rotate(60);
+    rectangle.translate(5, 0);
+    circle.rotate(60);
+    circle.translate(5, 0);
+    polygon.rotate(60);
+    polygon.translate(5, 0);
     regularPolygon.rotate(60);
     regularPolygon.translate(5, 0);
 };
