@@ -14,8 +14,7 @@ audioState.create = function () {
     grass = this.addTileSprite(this.getActiveCamera().x, this.getActiveCamera().y, 400, 400, 'grass');
     
     tank = this.addSprite(200, 200, 'tanks');
-    tank.addAnimation('forward', [0, 1, 2, 3, 4, 5, 6], 5);
-    tank.addAnimation('backward', [6, 5, 4, 3, 2, 1, 0], 5);
+    tank.addAnimation('drive', [0, 1, 2, 3, 4, 5, 6], 100);
 
     this.getActiveCamera().setLerp(10);  
 };
@@ -31,7 +30,7 @@ audioState.update = function () {
     var controller = this.getController('standard');
 
     if (controller.UP.isPressed) {
-        tank.play('forward');
+        tank.play('drive');
         var currentAngle = this.toRadians((tank.angle - 0));
         var cos = Math.cos(currentAngle);
         var sin = Math.sin(currentAngle);
@@ -40,12 +39,12 @@ audioState.update = function () {
         motor.playbackRate = 1.5;
     }
     if (controller.RIGHT.isPressed) {
-        tank.play('backward');
+        tank.play('drive');
         tank.angle += 3;
         motor.volume = 0.4;
     }
     if (controller.DOWN.isPressed) {
-        tank.play('backward');
+        tank.play('drive');
         var currentAngle = this.toRadians((tank.angle - 0));
         var cos = Math.cos(currentAngle);
         var sin = Math.sin(currentAngle);
@@ -53,7 +52,7 @@ audioState.update = function () {
         motor.volume = 0.4;
     }
     if (controller.LEFT.isPressed) {
-        tank.play('forward');
+        tank.play('drive');
         tank.angle -= 3;
         motor.volume = 0.4;
     }

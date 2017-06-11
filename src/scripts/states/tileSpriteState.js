@@ -11,7 +11,7 @@ tileSpriteState.create = function () {
     snow = this.addTileSprite(0, 0, 400, 300, 'snow');
     snow2 = this.addTileSprite(-100, -100, 500, 400, 'snow');
     typ = this.addSprite(50, 50, 'player'); 
-    typ.addAnimation('right', [25, 26, 25, 24], 10);
+    typ.addAnimation('right', [25, 26, 25, 24], 100);
 };
 
 tileSpriteState.update = function () {

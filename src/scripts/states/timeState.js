@@ -14,7 +14,6 @@ timeState.update = function () {
     if (controller.P.isPressed) {timeState.game.timeManager.pause();}
     if (controller.S.isPressed) {timeState.game.timeManager.continue();}
     myTimer.update();
-    //console.log('Timer', myTimer.delay);
     console.log('Timer', timeState.game.timeManager.currentTime);
 
 };

@@ -23,10 +23,7 @@ primitivesState.create = function () {
     polygon.fill(pattern);
 
     regularPolygon = this.addRegularPolygon(50, 0, 25, 3);
-
-    console.log(this.listEntities());
-
-
+    regularPolygon.fill(pattern);
 };
 
 primitivesState.update = function () {
