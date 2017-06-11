@@ -85,7 +85,7 @@ var Sprite = function (game, spriteSheet) {
         if (animation) {
             var columns = self.image.width / self.sw;
             var delta = self.game.timeManager.delta;
-            self.delay += delta;
+            self.delay += delta * self.game.timeManager.motion;
 
             if (self.delay >= animation.velocity) {
                 self.counter = (self.counter + 1) % animation.sequence.length;
@@ -101,7 +101,7 @@ var Sprite = function (game, spriteSheet) {
     };
 
     self.rotate = function (degrees) {
-        self.angle += degrees / game.loopManager.fps * game.loopManager.motion;
+        self.angle += self.game.timeManager.dps(degrees);
         self.angle %= 360;
     };
 
@@ -124,8 +124,8 @@ var Sprite = function (game, spriteSheet) {
     };
 
     self.translate = function (x, y) {
-        self.dx += game.loopManager.toPPS(x);
-        self.dy += game.loopManager.toPPS(y);
+        self.dx += self.game.timeManager.pps(x);
+        self.dy += self.game.timeManager.pps(y);
     };
 
 };

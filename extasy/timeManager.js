@@ -7,6 +7,7 @@ var TimeManager = function (game) {
     self.lastTime = 0;
     self.currentTime = 0;
     self.delta = 0;
+    self.motion = 1;
     self.paused = 0;
 
     self.update = function () {
@@ -24,6 +25,14 @@ var TimeManager = function (game) {
 
     self.continue = function() {
         self.paused = false;
+    };
+
+    self.pps = function(velocity) {
+        return velocity * self.delta / 1000 * self.motion;
+    };
+
+    self.dps = function(degrees) {
+        return degrees * self.delta / 1000 * self.motion;
     };
 
 };
