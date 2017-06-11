@@ -2,6 +2,7 @@ var Sprite = function (game, spriteSheet) {
 
     "use strict";
     var self = this;
+    self.game = game;
     // core components.
     self.id = (Math.random() * 100000000 | 0).toString(16);
     self.data = null;
@@ -21,11 +22,10 @@ var Sprite = function (game, spriteSheet) {
     self.dh = spriteSheet.sh;
     self.ax = 0.5;
     self.ay =  0.5;
-    self.cx = self.dx + self.dw * 0.5;
-    self.cy = self.dy + self.dh * 0.5;
     self.angle = 0;
     self.opacity = 1.0;
     self.shadow = {};
+    self.delay = 0;
     self.counter = 0;
     self.animations = [];
 
@@ -84,8 +84,12 @@ var Sprite = function (game, spriteSheet) {
         var animation = self.getAnimation(animationName);
         if (animation) {
             var columns = self.image.width / self.sw;
-            if (game.loopManager.frame % Math.ceil(animation.velocity / (60 / game.loopManager.fps) / game.loopManager.motion) === 0) {
+            var delta = self.game.timeManager.delta;
+            self.delay += delta;
+
+            if (self.delay >= animation.velocity) {
                 self.counter = (self.counter + 1) % animation.sequence.length;
+                self.delay = 0;
             }
             self.sy = Math.floor((animation.sequence[self.counter] + 1) / columns) * self.sh;
             self.sx = self.sw * animation.sequence[self.counter]  - self.image.width * self.sy / self.sh;

@@ -17,13 +17,13 @@ physicsState.create = function () {
 
     circle = this.addCircle(100, 100, 25);
     circle.fill(pattern);
-    circle.body = this.createBody(circle.cx, circle.cy, 'dynamic');
+    circle.body = this.createBody(circle.dx + circle.dw * 0.5, circle.dy + circle.dh * 0.5, 'dynamic');
     circle.body.CreateFixture(this.createCircleShape(circle.dw / 2));
 
 
     rectangle = this.addRectangle(200, 150, 50, 50);
     rectangle.fill(pattern);
-    rectangle.body = this.createBody(rectangle.cx, rectangle.cy, 'dynamic');
+    rectangle.body = this.createBody(rectangle.dx + rectangle.dw * 0.5, rectangle.dy + rectangle.dh * 0.5, 'dynamic');
     rectangle.body.CreateFixture(this.createRectangleShape(rectangle.dw, rectangle.dh));
 
 
@@ -34,7 +34,7 @@ physicsState.create = function () {
         {x:   0, y: 50}
     ]);
     polygon.fill(pattern);
-    polygon.body = this.createBody(polygon.cx, polygon.cy, 'dynamic');
+    polygon.body = this.createBody(polygon.dx + polygon.dw * 0.5, polygon.dy + polygon.dh * 0.5, 'dynamic');
     polygon.body.CreateFixture(this.createPolygonShape([
         {x:   0 - polygon.dw/2, y:  0 - polygon.dh/2},
         {x:  50 - polygon.dw/2, y:  0 - polygon.dh/2},

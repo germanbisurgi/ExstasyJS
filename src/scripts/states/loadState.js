@@ -37,9 +37,9 @@ loadState.create = function () {
     
     //this.game.stateManager.switch('cameraState');
     //this.game.stateManager.switch('inputState');
-    //this.game.stateManager.switch('physicsState');
+    this.game.stateManager.switch('physicsState');
     //this.game.stateManager.switch('primitivesState');
-    this.game.stateManager.switch('spriteState');
+    //this.game.stateManager.switch('spriteState');
     //this.game.stateManager.switch('tileSpriteState');
     //this.game.stateManager.switch('audioState');
     //this.game.stateManager.switch('mathState');
