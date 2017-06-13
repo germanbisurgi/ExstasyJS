@@ -1,4 +1,5 @@
-var TextField = function (game, x, y, text) {
+var TextField = function (game, x, y, text, style) {
+    console.log(style)
 
     "use strict";
     var self = this;
@@ -8,13 +9,13 @@ var TextField = function (game, x, y, text) {
     self.name = null;
     self.renderable = true;
     self.type = 'text';
-    self.fillStyle  = 'grey';
-    self.strokeStyle = 'black';
-    self.font = '16px Helvetica';
-    self.textAlign = 'start';
-    self.textBaseline = 'top';
+    self.fillStyle  = style.fillStyle ? style.fillStyle : 'grey';
+    self.strokeStyle = style.fillStyle ? style.strokeStyle : 'red';
+    self.lineWidth = style.lineWidth ? style.lineWidth : 10;
+    self.font = style.font ? style.font : '16px Helvetica';
+    self.textAlign = style.textAlign ? style.textAlign : 'start';
+    self.textBaseline = style.textBaseline ? style.textBaseline : 'top';
     self.text = text;
-    self.lineWidth = 0;
     self.image = null;
     self.sx = 0;
     self.sy = 0;
@@ -38,14 +39,14 @@ var TextField = function (game, x, y, text) {
     self.prerender = function() {
         var tmpCanvas = document.createElement('canvas');
         var tmpContext = tmpCanvas.getContext('2d');
-        tmpContext.fillStyle = self.fillStyle;
+        tmpContext.textAlign = self.textAlign;
         tmpContext.textBaseline = self.textBaseline;
-        //tmpContext.strokeStyle = self.strokeStyle;
-        //tmpContext.lineWidth = self.lineWidth;
         tmpContext.font = self.font;
+        tmpContext.strokeStyle = self.strokeStyle;
+        tmpContext.lineWidth = self.lineWidth;
+        tmpContext.strokeText(self.text, 0, 0);
+        tmpContext.fillStyle = self.fillStyle;
         tmpContext.fillText(self.text, 0, 0);
-
-        //if (self.lineWidth > 0) {tmpContext.strokeText();} 
         self.image = tmpCanvas;
     };
 

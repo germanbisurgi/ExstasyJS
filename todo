@@ -1,45 +1,26 @@
 implement pool (garbage collection optimization)
+particle system
+audioManager?
 
-regular polygons
-
-activate physics in create
-
-use dependency injection?
-
-entities
-    core components?
-
-events
-
-physics manager
-    rectangle
-    circle
-    polygons
-    contac listeners
-    ...
-
-audio manager
-
-ui
-
-input
+assetManager
+cameraManager
+entityManager
+text field stroke and fill
+    components
+    events
+inputManager
     touch
     ...
-
-camera as entity (like controller);
-    camera manager
-    camera object
-    changecamera
+loopManager
+mathManager
+physicsManager
+    activate physics in create
+    contac listeners
+    joints
     ...
+renderManager
+stateManager
+timeManager
 
 
-
-timer
-    time (* this.game.delta / 1000 * this.game.fps;)
-    zoom rates
-    degrees per second
-    general rates
-    ...
-
-particle system
 
