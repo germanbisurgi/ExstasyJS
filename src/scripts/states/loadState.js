@@ -36,7 +36,7 @@ loadState.create = function () {
     controller.add('SPACEBAR', 'keyboard', 'Spacebar');
     
     //this.game.stateManager.switch('cameraState');
-    //this.game.stateManager.switch('inputState');
+    this.game.stateManager.switch('inputState');
     //this.game.stateManager.switch('physicsState');
     //this.game.stateManager.switch('primitivesState');
     //this.game.stateManager.switch('spriteState');
@@ -44,5 +44,5 @@ loadState.create = function () {
     //this.game.stateManager.switch('audioState');
     //this.game.stateManager.switch('mathState');
     //this.game.stateManager.switch('timeState');
-    this.game.stateManager.switch('textState');
+    //this.game.stateManager.switch('textState');
 };
