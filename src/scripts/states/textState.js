@@ -9,11 +9,12 @@ textState.create = function () {
         textBaseline: "top",
         strokeStyle: "black",
         lineWidth: 0,
-        lineHeight: 1.2,
-        maxWidth: 300
+        lineHeight: 1.5,
+        width: 300,
+        height: 500
     };
 
-    this.addTextField(0, 0, 'Banana Ananas Limonata Mela', style);
+    this.addTextField(0, 0, 'fragola\nmandarino acciuga ballerina', style);
 
 };
 

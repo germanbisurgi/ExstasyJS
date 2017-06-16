@@ -15,7 +15,8 @@ var TextField = function (game, x, y, text, style) {
     self.textAlign = style.textAlign ? style.textAlign : 'start';
     self.textBaseline = style.textBaseline ? style.textBaseline : 'top';
     self.lineHeight = style.lineHeight ? style.lineHeight : 1;
-    self.maxWidth = style.maxWidth ? style.maxWidth : 0;
+    self.width = style.width ? style.width : 0;
+    self.height = style.height ? style.height : 0;
     self.text = text;
     self.image = null;
     self.sx = 0;
@@ -45,6 +46,10 @@ var TextField = function (game, x, y, text, style) {
     self.prerender = function() {
         var tmpCanvas = document.createElement('canvas');
         var tmpContext = tmpCanvas.getContext('2d');
+        tmpCanvas.width = self.width;
+        tmpCanvas.height = self.height;
+        tmpContext.rect(0, 0, tmpCanvas.width, tmpCanvas.height);
+        tmpContext.fill();
         tmpContext.textAlign = self.textAlign;
         tmpContext.textBaseline = self.textBaseline;
         tmpContext.font = self.font;
@@ -52,37 +57,33 @@ var TextField = function (game, x, y, text, style) {
         tmpContext.lineWidth = self.lineWidth;
         tmpContext.fillStyle = self.fillStyle;
         var lineHeight = tmpContext.measureText("M").width * self.lineHeight;
-        var maxWidth = self.maxWidth;
+        var width = self.width;
 
-        // multiline support and text wrapp.
-        var finalLines = [];
-        var y = 0;
-        //var breakedLines = self.text.split("\n");
-        
-        var words = self.text.split(' ');
-        var line = '';
-        words.forEach(function (word, i) {
-            line += word + ' ';
-            
-            if (tmpContext.measureText(line).width > maxWidth) {
-                finalLines.push(line);
-                line = '';
-            } else if (i === words.length - 1) {
-                finalLines.push(line);
+        // auto wrap and break lines
+        var lines = text.split("\n");
+        for (var i = 0; i < lines.length; i++) {
+
+            var words = lines[i].split(' ');
+            var line = '';
+
+            for (var n = 0; n < words.length; n++) {
+                var testLine = line + words[n] + ' ';
+                var metrics = tmpContext.measureText(testLine);
+                var testWidth = metrics.width;
+                if (testWidth > width && n > 0) {
+                    tmpContext.fillText(line, 0, y);
+                    line = words[n] + ' ';
+                    y += lineHeight;
+                }
+                else {
+                    line = testLine;
+                }
             }
-            console.log(i, line);
-        });
 
-        console.log(finalLines);     
-
-
-        //finalLines = breakedLines;
-        finalLines.forEach(function (line) {
             tmpContext.strokeText(line, 0, y);
             tmpContext.fillText(line, 0, y);
             y += lineHeight;
-        });
-        
+        }
 
         self.image = tmpCanvas;
     };
