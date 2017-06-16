@@ -15,6 +15,7 @@ var TextField = function (game, x, y, text, style) {
     self.textAlign = style.textAlign ? style.textAlign : 'start';
     self.textBaseline = style.textBaseline ? style.textBaseline : 'top';
     self.lineHeight = style.lineHeight ? style.lineHeight : 1;
+    self.maxWidth = style.maxWidth ? style.maxWidth : 0;
     self.text = text;
     self.image = null;
     self.sx = 0;
@@ -50,21 +51,38 @@ var TextField = function (game, x, y, text, style) {
         tmpContext.strokeStyle = self.strokeStyle;
         tmpContext.lineWidth = self.lineWidth;
         tmpContext.fillStyle = self.fillStyle;
-
-        // multiline support.        
         var lineHeight = tmpContext.measureText("M").width * self.lineHeight;
-        var lines = self.text.split("\n");
-        var y = 0;
-        lines.forEach(function (line) {
-            
-            var words = line.split("\n");
-            console.log(words);
-            console.log(tmpContext.measureText(line));
+        var maxWidth = self.maxWidth;
 
+        // multiline support and text wrapp.
+        var finalLines = [];
+        var y = 0;
+        //var breakedLines = self.text.split("\n");
+        
+        var words = self.text.split(' ');
+        var line = '';
+        words.forEach(function (word, i) {
+            line += word + ' ';
+            
+            if (tmpContext.measureText(line).width > maxWidth) {
+                finalLines.push(line);
+                line = '';
+            } else if (i === words.length - 1) {
+                finalLines.push(line);
+            }
+            console.log(i, line);
+        });
+
+        console.log(finalLines);     
+
+
+        //finalLines = breakedLines;
+        finalLines.forEach(function (line) {
             tmpContext.strokeText(line, 0, y);
             tmpContext.fillText(line, 0, y);
             y += lineHeight;
         });
+        
 
         self.image = tmpCanvas;
     };
