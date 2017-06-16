@@ -1,5 +1,4 @@
 var TextField = function (game, x, y, text, style) {
-    console.log(style)
 
     "use strict";
     var self = this;
