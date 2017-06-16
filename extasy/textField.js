@@ -10,10 +10,11 @@ var TextField = function (game, x, y, text, style) {
     self.type = 'text';
     self.fillStyle  = style.fillStyle ? style.fillStyle : 'grey';
     self.strokeStyle = style.fillStyle ? style.strokeStyle : 'red';
-    self.lineWidth = style.lineWidth ? style.lineWidth : 10;
+    self.lineWidth = style.lineWidth ? style.lineWidth : 0;
     self.font = style.font ? style.font : '16px Helvetica';
     self.textAlign = style.textAlign ? style.textAlign : 'start';
     self.textBaseline = style.textBaseline ? style.textBaseline : 'top';
+    self.lineHeight = style.lineHeight ? style.lineHeight : 1;
     self.text = text;
     self.image = null;
     self.sx = 0;
@@ -30,6 +31,11 @@ var TextField = function (game, x, y, text, style) {
     self.opacity = 1.0;
     self.shadow = {};
 
+    self.setText = function (text) {
+        self.text = text;
+        self.prerender();
+    };
+
     self.fill = function (fill) {
         self.fillStyle = fill;
         self.prerender();
@@ -43,9 +49,23 @@ var TextField = function (game, x, y, text, style) {
         tmpContext.font = self.font;
         tmpContext.strokeStyle = self.strokeStyle;
         tmpContext.lineWidth = self.lineWidth;
-        tmpContext.strokeText(self.text, 0, 0);
         tmpContext.fillStyle = self.fillStyle;
-        tmpContext.fillText(self.text, 0, 0);
+
+        // multiline support.        
+        var lineHeight = tmpContext.measureText("M").width * self.lineHeight;
+        var lines = self.text.split("\n");
+        var y = 0;
+        lines.forEach(function (line) {
+            
+            var words = line.split("\n");
+            console.log(words);
+            console.log(tmpContext.measureText(line));
+
+            tmpContext.strokeText(line, 0, y);
+            tmpContext.fillText(line, 0, y);
+            y += lineHeight;
+        });
+
         self.image = tmpCanvas;
     };
 

@@ -2,25 +2,17 @@ implement pool (garbage collection optimization)
 particle system
 audioManager?
 
-assetManager
-cameraManager
 entityManager
-text field stroke and fill
     components
     events
 inputManager
     touch
     ...
-loopManager
-mathManager
 physicsManager
     activate physics in create
     contac listeners
     joints
     ...
-renderManager
-stateManager
-timeManager
 
 
 

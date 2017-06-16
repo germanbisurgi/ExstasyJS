@@ -8,10 +8,11 @@ textState.create = function () {
         textAlign: "start",
         textBaseline: "top",
         strokeStyle: "black",
-        lineWidth: 3
+        lineWidth: 0,
+        lineHeight: 1.2
     };
 
-    this.addTextField(0, 0, 'Banana', style);
+    this.addTextField(0, 0, 'Banana Ananas\nLimonata Mela', style);
 
 };
 

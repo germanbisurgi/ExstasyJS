@@ -1,5 +1,5 @@
 var inputState = new Extasy.state('inputState');
-
+var paragraph;
 inputState.create = function () {
 
 };
