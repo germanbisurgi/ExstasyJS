@@ -3,40 +3,14 @@ var InputManager = function(game) {
     "use strict";
     var self = this;
     self.game = game;
-    self.controllers = [];
-
-    self.getController = function(controllerName) {
-        var output = false;
-        self.controllers.forEach(function(controller) {
-            if (controller.name === controllerName) {
-                output = controller;
-            }
-        });
-        return output;
-    };
-
-    self.createController = function(controllerName) {
-        if (!self.getController(controllerName)) {
-            var controller = new Extasy.controller(self.game, controllerName);
-            self.controllers.push(controller);
-            return controller;
-        } else {
-            console.log('EXCEPTION: This controller is already in the list ->', controllerName);
-            self.game.stop();
-        }
-        
-    };
-
-    self.listControllers = function() {
-        return self.controllers;
-    };
-
+    
     self.mouse = {
         x: null,
         y: null,
         left: {isPressed: false},
         right: {isPressed: false},
-        middle: {isPressed: false}
+        middle: {isPressed: false},
+        wheelDirection: null
     };
 
     self.keyboard = {
@@ -75,16 +49,16 @@ var InputManager = function(game) {
         x:          {isPressed: false, name: 'x'},
         y:          {isPressed: false, name: 'y'},
         z:          {isPressed: false, name: 'z'},
-        num0:          {isPressed: false, name: '0'},
-        num1:          {isPressed: false, name: '1'},
-        num2:          {isPressed: false, name: '2'},
-        num3:          {isPressed: false, name: '3'},
-        num4:          {isPressed: false, name: '4'},
-        num5:          {isPressed: false, name: '5'},
-        num6:          {isPressed: false, name: '6'},
-        num7:          {isPressed: false, name: '7'},
-        num8:          {isPressed: false, name: '8'},
-        num9:          {isPressed: false, name: '9'},
+        num0:       {isPressed: false, name: '0'},
+        num1:       {isPressed: false, name: '1'},
+        num2:       {isPressed: false, name: '2'},
+        num3:       {isPressed: false, name: '3'},
+        num4:       {isPressed: false, name: '4'},
+        num5:       {isPressed: false, name: '5'},
+        num6:       {isPressed: false, name: '6'},
+        num7:       {isPressed: false, name: '7'},
+        num8:       {isPressed: false, name: '8'},
+        num9:       {isPressed: false, name: '9'},
     };
 
     var checkKey = function check(e) {
@@ -300,5 +274,9 @@ var InputManager = function(game) {
         self.mouse.x = event.clientX;
         self.mouse.y = event.clientY;
     };
+
+    window.addEventListener('wheel', function (e) {
+        var wDelta = e.wheelDelta < 0 ? self.mouse.wheelDirection = 'down' : self.mouse.wheelDirection = 'up';
+    });
 
 };

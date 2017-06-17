@@ -168,18 +168,6 @@ var State = function (name) {
 
     // ------------------------------------------------------------------ inputs
 
-    self.getController = function (controllerName) {
-        return self.game.inputManager.getController(controllerName);
-    };
-
-    self.createController = function (controllerName) {
-        return self.game.inputManager.createController(controllerName);
-    };
-
-    self.listControllers = function () {
-        return self.game.inputManager.listControllers();
-    };
-
     // ------------------------------------------------------------------ camera
 
     self.addCamera = function (name) {

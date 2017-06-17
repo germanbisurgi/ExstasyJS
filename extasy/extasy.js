@@ -21,6 +21,5 @@ var Extasy = {
     polygon: Polygon,
     regularPolygon: RegularPolygon,
     tileSprite: TileSprite,
-    timer: Timer,
-    controller: Controller
+    timer: Timer
 };

@@ -1,8 +1,9 @@
 var inputState = new Extasy.state('inputState');
 var text;
+var mouseXY;
 var inputs;
 var style = {
-        font: "50px Helvetica",
+        font: "20px Helvetica",
         fillStyle: "purple",
         textAlign: "start",
         textBaseline: "top",
@@ -13,27 +14,40 @@ var style = {
 
 inputState.create = function () {
     
-    text = this.addTextField(0, 0, 500, 500, '', style);
-
+    text = this.addTextField(0, 0, 500, 500, 'la', style);
+    
 };
 
 inputState.update = function () {
-    inputs = 'key pressed:\n';
-    var controller = this.getController('standard');
 
-    if (controller.UP.isPressed) {
+    var mouseX = this.game.inputManager.mouse.x;
+    var mouseY = this.game.inputManager.mouse.y;
+    var wheelDirection = this.game.inputManager.mouse.wheelDirection;
+
+    inputs = 'key pressed:\n';
+
+    if (this.game.inputManager.keyboard.ArrowUp.isPressed) {
         inputs += 'UP ';
     }
-    if (controller.RIGHT.isPressed) {
+    if (this.game.inputManager.keyboard.ArrowRight.isPressed) {
         inputs += 'RIGHT ';
     }
-    if (controller.DOWN.isPressed) {
+    if (this.game.inputManager.keyboard.ArrowDown.isPressed) {
         inputs += 'DOWN ';
     }
-    if (controller.LEFT.isPressed) {
+    if (this.game.inputManager.keyboard.ArrowLeft.isPressed) {
         inputs += 'LEFT ';
     }
-    text.setText('cazzimma');
+    if (this.game.inputManager.mouse.left.isPressed) {
+        inputs += 'mouseLeft ';
+    }
+    if (this.game.inputManager.mouse.right.isPressed) {
+        inputs += 'mouseRight ';
+    }
+    if (this.game.inputManager.mouse.middle.isPressed) {
+        inputs += 'mouseMiddle ';
+    }
 
-    text.setText(inputs);
+    text.setText('X: ' + mouseX + '\n' + 'Y: ' + mouseY + '\n' + 'wheel direction: ' + wheelDirection + '\n\n' + inputs);
+    
 };
