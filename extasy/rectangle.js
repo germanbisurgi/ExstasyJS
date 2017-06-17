@@ -92,4 +92,9 @@ var Rectangle = function (game, x, y, w, h) {
         self.dy += self.game.timeManager.pps(y);
     };
 
+    self.position = function (x, y) {
+        self.dx = x;
+        self.dy = y;
+    };
+
 };

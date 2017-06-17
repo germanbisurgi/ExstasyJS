@@ -192,12 +192,6 @@ var State = function (name) {
         return self.game.cameraManager.listCameras();
     };
 
-    // -------------------------------------------------------------------- loop
-
-    self.setMotion = function (rate) {
-        self.game.loopManager.motion = rate;
-    };
-
     // -------------------------------------------------------------------- math
 
     self.random = function(min, max) {

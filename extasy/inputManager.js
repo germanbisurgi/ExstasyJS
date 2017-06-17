@@ -13,6 +13,12 @@ var InputManager = function(game) {
         wheelDirection: null
     };
 
+    self.touch = {
+        x: null,
+        y: null,
+        touched: false,
+    };
+
     self.keyboard = {
         Enter:      {isPressed: false, name: 'Enter'},
         Shift:      {isPressed: false, name: 'Shift'},
@@ -275,8 +281,29 @@ var InputManager = function(game) {
         self.mouse.y = event.clientY;
     };
 
-    window.addEventListener('wheel', function (e) {
+    document.onwheel = function(e) {
+        e.preventDefault();
         var wDelta = e.wheelDelta < 0 ? self.mouse.wheelDirection = 'down' : self.mouse.wheelDirection = 'up';
+    };
+
+    document.addEventListener('touchstart', function(e) {
+        self.touch.touched = true; 
+        self.touch.x = Math.round(e.touches[0].clientX);
+        self.touch.y = Math.round(e.touches[0].clientY);
+    });
+
+    document.addEventListener('touchend', function(e) {
+        self.touch.touched = false;
+    });
+
+    document.addEventListener('touchmove', function(e) {
+        self.touch.touched = true; 
+        self.touch.x = Math.round(e.touches[0].clientX);
+        self.touch.y = Math.round(e.touches[0].clientY);
+    });
+
+    document.addEventListener('touchcancel', function(e) {
+        self.touch.touched = false; 
     });
 
 };
