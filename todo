@@ -1,18 +1,19 @@
 implement pool (garbage collection optimization)
-particle system
 audioManager?
 
+timeManager
+    update in loop logic
 entityManager
     components
     events
-inputManager
-    touch
-    ...
+    setPosition
 physicsManager
     activate physics in create
     contac listeners
     joints
     ...
+inputManager
+    resetWheel
 
 
 

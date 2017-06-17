@@ -168,6 +168,40 @@ var State = function (name) {
 
     // ------------------------------------------------------------------ inputs
 
+    self.mouseLeft = function () {
+        return this.game.inputManager.mouse.left.isPressed;
+    }
+
+    self.mouseRight = function () {
+        return this.game.inputManager.mouse.right.isPressed;
+    }
+
+    self.mouseMiddle = function () {
+        return this.game.inputManager.mouse.middle.isPressed;
+    }
+
+    self.mouseWheelUp = function () {
+        var check = this.game.inputManager.mouse.wheelDirection === 'up';
+        return check;
+    }
+
+    self.mouseWheelDown = function () {
+        var check = this.game.inputManager.mouse.wheelDirection === 'down';
+        return check;
+    }
+
+    self.stopMouseWheel = function () {
+        this.game.inputManager.mouse.wheelDirection = '';
+    }
+
+    self.keyPressed = function (key) {
+        return this.game.inputManager.keyboard[key].isPressed;
+    }
+
+    self.touched = function () {
+        return this.game.inputManager.touch.touched;
+    }    
+
     // ------------------------------------------------------------------ camera
 
     self.addCamera = function (name) {

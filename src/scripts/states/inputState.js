@@ -27,31 +27,41 @@ inputState.update = function () {
     var mouseButtons = '';
     var wheelDirection = this.game.inputManager.mouse.wheelDirection;
 
-    if (this.game.inputManager.mouse.right.isPressed) {
+    if (this.mouseRight()) {
         mouseButtons += 'mouseRight ';
     }
-    if (this.game.inputManager.mouse.middle.isPressed) {
+    if (this.mouseMiddle()) {
         mouseButtons += 'mouseMiddle ';
     }
-    if (this.game.inputManager.mouse.left.isPressed) {
+    if (this.mouseLeft()) {
         mouseButtons += 'mouseLeft ';
-        square.position(mouseX - square.dw * 0.5, mouseY - square.dh * 0.5);
+        square.position(
+            mouseX / this.getActiveCamera().zoom - square.dw * 0.5,
+            mouseY / this.getActiveCamera().zoom - square.dh * 0.5
+        );
+    }
+    if (this.mouseWheelUp()) {
+        this.getActiveCamera().zoomIn(60);
+
+    }
+    if (this.mouseWheelDown()) {
+        this.getActiveCamera().zoomOut(60);
     }
 
     // ---------------------------------------------------------------- keyboard
 
     var keys = '';
     
-    if (this.game.inputManager.keyboard.ArrowUp.isPressed) {
+    if (this.keyPressed('ArrowUp')) {
         keys += 'up ';
     }
-    if (this.game.inputManager.keyboard.ArrowRight.isPressed) {
+    if (this.keyPressed('ArrowRight')) {
         keys += 'right ';
     }
-    if (this.game.inputManager.keyboard.ArrowDown.isPressed) {
+    if (this.keyPressed('ArrowDown')) {
         keys += 'down ';
     }
-    if (this.game.inputManager.keyboard.ArrowLeft.isPressed) {
+    if (this.keyPressed('ArrowLeft')) {
         keys += 'left ';
     }
     
@@ -60,7 +70,7 @@ inputState.update = function () {
     var touchX = this.game.inputManager.touch.x;
     var touchY = this.game.inputManager.touch.y;
 
-    if (this.game.inputManager.touch.touched) {
+    if (this.touched()) {
         square.position(touchX - square.dw * 0.5, touchY - square.dh * 0.5);
     }
 
@@ -75,5 +85,6 @@ inputState.update = function () {
         'touch y: ' + touchY + '\n' +
         'keys: ' + keys
     );
+
     
 };
