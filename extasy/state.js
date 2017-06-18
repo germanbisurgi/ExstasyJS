@@ -119,8 +119,8 @@ var State = function (name) {
         return regularPolygon;
     };
 
-    self.addTextField = function (x, y, width, height, text, style) {
-        var txt = new Extasy.textField(self.game, x, y, width, height, text, style);
+    self.addText = function (x, y, width, height, text, style) {
+        var txt = new Extasy.text(self.game, x, y, width, height, text, style);
         txt.prerender();
         self.game.entityManager.addEntity(txt);
         return txt;

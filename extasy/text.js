@@ -1,4 +1,4 @@
-var TextField = function (game, x, y, width, height, text, style) {
+var Text = function (game, x, y, width, height, text, style) {
 
     "use strict";
     var self = this;

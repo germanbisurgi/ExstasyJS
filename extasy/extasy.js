@@ -16,7 +16,7 @@ var Extasy = {
     spriteSheet: SpriteSheet,
     sprite: Sprite,
     rectangle: Rectangle,
-    textField: TextField,
+    text: Text,
     circle: Circle,
     polygon: Polygon,
     regularPolygon: RegularPolygon,

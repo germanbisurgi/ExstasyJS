@@ -21,7 +21,7 @@ var style = {
 
 inputState.create = function () {
     
-    text = this.addTextField(15, 15, 500, 500, '', style);
+    text = this.addText(15, 15, 500, 500, '', style);
     square = this.addRectangle(200, 15, 50, 50);
     
 };
