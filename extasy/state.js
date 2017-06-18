@@ -11,6 +11,16 @@ var State = function (name) {
     self.create = function () {};
     self.update = function () {};
 
+    // -------------------------------------------------------------------- loop
+
+    self.pauseLoop = function () {
+        self.game.loopManager.pause();
+    };
+
+    self.continueLoop = function () {
+        self.game.loopManager.pause();
+    };
+
     // ------------------------------------------------------------------- state
 
     self.switchState = function (state) {

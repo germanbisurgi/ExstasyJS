@@ -32,34 +32,6 @@ var MathManager = function (game) {
         return ((n >= min) && (n <= max));
     };
 
-    self.accelerate = function(v, accel, dt) {
-        return v + (accel * dt);
-    };
-
-    self.lerp = function(n, dn, dt) {   // linear interpolation
-        return n + (dn * dt);
-    };
-
-    // Easing Equations.
-
-    self.interpolate = function(a, b, percent) {
-        return a + (b - a) * percent;
-    };
-
-    self.easeIn = function(a, b, percent) {
-        return a + (b - a) * Math.pow(percent, 2); 
-    };
-
-    self.easeOut = function(a, b, percent) {
-        return a + (b - a) * (1 - Math.pow(1 - percent, 2)); 
-    };
-
-    self.easeInOut = function(a, b, percent) {
-        return a + (b - a) * ((-Math.cos(percent * Math.PI) / 2) + 0.5);
-    };
-
-    // Converter.
-
     self.toRadians = function(x) {
         return x * 0.0174532925199432957;
     };
@@ -67,8 +39,6 @@ var MathManager = function (game) {
     self.toDegrees = function(x) {
         return x * 57.295779513082320876;
     };
-
-    // Simple collision detection.
 
     self.distance = function(pa, pb) {
         var dx = pa.dx - pb.dx;

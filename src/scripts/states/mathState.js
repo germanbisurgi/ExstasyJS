@@ -45,11 +45,6 @@ mathState.update = function () {
     if (this.pressing('a')) {
         box2.translate(-100, 0);
     }
-    if (this.rectangleCollision(box1, box2)) {
-        box1.fill('red');
-    } else {
-        box1.fill('grey');
-    }
 
     // ----------------------------------------------------------------- circles
 
@@ -65,19 +60,50 @@ mathState.update = function () {
     if (this.pressing('ArrowLeft')) {
         circle2.translate(-100, 0);
     }
-    if (this.circleCollision(circle1, circle2)) {
-        circle1.fill('red');
-    } else {
-        circle1.fill('grey');
-    }
 
     // ----------------------------------------------------------------- circles
 
-    if (this.circleRectCollision(circle2, box2)) {
-        circle2.fill('red');
-        box2.fill('red');
-    } else {
-        circle2.fill('grey');
-        box2.fill('grey');
-    }
+    var self = this;
+    var entitiesToCheck = [];
+    var checkedEntities = [];
+
+    self.listEntities().forEach(function (e) {
+        if (e.type === 'circle' || e.type === 'rectangle') {
+            entitiesToCheck.push(e);
+        }
+    });
+
+    entitiesToCheck.forEach(function (e1) {
+        entitiesToCheck.forEach(function (e2) {
+            if (e1 !== e2 && checkedEntities.indexOf(e2) === -1) {
+                if (e1.type === 'circle' && e2.type === 'rectangle') {
+                    console.log('check');
+                    if (self.circleRectCollision(e1, e2)) {
+                        e1.fill('red');
+                    } else {
+                        e1.fill('grey');
+                    }
+                }
+                if (e1.type === 'rectangle' && e2.type === 'rectangle') {
+                    if (self.rectangleCollision(e1, e2)) {
+                        e1.fill('red');
+                    } else {
+                        e1.fill('grey');
+                    }
+                }
+                if (e1.type === 'circle' && e2.type === 'circle') {
+                    if (self.circleCollision(e1, e2)) {
+                        e1.fill('red');
+                    } else {
+                        e1.fill('grey');
+                    }
+                }
+                self.pauseLoop();
+                console.log(self.game.loopManager.frame, e1,e2);
+            }
+        });
+        checkedEntities.push(e1);
+    });
+
+
 };
