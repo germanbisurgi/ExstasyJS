@@ -7,13 +7,13 @@ entityManager
     setPosition
     type needed?
 physicsManager
-    activate physics in create
     contac listeners
     joints
     ...
 inputManager
     resetWheel
 renderManager
+    create gradient
     z-index
 Viewport features
 Tweens

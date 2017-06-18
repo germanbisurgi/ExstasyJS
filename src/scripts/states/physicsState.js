@@ -10,6 +10,8 @@ var camera3;
 
 physicsState.create = function () {
 
+    this.enablePhysics();
+
     var pattern = this.createPattern(this.getAsset('stone'), 'repeat');
 
     circle = this.addCircle(100, 100, 25);

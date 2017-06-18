@@ -44,8 +44,10 @@ var Game = function (width, height, name, canvas) {
             self.state.update();
         }
         if (!self.timeManager.paused) {
-            self.physicsManager.update();
-            self.physicsManager.draw();
+            if (self.physicsManager.enabled) {
+                self.physicsManager.update();
+                self.physicsManager.draw();
+            }
             self.renderManager.draw(self.entityManager.entities);
         }
         self.timeManager.realTime = Date.now();

@@ -15,6 +15,7 @@ var PhysicsManager = function(game) {
     "use strict";
     var self = this;
     self.game = game;
+    self.enabled = false;
     self.fps = 60;
     self.scale = 30;
     self.gx = 0;
@@ -25,7 +26,14 @@ var PhysicsManager = function(game) {
     self.canvas.width = self.game.width;
     self.canvas.height = self.game.height;
     self.ctx = self.canvas.getContext("2d");
-    
+
+    self.enablePhysics = function() {
+        self.enabled = true;
+    };
+
+    self.disablePhysics = function() {
+        self.enabled = false;
+    };     
 
     self.createBody = function(x, y, type) {
         var bodyDef = new b2BodyDef();
