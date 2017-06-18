@@ -69,6 +69,7 @@ mathState.update = function () {
 
     self.listEntities().forEach(function (e) {
         if (e.type === 'circle' || e.type === 'rectangle') {
+            e.collides = false;
             entitiesToCheck.push(e);
         }
     });
@@ -76,33 +77,36 @@ mathState.update = function () {
     entitiesToCheck.forEach(function (e1) {
         entitiesToCheck.forEach(function (e2) {
             if (e1 !== e2 && checkedEntities.indexOf(e2) === -1) {
-                if (e1.type === 'circle' && e2.type === 'rectangle') {
-                    console.log('check');
+                if (e2.type === 'circle' && e1.type === 'rectangle') {
                     if (self.circleRectCollision(e1, e2)) {
-                        e1.fill('red');
-                    } else {
-                        e1.fill('grey');
+                        e1.collides = true;
+                        e2.collides = true;
                     }
                 }
                 if (e1.type === 'rectangle' && e2.type === 'rectangle') {
                     if (self.rectangleCollision(e1, e2)) {
-                        e1.fill('red');
-                    } else {
-                        e1.fill('grey');
+                        e1.collides = true;
+                        e2.collides = true;
                     }
                 }
                 if (e1.type === 'circle' && e2.type === 'circle') {
                     if (self.circleCollision(e1, e2)) {
-                        e1.fill('red');
-                    } else {
-                        e1.fill('grey');
+                        e1.collides = true;
+                        e2.collides = true;
                     }
                 }
-                self.pauseLoop();
-                console.log(self.game.loopManager.frame, e1,e2);
             }
         });
         checkedEntities.push(e1);
+    });
+    //self.pauseLoop();
+
+    self.listEntities().forEach(function (e) {
+        if (e.collides) {
+            e.fill('red');
+        } else {
+            e.fill('grey');
+        }
     });
 
 
