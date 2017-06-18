@@ -11,6 +11,7 @@ var camera3;
 physicsState.create = function () {
 
     this.enablePhysics();
+    this.enablePhysicsDebugMode();
 
     var pattern = this.createPattern(this.getAsset('stone'), 'repeat');
 

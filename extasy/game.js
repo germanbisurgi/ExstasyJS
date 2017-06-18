@@ -46,6 +46,8 @@ var Game = function (width, height, name, canvas) {
         if (!self.timeManager.paused) {
             if (self.physicsManager.enabled) {
                 self.physicsManager.update();
+            }
+            if (self.physicsManager.debugMode) {
                 self.physicsManager.draw();
             }
             self.renderManager.draw(self.entityManager.entities);

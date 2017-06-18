@@ -143,6 +143,14 @@ var State = function (name) {
 
     self.disablePhysics = function () {
         this.game.physicsManager.disablePhysics();
+    };
+
+    self.enablePhysicsDebugMode = function () {
+        this.game.physicsManager.enablePhysicsDebugMode();
+    };
+
+    self.disablePhysicsDebugMode = function () {
+        this.game.physicsManager.disablePhysicsDebugMode();
     };  
 
     self.setGravity = function (x, y) {

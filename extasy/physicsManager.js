@@ -16,6 +16,7 @@ var PhysicsManager = function(game) {
     var self = this;
     self.game = game;
     self.enabled = false;
+    self.debugMode = false;
     self.fps = 60;
     self.scale = 30;
     self.gx = 0;
@@ -33,7 +34,15 @@ var PhysicsManager = function(game) {
 
     self.disablePhysics = function() {
         self.enabled = false;
-    };     
+    };
+
+    self.enablePhysicsDebugMode = function() {
+        self.debugMode = true;
+    };
+
+    self.disablePhysicsDebugMode = function() {
+        self.debugMode = false;
+    };
 
     self.createBody = function(x, y, type) {
         var bodyDef = new b2BodyDef();
