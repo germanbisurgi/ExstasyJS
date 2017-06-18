@@ -31,19 +31,18 @@ gameState.update = function () {
 
     //console.log(player2.GetWorldCenter());
 
-    var controller = this.getController('standard');
-    if (controller.UP.isPressed) {
+    if (this.keyPressed('ArrowUp')) {
         player1.ApplyImpulse({x: 0, y: -4}, player1.GetWorldCenter());
         player2.ApplyForce({x: 0, y: -10 * player2.GetMass() * 30} , player2.GetWorldCenter());
         player3.SetLinearVelocity({x: 0, y: -10}, player3.GetWorldCenter());
     }
-    if (controller.RIGHT.isPressed) {
+    if (this.keyPressed('ArrowRight')) {
        player1.ApplyImpulse({x: 2, y: 0}, player1.GetWorldCenter());
     }
-    if (controller.DOWN.isPressed) {
+    if (this.keyPressed('ArrowDown')) {
         player1.ApplyImpulse({x: 0, y: 5}, player1.GetWorldCenter());
     }
-    if (controller.LEFT.isPressed) {
+    if (this.keyPressed('ArrowLeft')) {
         player1.ApplyImpulse({x: -2, y: 0}, player1.GetWorldCenter());
     }
 };

@@ -137,70 +137,70 @@ var State = function (name) {
             x: x * this.game.physicsManager.scale,
             y: y * this.game.physicsManager.scale
         });
-    }
+    };
 
     self.addEdge = function (x1, y1, x2, y2) {
         var body = this.game.physicsManager.createBody(x1, y1, 'static');
         var fixture = this.game.physicsManager.createEdge(0, 0, x2-x1, y2-y1);
         body.CreateFixture(fixture);
         return body;
-    }
+    };
 
     self.createBody = function (x, y, type) {
         var body = this.game.physicsManager.createBody(x, y, type);
         return body;
-    }
+    };
 
     self.createCircleShape = function (radius) {
         var shape = this.game.physicsManager.createCircleShape(radius);
         return shape;
-    }
+    };
 
     self.createRectangleShape = function (w, h) {
         var shape = this.game.physicsManager.createRectangleShape(w, h);
         return shape;
-    }
+    };
 
     self.createPolygonShape = function (points) {
         var shape = this.game.physicsManager.createPolygonShape(points);
         return shape;
-    }  
+    };
 
     // ------------------------------------------------------------------ inputs
 
     self.mouseLeft = function () {
         return this.game.inputManager.mouse.left.isPressed;
-    }
+    };
 
     self.mouseRight = function () {
         return this.game.inputManager.mouse.right.isPressed;
-    }
+    };
 
     self.mouseMiddle = function () {
         return this.game.inputManager.mouse.middle.isPressed;
-    }
+    };
 
     self.mouseWheelUp = function () {
         var check = this.game.inputManager.mouse.wheelDirection === 'up';
         return check;
-    }
+    };
 
     self.mouseWheelDown = function () {
         var check = this.game.inputManager.mouse.wheelDirection === 'down';
         return check;
-    }
+    };
 
     self.stopMouseWheel = function () {
         this.game.inputManager.mouse.wheelDirection = '';
-    }
+    };
 
     self.keyPressed = function (key) {
         return this.game.inputManager.keyboard[key].isPressed;
-    }
+    };
 
     self.touched = function () {
         return this.game.inputManager.touch.touched;
-    }    
+    };   
 
     // ------------------------------------------------------------------ camera
 

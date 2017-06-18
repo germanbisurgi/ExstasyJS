@@ -1,9 +1,6 @@
 var physicsState = new Extasy.state('physicsState');
-var fixture1;
 var circle;
-var fixture2;
 var rectangle;
-var fixture3;
 var polygon;
 
 var mainCamera;
