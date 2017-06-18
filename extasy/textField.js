@@ -34,8 +34,11 @@ var TextField = function (game, x, y, width, height, text, style) {
     self.shadow = {};
 
     self.setText = function (text) {
+        var cachedText = self.text;
         self.text = text;
-        self.prerender();
+        if (self.text !== cachedText) {
+            self.prerender();
+        }
     };
 
     self.fill = function (fill) {

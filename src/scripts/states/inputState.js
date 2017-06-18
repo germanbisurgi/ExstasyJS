@@ -1,4 +1,12 @@
 var inputState = new Extasy.state('inputState');
+var square;
+var mouseX;
+var mouseY;
+var mouseButtons;
+var wheelDirection;
+var keys;
+var touchX;
+var touchY;
 var text;
 var style = {
     font: "15px Helvetica",
@@ -9,7 +17,7 @@ var style = {
     lineWidth: 0,
     lineHeight: 1.8,
 };
-var square;
+
 
 inputState.create = function () {
     
@@ -22,10 +30,10 @@ inputState.update = function () {
 
     // ------------------------------------------------------------------- mouse
 
-    var mouseX = this.game.inputManager.mouse.x;
-    var mouseY = this.game.inputManager.mouse.y;
-    var mouseButtons = '';
-    var wheelDirection = this.game.inputManager.mouse.wheelDirection;
+    mouseX = this.game.inputManager.mouse.x;
+    mouseY = this.game.inputManager.mouse.y;
+    mouseButtons = '';
+    wheelDirection = this.game.inputManager.mouse.wheelDirection;
 
     if (this.mouseRight()) {
         mouseButtons += 'mouseRight ';
@@ -50,7 +58,7 @@ inputState.update = function () {
 
     // ---------------------------------------------------------------- keyboard
 
-    var keys = '';
+    keys = '';
     
     if (this.keyPressed('ArrowUp')) {
         keys += 'up ';
@@ -67,8 +75,8 @@ inputState.update = function () {
     
     // ------------------------------------------------------------------- touch
     
-    var touchX = this.game.inputManager.touch.x;
-    var touchY = this.game.inputManager.touch.y;
+    touchX = this.game.inputManager.touch.x;
+    touchY = this.game.inputManager.touch.y;
 
     if (this.touched()) {
         square.position(touchX - square.dw * 0.5, touchY - square.dh * 0.5);
