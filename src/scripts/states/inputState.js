@@ -93,6 +93,5 @@ inputState.update = function () {
         'touch y: ' + touchY + '\n' +
         'keys: ' + keys
     );
-
-    
+        
 };

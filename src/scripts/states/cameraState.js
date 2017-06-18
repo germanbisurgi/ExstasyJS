@@ -14,42 +14,41 @@ cameraState.create = function () {
 cameraState.update = function () {
 
     var camera = this.getActiveCamera();
-    var controller = this.getController('standard');
 
-    if (controller.UP.isPressed) {
+    if (this.keyPressed('ArrowUp')) {
         tank.play('drive');
         var currentAngle = this.toRadians((tank.angle - 0));
         var cos = Math.cos(currentAngle);
         var sin = Math.sin(currentAngle);
         tank.translate(cos  * 200, sin * 200);
     }
-    if (controller.RIGHT.isPressed) {
+    if (this.keyPressed('ArrowRight')) {
         tank.play('drive');
         tank.angle += 3;
     }
-    if (controller.DOWN.isPressed) {
+    if (this.keyPressed('ArrowDown')) {
         tank.play('drive');
         var currentAngle = this.toRadians((tank.angle - 0));
         var cos = Math.cos(currentAngle);
         var sin = Math.sin(currentAngle);
         tank.translate(-cos  * 200, -sin * 200);
     }
-    if (controller.LEFT.isPressed) {
+    if (this.keyPressed('ArrowLeft')) {
         tank.play('drive');
         tank.angle -= 3;
     }
 
-    if (controller.H.isPressed) {
+    if (this.keyPressed('h')) {
         camera.zoomIn(60);
     }
-    if (controller.G.isPressed) {
+    if (this.keyPressed('g')) {
         camera.zoomOut(60);
     }
 
-    if (controller.A.isPressed) {
+    if (this.keyPressed('a')) {
         camera.rotate(-180);
     }
-    if (controller.S.isPressed) {
+    if (this.keyPressed('s')) {
         camera.rotate(180);
     }
 

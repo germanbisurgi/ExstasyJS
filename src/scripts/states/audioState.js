@@ -27,9 +27,8 @@ audioState.update = function () {
     }
     motor.volume = 0.15;
     var camera = this.getActiveCamera();
-    var controller = this.getController('standard');
 
-    if (controller.UP.isPressed) {
+    if (this.keyPressed('ArrowUp')) {
         tank.play('drive');
         var currentAngle = this.toRadians((tank.angle - 0));
         var cos = Math.cos(currentAngle);
@@ -38,12 +37,12 @@ audioState.update = function () {
         motor.volume = 0.4;
         motor.playbackRate = 1.5;
     }
-    if (controller.RIGHT.isPressed) {
+    if (this.keyPressed('ArrowRight')) {
         tank.play('drive');
         tank.angle += 3;
         motor.volume = 0.4;
     }
-    if (controller.DOWN.isPressed) {
+    if (this.keyPressed('ArrowDown')) {
         tank.play('drive');
         var currentAngle = this.toRadians((tank.angle - 0));
         var cos = Math.cos(currentAngle);
@@ -51,26 +50,26 @@ audioState.update = function () {
         tank.translate(-cos  * 200, -sin * 200);
         motor.volume = 0.4;
     }
-    if (controller.LEFT.isPressed) {
+    if (this.keyPressed('ArrowLeft')) {
         tank.play('drive');
         tank.angle -= 3;
         motor.volume = 0.4;
     }
 
-    if (controller.H.isPressed) {
+    if (this.keyPressed('h')) {
         camera.zoomIn(60);
     }
-    if (controller.G.isPressed) {
+    if (this.keyPressed('g')) {
         camera.zoomOut(60);
     }
 
-    if (controller.A.isPressed) {
+    if (this.keyPressed('a')) {
         camera.rotate(-180);
     }
-    if (controller.S.isPressed) {
+    if (this.keyPressed('s')) {
         camera.rotate(180);
     }
-    if (controller.SPACEBAR.isPressed) {
+    if (this.keyPressed('Spacebar')) {
         if (canFire) {
             canFire = false;
             shot.currentTime = 0;

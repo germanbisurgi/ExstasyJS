@@ -85,27 +85,26 @@ physicsState.update = function () {
 
 
     var camera = this.getActiveCamera();
-    var controller = this.getController('standard');
 
-    if (controller.H.isPressed) {
+    if (this.keyPressed('h')) {
         camera.zoomIn(60);
     }
-    if (controller.G.isPressed) {
+    if (this.keyPressed('g')) {
         camera.zoomOut(60);
     }
-    if (controller.A.isPressed) {
+    if (this.keyPressed('a')) {
         camera.rotate(-180);
     }
-    if (controller.S.isPressed) {
+    if (this.keyPressed('s')) {
         camera.rotate(180);
     }
-    if (controller.num1.isPressed) {
+    if (this.keyPressed('num1')) {
         this.switchCamera('camera1');
     }
-    if (controller.num2.isPressed) {
+    if (this.keyPressed('num2')) {
         this.switchCamera('camera2');
     }
-    if (controller.num3.isPressed) {
+    if (this.keyPressed('num3')) {
         this.switchCamera('camera3');
     }
 

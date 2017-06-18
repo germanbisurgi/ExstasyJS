@@ -12,7 +12,7 @@ textState.create = function () {
         lineHeight: 1.5,
     };
 
-    this.addText(0, 0, 300, 500, 'fragola mandarino acciuga ballerina fragola mandarino acciuga ballerina fragola mandarino acciuga ballerina', style);
+    this.addText(15, 15, 300, 500, 'fragola mandarino acciuga ballerina fragola mandarino acciuga ballerina fragola mandarino acciuga ballerina', style);
 
 };
 

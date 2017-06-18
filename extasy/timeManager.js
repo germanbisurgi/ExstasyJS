@@ -9,6 +9,7 @@ var TimeManager = function (game) {
     self.delta = 0;
     self.motion = 1;
     self.paused = 0;
+    self.timers = [];
 
     self.update = function () {
         self.delta = 0;
@@ -17,6 +18,9 @@ var TimeManager = function (game) {
             self.currentTime = self.lastTime + Math.floor(self.game.loopManager.delta);
             self.delta = self.currentTime - self.lastTime;
         }
+        self.timers.forEach(function (timer) {
+            timer.update();
+        });
     };
 
     self.pause = function() {

@@ -13,20 +13,13 @@ spriteState.create = function () {
     player.opacity(1);
     player.setAngle(10);
     player.translate(50, 50);
-
-    myTimer = this.addTimer(1000, true, function() {
-        console.log(spriteState.game.timeManager.currentTime);
-    });
+    this.addText(15, 15, 400, 50, 'Press P to pause the time and S to start the time', false);
 };
 
 spriteState.update = function () {
-    var controller = this.getController('standard');
-    if (controller.P.isPressed) {this.pause();}
-    if (controller.S.isPressed) {this.continue();}
-
+    if (this.keyPressed('p')) {this.pause();}
+    if (this.keyPressed('s')) {this.continue();}
     player.play('down');
     player.rotate(360);
     player.translate(5, 3);
-
-    myTimer.update();
 };
