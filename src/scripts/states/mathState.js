@@ -22,6 +22,7 @@ mathState.create = function () {
             'limit(5, 1, 3): ' + this.limit(5, 1, 3) + '\n' +
             'between(5, 1, 3): ' + this.between(5, 1, 3);
     this.addText(15, 15, 500, 500, text, style);
+    this.addText(15, 250, 500, 500, 'use arrows and "wasd" keys to move', style);
     box1 = this.addRectangle(15, 200, 25, 25);
     box2 = this.addRectangle(50, 200, 25, 25);
     circle1 = this.addCircle(300, 200, 10);
@@ -45,9 +46,9 @@ mathState.update = function () {
         box2.translate(-100, 0);
     }
     if (this.rectangleCollision(box1, box2)) {
-        box2.fill('red');
+        box1.fill('red');
     } else {
-        box2.fill('grey');
+        box1.fill('grey');
     }
 
     // ----------------------------------------------------------------- circles
@@ -65,9 +66,9 @@ mathState.update = function () {
         circle2.translate(-100, 0);
     }
     if (this.circleCollision(circle1, circle2)) {
-        circle2.fill('red');
+        circle1.fill('red');
     } else {
-        circle2.fill('grey');
+        circle1.fill('grey');
     }
 
     // ----------------------------------------------------------------- circles

@@ -81,11 +81,11 @@ var MathManager = function (game) {
         return distance < c1.dw / 2 + c2.dw / 2;
     };
 
-    self.rectangleCollision = function(b1, b2) {
-        return b1.dx < b2.dx + b2.dw &&
-               b1.dx + b1.dw > b2.dx &&
-               b1.dy < b2.dy + b2.dh &&
-               b1.dh + b1.dy > b2.dy;
+    self.rectangleCollision = function(r1, r2) {
+        return r1.dx < r2.dx + r2.dw &&
+               r1.dx + r1.dw > r2.dx &&
+               r1.dy < r2.dy + r2.dh &&
+               r1.dh + r1.dy > r2.dy;
     };
 
     self.circleRectCollision = function(c, r) {

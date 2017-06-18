@@ -6,6 +6,7 @@ entityManager
     events
     setPosition
     type needed?
+    accelleration?
 physicsManager
     contac listeners
     joints
@@ -17,12 +18,3 @@ renderManager
     z-index
 Viewport features
 Tweens
-Math
-    simple collitions (point, circle, rectangle)
-
-
-api syntax
-
-add/remove
-set/get
-enable/disable
