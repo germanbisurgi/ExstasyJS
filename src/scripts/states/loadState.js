@@ -18,16 +18,16 @@ loadState.preload = function () {
 };
 
 loadState.create = function () {
-    //this.game.stateManager.switch('cameraState');
-    //this.game.stateManager.switch('inputState');
-    //this.game.stateManager.switch('physicsState');
-    //this.game.stateManager.switch('primitivesState');
-    //this.game.stateManager.switch('spriteState');
-    //this.game.stateManager.switch('tileSpriteState');
-    //this.game.stateManager.switch('audioState');
-    //this.game.stateManager.switch('mathState');
-    //this.game.stateManager.switch('timeState');
-    //this.game.stateManager.switch('textState');
-    this.game.stateManager.switch('gameState');
+    //this.switchState('cameraState');
+    //this.switchState('inputState');
+    //this.switchState('physicsState');
+    //this.switchState('primitivesState');
+    //this.switchState('spriteState');
+    //this.switchState('tileSpriteState');
+    //this.switchState('audioState');
+    //this.switchState('mathState');
+    //this.switchState('timeState');
+    //this.switchState('textState');
+    this.switchState('gameState');
 
 };

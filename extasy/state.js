@@ -11,6 +11,11 @@ var State = function (name) {
     self.create = function () {};
     self.update = function () {};
 
+    // ------------------------------------------------------------------- state
+
+    self.switchState = function (state) {
+        this.game.stateManager.switch(state);
+    };
 
     // ------------------------------------------------------------------- audio
 
