@@ -1,8 +1,6 @@
 implement pool (garbage collection optimization)
 audioManager?
 
-timeManager
-    update in loop logic
 entityManager
     components
     events
@@ -19,6 +17,7 @@ mathState
     add text
     and examples
     make state api
-text
+renderManager
+    z-index
 
 

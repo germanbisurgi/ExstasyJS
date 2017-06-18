@@ -247,7 +247,7 @@ var State = function (name) {
     // Simple Math.
 
     self.limit = function(x, min, max) {
-        return self.game.limit.bla(x, min, max);
+        return self.game.mathManager.limit(x, min, max);
     };
 
     self.between = function(n, min, max) {
