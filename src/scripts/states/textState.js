@@ -16,5 +16,4 @@ textState.create = function () {
 
 };
 
-textState.update = function () {
-};
+textState.update = function () {};

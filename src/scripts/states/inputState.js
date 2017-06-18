@@ -60,16 +60,16 @@ inputState.update = function () {
 
     keys = '';
     
-    if (this.keyPressed('ArrowUp')) {
+    if (this.pressing('ArrowUp')) {
         keys += 'up ';
     }
-    if (this.keyPressed('ArrowRight')) {
+    if (this.pressing('ArrowRight')) {
         keys += 'right ';
     }
-    if (this.keyPressed('ArrowDown')) {
+    if (this.pressing('ArrowDown')) {
         keys += 'down ';
     }
-    if (this.keyPressed('ArrowLeft')) {
+    if (this.pressing('ArrowLeft')) {
         keys += 'left ';
     }
     

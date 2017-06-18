@@ -215,7 +215,7 @@ var State = function (name) {
         this.game.inputManager.mouse.wheelDirection = '';
     };
 
-    self.keyPressed = function (key) {
+    self.pressing = function (key) {
         return this.game.inputManager.keyboard[key].isPressed;
     };
 

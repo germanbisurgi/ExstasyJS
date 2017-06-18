@@ -22,6 +22,6 @@ timeState.update = function () {
     player.rotate(60);
     player.translate(5, 1);
     player.play('left');
-    if (this.keyPressed('p')) {this.pause();}
-    if (this.keyPressed('s')) {this.continue();}
+    if (this.pressing('p')) {this.pause();}
+    if (this.pressing('s')) {this.continue();}
 };

@@ -17,8 +17,8 @@ spriteState.create = function () {
 };
 
 spriteState.update = function () {
-    if (this.keyPressed('p')) {this.pause();}
-    if (this.keyPressed('s')) {this.continue();}
+    if (this.pressing('p')) {this.pause();}
+    if (this.pressing('s')) {this.continue();}
     player.play('down');
     player.rotate(360);
     player.translate(5, 3);

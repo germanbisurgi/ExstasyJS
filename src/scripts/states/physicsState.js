@@ -86,25 +86,25 @@ physicsState.update = function () {
 
     var camera = this.getActiveCamera();
 
-    if (this.keyPressed('h')) {
+    if (this.pressing('h')) {
         camera.zoomIn(60);
     }
-    if (this.keyPressed('g')) {
+    if (this.pressing('g')) {
         camera.zoomOut(60);
     }
-    if (this.keyPressed('a')) {
+    if (this.pressing('a')) {
         camera.rotate(-180);
     }
-    if (this.keyPressed('s')) {
+    if (this.pressing('s')) {
         camera.rotate(180);
     }
-    if (this.keyPressed('num1')) {
+    if (this.pressing('num1')) {
         this.switchCamera('camera1');
     }
-    if (this.keyPressed('num2')) {
+    if (this.pressing('num2')) {
         this.switchCamera('camera2');
     }
-    if (this.keyPressed('num3')) {
+    if (this.pressing('num3')) {
         this.switchCamera('camera3');
     }
 

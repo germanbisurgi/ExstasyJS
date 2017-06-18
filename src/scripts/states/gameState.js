@@ -31,18 +31,18 @@ gameState.update = function () {
 
     //console.log(player2.GetWorldCenter());
 
-    if (this.keyPressed('ArrowUp')) {
+    if (this.pressing('ArrowUp')) {
         player1.ApplyImpulse({x: 0, y: -4}, player1.GetWorldCenter());
         player2.ApplyForce({x: 0, y: -10 * player2.GetMass() * 30} , player2.GetWorldCenter());
         player3.SetLinearVelocity({x: 0, y: -10}, player3.GetWorldCenter());
     }
-    if (this.keyPressed('ArrowRight')) {
+    if (this.pressing('ArrowRight')) {
        player1.ApplyImpulse({x: 2, y: 0}, player1.GetWorldCenter());
     }
-    if (this.keyPressed('ArrowDown')) {
+    if (this.pressing('ArrowDown')) {
         player1.ApplyImpulse({x: 0, y: 5}, player1.GetWorldCenter());
     }
-    if (this.keyPressed('ArrowLeft')) {
+    if (this.pressing('ArrowLeft')) {
         player1.ApplyImpulse({x: -2, y: 0}, player1.GetWorldCenter());
     }
 };
