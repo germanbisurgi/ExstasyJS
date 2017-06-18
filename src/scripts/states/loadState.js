@@ -20,14 +20,13 @@ loadState.preload = function () {
 loadState.create = function () {
     //this.switchState('cameraState');
     //this.switchState('inputState');
-    this.switchState('physicsState');
+    //this.switchState('physicsState');
     //this.switchState('primitivesState');
     //this.switchState('spriteState');
     //this.switchState('tileSpriteState');
     //this.switchState('audioState');
-    //this.switchState('mathState');
+    this.switchState('mathState');
     //this.switchState('timeState');
     //this.switchState('textState');
     //this.switchState('gameState');
-
 };

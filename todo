@@ -17,6 +17,8 @@ renderManager
     z-index
 Viewport features
 Tweens
+Math
+    simple collitions (point, circle, rectangle)
 
 
 api syntax
