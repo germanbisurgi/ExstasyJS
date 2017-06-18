@@ -55,14 +55,13 @@ var Text = function (game, x, y, width, height, text, style) {
         tmpContext.textBaseline = self.textBaseline;
         tmpContext.font = self.font;
         tmpContext.strokeStyle = self.strokeStyle;
-        tmpContext.lineWidth = self.lineWidth;
         tmpContext.fillStyle = self.fillStyle;
-
+        tmpContext.lineWidth = self.lineWidth * 2;
+        
+        // auto wrap and break lines
         y = 0;
         var lineHeight = tmpContext.measureText("M").width * self.lineHeight;
         var width = self.width;
-
-        // auto wrap and break lines
         var lines = self.text.split("\n");
         for (var i = 0; i < lines.length; i++) {
 
@@ -74,7 +73,9 @@ var Text = function (game, x, y, width, height, text, style) {
                 var metrics = tmpContext.measureText(testLine);
                 var testWidth = metrics.width;
                 if (testWidth > width && n > 0) {
-                    tmpContext.strokeText(line, 0, y);
+                    if (self.lineWidth > 0) {
+                        tmpContext.strokeText(line, 0, y);
+                    }
                     tmpContext.fillText(line, 0, y);
                     line = words[n] + ' ';
                     y += lineHeight;
@@ -84,7 +85,9 @@ var Text = function (game, x, y, width, height, text, style) {
                 }
             }
 
-            tmpContext.strokeText(line, 0, y);
+            if (self.lineWidth > 0) {
+                tmpContext.strokeText(line, 0, y);
+            }
             tmpContext.fillText(line, 0, y);
             y += lineHeight;
         }

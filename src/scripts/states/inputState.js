@@ -9,7 +9,7 @@ var touchX;
 var touchY;
 var text;
 var style = {
-    font: "15px Helvetica",
+    font: "20px Helvetica",
     fillStyle: "purple",
     textAlign: "start",
     textBaseline: "top",
