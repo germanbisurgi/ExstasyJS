@@ -8,7 +8,7 @@ var Game = function (width, height, name, canvas) {
     self.canvas = document.querySelector('.canvas');
     self.now = null;
     self.isPaused = false;
-    self.fps = 60;
+    self.fps = 70;
     self.entities = [];
     self.state = null;
     self.data = {};
@@ -23,6 +23,7 @@ var Game = function (width, height, name, canvas) {
     self.renderManager = new Extasy.renderManager(self);
     self.physicsManager = new Extasy.physicsManager(self);
     self.timeManager = new Extasy.timeManager(self);
+    self.collisionManager = new Extasy.collisionManager(self);
 
     self.loopLogic = function () {
         if (self.assetManager.loading) {
@@ -44,6 +45,9 @@ var Game = function (width, height, name, canvas) {
             self.state.update();
         }
         if (!self.timeManager.paused) {
+            if (self.collisionManager.enabled) {
+                self.collisionManager.update();
+            }
             if (self.physicsManager.enabled) {
                 self.physicsManager.update();
             }

@@ -10,6 +10,7 @@ var Extasy = {
     physicsManager: PhysicsManager,
     timeManager: TimeManager,
     mathManager: MathManager,
+    collisionManager: CollisionManager,
     entity: Entity,
     state: State,
     camera: Camera,

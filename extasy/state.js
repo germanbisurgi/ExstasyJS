@@ -321,20 +321,43 @@ var State = function (name) {
         return self.game.mathManager.toDegrees(x);
     };
 
+    // --------------------------------------------------------------- collision
+
+    self.enableCollision = function () {
+        this.game.collisionManager.enableCollision();
+    };
+
+    self.disableCollision = function () {
+        this.game.collisionManager.disableCollision();
+    };
+
+    self.collidable = function(e) {
+        e.collidable = true;
+        self.game.collisionManager.collidables.push(e);
+    };
+
+    self.incollidable = function(e) {
+        e.collidable = false;
+    };
+
+    self.listCollidables = function(pa, pb) {
+        return self.game.collisionManager.listCollidables();
+    };
+
     self.distance = function(pa, pb) {
-        return self.game.mathManager.distance(pa, pb);
+        return self.game.collisionManager.distance(pa, pb);
     };
 
     self.circleCollision = function(c1, c2) {
-        return self.game.mathManager.circleCollision(c1, c2);
+        return self.game.collisionManager.circleCollision(c1, c2);
     };
 
     self.rectangleCollision = function(b1, b2) {
-        return self.game.mathManager.rectangleCollision(b1, b2);
+        return self.game.collisionManager.rectangleCollision(b1, b2);
     };
 
     self.circleRectCollision = function(c, r) {
-        return self.game.mathManager.circleRectCollision(c, r);
+        return self.game.collisionManager.circleRectCollision(c, r);
     };
 
     // -------------------------------------------------------------------- time

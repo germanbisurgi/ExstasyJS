@@ -25,8 +25,9 @@ loadState.create = function () {
     //this.switchState('spriteState');
     //this.switchState('tileSpriteState');
     //this.switchState('audioState');
-    this.switchState('mathState');
+    //this.switchState('mathState');
     //this.switchState('timeState');
     //this.switchState('textState');
+    this.switchState('collisionState');
     //this.switchState('gameState');
 };

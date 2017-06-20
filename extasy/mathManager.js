@@ -40,34 +40,4 @@ var MathManager = function (game) {
         return x * 57.295779513082320876;
     };
 
-    self.distance = function(pa, pb) {
-        var dx = pa.dx - pb.dx;
-        var dy = pa.dy - pb.dy;
-        return Math.abs(Math.sqrt(dx * dx + dy * dy));
-    };
-
-    self.circleCollision = function(c1, c2) {
-        var distance = self.distance(c1, c2);
-        return distance < c1.dw / 2 + c2.dw / 2;
-    };
-
-    self.rectangleCollision = function(r1, r2) {
-        return r1.dx < r2.dx + r2.dw &&
-               r1.dx + r1.dw > r2.dx &&
-               r1.dy < r2.dy + r2.dh &&
-               r1.dh + r1.dy > r2.dy;
-    };
-
-    self.circleRectCollision = function(c, r) {
-        var distX = Math.abs(c.dx + c.dw / 2 - r.dx - r.dw / 2);
-        var distY = Math.abs(c.dy + c.dw / 2 - r.dy - r.dh / 2);
-        if (distX > (r.dw / 2 + c.dw / 2)) { return false; }
-        if (distY > (r.dh / 2 + c.dw / 2)) { return false; }
-        if (distX <= (r.dw / 2)) { return true; } 
-        if (distY <= (r.dh / 2)) { return true; }
-        var dx = distX - r.dw / 2;
-        var dy = distY - r.dh / 2;
-        return (dx * dx + dy * dy <= (c.dw / 2 * c.dw / 2));
-    };
-
 };

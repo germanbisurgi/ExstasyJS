@@ -12,6 +12,7 @@ mygame.stateManager.add(audioState);
 mygame.stateManager.add(mathState);
 mygame.stateManager.add(timeState);
 mygame.stateManager.add(textState);
+mygame.stateManager.add(collisionState);
 
 mygame.stateManager.switch('loadState');
 
