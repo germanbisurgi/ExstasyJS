@@ -323,6 +323,10 @@ var State = function (name) {
 
     // --------------------------------------------------------------- collision
 
+    self.addQuadtree = function (bounds, max_objects, max_levels, level) {
+        return new Extasy.quadtree(bounds, max_objects, max_levels, level);
+    };
+
     self.enableCollision = function () {
         this.game.collisionManager.enableCollision();
     };

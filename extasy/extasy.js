@@ -22,5 +22,6 @@ var Extasy = {
     polygon: Polygon,
     regularPolygon: RegularPolygon,
     tileSprite: TileSprite,
-    timer: Timer
+    timer: Timer,
+    quadtree: Quadtree
 };

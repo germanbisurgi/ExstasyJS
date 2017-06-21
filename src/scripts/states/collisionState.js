@@ -3,6 +3,7 @@ var rectangle1;
 var rectangle2;
 var circle1;
 var circle2;
+var quadtree;
 
 collisionState.create = function () {
     this.addText(15, 15, 500, 500, 'use arrows and "wasd" keys to move', style);
@@ -15,9 +16,20 @@ collisionState.create = function () {
     this.collidable(rectangle2);
     this.collidable(circle1);
     this.collidable(circle2);
+
+    quadtree = this.addQuadtree({x: 0, y: 0, width: 500, height: 300});
+    
+    
 };
 
 collisionState.update = function () {
+
+    quadtree.insert({x: rectangle1.dx, y: rectangle1.dy, width: rectangle1.dw, height: rectangle1.dh});
+    quadtree.insert({x: rectangle2.dx, y: rectangle2.dy, width: rectangle2.dw, height: rectangle2.dh});
+    quadtree.insert({x: circle1.dx, y: circle1.dy, width: circle1.dw, height: circle1.dh});
+    quadtree.insert({x: circle2.dx, y: circle2.dy, width: circle2.dw, height: circle2.dh});
+    console.log(quadtree.retrieve());
+    console.log(quadtree.clear());
 
     // -------------------------------------------------------------- rectangles
 
