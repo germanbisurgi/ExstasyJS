@@ -1,8 +1,9 @@
-var Quadtree = function(bounds, max_objects, max_levels, level) {
+var Quadtree = function(game, bounds, max_objects, max_levels, level) {
 
     'use strict';
     var self = this;
-    self.max_objects = max_objects || 4;
+    self.game = game;
+    self.max_objects = max_objects || 3;
     self.max_levels = max_levels || 4;
 
     self.level = level || 0;
@@ -182,6 +183,24 @@ var Quadtree = function(bounds, max_objects, max_levels, level) {
         }
 
         self.nodes = [];
+    };
+
+    self.debug = function(node) {
+        
+        var bounds = node.bounds;
+        console.log(node.nodes);
+        //no subnodes? draw the current node
+        if( node.nodes.length === 0 ) {
+            var sector = self.game.state.addRectangle(bounds.x, bounds.y, bounds.width, bounds.height);
+            sector.lineWidth = 1;
+            sector.fill('transparent');
+            
+        //has subnodes? drawQuadtree them!
+        } else {
+            node.nodes.forEach(function (node) {
+                self.debug(node);
+            });
+        }
     };
 
 };
