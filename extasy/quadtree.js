@@ -2,7 +2,7 @@ var Quadtree = function(bounds, max_objects, max_levels, level) {
 
     'use strict';
     var self = this;
-    self.max_objects = max_objects || 10;
+    self.max_objects = max_objects || 4;
     self.max_levels = max_levels || 4;
 
     self.level = level || 0;
