@@ -188,11 +188,11 @@ var Quadtree = function(bounds, max_objects, max_levels, level, game) {
 
     self.draw = function(node) {
         node.objects.forEach(function (object) {
-                self.game.renderManager.ctx.beginPath();
-                self.game.renderManager.ctx.rect(object.x, object.y, object.width, object.height);
-                self.game.renderManager.ctx.stroke();   
-                self.game.renderManager.ctx.closePath();
-            });
+            self.game.renderManager.ctx.beginPath();
+            self.game.renderManager.ctx.rect(object.x, object.y, object.width, object.height);
+            self.game.renderManager.ctx.stroke();   
+            self.game.renderManager.ctx.closePath();
+        });
         if (node.nodes.length === 0) {
             self.game.renderManager.ctx.beginPath();
             self.game.renderManager.ctx.rect(node.bounds.x, node.bounds.y, node.bounds.width, node.bounds.height);

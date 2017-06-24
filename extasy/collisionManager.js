@@ -5,7 +5,8 @@ var CollisionManager = function (game) {
     self.game = game;
     self.enabled = false;
     self.collidables = [];
-    self.checkedEntities = [];
+    self.candidates = [];
+    self.quadtree = new Extasy.quadtree({x: 5, y: 5, width: 490, height: 290})
 
     self.enableCollision = function() {
         self.enabled = true;
@@ -53,35 +54,36 @@ var CollisionManager = function (game) {
 
         self.collidables.forEach(function (e) {
             e.collides = false;
+            self.quadtree.insert({x: e.dx, y: e.dy, width: e.dw, height: e.dh, data: e});
         });
 
-        self.checkedEntities = [];
-
         self.collidables.forEach(function (e1) {
-            self.collidables.forEach(function (e2) {
-                if (e1 !== e2 && self.checkedEntities.indexOf(e2) === -1) {
-                    if (e2.type === 'circle' && e1.type === 'rectangle') {
-                        if (self.circleRectCollision(e1, e2)) {
+            self.candidates = self.quadtree.retrieve({x: e1.dx, y: e1.dy, width: e1.dw, height: e1.dh});
+            self.candidates.forEach(function (e2) {
+                if (e1 !== e2.data) {
+                    if (e1.type === 'rectangle' && e2.data.type === 'circle' ) {
+                        if (self.circleRectCollision(e1, e2.data)) {
                             e1.collides = true;
-                            e2.collides = true;
+                            e2.data.collides = true;
                         }
                     }
-                    if (e1.type === 'rectangle' && e2.type === 'rectangle') {
-                        if (self.rectangleCollision(e1, e2)) {
+                    if (e1.type === 'rectangle' && e2.data.type === 'rectangle') {
+                        if (self.rectangleCollision(e1, e2.data)) {
                             e1.collides = true;
-                            e2.collides = true;
+                            e2.data.collides = true;
                         }
                     }
-                    if (e1.type === 'circle' && e2.type === 'circle') {
-                        if (self.circleCollision(e1, e2)) {
+                    if (e1.type === 'circle' && e2.data.type === 'circle') {
+                        if (self.circleCollision(e1, e2.data)) {
                             e1.collides = true;
-                            e2.collides = true;
+                            e2.data.collides = true;
                         }
                     }
                 }
             });
-            self.checkedEntities.push(e1);
         });
+        //self.quadtree.draw(self.quadtree);
+        self.quadtree.clear();
     };
 
 };
