@@ -27,35 +27,8 @@ collisionState.create = function () {
     self.collidable(circle2);
     self.collidable(circle3);
 
-    quadtree = self.addQuadtree({x: 0, y: 0, width: 500, height: 300});
-    quadtree.insert({x: rectangle1.dx, y: rectangle1.dy, width: rectangle1.dw, height: rectangle1.dh});
-    quadtree.insert({x: rectangle2.dx, y: rectangle2.dy, width: rectangle2.dw, height: rectangle2.dh});
-    //quadtree.insert({x: rectangle3.dx, y: rectangle3.dy, width: rectangle3.dw, height: rectangle3.dh});
-    quadtree.insert({x: circle1.dx, y: circle1.dy, width: circle1.dw, height: circle1.dh});
-    quadtree.insert({x: circle2.dx, y: circle2.dy, width: circle2.dw, height: circle2.dh});
-    //quadtree.insert({x: circle3.dx, y: circle3.dy, width: circle3.dw, height: circle3.dh});
-    
-
-    self.debug = function(node) {
-        
-        var bounds = node.bounds;
-        console.log(node.nodes);
-        //no subnodes? draw the current node
-        if( node.nodes.length === 0 ) {
-            var sector = self.addRectangle(bounds.x, bounds.y, bounds.width, bounds.height);
-            sector.lineWidth = 1;
-            sector.fill('transparent');
-            
-        //has subnodes? drawQuadtree them!
-        } else {
-            node.nodes.forEach(function (node) {
-                self.debug(node);
-            });
-        }
-    };
-
-    self.debug(quadtree);
-            
+    quadtree = self.addQuadtree({x: 5, y: 5, width: 490, height: 290});
+                
 };
 
 collisionState.update = function () {
@@ -103,14 +76,19 @@ collisionState.update = function () {
     hero.dx = self.game.inputManager.mouse.x - hero.dw / 2;
     hero.dy = self.game.inputManager.mouse.y - hero.dh / 2;
 
-    //quadtree.insert({x: rectangle1.dx, y: rectangle1.dy, width: rectangle1.dw, height: rectangle1.dh});
-    //quadtree.insert({x: rectangle2.dx, y: rectangle2.dy, width: rectangle2.dw, height: rectangle2.dh});
-    //quadtree.insert({x: rectangle3.dx, y: rectangle3.dy, width: rectangle3.dw, height: rectangle3.dh});
-    //quadtree.insert({x: circle1.dx, y: circle1.dy, width: circle1.dw, height: circle1.dh});
-    //quadtree.insert({x: circle2.dx, y: circle2.dy, width: circle2.dw, height: circle2.dh});
-    //quadtree.insert({x: circle3.dx, y: circle3.dy, width: circle3.dw, height: circle3.dh});
-    //console.log(quadtree.retrieve({x: hero.dx, y: hero.dy, width: hero.dw, height: hero.dh}));
+    self.game.renderManager.clear()
 
-    //quadtree.clear();
+    quadtree.insert({x: rectangle1.dx, y: rectangle1.dy, width: rectangle1.dw, height: rectangle1.dh});
+    quadtree.insert({x: rectangle2.dx, y: rectangle2.dy, width: rectangle2.dw, height: rectangle2.dh});
+    quadtree.insert({x: rectangle3.dx, y: rectangle3.dy, width: rectangle3.dw, height: rectangle3.dh});
+    quadtree.insert({x: circle1.dx, y: circle1.dy, width: circle1.dw, height: circle1.dh});
+    quadtree.insert({x: circle2.dx, y: circle2.dy, width: circle2.dw, height: circle2.dh});
+    quadtree.insert({x: circle3.dx, y: circle3.dy, width: circle3.dw, height: circle3.dh});
+    
+    //console.log(quadtree.retrieve({x: hero.dx, y: hero.dy, width: hero.dw, height: hero.dh}));
+    
+    quadtree.draw(quadtree);
+
+    quadtree.clear();
 
 };
