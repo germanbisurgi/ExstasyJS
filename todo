@@ -1,5 +1,6 @@
-implement pool (garbage collection optimization)
 audioManager?
+
+managers variables in manager class
 
 motion api
 entityManager

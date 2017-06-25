@@ -82,7 +82,7 @@ var State = function (name) {
         var image = self.getAsset(imageName);
         if (image) {
             var tileSprite = new Extasy.tileSprite(self.game, x, y, dw, dh, image);
-            self.game.entityManager.addEntity(tileSprite);
+            self.game.entityManager.add(tileSprite);
             return tileSprite;
         } else {
             console.log('EXCEPTION: this image is not present ->', imageName);
@@ -91,13 +91,17 @@ var State = function (name) {
         }
     };
 
+    self.removeEntity = function (entity) {
+        self.game.entityManager.remove(entity);
+    };
+
     self.addSprite = function (x, y, spriteSheetName) {
         var spriteSheet = self.getAsset(spriteSheetName);
         if (spriteSheet) {
             var sprite = new Extasy.sprite(self.game, spriteSheet);
             sprite.dx = x;
             sprite.dy = y;
-            self.game.entityManager.addEntity(sprite);
+            self.game.entityManager.add(sprite);
             return sprite;
         } else {
             console.log('EXCEPTION: this sprite sheet is not present ->', spriteSheetName);
@@ -109,40 +113,40 @@ var State = function (name) {
     self.addRectangle = function (x, y, w, h) {
         var rectangle = new Extasy.rectangle(self.game, x, y, w, h);
         rectangle.prerender();
-        self.game.entityManager.addEntity(rectangle);
+        self.game.entityManager.add(rectangle);
         return rectangle;
     };
 
     self.addCircle = function (x, y, r) {
         var circle = new Extasy.circle(self.game, x, y, r);
         circle.prerender();
-        self.game.entityManager.addEntity(circle);
+        self.game.entityManager.add(circle);
         return circle;
     };
 
     self.addPolygon = function (x, y, points) {
         var polygon = new Extasy.polygon(self.game, x, y, points);
         polygon.prerender();
-        self.game.entityManager.addEntity(polygon);
+        self.game.entityManager.add(polygon);
         return polygon;
     };
 
     self.addRegularPolygon = function (x, y, radius, sides) {
         var regularPolygon = new Extasy.regularPolygon(self.game, x, y, radius, sides);
         regularPolygon.prerender();
-        self.game.entityManager.addEntity(regularPolygon);
+        self.game.entityManager.add(regularPolygon);
         return regularPolygon;
     };
 
     self.addText = function (x, y, width, height, text, style) {
         var txt = new Extasy.text(self.game, x, y, width, height, text, style);
         txt.prerender();
-        self.game.entityManager.addEntity(txt);
+        self.game.entityManager.add(txt);
         return txt;
     };
 
     self.listEntities = function () {
-        return self.game.entityManager.listEntities();
+        return self.game.entityManager.list();
     };
 
     // ----------------------------------------------------------------- physics

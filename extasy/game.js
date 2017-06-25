@@ -9,7 +9,6 @@ var Game = function (width, height, name, canvas) {
     self.now = null;
     self.isPaused = false;
     self.fps = 70;
-    self.entities = [];
     self.state = null;
     self.data = {};
 
@@ -54,7 +53,7 @@ var Game = function (width, height, name, canvas) {
             if (self.physicsManager.debugMode) {
                 self.physicsManager.draw();
             }
-            self.renderManager.draw(self.entityManager.entities);
+            self.renderManager.draw(self.entityManager.list());
         }
         self.timeManager.realTime = Date.now();
         self.timeManager.update();

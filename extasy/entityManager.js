@@ -3,24 +3,22 @@ var EntityManager = function (game) {
     "use strict";
     var self = this;
     self.game = game;
-    self.entities = [];
+    self.entities = new Extasy.pool();
 
-    self.getEntity = function(entityName) {
-        var output = false;
-        self.game.entityManager.entities.forEach(function(entity) {
-            if (entity.name === entityName) {
-                output = entity;
-            }
-        });
-        return output;
+    self.list = function () {
+        return self.entities.list();
     };
 
-    self.listEntities = function () {
-        return self.game.entityManager.entities;
+    self.add = function(entity) {
+        self.entities.add(entity);
     };
 
-    self.addEntity = function(entity) {
-        self.game.entityManager.entities.push(entity);
+    self.remove = function(entity) {
+        self.entities.remove(entity);
+    };
+
+    self.clear = function() {
+        self.entities.clear();
     };
 
 };
