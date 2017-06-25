@@ -1,10 +1,12 @@
+game reference as last argument
+do i need spritesheet object?
+entity base class?
+quadtree pool
 motion api
 entityManager
     components
     events
     setPosition
-    type needed?
-    accelleration?
 physicsManager
     contac listeners
     joints
