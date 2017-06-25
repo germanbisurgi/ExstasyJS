@@ -14,6 +14,7 @@ var Extasy = {
     entity: Entity,
     state: State,
     camera: Camera,
+    pool: Pool,
     spriteSheet: SpriteSheet,
     sprite: Sprite,
     rectangle: Rectangle,
