@@ -3,6 +3,7 @@ StateManager = function (game) {
     var self = this;
     self.game = game;
     self.list = [];
+    self.state = null;
 
     self.getState = function(stateName) {
         var output = false;
@@ -31,7 +32,7 @@ StateManager = function (game) {
         var requestedState = self.getState(stateName);
         if (requestedState) {
             requestedState.game = self.game; // MAGIC! :)
-            self.game.state = requestedState;
+            self.state = requestedState;
             // console.log('switched to ->', stateName);
         } else {
             // Exception.

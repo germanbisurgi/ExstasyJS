@@ -6,11 +6,7 @@ var Game = function (width, height, name, canvas) {
     self.height = height;
     self.name = name;
     self.canvas = document.querySelector('.canvas');
-    self.now = null;
-    self.isPaused = false;
     self.fps = 70;
-    self.state = null;
-    self.data = {};
 
     self.mathManager = new Extasy.mathManager(self);
     self.loopManager = new Extasy.loopManager(self.fps);
@@ -30,18 +26,18 @@ var Game = function (width, height, name, canvas) {
             document.querySelector('.loading-screen').classList.remove("loading-screen-loaded");
         }
         
-        if (!self.state.preloaded) {
-            self.state.preloaded = true;
-            self.state.preload();
+        if (!self.stateManager.state.preloaded) {
+            self.stateManager.state.preloaded = true;
+            self.stateManager.state.preload();
             self.assetManager.loadAll();
         }
-        if (self.state.preloaded && !self.assetManager.loading && !self.state.created) {
+        if (self.stateManager.state.preloaded && !self.assetManager.loading && !self.stateManager.state.created) {
             document.querySelector('.loading-screen').classList.add("loading-screen-loaded");
-            self.state.created = true;
-            self.state.create();
+            self.stateManager.state.created = true;
+            self.stateManager.state.create();
         }
-        if (self.state.created) {
-            self.state.update();
+        if (self.stateManager.state.created) {
+            self.stateManager.state.update();
         }
         if (!self.timeManager.paused) {
             if (self.collisionManager.enabled) {
