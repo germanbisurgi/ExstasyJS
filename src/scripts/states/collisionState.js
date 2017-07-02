@@ -7,19 +7,18 @@ var rectangle3;
 var circle1;
 var circle2;
 var circle3;
-var quadtree;
 
 collisionState.create = function () {
 
     self.addText(15, 15, 500, 500, 'use arrows and "wasd" keys to move', style);
 
-    hero = self.addRectangle(200, 50, 25, 25);
+    hero = self.addCircle(400, 75, 10);
     rectangle1 = self.addRectangle(15, 200, 25, 25);
-    rectangle2 = self.addRectangle(50, 200, 25, 25);
-    rectangle3 = self.addRectangle(150, 200, 25, 25);
-    circle1 = self.addCircle(200, 200, 10);
-    circle2 = self.addCircle(350, 200, 10);
-    circle3 = self.addCircle(400, 75, 10);
+    rectangle2 = self.addRectangle(50, 200, 15, 15);
+    rectangle3 = self.addRectangle(150, 200, 30, 30);
+    circle1 = self.addCircle(200, 200, 30);
+    circle2 = self.addCircle(350, 200, 15);
+    circle3 = self.addCircle(400, 75, 25);
 
     self.enableCollision();
 
@@ -31,8 +30,6 @@ collisionState.create = function () {
     self.collidable(circle2);
     self.collidable(circle3);
 
-    //quadtree = self.addQuadtree({x: 5, y: 5, width: 490, height: 290});
-                
 };
 
 collisionState.update = function () {

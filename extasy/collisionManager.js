@@ -21,13 +21,16 @@ var CollisionManager = function (game) {
     };
 
     self.distance = function(pa, pb) {
-        var dx = pa.dx - pb.dx;
-        var dy = pa.dy - pb.dy;
+        var dx = pa.x - pb.x;
+        var dy = pa.y - pb.y;
         return Math.abs(Math.sqrt(dx * dx + dy * dy));
     };
 
     self.circleCollision = function(c1, c2) {
-        var distance = self.distance(c1, c2);
+        var distance = self.distance(
+            {x: c1.dx + c1.dw / 2 , y: c1.dy + c1.dh / 2},
+            {x: c2.dx + c2.dw / 2 , y: c2.dy + c2.dh / 2},
+        );
         return distance < c1.dw / 2 + c2.dw / 2;
     };
 
