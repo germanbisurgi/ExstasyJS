@@ -19,6 +19,7 @@ var Game = function (width, height, name, canvas) {
     self.physicsManager = new Extasy.physicsManager(self);
     self.timeManager = new Extasy.timeManager(self);
     self.collisionManager = new Extasy.collisionManager(self);
+    self.eventManager = new Extasy.eventManager(self);
 
     self.loopLogic = function () {
         if (self.assetManager.loading) {

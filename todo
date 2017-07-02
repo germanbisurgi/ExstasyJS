@@ -1,4 +1,9 @@
 game reference as last argument
+sprite map
+do pools be divided by type?
+remove logic from state.js and liveonly api functions
+do primitives need game refference?
+
 do i need spritesheet object?
 entity base class?
 quadtree pool
@@ -12,9 +17,11 @@ physicsManager
     joints
     ...
 inputManager
+    pointers
     resetWheel
 renderManager
     create gradient
     z-index
 Viewport features
 Tweens
+eventManager

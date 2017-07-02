@@ -29,6 +29,7 @@ loadState.create = function () {
     //this.switchState('timeState');
     //this.switchState('textState');
     //this.switchState('collisionState');
-    this.switchState('poolState');
+    //this.switchState('poolState');
+     this.switchState('eventState');
     //this.switchState('gameState');
 };

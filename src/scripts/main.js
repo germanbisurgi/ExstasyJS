@@ -14,6 +14,7 @@ mygame.stateManager.add(timeState);
 mygame.stateManager.add(textState);
 mygame.stateManager.add(collisionState);
 mygame.stateManager.add(poolState);
+mygame.stateManager.add(eventState);
 
 mygame.stateManager.switch('loadState');
 

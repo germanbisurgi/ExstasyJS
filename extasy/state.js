@@ -386,6 +386,20 @@ var State = function (name) {
 
     self.continue = function() {
         self.game.timeManager.continue();
-    }; 
+    };
+
+    // ------------------------------------------------------------------- event
+
+    self.addEvent = function(eventName, callback) {
+        return self.game.eventManager.add(eventName, callback);
+    };
+
+    self.listEvents = function () {
+        return self.game.eventManager.list();
+    };
+
+    self.removeEvent = function (eventName) {
+        return self.game.eventManager.remove(eventName);
+    };
 
 };
