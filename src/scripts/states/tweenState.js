@@ -19,5 +19,5 @@ tweenState.create = function () {
 };
 
 tweenState.update = function () {
-
+    tween.update();
 };
