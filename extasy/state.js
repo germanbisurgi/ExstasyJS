@@ -402,4 +402,12 @@ var State = function (name) {
         return self.game.eventManager.remove(eventName);
     };
 
+    // ------------------------------------------------------------------- tween
+
+    self.addTween = function(entity, properties, options) {
+        var tween = new Extasy.tween(entity, properties, options, self.game)
+        return tween;
+    };
+
+
 };
