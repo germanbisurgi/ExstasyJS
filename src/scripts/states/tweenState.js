@@ -5,8 +5,8 @@ var tween;
 
 tweenState.create = function () {
 
-    rect = this.addRectangle(50, 50, 50, 50);
-    tween = this.addTween(rect, {x: 150, y: 150 }, {duration: 2000});
+    rect = this.addRectangle(0, 0, 50, 50);
+    tween = this.addTween(rect, {dx: 300}, {duration: 1000});
     console.log(tween);
 
     /*var mySequence = [
