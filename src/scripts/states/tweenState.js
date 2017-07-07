@@ -5,19 +5,22 @@ var tween;
 
 tweenState.create = function () {
 
-    rect = this.addRectangle(0, 0, 50, 50);
-    tween = this.addTween(rect, {dx: 300}, {duration: 1000});
-    console.log(tween);
+    rect = this.addRectangle(100, 0, 50, 50);
+    tween = new TWEEN.Tween(rect)
+        .to({ angle: [-50, 0]}, 1000)
+        .onUpdate(function() {
+            //console.log(rect.dx, rect.dy);
+        })
+        .start()
+        /*.repeat(1)
+        .yoyo();*/
 
-    /*var mySequence = [
-        { e: $element1, p: { translateX: 100 }, o: { duration: 1000 } },
-        { e: $element2, p: { translateX: 200 }, o: { duration: 1000, sequenceQueue: false },
-        { e: $element3, p: { translateX: 300 }, o: { duration: 1000 }
-    ];
-    $.Velocity.RunSequence(mySequence);*/
+    console.log(tween);
+    
+
 
 };
 
 tweenState.update = function () {
-    tween.update();
+    tween.update(this.game.timeManager.currentTime);
 };

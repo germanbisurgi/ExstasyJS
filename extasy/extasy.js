@@ -14,7 +14,7 @@ var Extasy = {
     eventManager: EventManager,
     tweenManager: TweenManager,
     entity: Entity,
-    tween: Tween,
+    //tween: Tween,
     state: State,
     camera: Camera,
     pool: Pool,
