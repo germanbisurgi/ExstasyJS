@@ -1,26 +1,22 @@
 var tweenState = new Extasy.state('tweenState');
 var self = tweenState;
 var rect;
-var tween;
+var tween1;
 
 tweenState.create = function () {
 
-    rect = this.addRectangle(100, 0, 50, 50);
-    tween = new TWEEN.Tween(rect)
-        .to({ angle: [-50, 0]}, 1000)
-        .onUpdate(function() {
-            //console.log(rect.dx, rect.dy);
-        })
-        .start()
-        /*.repeat(1)
-        .yoyo();*/
+    rect = this.addRectangle(50, 100, 50, 50);
 
-    console.log(tween);
-    
-
+    tween1 = this.addTween(rect)
+                .to({ angle: 360, dx: 250}, 1000)
+                .repeat(Infinity)
+                .yoyo(true)
+                .delay(100)
+                .easing(TWEEN.Easing.Quadratic.Out)
+                .start();
 
 };
 
 tweenState.update = function () {
-    tween.update(this.game.timeManager.currentTime);
+    tween1.update(this.game.timeManager.currentTime);
 };

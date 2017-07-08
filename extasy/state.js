@@ -404,8 +404,8 @@ var State = function (name) {
 
     // ------------------------------------------------------------------- tween
 
-    self.addTween = function(entity, properties, options) {
-        var tween = new Extasy.tween(entity, properties, options, self.game)
+    self.addTween = function(entity) {
+        var tween = new TWEEN.Tween(entity);
         return tween;
     };
 
