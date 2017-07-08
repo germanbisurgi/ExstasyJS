@@ -2,7 +2,6 @@ var physicsState = new Extasy.state('physicsState');
 var circle;
 var rectangle;
 var polygon;
-
 var mainCamera;
 var camera1;
 var camera2;
@@ -36,11 +35,11 @@ physicsState.create = function () {
     polygon.fill(pattern);
     polygon.body = this.createBody(polygon.dx + polygon.dw * 0.5, polygon.dy + polygon.dh * 0.5, 'dynamic');
     polygon.body.CreateFixture(this.createPolygonShape([
-        {x:   0 - polygon.dw/2, y:  0 - polygon.dh/2},
-        {x:  50 - polygon.dw/2, y:  0 - polygon.dh/2},
-        {x: 100 - polygon.dw/2, y: 25 - polygon.dh/2},
-        {x:  50 - polygon.dw/2, y: 50 - polygon.dh/2},
-        {x:   0 - polygon.dw/2, y: 50 - polygon.dh/2}
+        {x:   0 - polygon.dw / 2, y:  0 - polygon.dh / 2},
+        {x:  50 - polygon.dw / 2, y:  0 - polygon.dh / 2},
+        {x: 100 - polygon.dw / 2, y: 25 - polygon.dh / 2},
+        {x:  50 - polygon.dw / 2, y: 50 - polygon.dh / 2},
+        {x:   0 - polygon.dw / 2, y: 50 - polygon.dh / 2}
     ]));
 
 
@@ -50,8 +49,8 @@ physicsState.create = function () {
     this.addEdge(390, 10, 10, 10);
 
 
-    circle.body.ApplyImpulse({'x': 100/30, 'y': 600/30}, circle.body.GetWorldCenter());
-    rectangle.body.ApplyImpulse({'x': 3/30, 'y': 3/30}, polygon.body.GetWorldCenter());
+    circle.body.ApplyImpulse({'x': 100 / 30, 'y': 600 / 30}, circle.body.GetWorldCenter());
+    rectangle.body.ApplyImpulse({'x': 3 / 30, 'y': 3 / 30}, polygon.body.GetWorldCenter());
 
     mainCamera = this.getCamera('main');
     camera1 = this.addCamera('camera1');
@@ -60,21 +59,21 @@ physicsState.create = function () {
 
     this.switchCamera('camera3');
 
-    this.getActiveCamera().setLerp(10);    
+    this.activeCamera().setLerp(10);    
 };
 
 physicsState.update = function () {
 
-    circle.dx = circle.body.GetPosition().x*30-circle.dw/2;
-    circle.dy = circle.body.GetPosition().y*30-circle.dh/2;
+    circle.dx = circle.body.GetPosition().x * 30 - circle.dw / 2;
+    circle.dy = circle.body.GetPosition().y * 30 - circle.dh / 2;
     circle.angle = this.game.physicsManager.toDegrees(circle.body.GetAngle());
 
-    rectangle.dx = rectangle.body.GetPosition().x*30-rectangle.dw/2;
-    rectangle.dy = rectangle.body.GetPosition().y*30-rectangle.dh/2;
+    rectangle.dx = rectangle.body.GetPosition().x * 30 - rectangle.dw / 2;
+    rectangle.dy = rectangle.body.GetPosition().y * 30 - rectangle.dh / 2;
     rectangle.angle = this.game.physicsManager.toDegrees(rectangle.body.GetAngle());
 
-    polygon.dx = polygon.body.GetPosition().x*30-polygon.dw/2;
-    polygon.dy = polygon.body.GetPosition().y*30-polygon.dh/2;
+    polygon.dx = polygon.body.GetPosition().x * 30 - polygon.dw / 2;
+    polygon.dy = polygon.body.GetPosition().y * 30 - polygon.dh / 2;
     polygon.angle = this.game.physicsManager.toDegrees(polygon.body.GetAngle());
 
     rectangle.body.m_angularVelocity = 40;
@@ -84,7 +83,7 @@ physicsState.update = function () {
     camera3.follow(polygon);
 
 
-    var camera = this.getActiveCamera();
+    var camera = this.activeCamera();
 
     if (this.pressing('h')) {
         camera.zoomIn(60);

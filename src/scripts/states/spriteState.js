@@ -1,6 +1,5 @@
 var spriteState = new Extasy.state('spriteState');
 var player;
-var myTimer;
 
 spriteState.create = function () {
     player = this.addSprite(0, 50, 'player');

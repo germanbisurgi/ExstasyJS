@@ -5,10 +5,10 @@ var tween1;
 
 tweenState.create = function () {
 
-    rect = this.addRectangle(50, 100, 50, 50);
+    rect = self.addRectangle(50, 100, 50, 50);
 
-    tween1 = this.addTween(rect)
-                .to({ angle: 360, dx: 250}, 1000)
+    tween1 = self.addTween(rect)
+                .to({ angle: -180, dx: 250}, 1000)
                 .repeat(Infinity)
                 .yoyo(true)
                 .delay(100)
@@ -18,5 +18,5 @@ tweenState.create = function () {
 };
 
 tweenState.update = function () {
-    tween1.update(this.game.timeManager.currentTime);
+    tween1.update(self.game.timeManager.currentTime);
 };

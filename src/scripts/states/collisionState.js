@@ -7,6 +7,15 @@ var rectangle3;
 var circle1;
 var circle2;
 var circle3;
+var style = {
+        font: "20px Helvetica",
+        fillStyle: "purple",
+        textAlign: "start",
+        textBaseline: "top",
+        strokeStyle: "black",
+        lineWidth: 0,
+        lineHeight: 1.5,
+    };
 
 collisionState.create = function () {
 
@@ -66,8 +75,8 @@ collisionState.update = function () {
 
     // -------------------------------------------------------------------- hero
 
-    hero.dx = self.game.inputManager.mouse.x - hero.dw / 2;
-    hero.dy = self.game.inputManager.mouse.y - hero.dh / 2;
+    hero.dx = self.mouseX - hero.dw / 2;
+    hero.dy = self.mouseY - hero.dh / 2;
 
     // --------------------------------------------------------------- collision
 

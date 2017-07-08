@@ -30,10 +30,10 @@ inputState.update = function () {
 
     // ------------------------------------------------------------------- mouse
 
-    mouseX = this.game.inputManager.mouse.x;
-    mouseY = this.game.inputManager.mouse.y;
+    mouseX = this.mouseX();
+    mouseY = this.mouseY();
     mouseButtons = '';
-    wheelDirection = this.game.inputManager.mouse.wheelDirection;
+    wheelDirection = this.wheelDirection();
 
     if (this.mouseRight()) {
         mouseButtons += 'mouseRight ';
@@ -44,16 +44,16 @@ inputState.update = function () {
     if (this.mouseLeft()) {
         mouseButtons += 'mouseLeft ';
         square.position(
-            mouseX / this.getActiveCamera().zoom - square.dw * 0.5,
-            mouseY / this.getActiveCamera().zoom - square.dh * 0.5
+            mouseX / this.activeCamera().zoom - square.dw * 0.5,
+            mouseY / this.activeCamera().zoom - square.dh * 0.5
         );
     }
     if (this.mouseWheelUp()) {
-        this.getActiveCamera().zoomIn(60);
+        this.activeCamera().zoomIn(60);
 
     }
     if (this.mouseWheelDown()) {
-        this.getActiveCamera().zoomOut(60);
+        this.activeCamera().zoomOut(60);
     }
 
     // ---------------------------------------------------------------- keyboard
@@ -75,8 +75,8 @@ inputState.update = function () {
     
     // ------------------------------------------------------------------- touch
     
-    touchX = this.game.inputManager.touch.x;
-    touchY = this.game.inputManager.touch.y;
+    touchX = this.touchX();
+    touchY = this.touchY();
 
     if (this.touched()) {
         square.position(touchX - square.dw * 0.5, touchY - square.dh * 0.5);
