@@ -21,6 +21,7 @@ var Extasy = {
     event: Event,
     spriteSheet: SpriteSheet,
     sprite: Sprite,
+    texture: Texture,
     rectangle: Rectangle,
     text: Text,
     circle: Circle,

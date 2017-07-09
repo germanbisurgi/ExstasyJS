@@ -11,6 +11,24 @@ var State = function (name) {
     self.create = function () {};
     self.update = function () {};
 
+    // ---------------------------------------------------------------- viewport
+
+    self.viewportX = function () {
+        return self.game.canvas.offsetLeft;
+    };
+
+    self.viewportY = function () {
+        return self.game.canvas.offsetTop;
+    };
+
+    self.viewportW = function () {
+        return self.game.width;
+    };
+
+    self.viewportH = function () {
+        return self.game.height;
+    };
+
     // -------------------------------------------------------------------- loop
 
     self.pauseLoop = function () {
@@ -97,6 +115,17 @@ var State = function (name) {
             console.log('EXCEPTION: self sprite sheet is not present ->', spriteSheetName);
             console.log('the game will be stoped');
             self.game.stop();
+        }
+    };
+
+    self.addTexture = function (x, y, imageName) {
+        var asset = self.getAsset(imageName);
+        if (asset) {
+            var texture = new Extasy.texture(asset, self.game);
+            texture.dx = x;
+            texture.dy = y;
+            self.game.entityManager.add(texture);
+            return texture;
         }
     };
 
@@ -203,6 +232,14 @@ var State = function (name) {
 
     self.mouseY = function () {
         return self.game.inputManager.mouse.y;
+    };
+
+    self.touches = function () {
+        return self.game.inputManager.touches;
+    };
+
+    self.touching = function (entity) {
+        return self.game.inputManager.touching(entity);
     };
 
     self.touchX = function () {

@@ -16,8 +16,10 @@ var InputManager = function(game) {
     self.touch = {
         x: null,
         y: null,
-        touched: false,
+        touched: false
     };
+
+    self.touches = [];
 
     self.keyboard = {
         Enter:      {isPressed: false, name: 'Enter'},
@@ -287,23 +289,49 @@ var InputManager = function(game) {
     };
 
     document.addEventListener('touchstart', function(e) {
-        self.touch.touched = true; 
-        self.touch.x = Math.round(e.touches[0].clientX);
-        self.touch.y = Math.round(e.touches[0].clientY);
+        self.touches = [];
+        var touches = e.touches;
+        for (var i = 0; i < touches.length; i++) {
+            self.touches.push(touches[i]);
+        }
     });
 
     document.addEventListener('touchend', function(e) {
-        self.touch.touched = false;
+        self.touches = [];
+        var touches = e.touches;
+        for (var i = 0; i < touches.length; i++) {
+            self.touches.push(touches[i]);
+        }
     });
 
     document.addEventListener('touchmove', function(e) {
-        self.touch.touched = true; 
-        self.touch.x = Math.round(e.touches[0].clientX);
-        self.touch.y = Math.round(e.touches[0].clientY);
+        self.touches = [];
+        var touches = e.touches;
+        for (var i = 0; i < touches.length; i++) {
+            self.touches.push(touches[i]);
+        }
     });
 
     document.addEventListener('touchcancel', function(e) {
-        self.touch.touched = false; 
+        self.touches = [];
+        var touches = e.touches;
+        for (var i = 0; i < touches.length; i++) {
+            self.touches.push(touches[i]);
+        }
     });
+
+    self.touching = function (entity) {
+        var output = false;
+        self.touches.forEach(function (touch) {
+            var touchCircle = {
+                dx: Math.round(touch.pageX),
+                dy: Math.round(touch.pageY),
+                dw: 15,
+                dh: 15
+            };
+            output = self.game.collisionManager.circleCollision(entity, touchCircle);
+        });
+        return output;
+    };
 
 };
