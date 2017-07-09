@@ -324,10 +324,10 @@ var InputManager = function(game) {
         var output = false;
         self.touches.forEach(function (touch) {
             var touchCircle = {
-                dx: Math.round(touch.pageX),
-                dy: Math.round(touch.pageY),
-                dw: 15,
-                dh: 15
+                dx: Math.round(touch.pageX - 15),
+                dy: Math.round(touch.pageY - 15),
+                dw: 30,
+                dh: 30
             };
             output = self.game.collisionManager.circleCollision(entity, touchCircle);
         });
