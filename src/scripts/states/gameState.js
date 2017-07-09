@@ -4,7 +4,8 @@ var player2;
 var player3;
 
 gameState.create = function () {
-
+    this.enablePhysics();
+    this.enablePhysicsDebugMode();
     this.setGravity(0, 9.8);
 
     this.addEdge(10, 10, 10, 290);
@@ -27,13 +28,16 @@ gameState.create = function () {
 
 gameState.update = function () {
 
-    console.log(player2.GetWorldPoint({x: player2.GetWorldCenter().x*30, y: player2.GetWorldCenter().y*30}));
+    console.log(player2.GetWorldPoint({
+        x: player2.GetWorldCenter().x * 30,
+        y: player2.GetWorldCenter().y * 30
+    }));
 
     //console.log(player2.GetWorldCenter());
 
     if (this.pressing('ArrowUp')) {
         player1.ApplyImpulse({x: 0, y: -4}, player1.GetWorldCenter());
-        player2.ApplyForce({x: 0, y: -10 * player2.GetMass() * 30} , player2.GetWorldCenter());
+        player2.ApplyForce({x: 0, y: -10 * player2.GetMass() * 30}, player2.GetWorldCenter());
         player3.SetLinearVelocity({x: 0, y: -10}, player3.GetWorldCenter());
     }
     if (this.pressing('ArrowRight')) {

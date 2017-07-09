@@ -5,6 +5,7 @@ remove logic from state.js and liveonly api functions
 do primitives need game refference?
 game reference at the end
 
+quadtree dynamic measures
 do i need spritesheet object?
 entity base class?
 motion api
@@ -32,3 +33,5 @@ gameevents
     onUpdate
     ...
 refactor audioState
+quadtree draw()
+toradians und to degrees in math class

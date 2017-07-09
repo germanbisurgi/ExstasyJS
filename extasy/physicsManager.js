@@ -157,4 +157,10 @@ var PhysicsManager = function(game) {
         self.world.ClearForces();
     };
 
+    self.contactListener = function() {
+        var listener = new Box2D.Dynamics.b2ContactListener();
+        self.world.SetContactListener(listener);
+        return listener;
+    };
+
 };

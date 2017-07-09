@@ -22,15 +22,15 @@ eventState.create = function () {
 };
 
 eventState.update = function () {
-    pointer.dx = this.game.inputManager.mouse.x - pointer.dw / 2;
-    pointer.dy = this.game.inputManager.mouse.y - pointer.dh / 2;
+    pointer.dx = this.mouseX() - pointer.dw / 2;
+    pointer.dy = this.mouseY() - pointer.dh / 2;
 
     if (this.circleCollision(pointer, circle)) {
         if (this.touched()) {
             circle.fill('yellow');
-        }/* else {
+        } else {
             circle.fill('purple');
-        }*/
+        }
         
     } else {
         circle.fill('green');

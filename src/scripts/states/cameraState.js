@@ -5,13 +5,28 @@ var tank;
 var currentAngle;
 var cos;
 var sin;
+var text;
+var style = {
+        font: "20px Helvetica",
+        fillStyle: "purple",
+        textAlign: "start",
+        textBaseline: "top",
+        strokeStyle: "black",
+        lineWidth: 0,
+        lineHeight: 1.5,
+    };
 
 cameraState.create = function () {
+
+
+
     camera = this.activeCamera();
     camera.setLerp(10); 
     grass = this.addTileSprite(camera.x, camera.y, 400, 400, 'grass');
     tank = this.addSprite(200, 200, 'tanks');
     tank.addAnimation('drive', [0, 1, 2, 3, 4, 5, 6], 100);
+
+    
 };
 
 cameraState.update = function () {

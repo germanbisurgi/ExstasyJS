@@ -1,5 +1,4 @@
 var collisionState = new Extasy.state('collisionState');
-var self = collisionState;
 var hero;
 var rectangle1;
 var rectangle2;
@@ -19,25 +18,25 @@ var style = {
 
 collisionState.create = function () {
 
-    self.addText(15, 15, 500, 500, 'use arrows and "wasd" keys to move', style);
+    this.addText(15, 15, 500, 500, 'use arrows and "wasd" keys to move', style);
 
-    hero = self.addCircle(400, 75, 10);
-    rectangle1 = self.addRectangle(15, 200, 25, 25);
-    rectangle2 = self.addRectangle(50, 200, 15, 15);
-    rectangle3 = self.addRectangle(150, 200, 30, 30);
-    circle1 = self.addCircle(200, 200, 30);
-    circle2 = self.addCircle(350, 200, 15);
-    circle3 = self.addCircle(400, 75, 25);
+    hero = this.addCircle(400, 75, 50);
+    rectangle1 = this.addRectangle(15, 200, 25, 25);
+    rectangle2 = this.addRectangle(50, 200, 30, 30);
+    rectangle3 = this.addRectangle(150, 200, 30, 30);
+    circle1 = this.addCircle(200, 200, 30);
+    circle2 = this.addCircle(350, 200, 15);
+    circle3 = this.addCircle(400, 75, 25);
 
-    self.enableCollision();
+    this.enableCollision();
 
-    self.collidable(hero);
-    self.collidable(rectangle1);
-    self.collidable(rectangle2);
-    self.collidable(rectangle3);
-    self.collidable(circle1);
-    self.collidable(circle2);
-    self.collidable(circle3);
+    this.collidable(hero);
+    this.collidable(rectangle1);
+    this.collidable(rectangle2);
+    this.collidable(rectangle3);
+    this.collidable(circle1);
+    this.collidable(circle2);
+    this.collidable(circle3);
 
 };
 
@@ -45,42 +44,42 @@ collisionState.update = function () {
 
     // -------------------------------------------------------------- rectangles
 
-    if (self.pressing('w')) {
+    if (this.pressing('w')) {
         rectangle2.translate(0, -100);
     }
-    if (self.pressing('d')) {
+    if (this.pressing('d')) {
         rectangle2.translate(100, 0);
     }
-    if (self.pressing('s')) {
+    if (this.pressing('s')) {
         rectangle2.translate(0, 100);
     }
-    if (self.pressing('a')) {
+    if (this.pressing('a')) {
         rectangle2.translate(-100, 0);
     }
 
     // ----------------------------------------------------------------- circles
 
-    if (self.pressing('ArrowUp')) {
+    if (this.pressing('ArrowUp')) {
         circle2.translate(0, -100);
     }
-    if (self.pressing('ArrowRight')) {
+    if (this.pressing('ArrowRight')) {
         circle2.translate(100, 0);
     }
-    if (self.pressing('ArrowDown')) {
+    if (this.pressing('ArrowDown')) {
         circle2.translate(0, 100);
     }
-    if (self.pressing('ArrowLeft')) {
+    if (this.pressing('ArrowLeft')) {
         circle2.translate(-100, 0);
     }
 
     // -------------------------------------------------------------------- hero
 
-    hero.dx = self.mouseX - hero.dw / 2;
-    hero.dy = self.mouseY - hero.dh / 2;
+    hero.dx = this.mouseX() - hero.dw / 2;
+    hero.dy = this.mouseY() - hero.dh / 2;
 
     // --------------------------------------------------------------- collision
 
-    self.listCollidables().forEach(function (e) {
+    this.listCollidables().forEach(function (e) {
         if (e.collides) {
             e.fill('red');
         } else {

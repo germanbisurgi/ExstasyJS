@@ -191,6 +191,10 @@ var State = function (name) {
         return shape;
     };
 
+    self.addContactListener = function () {
+        return self.game.physicsManager.contactListener();
+    };
+
     // ------------------------------------------------------------------ inputs
 
     self.mouseX = function () {
