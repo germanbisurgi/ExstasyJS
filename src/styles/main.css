@@ -24,8 +24,45 @@ body {
 
 .debug {
     border: 1px solid #7053A4;
+    position: absolute;
     opacity: 0.5;
 }
+
+.dom {
+    background: transparent;
+    height: 100vh;
+    position: absolute;
+    width: 100vw;
+    z-index: 20;
+}
+
+.dom-cursor {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+}
+
+.dom-buttons {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+}
+
+.dom-btn {
+    width: 30px;
+    height: 30px;
+    border: 1px solid green;
+    position: absolute;
+}
+
+.dom-arrow-up {bottom: 97px; left: 65px;}
+.dom-arrow-right {bottom: 65px; left: 97px;}
+.dom-arrow-down {bottom: 33px; left: 65px;}
+.dom-arrow-left {bottom: 64px; left: 33px;}
+.dom-button-up {bottom: 97px; right: 65px;}
+.dom-button-right {bottom: 65px; right: 97px;}
+.dom-button-down {bottom: 33px; right: 65px;}
+.dom-button-left {bottom: 64px; right: 33px;}
 
 .loading-screen {
     background: #000;

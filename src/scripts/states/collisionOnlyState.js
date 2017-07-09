@@ -1,18 +1,25 @@
 var collisionOnlyState = new Extasy.state('collisionOnlyState');
+// entities
 var circle;
 var rectangle;
+
+// collision
 var contactListener;
+
+// audio
 var shot;
-var buttons;
-var arrows;
-var arrowUp;
-var arrowRight;
-var arrowDown;
-var arrowLeft;
-var buttonUp;
-var buttonRight;
-var buttonDown;
-var buttonLeft;
+
+// joystick
+var arrowUp = new Tactile(document.querySelector('.dom-arrow-up'));
+var arrowRight = new Tactile(document.querySelector('.dom-arrow-right'));
+var arrowDown = new Tactile(document.querySelector('.dom-arrow-down'));
+var arrowLeft = new Tactile(document.querySelector('.dom-arrow-left'));
+var buttonUp = new Tactile(document.querySelector('.dom-button-up'));
+var buttonRight = new Tactile(document.querySelector('.dom-button-right'));
+var buttonDown = new Tactile(document.querySelector('.dom-button-down'));
+var buttonLeft = new Tactile(document.querySelector('.dom-button-left'));
+
+// camera
 var camera;
 
 
@@ -22,19 +29,6 @@ collisionOnlyState.create = function () {
 
     // camera
     camera = this.activeCamera();
-
-    // joystick
-    buttons = this.addTexture(this.viewportW() - 115, this.viewportH() - 115, 'buttons');
-    arrows = this.addTexture(this.viewportX() + 15, this.viewportH() - 115, 'arrows');
-    arrowUp = this.addCircle(this.viewportX() + 50, this.viewportH() - 112, 15);
-    arrowRight = this.addCircle(this.viewportX() + 82, this.viewportH() - 80, 15);
-    arrowDown = this.addCircle(this.viewportX() + 50, this.viewportH() - 48, 15);
-    arrowLeft = this.addCircle(this.viewportX() + 18, this.viewportH() - 80, 15);
-
-    buttonUp = this.addCircle(this.viewportW() - 80, this.viewportH() - 112, 15);
-    buttonRight = this.addCircle(this.viewportW() - 112, this.viewportH() - 80, 15);
-    buttonDown = this.addCircle(this.viewportW() - 80, this.viewportH() - 48, 15);
-    buttonLeft = this.addCircle(this.viewportW() - 48, this.viewportH() - 80, 15);
 
     // audio
     shot = this.addAudio('shot', 0.2, false);
@@ -68,34 +62,34 @@ collisionOnlyState.create = function () {
 collisionOnlyState.update = function () {
 
     // cursor
-    if (this.touching(arrowUp)) {
+    if (arrowUp.touched) {
         circle.translate(0, -180);
         circle.body.SetPosition({x: (circle.dx + circle.dw / 2) / 30 , y: (circle.dy  + circle.dh / 2) / 30});
     }
-    if (this.touching(arrowRight)) {
+    if (arrowRight.touched) {
         circle.translate(180, 0);
         circle.body.SetPosition({x: (circle.dx + circle.dw / 2) / 30 , y: (circle.dy  + circle.dh / 2) / 30});
     }
-    if (this.touching(arrowDown)) {
+    if (arrowDown.touched) {
         circle.translate(0, 180);
         circle.body.SetPosition({x: (circle.dx + circle.dw / 2) / 30 , y: (circle.dy  + circle.dh / 2) / 30});
     }
-    if (this.touching(arrowLeft)) {
+    if (arrowLeft.touched) {
         circle.translate(-180, 0);
         circle.body.SetPosition({x: (circle.dx + circle.dw / 2) / 30 , y: (circle.dy  + circle.dh / 2) / 30});
     }
 
     // camera
-    if (this.touching(buttonUp)) {
+    if (buttonUp.touched) {
         camera.zoomIn(60);
     }
-    if (this.touching(buttonRight)) {
+    if (buttonRight.touched) {
         camera.rotate(-180);
     }
-    if (this.touching(buttonDown)) {
+    if (buttonDown.touched) {
         camera.zoomOut(60);
     }
-    if (this.touching(buttonLeft)) {
+    if (buttonLeft.touched) {
         camera.rotate(180);
     }
 
