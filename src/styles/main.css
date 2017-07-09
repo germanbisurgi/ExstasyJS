@@ -1,0 +1,163 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  font-family: sans-serif;
+  list-style-position: inside;
+  text-decoration: none;
+  list-style-type: none;
+  box-sizing: border-box;
+}
+
+body {
+    background: #fff;
+    margin: 0;
+    min-height: 100vh;
+    padding: 0;
+    position: relative;
+}
+
+.canvas {
+    background: #fff;
+    position: absolute;
+}
+
+.debug {
+    border: 1px solid #7053A4;
+    position: absolute;
+    opacity: 0.5;
+}
+
+.dom {
+    background: transparent;
+    height: 100vh;
+    position: absolute;
+    width: 100vw;
+    z-index: 20;
+}
+
+.dom-cursor {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+}
+
+.dom-buttons {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+}
+
+.dom-btn {
+    width: 30px;
+    height: 30px;
+    border: 1px solid green;
+    position: absolute;
+}
+
+.dom-arrow-up {bottom: 97px; left: 65px;}
+.dom-arrow-right {bottom: 65px; left: 97px;}
+.dom-arrow-down {bottom: 33px; left: 65px;}
+.dom-arrow-left {bottom: 64px; left: 33px;}
+.dom-button-up {bottom: 97px; right: 65px;}
+.dom-button-right {bottom: 65px; right: 97px;}
+.dom-button-down {bottom: 33px; right: 65px;}
+.dom-button-left {bottom: 64px; right: 33px;}
+
+.loading-screen {
+    background: #000;
+    height: 100vh;
+    position: absolute;
+    width: 100vw;
+    z-index: 10;
+}
+
+.loading-screen-loaded {
+    display: none;
+}
+
+.loading-screen-progress {
+    color: #fff;
+}
+
+.loading-screen-preloader {
+    animation: loading 1s linear infinite;
+    position: absolute;
+        top: 48%;
+        left: 48%;
+    z-index: 20; 
+}
+
+@keyframes loading {
+  to {
+        transform: rotate(360deg);
+  }
+}
+
+.touch-controller {
+    position: absolute;
+        bottom: 0;
+        left: 0;
+    height: 200px;
+    width: 100vw;
+    z-index: 10;
+}
+.touch-controller-btn {
+    border: 1px solid yellow;
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    z-index: 10;
+}
+
+.touch-controller-label {
+    color: white;
+    display: inline-block;
+    pointer-events: none;
+    position: relative;
+        top: 50%;
+        left: 50%;
+    -webkit-transform: translate3d(-50%, -50%, 0px);
+            transform: translate3d(-50%, -50%, 0px);
+}
+
+.touch-controller-left {
+    position: absolute;
+        left: 40px;
+        bottom: 40%;
+}
+
+.touch-controller-right {
+    position: absolute;
+        left: 120px;
+        bottom: 40%;
+}
+
+.touch-controller-a {
+    position: absolute;
+        right: 40px;
+        bottom: 40%;
+}
+
+.touch-controller-b {
+    position: absolute;
+        right: 120px;
+        bottom: 40%;
+}
+
+/* ------------------------------------------------------------ documentation */
+
+.container {
+    margin: 0 auto;
+    padding:0 50px;
+}
+.documentation-index {}
+.class {}
+.class-description {}
+.class-properties {}
+.class-property {
+    border-bottom: 1px solid black;
+    margin: 0 0 20px 0;
+    padding: 20px 0;
+}
+.class-property-description {}

@@ -3,50 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
-    <!-- CSS -->
-    <link rel="stylesheet" href="assets/styles/app.css">
-    <!-- TITLE -->
+    <link rel="stylesheet" href="src/styles/main.css">
     <title>Game engine</title>
 </head>
 <body>
-    
-    <div class="touch-controller">
 
-        <div class="touch-controller-btn touch-controller-left">
-            <span  class="touch-controller-label"><</span>
-        </div>
-
-        <div class="touch-controller-btn touch-controller-right">
-            <span  class="touch-controller-label">></span>
-        </div>
-
-        <div class="touch-controller-btn touch-controller-a">
-            <span  class="touch-controller-label">A</span>
-        </div>
-
-        <div class="touch-controller-btn touch-controller-b">
-            <span  class="touch-controller-label">B</span>
-        </div>
-
+    <canvas class="canvas"></canvas>
+    <canvas class="debug"></canvas>
+    <div class="loading-screen">
+        <img class="loading-screen-preloader" src="src/assets/images/preloader.png">
+        <p class="loading-screen-progress">progress</p>
     </div>
-    <!-- Canvas -->
-    <canvas id="canvas"></canvas>
-    <canvas id="debug"></canvas>
+    <div class="dom">
+        <img class="dom-cursor" src="src/assets/images/arrows.png">
+        <img class="dom-buttons" src="src/assets/images/buttons.png">
+        <div class="dom-btn dom-arrow-up"></div>
+        <div class="dom-btn dom-arrow-right"></div>
+        <div class="dom-btn dom-arrow-down"></div>
+        <div class="dom-btn dom-arrow-left"></div>
+        <div class="dom-btn dom-button-up"></div>
+        <div class="dom-btn dom-button-right"></div>
+        <div class="dom-btn dom-button-down"></div>
+        <div class="dom-btn dom-button-left"></div>
+    </div>
+        
 
+    <!-- EXTASY CORE -->
+    <script src="extasy/box2d.js"></script>
+    <script src="extasy/tween.js"></script>
+    <script src="extasy/tactile.js"></script>
+    <script src="extasy/loopManager.js"></script>
+    <script src="extasy/assetManager.js"></script>
+    <script src="extasy/entityManager.js"></script>
+    <script src="extasy/inputManager.js"></script>
+    <script src="extasy/stateManager.js"></script>
+    <script src="extasy/cameraManager.js"></script>
+    <script src="extasy/renderManager.js"></script>
+    <script src="extasy/timeManager.js"></script>
+    <script src="extasy/physicsManager.js"></script>
+    <script src="extasy/mathManager.js"></script>
+    <script src="extasy/collisionManager.js"></script>
+    <script src="extasy/eventManager.js"></script>
+    <script src="extasy/tweenManager.js"></script>
+    <script src="extasy/game.js"></script>
+    <script src="extasy/state.js"></script>
+    <script src="extasy/camera.js"></script>
+    <script src="extasy/entity.js"></script>
+    <script src="extasy/spriteSheet.js"></script>
+    <script src="extasy/sprite.js"></script>
+    <script src="extasy/texture.js"></script>
+    <script src="extasy/rectangle.js"></script>
+    <script src="extasy/polygon.js"></script>
+    <script src="extasy/regularPolygon.js"></script>
+    <script src="extasy/text.js"></script>
+    <script src="extasy/circle.js"></script>
+    <script src="extasy/tileSprite.js"></script>
+    <script src="extasy/timer.js"></script>
+    <script src="extasy/pool.js"></script>
+    <script src="extasy/event.js"></script>
+    <script src="extasy/quadtree.js"></script>
+    <script src="extasy/extasy.js"></script>
+    <!-- STATES -->
+    <script src="src/scripts/states/loadState.js"></script>
+    <script src="src/scripts/states/audioState.js"></script>
+    <script src="src/scripts/states/eventState.js"></script>
+    <script src="src/scripts/states/primitivesState.js"></script>
+    <script src="src/scripts/states/spriteState.js"></script>
+    <script src="src/scripts/states/tileSpriteState.js"></script>
+    <script src="src/scripts/states/inputState.js"></script>
+    <script src="src/scripts/states/cameraState.js"></script>
+    <script src="src/scripts/states/physicsState.js"></script>
+    <script src="src/scripts/states/timeState.js"></script>
+    <script src="src/scripts/states/gameState.js"></script>
+    <script src="src/scripts/states/mathState.js"></script>
+    <script src="src/scripts/states/textState.js"></script>
+    <script src="src/scripts/states/poolState.js"></script>
+    <script src="src/scripts/states/collisionState.js"></script>
+    <script src="src/scripts/states/collisionOnlyState.js"></script>
+    <script src="src/scripts/states/tweenState.js"></script>
+    <!-- MAIN -->
+    <script src="src/scripts/main.js"></script>
+    
 
-    <!-- JS -->
-    <script src="assets/js/plancton.js"></script>
-    <script src="assets/js/box2dmin.js"></script>
-    <script src="assets/js/Tactile.js"></script>
-    <script src="assets/js/Physics.js"></script>
-    <script src="assets/js/Assets.js"></script>
-    <script src="assets/js/Canvas.js"></script>
-    <script src="assets/js/Clock.js"></script>
-    <script src="assets/js/Animation.js"></script>
-    <script src="assets/js/Input.js"></script>
-    <script src="assets/js/Camera.js"></script>
-    <script src="assets/js/Systems.js"></script>
-    <script src="assets/js/Game.js"></script>
-    <script src="assets/scenes/level.js"></script>
 </body>
 </html>
