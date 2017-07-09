@@ -9,11 +9,19 @@ var arrowUp;
 var arrowRight;
 var arrowDown;
 var arrowLeft;
+var buttonUp;
+var buttonRight;
+var buttonDown;
+var buttonLeft;
+var camera;
 
 
 collisionOnlyState.create = function () {
     this.enablePhysics();
     this.enablePhysicsDebugMode();
+
+    // camera
+    camera = this.activeCamera();
 
     // joystick
     buttons = this.addTexture(this.viewportW() - 115, this.viewportH() - 115, 'buttons');
@@ -23,10 +31,10 @@ collisionOnlyState.create = function () {
     arrowDown = this.addCircle(this.viewportX() + 50, this.viewportH() - 48, 15);
     arrowLeft = this.addCircle(this.viewportX() + 18, this.viewportH() - 80, 15);
 
-    this.addCircle(this.viewportW() - 80, this.viewportH() - 112, 15);
-    this.addCircle(this.viewportW() - 112, this.viewportH() - 80, 15);
-    this.addCircle(this.viewportW() - 80, this.viewportH() - 48, 15);
-    this.addCircle(this.viewportW() - 48, this.viewportH() - 80, 15);
+    buttonUp = this.addCircle(this.viewportW() - 80, this.viewportH() - 112, 15);
+    buttonRight = this.addCircle(this.viewportW() - 112, this.viewportH() - 80, 15);
+    buttonDown = this.addCircle(this.viewportW() - 80, this.viewportH() - 48, 15);
+    buttonLeft = this.addCircle(this.viewportW() - 48, this.viewportH() - 80, 15);
 
     // audio
     shot = this.addAudio('shot', 0.2, false);
@@ -59,7 +67,7 @@ collisionOnlyState.create = function () {
 
 collisionOnlyState.update = function () {
 
-
+    // cursor
     if (this.touching(arrowUp)) {
         circle.translate(0, -180);
         circle.body.SetPosition({x: (circle.dx + circle.dw / 2) / 30 , y: (circle.dy  + circle.dh / 2) / 30});
@@ -75,6 +83,20 @@ collisionOnlyState.update = function () {
     if (this.touching(arrowLeft)) {
         circle.translate(-180, 0);
         circle.body.SetPosition({x: (circle.dx + circle.dw / 2) / 30 , y: (circle.dy  + circle.dh / 2) / 30});
+    }
+
+    // camera
+    if (this.touching(buttonUp)) {
+        camera.zoomIn(60);
+    }
+    if (this.touching(buttonRight)) {
+        camera.rotate(-180);
+    }
+    if (this.touching(buttonDown)) {
+        camera.zoomOut(60);
+    }
+    if (this.touching(buttonLeft)) {
+        camera.rotate(180);
     }
 
 };
