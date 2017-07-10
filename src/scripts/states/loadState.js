@@ -16,7 +16,7 @@ loadState.preload = function () {
     this.loadSpriteSheet('tanks', 'src/assets/images/tanks.png', 32, 32);
     this.loadAudio('laser', 'src/assets/audio/laser.mp3');
     this.loadAudio('shot', 'src/assets/audio/shot.mp3');
-    this.loadAudio('motor', 'src/assets/audio/motor.mp3');
+    //this.loadAudio('motor', 'src/assets/audio/motor.mp3');
 };
 
 loadState.create = function () {   
