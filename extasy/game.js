@@ -23,7 +23,7 @@ var Game = function (width, height, name, canvas) {
 
     self.loopLogic = function () {
         if (self.assetManager.loading) {
-            document.querySelector('.loading-screen-progress').textContent = self.assetManager.loadProgress();
+            document.querySelector('.loading-screen-progress').textContent = self.assetManager.loadProgress() + '%';
             document.querySelector('.loading-screen').classList.remove("loading-screen-loaded");
         }
         
