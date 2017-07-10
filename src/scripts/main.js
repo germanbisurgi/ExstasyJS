@@ -22,4 +22,14 @@ mygame.stateManager.switch('loadState');
 
 mygame.run();
 
+// joystick
+var arrowUp = new Tactile(document.querySelector('.dom-arrow-up'));
+var arrowRight = new Tactile(document.querySelector('.dom-arrow-right'));
+var arrowDown = new Tactile(document.querySelector('.dom-arrow-down'));
+var arrowLeft = new Tactile(document.querySelector('.dom-arrow-left'));
+var buttonUp = new Tactile(document.querySelector('.dom-button-up'));
+var buttonRight = new Tactile(document.querySelector('.dom-button-right'));
+var buttonDown = new Tactile(document.querySelector('.dom-button-down'));
+var buttonLeft = new Tactile(document.querySelector('.dom-button-left'));
+
 

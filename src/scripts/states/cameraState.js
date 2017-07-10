@@ -54,17 +54,17 @@ cameraState.update = function () {
         tank.angle -= 3;
     }
 
-    if (this.pressing('h')) {
+    // camera
+    if (buttonUp.touched) {
         camera.zoomIn(60);
     }
-    if (this.pressing('g')) {
-        camera.zoomOut(60);
-    }
-
-    if (this.pressing('a')) {
+    if (buttonRight.touched) {
         camera.rotate(-180);
     }
-    if (this.pressing('s')) {
+    if (buttonDown.touched) {
+        camera.zoomOut(60);
+    }
+    if (buttonLeft.touched) {
         camera.rotate(180);
     }
 

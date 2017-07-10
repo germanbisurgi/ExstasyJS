@@ -19,7 +19,7 @@ loadState.preload = function () {
     this.loadAudio('motor', 'src/assets/audio/motor.wav');
 };
 
-loadState.create = function () {
+loadState.create = function () {   
     //this.switchState('cameraState');
     //this.switchState('inputState');
     //this.switchState('physicsState');
