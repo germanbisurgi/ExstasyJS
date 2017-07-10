@@ -401,6 +401,10 @@ var State = function (name) {
         return self.game.timeManager.timers;
     };
 
+    self.isPaused = function() {
+        return self.game.timeManager.paused;
+    };
+
     self.pause = function() {
         self.game.timeManager.pause();
     }; 

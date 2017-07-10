@@ -7,6 +7,8 @@ var camera1;
 var camera2;
 var camera3;
 var bg;
+var canPause = true;
+var canSelect = true;
 
 physicsState.create = function () {
 
@@ -90,18 +92,54 @@ physicsState.update = function () {
 
     var camera = this.activeCamera();
 
-    if (this.pressing('h')) {
+    // camera
+    if (buttonUp.touched) {
         camera.zoomIn(60);
     }
-    if (this.pressing('g')) {
-        camera.zoomOut(60);
-    }
-    if (this.pressing('a')) {
+    if (buttonRight.touched) {
         camera.rotate(-180);
     }
-    if (this.pressing('s')) {
+    if (buttonDown.touched) {
+        camera.zoomOut(60);
+    }
+    if (buttonLeft.touched) {
         camera.rotate(180);
     }
+
+    // select
+    if (buttonStart.touched && canSelect) {
+        if (!this.isPaused()) {
+            this.pause();
+        } else {
+            this.continue();
+        }
+        canSelect = false;
+        setTimeout(function () {
+            canSelect = true;
+        }, 200);
+    }
+
+    // start
+    if (buttonSelect.touched && canPause) {
+        var activeCamera = this.activeCamera();
+        console.log(activeCamera.name);
+        switch(activeCamera.name) {
+            case 'camera1':
+                this.switchCamera('camera2');
+                break;
+            case 'camera2':
+                this.switchCamera('camera3');
+                break;
+            case 'camera3':
+                this.switchCamera('camera1');
+                break;
+        }
+        canPause = false;
+        setTimeout(function () {
+            canPause = true;
+        }, 200);
+    }
+
     if (this.pressing('num1')) {
         this.switchCamera('camera1');
     }

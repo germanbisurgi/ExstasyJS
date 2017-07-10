@@ -31,5 +31,7 @@ var buttonUp = new Tactile(document.querySelector('.dom-button-up'));
 var buttonRight = new Tactile(document.querySelector('.dom-button-right'));
 var buttonDown = new Tactile(document.querySelector('.dom-button-down'));
 var buttonLeft = new Tactile(document.querySelector('.dom-button-left'));
+var buttonStart = new Tactile(document.querySelector('.dom-button-start'));
+var buttonSelect = new Tactile(document.querySelector('.dom-button-select'));
 
 

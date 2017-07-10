@@ -8,7 +8,7 @@ var TimeManager = function (game) {
     self.currentTime = 0;
     self.delta = 0;
     self.motion = 1;
-    self.paused = 0;
+    self.paused = false;
     self.timers = [];
 
     self.update = function () {
