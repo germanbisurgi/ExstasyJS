@@ -1,4 +1,7 @@
-var mygame = new Extasy.game(500, 300, 'my game', '.canvas');
+var width = window.innerWidth;
+var height = window.innerHeight;
+
+var mygame = new Extasy.game(width, height, 'my game', '.canvas');
 
 mygame.stateManager.add(loadState);
 mygame.stateManager.add(primitivesState);
