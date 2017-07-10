@@ -20,7 +20,7 @@ loadState.preload = function () {
 };
 
 loadState.create = function () {   
-    //this.switchState('cameraState');
+    this.switchState('cameraState');
     //this.switchState('inputState');
     //this.switchState('physicsState');
     //this.switchState('primitivesState');
@@ -31,7 +31,7 @@ loadState.create = function () {
     //this.switchState('timeState');
     //this.switchState('textState');
     //this.switchState('collisionState');
-    this.switchState('collisionOnlyState');
+    //this.switchState('collisionOnlyState');
     //this.switchState('poolState');
     //this.switchState('eventState');
     //this.switchState('gameState');
