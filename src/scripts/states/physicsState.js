@@ -6,6 +6,7 @@ var mainCamera;
 var camera1;
 var camera2;
 var camera3;
+var bg;
 
 physicsState.create = function () {
 
@@ -13,6 +14,9 @@ physicsState.create = function () {
     //this.enablePhysicsDebugMode();
 
     var pattern = this.createPattern(this.getAsset('stone'), 'repeat');
+
+    bg = this.addRectangle(10, 10, 380, 280);
+
 
     circle = this.addCircle(100, 100, 25);
     circle.fill(pattern);
@@ -42,6 +46,7 @@ physicsState.create = function () {
         {x:   0 - polygon.dw / 2, y: 50 - polygon.dh / 2}
     ]));
 
+    
 
     this.addEdge(10, 10, 10, 290);
     this.addEdge(10, 290, 390, 290);
