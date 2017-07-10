@@ -6,7 +6,7 @@ var Game = function (width, height, name, canvas) {
     self.height = height;
     self.name = name;
     self.canvas = document.querySelector('.canvas');
-    self.fps = 70;
+    self.fps = 60;
 
     self.mathManager = new Extasy.mathManager(self);
     self.loopManager = new Extasy.loopManager(self.fps);
