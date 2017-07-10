@@ -14,9 +14,9 @@ loadState.preload = function () {
     this.loadImage('mountains', 'src/assets/images/mountains.png');
     this.loadSpriteSheet('player', 'src/assets/images/player.png', 32, 32);
     this.loadSpriteSheet('tanks', 'src/assets/images/tanks.png', 32, 32);
-    this.loadAudio('laser', 'src/assets/audio/laser.wav');
-    this.loadAudio('shot', 'src/assets/audio/shot.wav');
-    this.loadAudio('motor', 'src/assets/audio/motor.wav');
+    this.loadAudio('laser', 'src/assets/audio/laser.mp3');
+    this.loadAudio('shot', 'src/assets/audio/shot.mp3');
+    this.loadAudio('motor', 'src/assets/audio/motor.mp3');
 };
 
 loadState.create = function () {   
