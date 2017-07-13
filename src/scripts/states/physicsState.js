@@ -9,11 +9,15 @@ var camera3;
 var bg;
 var canPause = true;
 var canSelect = true;
+var tic;
+var contactListener;
 
 physicsState.create = function () {
 
     this.enablePhysics();
     //this.enablePhysicsDebugMode();
+
+    
 
     var pattern = this.createPattern(this.getAsset('stone'), 'repeat');
 
@@ -56,8 +60,8 @@ physicsState.create = function () {
     this.addEdge(390, 10, 10, 10);
 
 
-    circle.body.ApplyImpulse({'x': 100 / 30, 'y': 600 / 30}, circle.body.GetWorldCenter());
-    rectangle.body.ApplyImpulse({'x': 3 / 30, 'y': 3 / 30}, polygon.body.GetWorldCenter());
+    //circle.body.ApplyImpulse({'x': 100 / 30, 'y': 600 / 30}, circle.body.GetWorldCenter());
+    //rectangle.body.ApplyImpulse({'x': 3 / 30, 'y': 3 / 30}, polygon.body.GetWorldCenter());
 
     mainCamera = this.getCamera('main');
     camera1 = this.addCamera('camera1');
@@ -66,7 +70,16 @@ physicsState.create = function () {
 
     this.switchCamera('camera3');
 
-    this.activeCamera().setLerp(10);    
+    this.activeCamera().setLerp(10);
+
+    tic = this.addAudio('tic', 0.1, false);
+
+    // contact listener
+    contactListener = this.addContactListener();
+    contactListener.BeginContact = function() {
+        tic.currentTime = 0;
+        tic.play();
+    };
 };
 
 physicsState.update = function () {
@@ -83,7 +96,7 @@ physicsState.update = function () {
     polygon.dy = polygon.body.GetPosition().y * 30 - polygon.dh / 2;
     polygon.angle = this.game.physicsManager.toDegrees(polygon.body.GetAngle());
 
-    rectangle.body.m_angularVelocity = 40;
+    rectangle.body.m_angularVelocity = 0;
     
     camera1.follow(circle);
     camera2.follow(rectangle);
@@ -105,6 +118,21 @@ physicsState.update = function () {
     if (buttonLeft.touched) {
         camera.rotate(180);
     }
+
+    // camera
+    if (arrowUp.touched) {
+        rectangle.body.ApplyForce({'x': 0, 'y': -100}, polygon.body.GetWorldCenter());
+    }
+    if (arrowRight.touched) {
+        rectangle.body.ApplyForce({'x': 100, 'y': 0}, polygon.body.GetWorldCenter());
+    }
+    if (arrowDown.touched) {
+        rectangle.body.ApplyForce({'x':0, 'y': 100}, polygon.body.GetWorldCenter());
+    }
+    if (arrowLeft.touched) {
+        rectangle.body.ApplyForce({'x': -100, 'y': 0}, polygon.body.GetWorldCenter());
+    }
+
 
     // select
     if (buttonStart.touched && canSelect) {

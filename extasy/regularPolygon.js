@@ -1,4 +1,4 @@
-var RegularPolygon = function (game, x, y, radius, sides) {
+var RegularPolygon = function (x, y, radius, sides, game) {
 
     "use strict";
     var self = this;

@@ -1,4 +1,4 @@
-var TileSprite = function (game, dx, dy, dw, dh, image) {
+var TileSprite = function (dx, dy, dw, dh, image, game) {
 
     "use strict";
     var self = this;

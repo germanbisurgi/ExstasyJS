@@ -89,7 +89,7 @@ var State = function (name) {
     self.addTileSprite = function (x, y, dw, dh, imageName) {
         var image = self.getAsset(imageName);
         if (image) {
-            var tileSprite = new Extasy.tileSprite(self.game, x, y, dw, dh, image);
+            var tileSprite = new Extasy.tileSprite(x, y, dw, dh, image, self.game);
             self.game.entityManager.add(tileSprite);
             return tileSprite;
         } else {
@@ -106,7 +106,7 @@ var State = function (name) {
     self.addSprite = function (x, y, spriteSheetName) {
         var spriteSheet = self.getAsset(spriteSheetName);
         if (spriteSheet) {
-            var sprite = new Extasy.sprite(self.game, spriteSheet);
+            var sprite = new Extasy.sprite(spriteSheet,self.game);
             sprite.dx = x;
             sprite.dy = y;
             self.game.entityManager.add(sprite);
@@ -130,35 +130,35 @@ var State = function (name) {
     };
 
     self.addRectangle = function (x, y, w, h) {
-        var rectangle = new Extasy.rectangle(self.game, x, y, w, h);
+        var rectangle = new Extasy.rectangle(x, y, w, h, self.game);
         rectangle.prerender();
         self.game.entityManager.add(rectangle);
         return rectangle;
     };
 
     self.addCircle = function (x, y, r) {
-        var circle = new Extasy.circle(self.game, x, y, r);
+        var circle = new Extasy.circle(x, y, r, self.game);
         circle.prerender();
         self.game.entityManager.add(circle);
         return circle;
     };
 
     self.addPolygon = function (x, y, points) {
-        var polygon = new Extasy.polygon(self.game, x, y, points);
+        var polygon = new Extasy.polygon(x, y, points, self.game);
         polygon.prerender();
         self.game.entityManager.add(polygon);
         return polygon;
     };
 
     self.addRegularPolygon = function (x, y, radius, sides) {
-        var regularPolygon = new Extasy.regularPolygon(self.game, x, y, radius, sides);
+        var regularPolygon = new Extasy.regularPolygon(x, y, radius, sides, self.game);
         regularPolygon.prerender();
         self.game.entityManager.add(regularPolygon);
         return regularPolygon;
     };
 
     self.addText = function (x, y, width, height, text, style) {
-        var txt = new Extasy.text(self.game, x, y, width, height, text, style);
+        var txt = new Extasy.text(x, y, width, height, text, style, self.game);
         txt.prerender();
         self.game.entityManager.add(txt);
         return txt;
@@ -291,7 +291,7 @@ var State = function (name) {
     // ------------------------------------------------------------------ camera
 
     self.addCamera = function (name) {
-        var camera = new Extasy.camera(self.game, name);
+        var camera = new Extasy.camera(name, self.game);
         self.game.cameraManager.addCamera(camera);
         return camera;
     };
@@ -392,7 +392,7 @@ var State = function (name) {
     // -------------------------------------------------------------------- time
 
     self.addTimer = function(delay, repeat,callback) {
-        var timer = new Extasy.timer(self.game, delay, repeat, callback);
+        var timer = new Extasy.timer(delay, repeat, callback, self.game);
         self.game.timeManager.timers.push(timer);
         return timer;
     };

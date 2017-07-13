@@ -1,4 +1,4 @@
-var Rectangle = function (game, x, y, w, h) {
+var Rectangle = function (x, y, w, h, game) {
 
     "use strict";
     var self = this;

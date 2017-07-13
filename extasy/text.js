@@ -1,4 +1,4 @@
-var Text = function (game, x, y, width, height, text, style) {
+var Text = function (x, y, width, height, text, style, game) {
 
     "use strict";
     var self = this;

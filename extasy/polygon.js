@@ -1,4 +1,4 @@
-var Polygon = function (game, x, y, points) {
+var Polygon = function (x, y, points, game) {
 
     "use strict";
     var self = this;

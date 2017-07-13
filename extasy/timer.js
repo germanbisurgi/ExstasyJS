@@ -1,4 +1,4 @@
-var Timer = function (game, delay, repeat, callback) {
+var Timer = function (delay, repeat, callback, game) {
     var self = this;
     self.game = game;
     self.active = true;

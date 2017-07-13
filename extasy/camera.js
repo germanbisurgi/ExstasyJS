@@ -1,4 +1,4 @@
-var Camera = function (game, name) {
+var Camera = function (name, game) {
 
     "use strict";
     var self = this;

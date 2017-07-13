@@ -1,7 +1,6 @@
 var loadState = new Extasy.state('loadState');
 
 loadState.preload = function () {
-    this.loadImage('tileBackground', 'src/assets/images/tileBackground.png');
     this.loadImage('clouds', 'src/assets/images/clouds.jpg');
     this.loadImage('grass', 'src/assets/images/grass.jpg');
     this.loadImage('mine', 'src/assets/images/mine.png');
@@ -12,6 +11,7 @@ loadState.preload = function () {
     this.loadImage('mountains', 'src/assets/images/mountains.png');
     this.loadSpriteSheet('player', 'src/assets/images/player.png', 32, 32);
     this.loadSpriteSheet('tanks', 'src/assets/images/tanks.png', 32, 32);
+    this.loadAudio('tic', 'src/assets/audio/tic.mp3');
     //this.loadAudio('laser', 'src/assets/audio/laser.mp3');
     //this.loadAudio('shot', 'src/assets/audio/shot.mp3');
     //this.loadAudio('motor', 'src/assets/audio/motor.mp3');

@@ -1,4 +1,4 @@
-var Circle = function (game, x, y, r) {
+var Circle = function (x, y, r, game) {
 
     "use strict";
     var self = this;

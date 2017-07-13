@@ -1,4 +1,4 @@
-var Sprite = function (game, spriteSheet) {
+var Sprite = function (spriteSheet, game) {
 
     "use strict";
     var self = this;
