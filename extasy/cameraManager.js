@@ -35,7 +35,7 @@ var CameraManager = function (game) {
         }
     };
 
-    self.addCamera(new Extasy.camera(game, 'main'));
+    self.addCamera(new Extasy.camera('main', game));
     self.switch('main');
 
 };
