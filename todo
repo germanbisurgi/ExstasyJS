@@ -2,9 +2,9 @@ game reference as last argument
 sprite map
 do pools be divided by type?
 remove logic from state.js and liveonly api functions
-do primitives need game refference?
-game reference at the end
-
+adaptive viewport
+CHANGE STATE CLEAN PREVIOUS STATE
+SINGLE TONE INPUT (folder?)
 quadtree dynamic measures
 do i need spritesheet object?
 entity base class?

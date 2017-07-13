@@ -45,6 +45,14 @@ var State = function (name) {
         self.game.stateManager.switch(state);
     };
 
+    self.currentState = function () {
+        return self.game.stateManager.state;
+    };
+
+    self.listStates = function () {
+        return self.game.stateManager.list();
+    };
+
     // ------------------------------------------------------------------- audio
 
     self.addAudio = function (audioName, volume, loop) {

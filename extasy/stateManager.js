@@ -2,12 +2,12 @@ StateManager = function (game) {
     "use strict";
     var self = this;
     self.game = game;
-    self.list = [];
+    self.states = [];
     self.state = null;
 
     self.getState = function(stateName) {
         var output = false;
-        self.list.forEach(function(state) {
+        self.states.forEach(function(state) {
             if (state.name === stateName) {
                 output = state;
             }
@@ -18,7 +18,7 @@ StateManager = function (game) {
     // Add a state object if not exists.
     self.add = function(stateObject) {
         if (!self.getState(stateObject.name)) {
-            self.list.push(stateObject);
+            self.states.push(stateObject);
         } else {
             // Exception.
             console.log('EXCEPTION: This state is already in the list ->', stateObject);
@@ -40,6 +40,10 @@ StateManager = function (game) {
             console.log('the game will be stoped');
             self.game.stop();
         }
+    };
+
+    self.list = function() {
+        return self.states;
     };
 
 };

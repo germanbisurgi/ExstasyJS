@@ -12,9 +12,9 @@ loadState.preload = function () {
     this.loadSpriteSheet('player', 'src/assets/images/player.png', 32, 32);
     this.loadSpriteSheet('tanks', 'src/assets/images/tanks.png', 32, 32);
     this.loadAudio('tic', 'src/assets/audio/tic.mp3');
-    //this.loadAudio('laser', 'src/assets/audio/laser.mp3');
-    //this.loadAudio('shot', 'src/assets/audio/shot.mp3');
-    //this.loadAudio('motor', 'src/assets/audio/motor.mp3');
+    this.loadAudio('laser', 'src/assets/audio/laser.mp3');
+    this.loadAudio('shot', 'src/assets/audio/shot.mp3');
+    this.loadAudio('motor', 'src/assets/audio/motor.mp3');
 };
 
 loadState.create = function () {   

@@ -36,4 +36,34 @@ eventState.update = function () {
         circle.fill('green');
     }
 
+        // states
+    if (nextState.touched) {
+        var nState;
+        var states = this.listStates();
+        var currentState = this.currentState();
+        var stateIndex = states.indexOf(currentState);
+        stateIndex++;
+        if (stateIndex < states.length) {
+            nState = states[stateIndex];
+        } else {
+            nState = states[0];
+        }
+        
+        this.switchState(nState.name);
+    }
+
+    if (prevState.touched) {
+        var pState;
+        var states = this.listStates();
+        var currentState = this.currentState();
+        var stateIndex = states.indexOf(currentState);
+        stateIndex--;
+        if (stateIndex < 0) {
+            pState = states[states.length];
+        } else {
+            pState = states[stateIndex - 1];
+        }
+        this.switchState(pState.name);
+    }
+
 };
