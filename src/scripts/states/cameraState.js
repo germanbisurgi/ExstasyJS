@@ -1,104 +1,60 @@
 var cameraState = new Extasy.state('cameraState');
-var camera;
-var grass;
-var tank;
-var currentAngle;
-var cos;
-var sin;
-var text;
-var style = {
-        font: "20px Helvetica",
-        fillStyle: "purple",
-        textAlign: "start",
-        textBaseline: "top",
-        strokeStyle: "black",
-        lineWidth: 0,
-        lineHeight: 1.5,
-    };
+var self;
 
 cameraState.create = function () {
+    self = cameraState;
 
+    self.camera = self.activeCamera();
+    self.camera.setLerp(10); 
+    self.grass = self.addTileSprite(self.camera.x, self.camera.y, 400, 400, 'grass');
+    self.tank = self.addSprite(200, 200, 'tanks');
+    self.tank.addAnimation('drive', [0, 1, 2, 3, 4, 5, 6], 100);
 
-
-    camera = this.activeCamera();
-    camera.setLerp(10); 
-    grass = this.addTileSprite(camera.x, camera.y, 400, 400, 'grass');
-    tank = this.addSprite(200, 200, 'tanks');
-    tank.addAnimation('drive', [0, 1, 2, 3, 4, 5, 6], 100);
-
-    
+    console.log(self.currentState().name);
 };
 
 cameraState.update = function () {
 
-    if (this.pressing('ArrowUp')) {
-        tank.play('drive');
-        currentAngle = this.toRadians((tank.angle - 0));
-        cos = Math.cos(currentAngle);
-        sin = Math.sin(currentAngle);
-        tank.translate(cos  * 200, sin * 200);
+    if (self.pressing('ArrowUp')) {
+        self.tank.play('drive');
+        self.currentAngle = self.toRadians((self.tank.angle - 0));
+        self.cos = Math.cos(self.currentAngle);
+        self.sin = Math.sin(self.currentAngle);
+        self.tank.translate(self.cos  * 200, self.sin * 200);
     }
-    if (this.pressing('ArrowRight')) {
-        tank.play('drive');
-        tank.angle += 3;
+    if (self.pressing('ArrowRight')) {
+        self.tank.play('drive');
+        self.tank.angle += 3;
     }
-    if (this.pressing('ArrowDown')) {
-        tank.play('drive');
-        currentAngle = this.toRadians((tank.angle - 0));
-        cos = Math.cos(currentAngle);
-        sin = Math.sin(currentAngle);
-        tank.translate(-cos  * 200, -sin * 200);
+    if (self.pressing('ArrowDown')) {
+        self.tank.play('drive');
+        self.currentAngle = self.toRadians((self.tank.angle - 0));
+        self.cos = Math.cos(self.currentAngle);
+        self.sin = Math.sin(self.currentAngle);
+        self.tank.translate(-self.cos  * 200, -self.sin * 200);
     }
-    if (this.pressing('ArrowLeft')) {
-        tank.play('drive');
-        tank.angle -= 3;
+    if (self.pressing('ArrowLeft')) {
+        self.tank.play('drive');
+        self.tank.angle -= 3;
     }
 
     // camera
     if (buttonUp.touched) {
-        camera.zoomIn(60);
+        self.camera.zoomIn(60);
     }
     if (buttonRight.touched) {
-        camera.rotate(-180);
+        self.camera.rotate(-180);
     }
     if (buttonDown.touched) {
-        camera.zoomOut(60);
+        self.camera.zoomOut(60);
     }
     if (buttonLeft.touched) {
-        camera.rotate(180);
+        self.camera.rotate(180);
     }
 
-        // states
-    if (nextState.touched) {
-        var nState;
-        var states = this.listStates();
-        var currentState = this.currentState();
-        var stateIndex = states.indexOf(currentState);
-        stateIndex++;
-        if (stateIndex < states.length) {
-            nState = states[stateIndex];
-        } else {
-            nState = states[0];
-        }
-        
-        this.switchState(nState.name);
-    }
 
-    if (prevState.touched) {
-        var pState;
-        var states = this.listStates();
-        var currentState = this.currentState();
-        var stateIndex = states.indexOf(currentState);
-        stateIndex--;
-        if (stateIndex < 0) {
-            pState = states[states.length];
-        } else {
-            pState = states[stateIndex - 1];
-        }
-        this.switchState(pState.name);
-    }
 
     //camera.setAngle(-tank.angle - 90);
-    camera.follow(tank);
+    self.camera.follow(self.tank);
 
 };

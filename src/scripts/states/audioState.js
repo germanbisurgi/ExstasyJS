@@ -1,106 +1,73 @@
 var audioState = new Extasy.state('audioState');
-var grass;
-var tank;
-var shot;
-var motor;
-var canFire = true;
-var currentAngle;
-var cos;
-var sin;
-var camera;
+var self;
 
 audioState.create = function () {
-    camera = this.activeCamera();
-    camera.setLerp(10);  
+    self = audioState;
+    self.canFire = true;
 
-    shot = this.addAudio('shot', 0.2, false);
-    motor = this.addAudio('motor', 0.15, true);
-    motor.play();
+    self.camera = self.activeCamera();
+    self.camera.setLerp(10);  
 
-    grass = this.addTileSprite(camera.x, camera.y, 400, 400, 'grass');
+    self.shot = self.addAudio('shot', 0.2, false);
+    self.motor = self.addAudio('motor', 0.15, true);
+    self.motor.play();
+
+    self.grass = self.addTileSprite(self.camera.x, self.camera.y, 400, 400, 'grass');
     
-    tank = this.addSprite(200, 200, 'tanks');
-    tank.addAnimation('drive', [0, 1, 2, 3, 4, 5, 6], 100);
+    self.tank = self.addSprite(200, 200, 'tanks');
+    self.tank.addAnimation('drive', [0, 1, 2, 3, 4, 5, 6], 100);
+
+    console.log(self.currentState().name);
 };
 
 audioState.update = function () {
 
-    if (motor.currentTime > motor.duration - 3) {
-        motor.currentTime = 1;
-        motor.play();
+    if (self.motor.currentTime > self.motor.duration - 3) {
+        self.motor.currentTime = 1;
+        self.motor.play();
     }
-    motor.volume = 0.15;
+    self.motor.volume = 0.15;
 
-    if (this.pressing('ArrowUp')) {
-        tank.play('drive');
-        currentAngle = this.toRadians((tank.angle - 0));
-        cos = Math.cos(currentAngle);
-        sin = Math.sin(currentAngle);
-        tank.translate(cos  * 200, sin * 200);
-        motor.volume = 0.4;
-        motor.playbackRate = 1.5;
+    if (self.pressing('ArrowUp')) {
+        self.tank.play('drive');
+        self.currentAngle = self.toRadians((self.tank.angle - 0));
+        self.cos = Math.cos(self.currentAngle);
+        self.sin = Math.sin(self.currentAngle);
+        self.tank.translate(self.cos  * 200, self.sin * 200);
+        self.motor.volume = 0.4;
+        self.motor.playbackRate = 1.5;
     }
-    if (this.pressing('ArrowRight')) {
-        tank.play('drive');
-        tank.angle += 3;
-        motor.volume = 0.4;
+    if (self.pressing('ArrowRight')) {
+        self.tank.play('drive');
+        self.tank.angle += 3;
+        self.motor.volume = 0.4;
     }
-    if (this.pressing('ArrowDown')) {
-        tank.play('drive');
-        currentAngle = this.toRadians((tank.angle - 0));
-        cos = Math.cos(currentAngle);
-        sin = Math.sin(currentAngle);
-        tank.translate(-cos  * 200, -sin * 200);
-        motor.volume = 0.4;
+    if (self.pressing('ArrowDown')) {
+        self.tank.play('drive');
+        self.currentAngle = self.toRadians((self.tank.angle - 0));
+        self.cos = Math.cos(self.currentAngle);
+        self.sin = Math.sin(self.currentAngle);
+        self.tank.translate(-self.cos  * 200, -self.sin * 200);
+        self.motor.volume = 0.4;
     }
-    if (this.pressing('ArrowLeft')) {
-        tank.play('drive');
-        tank.angle -= 3;
-        motor.volume = 0.4;
+    if (self.pressing('ArrowLeft')) {
+        self.tank.play('drive');
+        self.tank.angle -= 3;
+        self.motor.volume = 0.4;
     }
 
-    if (this.pressing('Spacebar')) {
-        if (canFire) {
-            canFire = false;
-            shot.currentTime = 0;
-            shot.play();
+    if (self.pressing('Spacebar')) {
+        if (self.canFire) {
+            self.canFire = false;
+            self.shot.currentTime = 0;
+            self.shot.play();
             setTimeout(function () {
-                canFire = true;
+                self.canFire = true;
             }, 1500);
         }
     }
 
-        // states
-    if (nextState.touched) {
-        var nState;
-        var states = this.listStates();
-        var currentState = this.currentState();
-        var stateIndex = states.indexOf(currentState);
-        stateIndex++;
-        if (stateIndex < states.length) {
-            nState = states[stateIndex];
-        } else {
-            nState = states[0];
-        }
-        
-        this.switchState(nState.name);
-    }
-
-    if (prevState.touched) {
-        var pState;
-        var states = this.listStates();
-        var currentState = this.currentState();
-        var stateIndex = states.indexOf(currentState);
-        stateIndex--;
-        if (stateIndex < 0) {
-            pState = states[states.length];
-        } else {
-            pState = states[stateIndex - 1];
-        }
-        this.switchState(pState.name);
-    }
-
-    //camera.setAngle(-tank.angle - 90);
-    camera.follow(tank);
+    //self.camera.setAngle(-tank.angle - 90);
+    self.camera.follow(self.tank);
 
 };

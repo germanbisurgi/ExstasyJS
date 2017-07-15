@@ -163,4 +163,11 @@ var PhysicsManager = function(game) {
         return listener;
     };
 
+    self.clearBodies = function() {
+        var body = self.world.GetBodyList();
+        while (body !== null) {
+            self.world.DestroyBody(body);
+            body = body.GetNext();
+        }
+    };
 };

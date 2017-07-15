@@ -1,68 +1,37 @@
 var primitivesState = new Extasy.state('primitivesState');
-var rectangle;
-var circle;
-var polygon;
-var regularPolygon;
+var self;
 
 primitivesState.create = function () {
+    self = primitivesState;
+    self.pattern = self.createPattern(self.getAsset('stone'), 'repeat');
 
-    var pattern = this.createPattern(this.getAsset('stone'), 'repeat');
+    self.rectangle = self.addRectangle(0, 0, 50, 50);
+    self.rectangle.fill(this.pattern);
 
-    rectangle = this.addRectangle(0, 0, 50, 50);
-    rectangle.fill(pattern);
+    self.circle = self.addCircle(0, 70, 25);
+    self.circle.fill(self.pattern);
 
-    circle = this.addCircle(0, 70, 25);
-    circle.fill(pattern);
-
-    polygon = this.addPolygon(0, 140, [
+    self.polygon = self.addPolygon(0, 140, [
         {x:  50, y:  0},
         {x: 100, y: 25},
         {x:  50, y: 50},
         {x:   0, y: 50}
     ]);
-    polygon.fill(pattern);
+    self.polygon.fill(self.pattern);
 
-    regularPolygon = this.addRegularPolygon(0, 210, 25, 3);
-    regularPolygon.fill(pattern);
+    self.regularPolygon = self.addRegularPolygon(0, 210, 25, 3);
+    self.regularPolygon.fill(self.pattern);
+
+    console.log(self.currentState().name);
 };
 
 primitivesState.update = function () {
-    rectangle.rotate(360);
-    rectangle.translate(5, 0);
-    circle.rotate(360);
-    circle.translate(5, 0);
-    polygon.rotate(360);
-    polygon.translate(5, 0);
-    regularPolygon.rotate(360);
-    regularPolygon.translate(5, 0);
-
-        // states
-    if (nextState.touched) {
-        var nState;
-        var states = this.listStates();
-        var currentState = this.currentState();
-        var stateIndex = states.indexOf(currentState);
-        stateIndex++;
-        if (stateIndex < states.length) {
-            nState = states[stateIndex];
-        } else {
-            nState = states[0];
-        }
-        
-        this.switchState(nState.name);
-    }
-
-    if (prevState.touched) {
-        var pState;
-        var states = this.listStates();
-        var currentState = this.currentState();
-        var stateIndex = states.indexOf(currentState);
-        stateIndex--;
-        if (stateIndex < 0) {
-            pState = states[states.length];
-        } else {
-            pState = states[stateIndex - 1];
-        }
-        this.switchState(pState.name);
-    }
+    self.rectangle.rotate(360);
+    self.rectangle.translate(5, 0);
+    self.circle.rotate(360);
+    self.circle.translate(5, 0);
+    self.polygon.rotate(360);
+    self.polygon.translate(5, 0);
+    self.regularPolygon.rotate(360);
+    self.regularPolygon.translate(5, 0);
 };

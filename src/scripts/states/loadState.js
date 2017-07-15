@@ -18,20 +18,21 @@ loadState.preload = function () {
 };
 
 loadState.create = function () {   
+    this.switchState('audioState');
     //this.switchState('cameraState');
-    //this.switchState('inputState');
-    this.switchState('physicsState');
-    //this.switchState('primitivesState');
-    //this.switchState('spriteState');
-    //this.switchState('tileSpriteState');
-    //this.switchState('audioState');
-    //this.switchState('mathState');
-    //this.switchState('timeState');
-    //this.switchState('textState');
-    //this.switchState('collisionState');
     //this.switchState('collisionOnlyState');
-    //this.switchState('poolState');
+    //this.switchState('collisionState');
     //this.switchState('eventState');
     //this.switchState('gameState');
+    //this.switchState('inputState');
+    //this.switchState('mathState');
+    //this.switchState('physicsState');
+    //this.switchState('poolState');
+    //this.switchState('primitivesState');
+    //this.switchState('spriteState');
+    //this.switchState('textState');
+    //this.switchState('tileSpriteState');
+    //this.switchState('timeState');
     //this.switchState('tweenState');
+    console.log(this.currentState().name);
 };

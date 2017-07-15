@@ -1,4 +1,5 @@
 game reference as last argument
+METHODS AS VERBS
 sprite map
 do pools be divided by type?
 remove logic from state.js and liveonly api functions

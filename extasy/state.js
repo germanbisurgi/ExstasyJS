@@ -234,11 +234,11 @@ var State = function (name) {
 
     // ------------------------------------------------------------------ inputs
 
-    self.mouseX = function () {
+    self.getMouseX = function () {
         return self.game.inputManager.mouse.x;
     };
 
-    self.mouseY = function () {
+    self.getMouseY = function () {
         return self.game.inputManager.mouse.y;
     };
 
@@ -250,11 +250,11 @@ var State = function (name) {
         return self.game.inputManager.touching(entity);
     };
 
-    self.touchX = function () {
+    self.getTouchX = function () {
         return self.game.inputManager.touch.x;
     };
 
-    self.touchY = function () {
+    self.getTouchY = function () {
         return self.game.inputManager.touch.y;
     };
 
@@ -270,7 +270,7 @@ var State = function (name) {
         return self.game.inputManager.mouse.middle.isPressed;
     };
 
-    self.wheelDirection = function () {
+    self.getWheelDirection = function () {
         return self.game.inputManager.mouse.wheelDirection;
     };
 

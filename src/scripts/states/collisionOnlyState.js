@@ -1,117 +1,73 @@
 var collisionOnlyState = new Extasy.state('collisionOnlyState');
-// entities
-var circle;
-var rectangle;
-
-// collision
-var contactListener;
-
-// audio
-var shot;
-
-
-// camera
-var camera;
-
+var self;
 
 collisionOnlyState.create = function () {
-    this.enablePhysics();
-    this.enablePhysicsDebugMode();
+    self = collisionOnlyState;
+    self.enablePhysics();
+    self.enablePhysicsDebugMode();
 
     // camera
-    camera = this.activeCamera();
+    self.camera = self.activeCamera();
 
     // audio
-    shot = this.addAudio('shot', 0.2, false);
+    self.tic = self.addAudio('tic', 0.2, false);
 
     // circle
-    circle = this.addCircle(100, 100, 25);
-    circle.body = this.createBody(circle.dx + circle.dw * 0.5, circle.dy + circle.dh * 0.5, 'dynamic');
-    circle.fixture = circle.body.CreateFixture(this.createCircleShape(circle.dw / 2));
-    circle.fixture.SetSensor(true);
-    circle.body.SetSleepingAllowed(false);
+    self.circle = self.addCircle(100, 100, 25);
+    self.circle.body = self.createBody(self.circle.dx + self.circle.dw * 0.5, self.circle.dy + self.circle.dh * 0.5, 'dynamic');
+    self.circle.fixture = self.circle.body.CreateFixture(self.createCircleShape(self.circle.dw / 2));
+    self.circle.fixture.SetSensor(true);
+    self.circle.body.SetSleepingAllowed(false);
 
     // rectabgle
-    rectangle = this.addRectangle(200, 150, 50, 50);
-    rectangle.body = this.createBody(rectangle.dx + rectangle.dw * 0.5, rectangle.dy + rectangle.dh * 0.5, 'dynamic');
-    rectangle.fixture = rectangle.body.CreateFixture(this.createRectangleShape(rectangle.dw, rectangle.dh));
-    rectangle.fixture.SetSensor(true);
-    rectangle.body.SetSleepingAllowed(false);
+    self.rectangle = self.addRectangle(200, 150, 50, 50);
+    self.rectangle.body = self.createBody(self.rectangle.dx + self.rectangle.dw * 0.5, self.rectangle.dy + self.rectangle.dh * 0.5, 'dynamic');
+    self.rectangle.fixture = self.rectangle.body.CreateFixture(self.createRectangleShape(self.rectangle.dw, self.rectangle.dh));
+    self.rectangle.fixture.SetSensor(true);
+    self.rectangle.body.SetSleepingAllowed(false);
 
     // contact listener
-    contactListener = this.addContactListener();
-    contactListener.BeginContact = function(contact) {
-        shot.currentTime = 0;
-        shot.play();
+    self.contactListener = self.addContactListener();
+    self.contactListener.BeginContact = function() {
+        self.tic.currentTime = 0;
+        self.tic.play();
     };
-    contactListener.EndContact = function(contact) {
-        shot.currentTime = 0;
-        shot.play();
-    };
+
+    console.log(self.currentState().name);
 };
 
 collisionOnlyState.update = function () {
 
     // cursor
     if (arrowUp.touched) {
-        circle.translate(0, -180);
-        circle.body.SetPosition({x: (circle.dx + circle.dw / 2) / 30 , y: (circle.dy  + circle.dh / 2) / 30});
+        self.circle.translate(0, -180);
+        self.circle.body.SetPosition({x: (self.circle.dx + self.circle.dw / 2) / 30 , y: (self.circle.dy  + self.circle.dh / 2) / 30});
     }
     if (arrowRight.touched) {
-        circle.translate(180, 0);
-        circle.body.SetPosition({x: (circle.dx + circle.dw / 2) / 30 , y: (circle.dy  + circle.dh / 2) / 30});
+        self.circle.translate(180, 0);
+        self.circle.body.SetPosition({x: (self.circle.dx + self.circle.dw / 2) / 30 , y: (self.circle.dy  + self.circle.dh / 2) / 30});
     }
     if (arrowDown.touched) {
-        circle.translate(0, 180);
-        circle.body.SetPosition({x: (circle.dx + circle.dw / 2) / 30 , y: (circle.dy  + circle.dh / 2) / 30});
+        self.circle.translate(0, 180);
+        self.circle.body.SetPosition({x: (self.circle.dx + self.circle.dw / 2) / 30 , y: (self.circle.dy  + self.circle.dh / 2) / 30});
     }
     if (arrowLeft.touched) {
-        circle.translate(-180, 0);
-        circle.body.SetPosition({x: (circle.dx + circle.dw / 2) / 30 , y: (circle.dy  + circle.dh / 2) / 30});
+        self.circle.translate(-180, 0);
+        self.circle.body.SetPosition({x: (self.circle.dx + self.circle.dw / 2) / 30 , y: (self.circle.dy  + self.circle.dh / 2) / 30});
     }
 
     // camera
     if (buttonUp.touched) {
-        camera.zoomIn(60);
+        self.camera.zoomIn(60);
     }
     if (buttonRight.touched) {
-        camera.rotate(-180);
+        self.camera.rotate(-180);
     }
     if (buttonDown.touched) {
-        camera.zoomOut(60);
+        self.camera.zoomOut(60);
     }
     if (buttonLeft.touched) {
-        camera.rotate(180);
-    }
-
-        // states
-    if (nextState.touched) {
-        var nState;
-        var states = this.listStates();
-        var currentState = this.currentState();
-        var stateIndex = states.indexOf(currentState);
-        stateIndex++;
-        if (stateIndex < states.length) {
-            nState = states[stateIndex];
-        } else {
-            nState = states[0];
-        }
-        
-        this.switchState(nState.name);
-    }
-
-    if (prevState.touched) {
-        var pState;
-        var states = this.listStates();
-        var currentState = this.currentState();
-        var stateIndex = states.indexOf(currentState);
-        stateIndex--;
-        if (stateIndex < 0) {
-            pState = states[states.length];
-        } else {
-            pState = states[stateIndex - 1];
-        }
-        this.switchState(pState.name);
+        self.camera.rotate(180);
     }
 
 };

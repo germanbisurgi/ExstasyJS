@@ -1,28 +1,22 @@
 var inputState = new Extasy.state('inputState');
-var square;
-var mouseX;
-var mouseY;
-var mouseButtons;
-var wheelDirection;
-var keys;
-var touchX;
-var touchY;
-var text;
-var style = {
-    font: "20px Helvetica",
-    fillStyle: "purple",
-    textAlign: "start",
-    textBaseline: "top",
-    strokeStyle: "black",
-    lineWidth: 0,
-    lineHeight: 1.8,
-};
-
+var self;
 
 inputState.create = function () {
+    self = inputState;
+        self.style = {
+        font: "20px Helvetica",
+        fillStyle: "purple",
+        textAlign: "start",
+        textBaseline: "top",
+        strokeStyle: "black",
+        lineWidth: 0,
+        lineHeight: 1.8,
+    };
     
-    text = this.addText(15, 15, 500, 500, '', style);
-    square = this.addRectangle(200, 15, 50, 50);
+    self.text = self.addText(15, 15, 500, 500, '', self.style);
+    self.square = self.addRectangle(200, 15, 50, 50);
+
+    console.log(self.currentState().name);
     
 };
 
@@ -30,98 +24,68 @@ inputState.update = function () {
 
     // ------------------------------------------------------------------- mouse
 
-    mouseX = this.mouseX();
-    mouseY = this.mouseY();
-    mouseButtons = '';
-    wheelDirection = this.wheelDirection();
+    self.mouseX = self.getMouseX();
+    self.mouseY = self.getMouseY();
+    self.mouseButtons = '';
+    self.wheelDirection = self.getWheelDirection();
 
-    if (this.mouseRight()) {
-        mouseButtons += 'mouseRight ';
+    if (self.mouseRight()) {
+        self.mouseButtons += 'mouseRight ';
     }
-    if (this.mouseMiddle()) {
-        mouseButtons += 'mouseMiddle ';
+    if (self.mouseMiddle()) {
+        self.mouseButtons += 'mouseMiddle ';
     }
-    if (this.mouseLeft()) {
-        mouseButtons += 'mouseLeft ';
-        square.position(
-            mouseX / this.activeCamera().zoom - square.dw * 0.5,
-            mouseY / this.activeCamera().zoom - square.dh * 0.5
+    if (self.mouseLeft()) {
+        self.mouseButtons += 'mouseLeft ';
+        self.square.position(
+            self.mouseX / self.activeCamera().zoom - self.square.dw * 0.5,
+            self.mouseY / self.activeCamera().zoom - self.square.dh * 0.5
         );
     }
-    if (this.mouseWheelUp()) {
-        this.activeCamera().zoomIn(60);
+    if (self.mouseWheelUp()) {
+        self.activeCamera().zoomIn(60);
 
     }
-    if (this.mouseWheelDown()) {
-        this.activeCamera().zoomOut(60);
+    if (self.mouseWheelDown()) {
+        self.activeCamera().zoomOut(60);
     }
 
     // ---------------------------------------------------------------- keyboard
 
-    keys = '';
+    self.keys = '';
     
-    if (this.pressing('ArrowUp')) {
-        keys += 'up ';
+    if (self.pressing('ArrowUp')) {
+        self.keys += 'up ';
     }
-    if (this.pressing('ArrowRight')) {
-        keys += 'right ';
+    if (self.pressing('ArrowRight')) {
+        self.keys += 'right ';
     }
-    if (this.pressing('ArrowDown')) {
-        keys += 'down ';
+    if (self.pressing('ArrowDown')) {
+        self.keys += 'down ';
     }
-    if (this.pressing('ArrowLeft')) {
-        keys += 'left ';
+    if (self.pressing('ArrowLeft')) {
+        self.keys += 'left ';
     }
     
     // ------------------------------------------------------------------- touch
     
-    touchX = this.touchX();
-    touchY = this.touchY();
+    self.touchX = self.getTouchX();
+    self.touchY = self.getTouchY();
 
-    if (this.touched()) {
-        square.position(touchX - square.dw * 0.5, touchY - square.dh * 0.5);
+    if (self.touched()) {
+        self.square.position(touchX - self.square.dw * 0.5, touchY - self.square.dh * 0.5);
     }
 
     // -------------------------------------------------------------------- echo
 
-    text.setText(
-        'mouse x: ' + mouseX + '\n' +
-        'mouse y: ' + mouseY + '\n' +
-        'mouse buttons: ' + mouseButtons + '\n' +
-        'mouse wheel: ' + wheelDirection + '\n' +
-        'touch x: ' + touchX + '\n' +
-        'touch y: ' + touchY + '\n' +
-        'keys: ' + keys
+    self.text.setText(
+        'mouse x: ' + self.mouseX + '\n' +
+        'mouse y: ' + self.mouseY + '\n' +
+        'mouse buttons: ' + self.mouseButtons + '\n' +
+        'mouse wheel: ' + self.wheelDirection + '\n' +
+        'touch x: ' + self.touchX + '\n' +
+        'touch y: ' + self.touchY + '\n' +
+        'keys: ' + self.keys
     );
-
-        // states
-    if (nextState.touched) {
-        var nState;
-        var states = this.listStates();
-        var currentState = this.currentState();
-        var stateIndex = states.indexOf(currentState);
-        stateIndex++;
-        if (stateIndex < states.length) {
-            nState = states[stateIndex];
-        } else {
-            nState = states[0];
-        }
-        
-        this.switchState(nState.name);
-    }
-
-    if (prevState.touched) {
-        var pState;
-        var states = this.listStates();
-        var currentState = this.currentState();
-        var stateIndex = states.indexOf(currentState);
-        stateIndex--;
-        if (stateIndex < 0) {
-            pState = states[states.length];
-        } else {
-            pState = states[stateIndex - 1];
-        }
-        this.switchState(pState.name);
-    }
         
 };

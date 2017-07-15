@@ -1,109 +1,96 @@
 var physicsState = new Extasy.state('physicsState');
-var circle;
-var rectangle;
-var polygon;
-var mainCamera;
-var camera1;
-var camera2;
-var camera3;
-var bg;
-var canPause = true;
-var canSelect = true;
-var tic;
-var contactListener;
+var self;
 
 physicsState.create = function () {
+ self = physicsState;
+    self.canPause = true;
+    self.canSelect = true;
 
-    this.enablePhysics();
-    //this.enablePhysicsDebugMode();
+    self.enablePhysics();
+    //self.enablePhysicsDebugMode();
 
-    
+    self.pattern = self.createPattern(self.getAsset('stone'), 'repeat');
 
-    var pattern = this.createPattern(this.getAsset('stone'), 'repeat');
-
-    bg = this.addRectangle(10, 10, 380, 280);
-
-
-    circle = this.addCircle(100, 100, 25);
-    circle.fill(pattern);
-    circle.body = this.createBody(circle.dx + circle.dw * 0.5, circle.dy + circle.dh * 0.5, 'dynamic');
-    circle.body.CreateFixture(this.createCircleShape(circle.dw / 2));
+    self.bg = self.addRectangle(10, 10, 380, 280);
 
 
-    rectangle = this.addRectangle(200, 150, 50, 50);
-    rectangle.fill(pattern);
-    rectangle.body = this.createBody(rectangle.dx + rectangle.dw * 0.5, rectangle.dy + rectangle.dh * 0.5, 'dynamic');
-    rectangle.body.CreateFixture(this.createRectangleShape(rectangle.dw, rectangle.dh));
+    self.circle = self.addCircle(100, 100, 25);
+    self.circle.fill(self.pattern);
+    self.circle.body = self.createBody(self.circle.dx + self.circle.dw * 0.5, self.circle.dy + self.circle.dh * 0.5, 'dynamic');
+    self.circle.body.CreateFixture(self.createCircleShape(self.circle.dw / 2));
 
 
-    polygon = this.addPolygon(70, 200, [
+    self.rectangle = self.addRectangle(200, 150, 50, 50);
+    self.rectangle.fill(self.pattern);
+    self.rectangle.body = self.createBody(self.rectangle.dx + self.rectangle.dw * 0.5, self.rectangle.dy + self.rectangle.dh * 0.5, 'dynamic');
+    self.rectangle.body.CreateFixture(self.createRectangleShape(self.rectangle.dw, self.rectangle.dh));
+
+
+    self.polygon = self.addPolygon(70, 200, [
         {x:  50, y:  0},
         {x: 100, y: 25},
         {x:  50, y: 50},
         {x:   0, y: 50}
     ]);
-    polygon.fill(pattern);
-    polygon.body = this.createBody(polygon.dx + polygon.dw * 0.5, polygon.dy + polygon.dh * 0.5, 'dynamic');
-    polygon.body.CreateFixture(this.createPolygonShape([
-        {x:   0 - polygon.dw / 2, y:  0 - polygon.dh / 2},
-        {x:  50 - polygon.dw / 2, y:  0 - polygon.dh / 2},
-        {x: 100 - polygon.dw / 2, y: 25 - polygon.dh / 2},
-        {x:  50 - polygon.dw / 2, y: 50 - polygon.dh / 2},
-        {x:   0 - polygon.dw / 2, y: 50 - polygon.dh / 2}
+    self.polygon.fill(self.pattern);
+    self.polygon.body = self.createBody(self.polygon.dx + self.polygon.dw * 0.5, self.polygon.dy + self.polygon.dh * 0.5, 'dynamic');
+    self.polygon.body.CreateFixture(self.createPolygonShape([
+        {x:   0 - self.polygon.dw / 2, y:  0 - self.polygon.dh / 2},
+        {x:  50 - self.polygon.dw / 2, y:  0 - self.polygon.dh / 2},
+        {x: 100 - self.polygon.dw / 2, y: 25 - self.polygon.dh / 2},
+        {x:  50 - self.polygon.dw / 2, y: 50 - self.polygon.dh / 2},
+        {x:   0 - self.polygon.dw / 2, y: 50 - self.polygon.dh / 2}
     ]));
 
     
 
-    this.addEdge(10, 10, 10, 290);
-    this.addEdge(10, 290, 390, 290);
-    this.addEdge(390, 290, 390, 10);
-    this.addEdge(390, 10, 10, 10);
+    self.addEdge(10, 10, 10, 290);
+    self.addEdge(10, 290, 390, 290);
+    self.addEdge(390, 290, 390, 10);
+    self.addEdge(390, 10, 10, 10);
 
 
-    //circle.body.ApplyImpulse({'x': 100 / 30, 'y': 600 / 30}, circle.body.GetWorldCenter());
-    //rectangle.body.ApplyImpulse({'x': 3 / 30, 'y': 3 / 30}, polygon.body.GetWorldCenter());
+    self.mainCamera = self.getCamera('main');
+    self.camera1 = self.addCamera('camera1');
+    self.camera2 = self.addCamera('camera2');
+    self.camera3 = self.addCamera('camera3');
 
-    mainCamera = this.getCamera('main');
-    camera1 = this.addCamera('camera1');
-    camera2 = this.addCamera('camera2');
-    camera3 = this.addCamera('camera3');
+    self.switchCamera('camera3');
 
-    this.switchCamera('camera3');
+    self.activeCamera().setLerp(10);
 
-    this.activeCamera().setLerp(10);
-
-    tic = this.addAudio('tic', 0.1, false);
+    self.tic = self.addAudio('tic', 0.1, false);
 
     // contact listener
-    contactListener = this.addContactListener();
-    contactListener.BeginContact = function() {
-        tic.currentTime = 0;
-        tic.play();
+    self.contactListener = self.addContactListener();
+    self.contactListener.BeginContact = function() {
+        self.tic.currentTime = 0;
+        self.tic.play();
     };
 };
 
 physicsState.update = function () {
 
-    circle.dx = circle.body.GetPosition().x * 30 - circle.dw / 2;
-    circle.dy = circle.body.GetPosition().y * 30 - circle.dh / 2;
-    circle.angle = this.game.physicsManager.toDegrees(circle.body.GetAngle());
+    self.circle.dx = self.circle.body.GetPosition().x * 30 - self.circle.dw / 2;
+    self.circle.dy = self.circle.body.GetPosition().y * 30 - self.circle.dh / 2;
+    self.circle.angle = self.game.physicsManager.toDegrees(self.circle.body.GetAngle());
 
-    rectangle.dx = rectangle.body.GetPosition().x * 30 - rectangle.dw / 2;
-    rectangle.dy = rectangle.body.GetPosition().y * 30 - rectangle.dh / 2;
-    rectangle.angle = this.game.physicsManager.toDegrees(rectangle.body.GetAngle());
+    self.rectangle.dx = self.rectangle.body.GetPosition().x * 30 - self.rectangle.dw / 2;
+    self.rectangle.dy = self.rectangle.body.GetPosition().y * 30 - self.rectangle.dh / 2;
+    self.rectangle.angle = self.game.physicsManager.toDegrees(self.rectangle.body.GetAngle());
 
-    polygon.dx = polygon.body.GetPosition().x * 30 - polygon.dw / 2;
-    polygon.dy = polygon.body.GetPosition().y * 30 - polygon.dh / 2;
-    polygon.angle = this.game.physicsManager.toDegrees(polygon.body.GetAngle());
+    self.polygon.dx = self.polygon.body.GetPosition().x * 30 - self.polygon.dw / 2;
+    self.polygon.dy = self.polygon.body.GetPosition().y * 30 - self.polygon.dh / 2;
+    self.polygon.angle = self.game.physicsManager.toDegrees(self.polygon.body.GetAngle());
 
-    rectangle.body.m_angularVelocity = 0;
+    self.rectangle.body.m_angularVelocity = 0;
     
-    camera1.follow(circle);
-    camera2.follow(rectangle);
-    camera3.follow(polygon);
+    self.camera1.follow(self.circle);
+    self.camera2.follow(self.rectangle);
+    self.camera3.follow(self.polygon);
 
 
-    var camera = this.activeCamera();
+    var camera = self.activeCamera();
 
     // camera
     if (buttonUp.touched) {
@@ -121,92 +108,64 @@ physicsState.update = function () {
 
     // camera
     if (arrowUp.touched) {
-        rectangle.body.ApplyForce({'x': 0, 'y': -100}, polygon.body.GetWorldCenter());
+        self.rectangle.body.ApplyForce({'x': 0, 'y': -100}, self.rectangle.body.GetWorldCenter());
     }
     if (arrowRight.touched) {
-        rectangle.body.ApplyForce({'x': 100, 'y': 0}, polygon.body.GetWorldCenter());
+        self.rectangle.body.ApplyForce({'x': 100, 'y': 0}, self.rectangle.body.GetWorldCenter());
     }
     if (arrowDown.touched) {
-        rectangle.body.ApplyForce({'x':0, 'y': 100}, polygon.body.GetWorldCenter());
+        self.rectangle.body.ApplyForce({'x':0, 'y': 100}, self.rectangle.body.GetWorldCenter());
     }
     if (arrowLeft.touched) {
-        rectangle.body.ApplyForce({'x': -100, 'y': 0}, polygon.body.GetWorldCenter());
+        self.rectangle.body.ApplyForce({'x': -100, 'y': 0}, self.rectangle.body.GetWorldCenter());
     }
 
 
     // select
-    if (buttonStart.touched && canSelect) {
-        if (!this.isPaused()) {
-            this.pause();
+    if (buttonStart.touched && self.canSelect) {
+        if (!self.isPaused()) {
+            self.pause();
         } else {
-            this.continue();
+            self.continue();
         }
-        canSelect = false;
+        self.canSelect = false;
         setTimeout(function () {
-            canSelect = true;
+            self.canSelect = true;
         }, 200);
     }
 
     // start
-    if (buttonSelect.touched && canPause) {
-        var activeCamera = this.activeCamera();
+    if (buttonSelect.touched && self.canPause) {
+        var activeCamera = self.activeCamera();
         console.log(activeCamera.name);
         switch(activeCamera.name) {
             case 'camera1':
-                this.switchCamera('camera2');
+                self.switchCamera('camera2');
                 break;
             case 'camera2':
-                this.switchCamera('camera3');
+                self.switchCamera('camera3');
                 break;
             case 'camera3':
-                this.switchCamera('camera1');
+                self.switchCamera('camera1');
                 break;
         }
-        canPause = false;
+        self.canPause = false;
         setTimeout(function () {
-            canPause = true;
+            self.canPause = true;
         }, 200);
     }
 
-    // states
-    if (nextState.touched) {
-        var nState;
-        var states = this.listStates();
-        var currentState = this.currentState();
-        var stateIndex = states.indexOf(currentState);
-        stateIndex++;
-        if (stateIndex < states.length) {
-            nState = states[stateIndex];
-        } else {
-            nState = states[0];
-        }
-        
-        this.switchState(nState.name);
+    if (self.pressing('num1')) {
+        self.switchCamera('camera1');
+    }
+    if (self.pressing('num2')) {
+        self.switchCamera('camera2');
+    }
+    if (self.pressing('num3')) {
+        self.switchCamera('camera3');
     }
 
-    if (prevState.touched) {
-        var pState;
-        var states = this.listStates();
-        var currentState = this.currentState();
-        var stateIndex = states.indexOf(currentState);
-        stateIndex--;
-        if (stateIndex < 0) {
-            pState = states[states.length];
-        } else {
-            pState = states[stateIndex - 1];
-        }
-        this.switchState(pState.name);
-    }
-
-    if (this.pressing('num1')) {
-        this.switchCamera('camera1');
-    }
-    if (this.pressing('num2')) {
-        this.switchCamera('camera2');
-    }
-    if (this.pressing('num3')) {
-        this.switchCamera('camera3');
-    }
+    console.log(this.currentState().name);
 
     
 };

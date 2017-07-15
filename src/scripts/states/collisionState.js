@@ -1,12 +1,9 @@
 var collisionState = new Extasy.state('collisionState');
-var hero;
-var rectangle1;
-var rectangle2;
-var rectangle3;
-var circle1;
-var circle2;
-var circle3;
-var style = {
+var self;
+
+collisionState.create = function () {
+    self = collisionState;
+    self.style = {
         font: "20px Helvetica",
         fillStyle: "purple",
         textAlign: "start",
@@ -15,28 +12,27 @@ var style = {
         lineWidth: 0,
         lineHeight: 1.5,
     };
+    self.addText(15, 15, 500, 500, 'use arrows and "wasd" keys to move', self.style);
 
-collisionState.create = function () {
+    self.hero = self.addCircle(400, 75, 50);
+    self.rectangle1 = self.addRectangle(15, 200, 25, 25);
+    self.rectangle2 = self.addRectangle(50, 200, 30, 30);
+    self.rectangle3 = self.addRectangle(150, 200, 30, 30);
+    self.circle1 = self.addCircle(200, 200, 30);
+    self.circle2 = self.addCircle(350, 200, 15);
+    self.circle3 = self.addCircle(400, 75, 25);
 
-    this.addText(15, 15, 500, 500, 'use arrows and "wasd" keys to move', style);
+    self.enableCollision();
 
-    hero = this.addCircle(400, 75, 50);
-    rectangle1 = this.addRectangle(15, 200, 25, 25);
-    rectangle2 = this.addRectangle(50, 200, 30, 30);
-    rectangle3 = this.addRectangle(150, 200, 30, 30);
-    circle1 = this.addCircle(200, 200, 30);
-    circle2 = this.addCircle(350, 200, 15);
-    circle3 = this.addCircle(400, 75, 25);
+    self.collidable(self.hero);
+    self.collidable(self.rectangle1);
+    self.collidable(self.rectangle2);
+    self.collidable(self.rectangle3);
+    self.collidable(self.circle1);
+    self.collidable(self.circle2);
+    self.collidable(self.circle3);
 
-    this.enableCollision();
-
-    this.collidable(hero);
-    this.collidable(rectangle1);
-    this.collidable(rectangle2);
-    this.collidable(rectangle3);
-    this.collidable(circle1);
-    this.collidable(circle2);
-    this.collidable(circle3);
+    console.log(self.currentState().name);
 
 };
 
@@ -44,77 +40,47 @@ collisionState.update = function () {
 
     // -------------------------------------------------------------- rectangles
 
-    if (this.pressing('w')) {
-        rectangle2.translate(0, -100);
+    if (self.pressing('w')) {
+        self.rectangle2.translate(0, -100);
     }
-    if (this.pressing('d')) {
-        rectangle2.translate(100, 0);
+    if (self.pressing('d')) {
+        self.rectangle2.translate(100, 0);
     }
-    if (this.pressing('s')) {
-        rectangle2.translate(0, 100);
+    if (self.pressing('s')) {
+        self.rectangle2.translate(0, 100);
     }
-    if (this.pressing('a')) {
-        rectangle2.translate(-100, 0);
+    if (self.pressing('a')) {
+        self.rectangle2.translate(-100, 0);
     }
 
     // ----------------------------------------------------------------- circles
 
-    if (this.pressing('ArrowUp')) {
-        circle2.translate(0, -100);
+    if (self.pressing('ArrowUp')) {
+        self.circle2.translate(0, -100);
     }
-    if (this.pressing('ArrowRight')) {
-        circle2.translate(100, 0);
+    if (self.pressing('ArrowRight')) {
+        self.circle2.translate(100, 0);
     }
-    if (this.pressing('ArrowDown')) {
-        circle2.translate(0, 100);
+    if (self.pressing('ArrowDown')) {
+        self.circle2.translate(0, 100);
     }
-    if (this.pressing('ArrowLeft')) {
-        circle2.translate(-100, 0);
+    if (self.pressing('ArrowLeft')) {
+        self.circle2.translate(-100, 0);
     }
 
     // -------------------------------------------------------------------- hero
 
-    hero.dx = this.mouseX() - hero.dw / 2;
-    hero.dy = this.mouseY() - hero.dh / 2;
+    self.hero.dx = self.getMouseX() - self.hero.dw / 2;
+    self.hero.dy = self.getMouseY() - self.hero.dh / 2;
 
     // --------------------------------------------------------------- collision
 
-    this.listCollidables().forEach(function (e) {
+    self.listCollidables().forEach(function (e) {
         if (e.collides) {
             e.fill('red');
         } else {
             e.fill('grey');
         }
-    });
-
-        // states
-    if (nextState.touched) {
-        var nState;
-        var states = this.listStates();
-        var currentState = this.currentState();
-        var stateIndex = states.indexOf(currentState);
-        stateIndex++;
-        if (stateIndex < states.length) {
-            nState = states[stateIndex];
-        } else {
-            nState = states[0];
-        }
-        
-        this.switchState(nState.name);
-    }
-
-    if (prevState.touched) {
-        var pState;
-        var states = this.listStates();
-        var currentState = this.currentState();
-        var stateIndex = states.indexOf(currentState);
-        stateIndex--;
-        if (stateIndex < 0) {
-            pState = states[states.length];
-        } else {
-            pState = states[stateIndex - 1];
-        }
-        this.switchState(pState.name);
-    }
+    });  
 
 };

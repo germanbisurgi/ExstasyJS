@@ -1,69 +1,43 @@
 var eventState = new Extasy.state('eventState');
-var circle;
-var pointer;
-eventState.create = function () {
+var self;
 
-    circle = this.addCircle(50, 50, 25);
-    pointer = this.addCircle(50, 50, 1);
-    pointer.fill('transparent');
+eventState.create = function () {
+    self = eventState;
+    
+    self.circle = self.addCircle(50, 50, 25);
+    self.pointer = self.addCircle(50, 50, 1);
+    self.pointer.fill('transparent');
     
 
-    this.addEvent('banana', function () {
+    self.addEvent('banana', function () {
         console.log('banana callback');
     });
 
-    this.addEvent('apfel', function () {
+    self.addEvent('apfel', function () {
         console.log('aüfel callback');
     });
 
-    this.removeEvent('apfel');
+    self.removeEvent('apfel');
 
-    console.log(this.listEvents());
+    console.log(self.listEvents());
+
+    console.log(self.currentState().name);
 };
 
 eventState.update = function () {
-    pointer.dx = this.mouseX() - pointer.dw / 2;
-    pointer.dy = this.mouseY() - pointer.dh / 2;
+    self.pointer.dx = self.getMouseX() - self.pointer.dw / 2;
+    self.pointer.dy = self.getMouseY() - self.pointer.dh / 2;
 
-    if (this.circleCollision(pointer, circle)) {
-        if (this.touched()) {
-            circle.fill('yellow');
+    if (self.circleCollision(self.pointer, self.circle)) {
+        if (self.touched()) {
+            self.circle.fill('yellow');
         } else {
-            circle.fill('purple');
+            self.circle.fill('purple');
         }
         
     } else {
-        circle.fill('green');
+        self.circle.fill('green');
     }
 
-        // states
-    if (nextState.touched) {
-        var nState;
-        var states = this.listStates();
-        var currentState = this.currentState();
-        var stateIndex = states.indexOf(currentState);
-        stateIndex++;
-        if (stateIndex < states.length) {
-            nState = states[stateIndex];
-        } else {
-            nState = states[0];
-        }
-        
-        this.switchState(nState.name);
-    }
-
-    if (prevState.touched) {
-        var pState;
-        var states = this.listStates();
-        var currentState = this.currentState();
-        var stateIndex = states.indexOf(currentState);
-        stateIndex--;
-        if (stateIndex < 0) {
-            pState = states[states.length];
-        } else {
-            pState = states[stateIndex - 1];
-        }
-        this.switchState(pState.name);
-    }
-
+    
 };

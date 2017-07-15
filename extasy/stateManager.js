@@ -31,6 +31,11 @@ StateManager = function (game) {
     self.switch = function(stateName) {
         var requestedState = self.getState(stateName);
         if (requestedState) {
+
+            self.game.entityManager.entities = new Extasy.pool();
+            self.game.physicsManager.clearBodies();
+
+
             requestedState.game = self.game; // MAGIC! :)
             self.state = requestedState;
             // console.log('switched to ->', stateName);
